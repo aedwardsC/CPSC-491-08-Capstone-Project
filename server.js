@@ -24,7 +24,6 @@ let databaseConnection = mySql.createConnection({
     user: "", // your username
     password: "" // your password
 });
-
 startDatabase(databaseConnection);
 
 // listen on the port localhost:4000
