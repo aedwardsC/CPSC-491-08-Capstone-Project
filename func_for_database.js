@@ -1,3 +1,15 @@
+function createTable(databaseConnection, tableName, tableElements) {
+    let queryCommand = "CREATE TABLE schedularDatabase." + tableName + " {" + tableElements + "};";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: unable to create table " + tableName);
+        }
+        else {
+            console.log("Created " + tableName);
+        }
+    });
+}
+
 function startDatabase(databaseConnection) {
     // connect to the database
     databaseConnection.connect(function(error) {
@@ -44,147 +56,72 @@ function startDatabase(databaseConnection) {
                 // create the tables within the database
 
                 // table for all users
-                queryCommand = "CREATE TABLE schedularDatabase.usersTable {email VARCHAR(255) PRIMARY KEY, fname VARCHAR(255), lname VARCHAR(255), password VARCHAR(255), status VARCHAR(255), companyName VARCHAR(255), companyType VARCHAR(255));";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table usersTable");
-                    }
-                    else {
-                        console.log("Created usersTable");
-                    }
-                });
-
-                // table for supervisors specifically
-                // queryCommand = "CREATE TABLE schedularDatabase.supervisorTable {email VARCHAR(255) PRIMARY KEY, fname VARCHAR(255), lname VARCHAR(255), companyType VARCHAR(255), roster VARCHAR(255)};";
-                // databaseConnection.query(queryCommand, function(error, sqlResult) {
-                //     if (error) {
-                //         console.log("ERROR: unable to create table supervisorTable");
-                //     }
-                //     else {
-                //         console.log("Created supervisorTable");
-                //     }
-                // });
+                let tableName = "usersTable";
+                let tableElements = "email VARCHAR(255) PRIMARY KEY, fname VARCHAR(255)," 
+                    + " lname VARCHAR(255), password VARCHAR(255), status VARCHAR(255),"
+                    + " companyName VARCHAR(255), companyType VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
                 
                 // table for keeping track of the companies that use the database
-                queryCommand = "CREATE TABLE schedularDatabase.companiesServed {companyName VARCHAR(255) PRIMARY KEY, companyType VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table companiesServed");
-                    }
-                    else {
-                        console.log("Created tables companiesServiced");
-                    }
-                });
+                tableName = "companiesServed";
+                tableElements = "companyName VARCHAR(255) PRIMARY KEY, companyType VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
 
                 // table for white collar employees
-                queryCommand = "CREATE TABLE schedularDatabase.wcEmpInfo {email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255), nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255), locationPref VARCHAR(255), shiftTimePref VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table wcEmpInfo");
-                    }
-                    else {
-                        console.log("Created tables wcEmpInfo");
-                    }
-                });
+                tableName = "wcEmpInfo";
+                let commonElements = "email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255),"
+                    + " nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255)," 
+                    + " locationPref VARCHAR(255), shiftTimePref VARCHAR(255)"; // elements all tables have in common
+                createTable(databaseConnection, tableName, commonElements);
 
                 // table for retail employees
-                queryCommand = "CREATE TABLE schedularDatabase.rEmpInfo {email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255), nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255), locationPref VARCHAR(255), shiftTimePref VARCHAR(255), weekPref VARCHAR(255), dayPref VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table rEmpInfo");
-                    }
-                    else {
-                        console.log("Created tables rEmpInfo");
-                    }
-                });
+                tableName = "rEmpInfo";
+                tableElements = commonElements + ", weekPref VARCHAR(255), dayPref VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
                 
                 // table for entertainment employees
-                queryCommand = "CREATE TABLE schedularDatabase.eEmpInfo {email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255), nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255), locationPref VARCHAR(255), shiftTimePref VARCHAR(255), weekPref VARCHAR(255), dayPref VARCHAR(255), allergies VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table eEmpInfo");
-                    }
-                    else {
-                        console.log("Created tables eEmpInfo");
-                    }
-                });
+                tableName = "eEmpInfo";
+                tableElements = commonElements + ", weekPref VARCHAR(255), dayPref VARCHAR(255),"
+                    + " allergies VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
+
+                // table for food employees (the same as entertainment)
+                tableName = "fEmpInfo";
+                createTable(databaseConnection, tableName, tableElements);
                 
                 // table for law enforcement employees
-                queryCommand = "CREATE TABLE schedularDatabase.lEmpInfo {email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255), nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255), locationPref VARCHAR(255), shiftTimePref VARCHAR(255), lastShift VARCHAR(255), allergies VARCHAR(255), yearsServed INT};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table lEmpInfo");
-                    }
-                    else {
-                        console.log("Created tables lEmpInfo");
-                    }
-                });
-               
-                // table for food employees
-                queryCommand = "CREATE TABLE schedularDatabase.fEmpInfo {email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255), nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255), locationPref VARCHAR(255), shiftTimePref VARCHAR(255), weekPref VARCHAR(255), dayPref VARCHAR(255), allergies VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table fEmpInfo");
-                    }
-                    else {
-                        console.log("Created tables fEmpInfo");
-                    }
-                });
+                tableName = "lEmpInfo";
+                tableElements = commonElements + ", lastShift VARCHAR(255), allergies VARCHAR(255),"
+                    + " yearsServed INT";
+                createTable(databaseConnection, tableName, tableElements);
                 
                 // table for white collar schedule details
-                queryCommand = "CREATE TABLE schedularDatabase.wcSupInfo {supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255), companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255), locationNames VARCHAR(255), shiftHours VARCHAR(255), trainingDays VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table wcCompInfo");
-                    }
-                    else {
-                        console.log("Created tables wcCompInfo");
-                    }
-                });
+                tableName = "wcSupInfo";
+                commonElements = "supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255),"
+                    + " companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255),"
+                    + " locationNames VARCHAR(255), shiftHours VARCHAR(255)";
+                tableElements = commonElements + ", trainingDays VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
                
                 // table for reatil schedule details
-                queryCommand = "CREATE TABLE schedularDatabase.rSupInfo {supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255), companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255), locationNames VARCHAR(255), shiftHours VARCHAR(255), shiftDaysWeek VARCHAR(255), shiftDaysWeekend VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table rCompInfo");
-                    }
-                    else {
-                        console.log("Created tables rCompInfo");
-                    }
-                });
+                tableName = "rSupInfo";
+                tableElements = commonElements + ", shiftDaysWeek VARCHAR(255), shiftDaysWeekend VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
                
                 // table for entertainment schedule details
-                queryCommand = "CREATE TABLE schedularDatabase.eSupInfo {supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255), companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255), locationNames VARCHAR(255), shiftHours VARCHAR(255), shiftDaysWeek VARCHAR(255), shiftDaysWeekend VARCHAR(255), allergies VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table eCompInfo");
-                    }
-                    else {
-                        console.log("Created tables eCompInfo");
-                    }
-                });
+                tableName = "eSupInfo";
+                tableElements = commonElements + ", shiftDaysWeek VARCHAR(255), shiftDaysWeekend VARCHAR(255),"
+                    + " allergies VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
+
+                // table for food schedule details (same as entertainment)
+                tableName = "fSupInfo";
+                createTable(databaseConnection, tableName, tableElements);
                 
                 // table for law enforcement schedule details
-                queryCommand = "CREATE TABLE schedularDatabase.lSupInfo {supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255), companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255), locationNames VARCHAR(255), shiftHours VARCHAR(255), allergies VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table lCompInfo");
-                    }
-                    else {
-                        console.log("Created tables lCompInfo");
-                    }
-                });
-               
-                // table for food schedule details
-                queryCommand = "CREATE TABLE schedularDatabase.fSupInfo {supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255), companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255), locationNames VARCHAR(255), shiftHours VARCHAR(255), shiftDaysWeek VARCHAR(255), shiftDaysWeekend VARCHAR(255), allergies VARCHAR(255)};";
-                databaseConnection.query(queryCommand, function(error, sqlResult) {
-                    if (error) {
-                        console.log("ERROR: unable to create table fCompInfo");
-                    }
-                    else {
-                        console.log("Created tables fCompInfo");
-                    }
-                });
+                tableName = "lSupInfo";
+                tableElements = commonElements + ", allergies VARCHAR(255)";
+                createTable(databaseConnection, tableName, tableElements);
 
                 // database and tables now created
                 console.log("The database and tables are ready for use!");
