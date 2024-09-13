@@ -4,6 +4,7 @@
 
 // import the functions from func_for_database
 let databaseFunctions = require("./func_for_database.js");
+let serverFunctions = require("./func_other_than_db.js");
 
 // set up Node.js library
 let nodeJs = require("express");
@@ -26,6 +27,23 @@ let databaseConnection = mySql.createConnection({
 });
 
 databaseFunctions.startDatabase(databaseConnection);
+
+program.get("/", function(request, response) {
+    // when first access the website, automatically route to the
+    // sign in page
+    response.sendFile(__dirname + "/index.html");
+});
+
+program.post("/sign_in", function(request, response) {
+    // get the username from the form
+    let username = requst.body.usernameInput;
+
+    // get the password from the form
+    let pswd = request.body.pswd;
+
+    // authenticate
+    serverFunctions.authenticateUser(databaseConnection, username, pswd, databaseFunctions);
+});
 
 // listen on the port localhost:4000
 program.listen(4000);
