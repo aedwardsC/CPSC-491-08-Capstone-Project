@@ -1,8 +1,8 @@
 function createTable(databaseConnection, tableName, tableElements) {
-    let queryCommand = "CREATE TABLE schedularDatabase." + tableName + " {" + tableElements + "};";
+    let queryCommand = "CREATE TABLE schedularDatabase." + tableName + " (" + tableElements + ");";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
-            console.log("ERROR: unable to create table " + tableName);
+            console.log("ERROR: unable to create table " + tableName + "- " + error);
         }
         else {
             console.log("Created " + tableName);
@@ -20,7 +20,7 @@ function startDatabase(databaseConnection) {
             console.log("Connected to database for start-up");
         }
 
-    })
+    });
 
     // detect if there is a database already
     let queryCommand = "SHOW DATABASES;";
@@ -32,9 +32,11 @@ function startDatabase(databaseConnection) {
             let databaseExists = false;
             // go through the results to find the database
             for (let index = 0; index < sqlResult.length; index++) {
-                if (sqlResult[i].Database == "SchedularDatabase") {
+                console.log(sqlResult[index].Database);
+                if (sqlResult[index].Database == "schedularDatabase") {
                     databaseExists = true;
                 }
+                console.log("DatabaseExists = " + databaseExists);
             }
 
             // if the database exists...
