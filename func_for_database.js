@@ -1,3 +1,5 @@
+let username = ""; // global variable for searching the database
+
 function createTable(databaseConnection, tableName, tableElements) {
     let queryCommand = "CREATE TABLE schedularDatabase." + tableName + " (" + tableElements + ");";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
@@ -59,7 +61,7 @@ function startDatabase(databaseConnection) {
 
                 // table for all users
                 let tableName = "usersTable";
-                let tableElements = "email VARCHAR(255) PRIMARY KEY, fname VARCHAR(255)," 
+                let tableElements = "email VARCHAR(255) PRIMARY KEY, username VARCHAR(255), fname VARCHAR(255)," 
                     + " lname VARCHAR(255), password VARCHAR(255), status VARCHAR(255),"
                     + " companyName VARCHAR(255), companyType VARCHAR(255)";
                 createTable(databaseConnection, tableName, tableElements);

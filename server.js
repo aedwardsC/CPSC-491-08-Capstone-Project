@@ -36,14 +36,21 @@ program.get("/", function(request, response) {
 
 program.post("/sign_in", function(request, response) {
     // get the username from the form
-    let username = requst.body.usernameInput;
+    var username = requst.body.usernameInput;
 
     // get the password from the form
     let pswd = request.body.pswd;
 
     // authenticate
-    serverFunctions.authenticateUser(databaseConnection, username, pswd, databaseFunctions);
+    username = serverFunctions.authenticateUser(response, databaseConnection, username, pswd, databaseFunctions);
+});
+
+program.post("/sign_up", function(request, response) {
+    // get the info from the form
+
+    // make sure that the 2 passwords match
 });
 
 // listen on the port localhost:4000
 program.listen(4000);
+console.log("Please go to localhost:4000");
