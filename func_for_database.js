@@ -153,8 +153,8 @@ function storeGeneralSignUpInfo(databaseConnection, email, uname, fname, lname,
 function storeCompanyType(databaseConnection, email, companyType) {
     console.log("Adding to the users table");
 
-    let queryCommand = "INSERT INTO schedularDatabase.usersTable (companyType) " 
-        + "VALUES ('" + companyType + "') WHERE email = '" + email + "';";
+    let queryCommand = "INSERT INTO schedularDatabase.usersTable companyType " 
+        + "VALUE '" + companyType + "' WHERE email = '" + email + "';";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to insert company type to usersTable");
@@ -167,15 +167,53 @@ function storeCompanyType(databaseConnection, email, companyType) {
 
 function companyTypeFromName(databaseConnection, companyName) {
     console.log("Retrieving company type of " + companyName);
+    let type = "";
 
-    // NOT DONE
+    let queryCommand = "SELECT companyType FROM schedularDatabase.companiesServed "
+        + "WHERE companyName = '" + companyName + "';";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to retrieve from usersTable");
+        }
+        else {
+            type = toString(sqlResult[0]);
+        }
+    });
+
+    return type;
+
+    // NOT DONE -> async function -> wrap in promises
 }
 
 function storeCompanyName(databaseConnection, email, companyName) {
     console.log("Storing the company name in the user table");
 
-    // NOT DONE
+    let queryCommand = "INSERT INTO schedularDatabase.usersTable companyName "
+        + "VALUE '" + companyName + "' WHERE email = '" + email + "';";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to add company name to usersTable");
+        }
+        else {
+            console.log("SUCCESS: Added company name to usersTable");
+        }
+    });
+}
+
+function storeCompanyInfoInit(databaseConnection, companyName, companyType) {
+    console.log("Storing company info in Companies Served table");
+
+    let queryCommand = "INSERT INTO schedularDatabase.companiesServed "
+        + "(companyName, companyType) VALUES ('" + companyName + "', '" + companyType + "');";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to add to companiesServed table");
+        }
+        else {
+            console.log("SUCCESS: Added company info to companiesServed table");
+        }
+    });
 }
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
-    storeCompanyName};
+    storeCompanyName, storeCompanyInfoInit};

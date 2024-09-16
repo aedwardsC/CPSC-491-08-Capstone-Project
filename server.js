@@ -17,7 +17,7 @@ program.use(dataParse.urlencoded({extend:true}));
 // for easily navigating between the forms
 program.use(nodeJs.static(__dirname + "/Company_forms"));
 
-// important global variables
+// important global variables -> used frequently
 var username = "";
 var companyType = "";
 
@@ -100,8 +100,18 @@ program.post("/company_name", function(request, response) { // for employees onl
     databaseFunctions.storeCompanyType(databaseConnection, email, companyType);
 
     // direct to the disclaimer page
-    response.sendFile(__dirname + "/Employee_specific/displaimer_page.html")
+    response.sendFile(__dirname + "/Employee_specific/disclaimer_page.html")
 });
+
+program.post("/sup_init_wc", function(request, response) {
+    // get the company name from the initial sign-up form
+    let companyName = request.body.companyName;
+
+    // add company name and type to the companiesServed database (for reference)
+    databaseFunctions.storeCompanyInfoInit(databaseConnection, companyName, companyType);
+
+    // NOT DONE -> Store rest of the info
+})
 
 // listen on the port localhost:4000
 program.listen(4000);
