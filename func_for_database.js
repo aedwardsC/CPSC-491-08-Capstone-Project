@@ -1,5 +1,3 @@
-let username = ""; // global variable for searching the database
-
 function createTable(databaseConnection, tableName, tableElements) {
     let queryCommand = "CREATE TABLE schedularDatabase." + tableName + " (" + tableElements + ");";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
@@ -7,7 +5,7 @@ function createTable(databaseConnection, tableName, tableElements) {
             console.log("ERROR: unable to create table " + tableName + "- " + error);
         }
         else {
-            console.log("Created " + tableName);
+            console.log("SUCCESS: Created " + tableName);
         }
     });
 }
@@ -19,7 +17,7 @@ function startDatabase(databaseConnection) {
             console.log("ERROR: Unable to connect in start-up");
         }
         else {
-            console.log("Connected to database for start-up");
+            console.log("SUCCESS: Connected to database for start-up");
         }
 
     });
@@ -135,4 +133,49 @@ function startDatabase(databaseConnection) {
     });
 }
 
-module.exports = {startDatabase};
+function storeGeneralSignUpInfo(databaseConnection, email, uname, fname, lname, 
+    password, status) {
+    console.log("Adding to database");
+
+    let queryCommand = "INSERT INTO shedularDatabase.usersTable (email, fname, lname, "
+        + "password, status) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '"
+        + password + "', '" + status + "');";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to insert general info into usersTable");
+        }
+        else {
+            console.log("SUCCESS: Added general information to the usersTable");
+        }
+    });
+}
+
+function storeCompanyType(databaseConnection, email, companyType) {
+    console.log("Adding to the users table");
+
+    let queryCommand = "INSERT INTO schedularDatabase.usersTable (companyType) " 
+        + "VALUES ('" + companyType + "') WHERE email = '" + email + "';";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to insert company type to usersTable");
+        }
+        else {
+            console.log("SUCCESS: Added company type to usersTable");
+        }
+    });
+}
+
+function companyTypeFromName(databaseConnection, companyName) {
+    console.log("Retrieving company type of " + companyName);
+
+    // NOT DONE
+}
+
+function storeCompanyName(databaseConnection, email, companyName) {
+    console.log("Storing the company name in the user table");
+
+    // NOT DONE
+}
+
+module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
+    storeCompanyName};
