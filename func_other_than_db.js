@@ -1,4 +1,4 @@
-function stringToVector(givenString) {
+function stringToArray(givenString) {
     // convert the string from the database into a vector to be manipulated
 }
 
@@ -8,8 +8,11 @@ function authenticateUser(response, databaseConnection, username, password, dbFu
     // if find nothing -> direct to error page
 
     // compare password provided with password from database
-        // if passwords match return the username and their company type
+        // if passwords match return the username, their company type, and their status
+        // and their full name
         // else -> direct to error page 
+    
+    return [username, "whiteCollar", "employee", "Amanda", "Walker"]; // FOR TESTING -> CHANGE LATER
 
 }
 
@@ -42,15 +45,49 @@ function determineRole(response, role) {
 
 function splitInitialSetUp(response, companyType) {
     // if company type = white collar -> direct to white collar initial setup
-
-    // if company type = retail -> redirect to retail initial setup
-
-    // if company type = entertainment -> redirect to entertainment initial setup
-
-    // if company type = food -> redirect to food initial setup
-
-    // if company type = law enforcement -> redirect to law enforcement initial setup
-
+    if (companyType == "whiteCollar") {
+        console.log("Sending to White Collar Init");
+        response.sendFile(__dirname + "/Company_forms/wc_initial1.html");
+    }
+    else if (companyType == "retail") {
+        // if company type = retail -> redirect to retail initial setup
+        console.log("Sending to Retail Init");
+        response.sendFile(__dirname + "/Company_forms/r_initial1.html");
+    }
+    else if (companyType == "entertainment") {
+        // if company type = entertainment 
+        // -> redirect to entertainment initial setup
+        console.log("Sending to Entertainment Init");
+        response.sendFile(__dirname + "/Company_forms/e_initial1.html");
+    }
+    else if (companyType == "food") {
+        // if company type = food -> redirect to food initial setup
+        console.log("Sending to Food Init");
+        response.sendFile(__dirname + "/Company_forms/f_initial1.html");
+    }
+    else if (companyType == "lawEnforcement") {
+        // if company type = law enforcement 
+        // -> redirect to law enforcement initial setup
+        console.log("Sending to Law Enforcement Init");
+        response.sendFile(__dirname + "/Company_forms/l_initial1.html");
+    }
+    else {
+        console.log("ERROR: Invalid company type");
+    }
 }
 
-module.exports = {authenticateUser, checkPswds, determineRole, splitInitialSetUp};
+function splitUsers(response, role, fName) {
+    // if role is an employee -> direct to the Disclaimer page
+    if (role == "employee") {
+        console.log("User is employee -> directing to disclaimer");
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
+    }
+    else if (role == "supervisor") { // else -> send to supervisor home page
+        console.log("User is supervisor -> directing to home page")
+        let formVal = {name:fName};
+        response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
+            formVal);
+    }
+}
+
+module.exports = {authenticateUser, checkPswds, determineRole, splitInitialSetUp, splitUsers};

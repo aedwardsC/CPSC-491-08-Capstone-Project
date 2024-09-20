@@ -165,24 +165,76 @@ function storeCompanyType(databaseConnection, email, companyType) {
     });
 }
 
-function companyTypeFromName(databaseConnection, companyName) {
-    console.log("Retrieving company type of " + companyName);
-    let type = "";
+function determineEmpTable(type) {
+    let table = "";
+    if (type == "whiteCollar") {
+        table = "wcEmpInfo";
+    }
+    else if (type == "entertainment") {
+        table = "eEmpInfo";
+    } 
+    else if (type == "lawEnforcement") {
+        table = "lEmpInfo";
+    }
+    else if (type == "food") {
+        table = "fEmpInfo";
+    }
+    else if (type == "retail") {
+        table = "rEmpInfo";
+    }
 
+    return table;
+}
+
+function buildEmpAccount(databaseConnection, email, fullName, companyType, supName) {
+    let table = "";
+
+    // determine which table the user is in
+    table = determineEmpTable(companyType);
+
+    // make sure that the table is good
+    if (table == "") {
+        console.log("ERROR: Employee Company Type is invalid");
+    }
+    else {
+        let queryCommand = "INSERT INTO schedularDatabase." + table
+            + "(email, fullName, supName) VALUES ('" + email + "', '" + fullName + "', '"
+            + supName + "');";
+        databaseConnection.query(queryCommand, function(error, sqlResult) {
+            if (error) {
+                console.log("ERROR: Unable to enter info in Employee's table");
+            }
+            else {
+                console.log("SUCCESS: Able to build employee account in table");
+            }
+        });
+    }
+}
+
+function getType(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve company type");
+            }
+            else {
+                let type = JSON.stringify(sqlResult[0].companyType);
+                console.log("Returning: " + type);
+                resolve(type);
+            }
+        });
+    });
+}
+
+async function companyTypeFromName(databaseConnection, companyName) {
+    console.log("Retrieving company type of " + companyName);
+    
     let queryCommand = "SELECT companyType FROM schedularDatabase.companiesServed "
         + "WHERE companyName = '" + companyName + "';";
-    databaseConnection.query(queryCommand, function(error, sqlResult) {
-        if (error) {
-            console.log("ERROR: Unable to retrieve from usersTable");
-        }
-        else {
-            type = toString(sqlResult[0]);
-        }
-    });
+
+    let type = await getType(databaseConnection, queryCommand);
 
     return type;
-
-    // NOT DONE -> async function -> wrap in promises
 }
 
 function storeCompanyName(databaseConnection, email, companyName) {
@@ -216,4 +268,4 @@ function storeCompanyInfoInit(databaseConnection, companyName, companyType) {
 }
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
-    storeCompanyName, storeCompanyInfoInit};
+    storeCompanyName, storeCompanyInfoInit, buildEmpAccount};
