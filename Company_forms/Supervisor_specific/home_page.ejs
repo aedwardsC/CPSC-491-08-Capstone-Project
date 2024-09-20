@@ -34,24 +34,19 @@
         </style>
     </head>
     <body>
+        <h1>Welcome <%=name%> </h1>
         <div>
-            <form action="/company_type" method="post">
+            <form action="/sup_home" method="post">
                 <label for="placeholder"></label>
                 <br>
                 <br>
                 <br>
                 <br>
                 <br>
-                <label class="formElement" for="companyType">Company Type</label>
+                <label class="formElement" for="home">Home Page</label>
+                <label class="formElement" for="home">Welcome </label>
                 <br>
-                <select class="formElement" name="companyType" id="companyType">
-                    <option value="placeholder">-- Company Type --</option>
-                    <option value="whiteCollar">White Collar</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="retail">Retail</option>
-                    <option value="lawEnforcement">Law Enforcement / Peace Keeping</option>
-                    <option value="food">Food</option>
-                </select>
+                <input class="formElement" type="text" name="companyName" id="companyName" placeholder="Enter your company's name"/>
                 <br>
                 <br>
                 <input class="button" type="submit" value="Submit"/>
