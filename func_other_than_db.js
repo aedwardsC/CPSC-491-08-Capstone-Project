@@ -90,4 +90,38 @@ function splitUsers(response, role, fName) {
     }
 }
 
-module.exports = {authenticateUser, checkPswds, determineRole, splitInitialSetUp, splitUsers};
+function createTrainingSchedule(trainingDays, monday, tuesday, wednesday, thursday, friday, 
+    saturday, sunday) {
+    if (monday == "Monday") {
+        console.log("Adding Monday");
+        trainingDays.push(monday);
+    }
+    if (tuesday == "Tuesday") {
+        console.log("Adding Tuesday");
+        trainingDays.push(tuesday);
+    }
+    if (wednesday == "Wednesday") {
+        console.log("Adding Wednesday");
+        trainingDays.push(wednesday);
+    }
+    if (thursday == "Thursday") {
+        console.log("Adding Thursday");
+        trainingDays.push(thursday);
+    }
+    if (friday == "Friday") {
+        console.log("Adding Friday");
+        trainingDays.push(friday);
+    }
+    if (saturday == "Saturday") {
+        console.log("Adding Saturday");
+        trainingDays.push(saturday);
+    }
+    if (sunday == "Sunday") {
+        console.log("Adding Sunday");
+        trainingDays.push(sunday);
+    }
+
+}
+
+module.exports = {authenticateUser, checkPswds, determineRole, 
+    splitInitialSetUp, splitUsers, createTrainingSchedule};

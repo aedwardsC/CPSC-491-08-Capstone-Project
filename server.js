@@ -132,7 +132,7 @@ program.post("/company_name", function(request, response) { // for employees onl
     databaseFunctions.storeCompanyName(databaseConnection, username, companyName);
 
     // put the company type in the user table
-    databaseFunctions.storeCompanyType(databaseConnection, email, companyType);
+    databaseFunctions.storeCompanyType(databaseConnection, username, companyType);
 
     // direct to the supervisor name page
     response.sendFile(__dirname + "/Company_forms/Employee_specific/supervisor_name.html");
@@ -147,20 +147,51 @@ program.post("/supervisor_name", function(request, response) {
     // build the account...
     // store email, name, and supervisor's name in proper employee table
     databaseFunctions.buildEmpAccount(databaseConnection, email, fullName, 
-        companyType, supName);
+        companyType, compName, supName);
 
     // direct to the disclaimer page
     response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
 });
 
-program.post("/sup_init_wc", function(request, response) {
-    // get the company name from the initial sign-up form
+program.post("/wc_initial1", function(request, response) {
+    let trainingDays = new Array();
+
+    // get the company info
     let companyName = request.body.companyName;
+    let numOfEmps = request.body.numOfEmps;
+    let startOfMornShift = request.body.startMornShift;
+    let endOfMornShift = request.body.endMornShift;
+    let startOfLateShift = request.body.startLateShift;
+    let endOfLateShift = request.body.endLateShift;
+    let numOfLoc = request.body.multLoc;
+    let monday = request.body.monday;
+    let tuesday = request.body.tuesday;
+    let wednesday = request.body.wednesday;
+    let thursday = request.body.thursday;
+    let friday = request.body.friday;
+    let saturday = request.body.saturday;
+    let sunday = request.body.sunday;
+
+    // create the general shift hours for database storage (s-e,s-e)
+    let shiftHours = startOfMornShift + "-" + endOfMornShift + "," + startOfLateShift
+        + "-" + endOfLateShift;
+
+    // create the array for the training days
+    serverFunctions.createTrainingSchedule(trainingDays, monday, tuesday, wednesday,
+        thursday, friday, saturday, sunday);
+    
+    let stringTraining = trainingDays.toString();
+    console.log("The training schedule going into the database is: " + stringTraining);
 
     // add company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyInfoInit(databaseConnection, companyName, companyType);
+    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
 
-    // NOT DONE -> Store rest of the info
+    // store company information for the supervisor in the approporiate database
+    databaseFunctions.storeWCInitInfo1(databaseConnection, email, fullName, companyName,
+        numOfEmps, shiftHours, numOfLoc, stringTraining);
+    
+    // direct to the next page of the initial setup questionnaire
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wc_initial2.html");
 })
 
 // listen on the port localhost:4000
