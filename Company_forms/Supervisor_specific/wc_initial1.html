@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+            
+            h1 {
+                color: black;
+                text-align: center;
+                font-size: 30px;
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 900px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .splitLeft {
+                width: 200px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .split {
+                width:200px;
+                height: 30px;
+                margin-left: 20px;
+                font-size: 16px;
+            }
+
+            .box {
+                margin-left: 300px;
+            }
+
+            .dropdown_input {
+                width: 440px;
+                height: 30px;
+                background-color: white;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <h1>Before we begin, please answer some questions about your company...</h1>
+            <form action="/wc_initial1" method="post">
+                <label class="regInput" for="companyName">Enter the name of your company:</label>
+                <br>
+                <input class="regInput" type="text" name="companyName" id="companyName" placeholder="Company Name"/>
+                <br>
+                <br>
+                <label class="regInput" for="numOfEmps">How many employees are under your supervision?</label>
+                <br>
+                <input class="regInput" type="number" name="numOfEmps" id="numOfEmps" placeholder="Enter a Number"/>
+                <br>
+                <br>
+                <label class="regInput" for="mornShift">What are the morning shift hours?</label>
+                <br>
+                <input class="splitLeft" type="text" name="startMornShift" id="startMornShift" placeholder="Start Time"/>
+                <input class="split" type="text" name="endMornShift" id="endMornShift" placeholder="End Time"/>
+                <br>
+                <label class="regInput" for="laterShift">What are the later shift hours?</label>
+                <br>
+                <input class="splitLeft" type="text" name="startLateShift" id="startLateShift" placeholder="Start Time"/>
+                <input class="split" type="text" name="endLateShift" id="endLateShift" placeholder="End Time"/>
+                <br>
+                <br>
+                <label class="regInput" for="multLoc">Are you responsible for multiple locations?</label>
+                <br>
+                <select class="dropdown_input" name="multLoc" id="multLoc">
+                    <option value="placeholder">-- Yes or No --</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <br>
+                <br>
+                <label class="regInput" for="trainingDays1">What day(s) are trainings offered?</label>
+                <br>
+                <label class="regInput" for="trainingDays2">Select all that apply:</label>
+                <br>
+                <input class="box" type="checkbox" name="monday" id="monday" value="Monday"/>
+                <label for="monday">Monday</label>
+                <br>
+                <input class="box" type="checkbox" name="tuesday" id="tuesday" value="Tuesday"/>
+                <label for="tuesday">Tuesday</label>
+                <br>
+                <input class="box" type="checkbox" name="wednesday" id="wednesday" value="Wednesday"/>
+                <label for="wednesday">Wednesday</label>
+                <br>
+                <input class="box" type="checkbox" name="thursday" id="thursday" value="Thursday"/>
+                <label for="thursday">Thursday</label>
+                <br>
+                <input class="box" type="checkbox" name="friday" id="friday" value="Friday"/>
+                <label for="friday">Friday</label>
+                <br>
+                <input class="box" type="checkbox" name="saturday" id="saturday" value="Saturday"/>
+                <label for="saturday">Saturday</label>
+                <br>
+                <input class="box" type="checkbox" name="sunday" id="sunday" value="Sunday"/>
+                <label for="sunday">Sunday</label>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+    </body>
+</html>

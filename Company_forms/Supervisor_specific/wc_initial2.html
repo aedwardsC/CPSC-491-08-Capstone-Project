@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="/server.js"></script>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 900px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <form action="/wc_initial2" method="post">
+                <label class="regInput" for="empNames">Who are the employee(s) under your supervision?</label>
+                <br>
+                <label class="regInput" for="empNames">If there is more than one employee under your supervision with the same name, enter the name that they are referred to by (their nickname)</label>
+                <br>
+                <input class="regInput" type="text" name="empName" id="empName" placeholder="Full Name Employee 1"/>
+                <br>
+                <h1 id="moreInfo"></h1>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            let generateEmployeesLoc = function() {
+                let numOfEmps = databaseFunctions.getNumOfEmps(databaseConnection, email, companyType);
+                let numOfLoc = databaseFunctions.getNumOfLocs(databaseConnection, email, companyType);
+                let doc = document.getElementById("moreInfo");
+
+                if (numOfEmps > 1) {
+                    for (index = 2; index <= numOfEmps; index++) {
+                        let element = document.createElement("input");
+                        element.class = "regInput";
+                        element.type = "text";
+                        element.name = "empName" + index;
+                        element.id = "empName" + index;
+                        element.place = "Full Name Employee " + index;
+                    }
+                }
+
+                if (numOfLoc > 0) {
+                    let label = document.createElement("label");
+                    label.class = "regInput";
+                    label.innerHTML = "Enter the name(s) of the locations under your supervision:";
+
+                    for (index = 1; index <= numOfLoc; index++) {
+                        let element = document.createElement("input");
+                        element.class = "regInput";
+                        element.type = "text";
+                        element.name = "empName" + index;
+                        element.id = "empName" + index;
+                        element.placeholder = "Full Name Employee " + index;
+                    }
+                }
+            } ();
+        </script>
+    </body>
+</html>
