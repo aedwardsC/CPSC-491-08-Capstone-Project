@@ -2,9 +2,10 @@
 // CPSC 491-08
 // Two-Way Schedular
 
-// import the functions from func_for_database
+// import the functions from other modules
 let databaseFunctions = require("./func_for_database.js");
 let serverFunctions = require("./func_other_than_db.js");
+let tester = require("./testing_functions.js");
 
 // set up Node.js library
 let nodeJs = require("express");
@@ -103,7 +104,7 @@ program.post("/sign_up", function(request, response) {
         serverFunctions.determineRole(response, role);
     }
     else {
-        response.sendFile(__dirname + "/mismatch_pswds.html");
+        response.sendFile(__dirname + "/Company_forms/mismatch_pswds.html");
     }
 });
 
@@ -111,7 +112,7 @@ program.post("/company_type", function(request, response) { // for supervisors o
     companyType = request.body.companyType;
 
     // put the company type in the user table
-    databaseFunctions.storeCompanyType(databaseConnection, email, 
+    databaseFunctions.storeCompanyType(databaseConnection, username, 
         companyType);
 
     console.log("The user's company type from form: " + companyType); // TESTING
@@ -131,6 +132,8 @@ program.post("/company_name", function(request, response) { // for employees onl
     // put the company name in the user table
     databaseFunctions.storeCompanyName(databaseConnection, username, companyName);
 
+    console.log("Company Type in server: " + companyType);
+
     // put the company type in the user table
     databaseFunctions.storeCompanyType(databaseConnection, username, companyType);
 
@@ -138,7 +141,7 @@ program.post("/company_name", function(request, response) { // for employees onl
     response.sendFile(__dirname + "/Company_forms/Employee_specific/supervisor_name.html");
 });
 
-program.post("/supervisor_name", function(request, response) {
+program.post("/supervisor_name", function(request, response) { // for employees only
     let supName = request.body.supervisorName;
 
     console.log("The user's supervisor is: " + supName); // TESTING
@@ -146,8 +149,12 @@ program.post("/supervisor_name", function(request, response) {
     // last of employee sign-up/ set-up...
     // build the account...
     // store email, name, and supervisor's name in proper employee table
-    databaseFunctions.buildEmpAccount(databaseConnection, email, fullName, 
-        companyType, compName, supName);
+    databaseFunctions.buildEmpAccount(databaseConnection, username, fullName, 
+        companyType, supName);
+
+    // TEST: make sure that the account was built correctly
+    tester.printEmpTable(databaseConnection, companyType);
+    tester.printUserTable(databaseConnection);
 
     // direct to the disclaimer page
     response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
@@ -163,7 +170,8 @@ program.post("/wc_initial1", function(request, response) {
     let endOfMornShift = request.body.endMornShift;
     let startOfLateShift = request.body.startLateShift;
     let endOfLateShift = request.body.endLateShift;
-    let numOfLoc = request.body.multLoc;
+    let multLoc = request.body.multLoc;
+    let numOfLoc = request.body.numOfLoc;
     let monday = request.body.monday;
     let tuesday = request.body.tuesday;
     let wednesday = request.body.wednesday;
@@ -186,9 +194,17 @@ program.post("/wc_initial1", function(request, response) {
     // add company name and type to the companiesServed database (for reference)
     databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
 
-    // store company information for the supervisor in the approporiate database
-    databaseFunctions.storeWCInitInfo1(databaseConnection, email, fullName, companyName,
-        numOfEmps, shiftHours, numOfLoc, stringTraining);
+    // store company information for the supervisor in the approporiate supervisor database
+    databaseFunctions.storeWCInitInfo1(databaseConnection, username, fullName, companyName,
+        numOfEmps, shiftHours, numOfLoc, multLoc, stringTraining);
+    
+    // store the missing information in the users database
+    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+
+    // TEST: make sure that the initial account was created correctly
+    tester.printSupTable(databaseConnection, companyType);
+    tester.printCompaniesServedTable(databaseConnection);
+    tester.printUserTable(databaseConnection);
     
     // direct to the next page of the initial setup questionnaire
     response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wc_initial2.html");

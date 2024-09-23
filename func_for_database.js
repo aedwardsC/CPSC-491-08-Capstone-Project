@@ -74,8 +74,7 @@ function startDatabase(databaseConnection) {
                 tableName = "wcEmpInfo";
                 let commonElements = "email VARCHAR(255) PRIMARY KEY, fullName VARCHAR(255),"
                     + " nickname VARCHAR(255), supName VARCHAR(255), timeOff VARCHAR(255)," 
-                    + " locationPref VARCHAR(255), shiftTimePref VARCHAR(255)"
-                    + "numOfLoc INT"; // elements all tables have in common
+                    + " locationPref VARCHAR(255), shiftTimePref VARCHAR(255)"; // elements all tables have in common
                 createTable(databaseConnection, tableName, commonElements);
 
                 // table for retail employees
@@ -101,9 +100,11 @@ function startDatabase(databaseConnection) {
                 
                 // table for white collar schedule details
                 tableName = "wcSupInfo";
-                commonElements = "supEmail VARCHAR(255) PRIMARY KEY, supFullName VARCHAR(255),"
-                    + " companyName VARCHAR(255), numOfEmps INT, roster VARCHAR(255),"
-                    + " locationNames VARCHAR(255), shiftHours VARCHAR(255)";
+                commonElements = "supEmail VARCHAR(255) PRIMARY KEY,"
+                    + " supFullName VARCHAR(255), companyName VARCHAR(255),"
+                    + " numOfEmps INT, roster VARCHAR(255),"
+                    + " locationNames VARCHAR(255), shiftHours VARCHAR(255),"
+                    + " multLoc VARCHAR(255), numOfLoc INT";
                 tableElements = commonElements + ", trainingDays VARCHAR(255)";
                 createTable(databaseConnection, tableName, tableElements);
                
@@ -131,40 +132,6 @@ function startDatabase(databaseConnection) {
                 console.log("The database and tables are ready for use!");
                
             }
-        }
-    });
-}
-
-// functions for storing information
-function storeGeneralSignUpInfo(databaseConnection, email, uname, 
-    fname, lname, password, status) {
-    console.log("Adding to database");
-
-    let queryCommand = "INSERT INTO shedularDatabase.usersTable (email, "
-        + "username, fname, lname, password, status) VALUES ('" + email 
-        + "', '" + uname + "', '" + fname + "', '" + lname + "', '"
-        + password + "', '" + status + "');";
-    databaseConnection.query(queryCommand, function(error, sqlResult) {
-        if (error) {
-            console.log("ERROR: Unable to insert general info into usersTable");
-        }
-        else {
-            console.log("SUCCESS: Added general information to the usersTable");
-        }
-    });
-}
-
-function storeCompanyType(databaseConnection, email, companyType) {
-    console.log("Adding to the users table");
-
-    let queryCommand = "INSERT INTO schedularDatabase.usersTable companyType " 
-        + "VALUE '" + companyType + "' WHERE email = '" + email + "';";
-    databaseConnection.query(queryCommand, function(error, sqlResult) {
-        if (error) {
-            console.log("ERROR: Unable to insert company type to usersTable");
-        }
-        else {
-            console.log("SUCCESS: Added company type to usersTable");
         }
     });
 }
@@ -213,13 +180,44 @@ function determineSupTable(type) {
     return table;
 }
 
-// storing functions
+// functions for storing information
+function storeGeneralSignUpInfo(databaseConnection, email, uname, 
+    fname, lname, password, status) {
+    console.log("Adding to database");
+
+    let queryCommand = "INSERT INTO schedularDatabase.usersTable (email, "
+        + "username, fname, lname, password, status) VALUES ('" + email 
+        + "', '" + uname + "', '" + fname + "', '" + lname + "', '"
+        + password + "', '" + status + "');";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to insert general info into usersTable");
+        }
+        else {
+            console.log("SUCCESS: Added general information to the usersTable");
+        }
+    });
+}
+
+function storeCompanyType(databaseConnection, email, companyType) {
+    console.log("Adding to the users table");
+
+    let queryCommand = "UPDATE schedularDatabase.usersTable SET companyType = " 
+        + "'" + companyType + "' WHERE email = '" + email + "';";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to insert company type to usersTable");
+        }
+        else {
+            console.log("SUCCESS: Added company type to usersTable");
+        }
+    });
+}
+
 function buildEmpAccount(databaseConnection, email, fullName, companyType, 
     supName) {
-    let table = "";
-
     // determine which table the user is in
-    table = determineEmpTable(companyType);
+    let table = determineEmpTable(companyType);
 
     // make sure that the table is good
     if (table == "") {
@@ -227,7 +225,7 @@ function buildEmpAccount(databaseConnection, email, fullName, companyType,
     }
     else {
         let queryCommand = "INSERT INTO schedularDatabase." + table
-            + "(email, fullName, supName) VALUES ('" + email + "', '" + fullName + "', '"
+            + " (email, fullName, supName) VALUES ('" + email + "', '" + fullName + "', '"
             + supName + "');";
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
@@ -240,11 +238,26 @@ function buildEmpAccount(databaseConnection, email, fullName, companyType,
     }
 }
 
+function buildSupAccount(databaseConnection, email, companyName) {
+    console.log("Finishing building the supervisor account in Users Table");
+
+    let queryCommand = "UPDATE schedularDatabase.usersTable SET companyName = "
+        + "'" + companyName + "' WHERE email = '" + email + "';";
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to update Users Table with Sup Company Name");
+        }
+        else {
+            console.log("SUCCESS: Company Name for Sup has been added to the User Table");
+        }
+    });
+}
+
 function storeCompanyName(databaseConnection, email, companyName) {
     console.log("Storing the company name in the user table");
 
-    let queryCommand = "INSERT INTO schedularDatabase.usersTable companyName "
-        + "VALUE '" + companyName + "' WHERE email = '" + email + "';";
+    let queryCommand = "UPDATE schedularDatabase.usersTable SET companyName = "
+        + "'" + companyName + "' WHERE email = '" + email + "';";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to add company name to usersTable");
@@ -271,13 +284,13 @@ function storeCompanyNameType(databaseConnection, companyName, companyType) {
 }
 
 function storeWCInitInfo1(databaseConnection, email, fullName, companyName,
-    numOfEmps, shiftHours, numOfLoc, stringTraining) {
+    numOfEmps, shiftHours, numOfLoc, multLoc, stringTraining) {
     console.log("Storing the information from wc_initial1");
 
     let queryCommand = "INSERT INTO schedularDatabase.wcSupInfo (supEmail, supFullName, "
-        + "companyName, numOfEmps, shiftHours, numOfLoc, trainingDays) VALUES ('" + email
-        + "', '" + fullName + "', '" + companyName + "', '" + numOfEmps + ", '" + shiftHours
-        + "', " + numOfLoc + ", '" + stringTraining + "');";
+        + "companyName, numOfEmps, shiftHours, numOfLoc, multLoc, trainingDays) VALUES ('" + email
+        + "', '" + fullName + "', '" + companyName + "', " + numOfEmps + ", '" + shiftHours
+        + "', " + numOfLoc + ", '" + multLoc + "', '" + stringTraining + "');";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to add init1 to wcSupInfo");
@@ -387,29 +400,90 @@ async function getNumOfLocs(databaseConnection, email, companyType) {
 }
 
 // For Testing Purposes
-function printEmpAccount(databaseConnection, email, companyType) {
-    console.log("Retrieving the Employee Information");
+// function printEmpTable(databaseConnection, companyType) {
+//     console.log("Retrieving the Employee Information");
 
-    let table = determineEmpTable(companyType);
-    let queryCommand = "SELECT * FROM schedularDatabase." + table
-        + " WHERE email = '" + email + "';";
+//     let table = determineEmpTable(companyType);
+//     let queryCommand = "SELECT * FROM schedularDatabase." + table + ";";
     
-    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
-        if (error) {
-            console.log("ERROR: Unable to read from Employee table");
-        }
-        else {
-            console.log("Employee Email: " + JSON.stringify(sqlResult[0].email));
-            console.log("Employee Name: " + JSON.stringify(sqlResult[0].fullName));
-            console.log("Supervisor Name: " + JSON.stringify(sqlResult[0].supName));
-        }
-    });
-}
+//     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+//         if (error) {
+//             console.log("TEST ERROR: Unable to read from Employee table");
+//         }
+//         else {
+//             for (let index = 0; index < sqlResult.length; index++) {
+//                 console.log("Employee Email: " + JSON.stringify(sqlResult[index].email));
+//                 console.log("Employee Name: " + JSON.stringify(sqlResult[index].fullName));
+//                 console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supName)); 
+//             }
+//         }
+//     });
+// }
 
-function printUserTable(databaseConnection) {
-    console.log("Retrieving")
-}
+// function printUserTable(databaseConnection) {
+//     console.log("Retrieving the User Table information");
+
+//     let queryCommand = "SELECT * FROM schedularDatabase.usersTable;";
+//     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+//         if (error) {
+//             console.log("TEST ERROR: Unable to read from user table");
+//         }
+//         else {
+//             for (let index = 0; index < sqlResult.length; index++) {
+//                 console.log("User Email: " + JSON.stringify(sqlResult[index].email));
+//                 console.log("User Username: " + JSON.stringify(sqlResult[index].username));
+//                 console.log("User First Name: " + JSON.stringify(sqlResult[index].fName));
+//                 console.log("User Last Name: " + JSON.stringify(sqlResult[index].lName));
+//                 console.log("User Password: " + JSON.stringify(sqlResult[index].password));
+//                 console.log("User Role: " + JSON.stringify(sqlResult[index].role));
+//                 console.log("User Company Type: " + JSON.stringify(sqlResult[index].companyType));
+//                 console.log("User Company Name: " + JSON.stringify(sqlResult[index].companyName));   
+//             }
+//         }
+//     });
+// }
+
+// function printCompaniesServedTable(databaseConnection) {
+//     console.log("Retrieving the Companies Served Table information");
+
+//     let queryCommand = "SELECT * FROM schedularDatabase.companiesServed;";
+//     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+//         if (error) {
+//             console.log("TEST ERROR: Unable to read from companies served table");
+//         }
+//         else {
+//             for (let index = 0; index < sqlResult.length; index++) {
+//                 console.log("Company Name: " + JSON.stringify(sqlResult[index].companyName));
+//                 console.log("Company Type: " + JSON.stringify(sqlResult[index].companyType));
+//             }
+//         }
+//     });
+// }
+
+// function printSupTable(databaseConnection, companyType) {
+//     console.log("Retrieving the Supervisor Table Information");
+
+//     let table = determineSupTable(companyType);
+//     let queryCommand = "SELECT * FROM schedularDatabase." + table + ";";
+    
+//     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+//         if (error) {
+//             console.log("TEST ERROR: Unable to read from Supervisor table");
+//         }
+//         else {
+//             for (let index = 0; index < sqlResult.length; index++) {
+//                 console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
+//                 console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
+//                 console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+//                 console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
+//                 console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
+//                 console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc);
+//                 console.log("Supervisor Training Days: " + JSON.stringify(sqlResult[index].trainingDays)); 
+//             }
+//         }
+//     });
+// }
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
-    storeCompanyName, storeCompanyNameType, buildEmpAccount, storeWCInitInfo1, getNumOfEmps,
-    getNumOfLocs};
+    storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
+    getNumOfEmps, getNumOfLocs};
