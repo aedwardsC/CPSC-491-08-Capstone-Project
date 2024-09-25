@@ -20,7 +20,7 @@ program.use(nodeJs.static(__dirname + "/Company_forms"));
 
 // important global variables -> used frequently
 var username = "";
-var companyType = "";
+var companyType = new Array(); // made an array due to a race condition so can pass by reference for updating
 var fullName = "";
 
 // set up the database
@@ -109,16 +109,16 @@ program.post("/sign_up", function(request, response) {
 });
 
 program.post("/company_type", function(request, response) { // for supervisors only
-    companyType = request.body.companyType;
+    companyType.push(request.body.companyType);
 
     // put the company type in the user table
     databaseFunctions.storeCompanyType(databaseConnection, username, 
-        companyType);
+        companyType[0]);
 
-    console.log("The user's company type from form: " + companyType); // TESTING
+    console.log("The user's company type from form: " + companyType[0]); // TESTING
 
     // use the company type to determine which initial setup to give them
-    serverFunctions.splitInitialSetUp(response, companyType);
+    serverFunctions.splitInitialSetUp(response, companyType[0]);
 });
 
 program.post("/company_name", function(request, response) { // for employees only
@@ -126,18 +126,12 @@ program.post("/company_name", function(request, response) { // for employees onl
 
     console.log("The user's company is: " + companyName); // TESTING
 
-    // determine the company type by the name
-    companyType = databaseFunctions.companyTypeFromName(databaseConnection, companyName);
-
     // put the company name in the user table
     databaseFunctions.storeCompanyName(databaseConnection, username, companyName);
 
-    console.log("Company Type in server: " + companyType);
+    // get and store the company type from the name
+    databaseFunctions.companyTypeFromName(databaseConnection, companyName, companyType, username);
 
-    // put the company type in the user table
-    databaseFunctions.storeCompanyType(databaseConnection, username, companyType);
-
-    // direct to the supervisor name page
     response.sendFile(__dirname + "/Company_forms/Employee_specific/supervisor_name.html");
 });
 
@@ -153,7 +147,7 @@ program.post("/supervisor_name", function(request, response) { // for employees 
         companyType, supName);
 
     // TEST: make sure that the account was built correctly
-    tester.printEmpTable(databaseConnection, companyType);
+    tester.printEmpTable(databaseConnection, companyType[0]);
     tester.printUserTable(databaseConnection);
 
     // direct to the disclaimer page
@@ -192,7 +186,7 @@ program.post("/wc_initial1", function(request, response) {
     console.log("The training schedule going into the database is: " + stringTraining);
 
     // add company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
+    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
 
     // store company information for the supervisor in the approporiate supervisor database
     databaseFunctions.storeWCInitInfo1(databaseConnection, username, fullName, companyName,
@@ -202,7 +196,7 @@ program.post("/wc_initial1", function(request, response) {
     databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
 
     // TEST: make sure that the initial account was created correctly
-    tester.printSupTable(databaseConnection, companyType);
+    tester.printSupTable(databaseConnection, companyType[0]);
     tester.printCompaniesServedTable(databaseConnection);
     tester.printUserTable(databaseConnection);
     
