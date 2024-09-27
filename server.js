@@ -202,7 +202,35 @@ program.post("/wc_initial1", function(request, response) {
     
     // direct to the next page of the initial setup questionnaire
     response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wc_initial2.html");
-})
+});
+
+program.post("/wc_initial2", async function(request, response) {
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    let roster = new Array();
+
+    // get the names of employees
+    serverFunctions.getEmpNames(roster, request, numOfEmps);
+    console.log("Roster: " + roster);
+
+    // get the location names
+
+    response.sendFile("/Company_forms/Supervisor_specific/home_page.ejs");
+});
+
+// program.get("/getNumOfEmps", async function(request, response) {
+//     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+//     response.send(JSON.stringify(numOfEmps));
+// });
+
+// program.get("/multLocYN", async function(request, response) {
+//     let yN = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
+//     response.send(JSON.stringify(yN));
+// });
+
+// program.get("/numLoc", async function(request, response) {
+//     let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+//     response.send(JSON.stringify(numOfLocs));
+// });
 
 // listen on the port localhost:4000
 program.listen(4000);

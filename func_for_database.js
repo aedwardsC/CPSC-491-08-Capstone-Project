@@ -272,19 +272,29 @@ function storeCompanyName(databaseConnection, email, companyName) {
     });
 }
 
-function storeCompanyNameType(databaseConnection, companyName, companyType) {
+async function storeCompanyNameType(databaseConnection, companyName, companyType) {
     console.log("Storing company info in Companies Served table");
 
-    let queryCommand = "INSERT INTO schedularDatabase.companiesServed "
-        + "(companyName, companyType) VALUES ('" + companyName + "', '" + companyType + "');";
-    databaseConnection.query(queryCommand, function(error, sqlResult) {
-        if (error) {
-            console.log("ERROR: Unable to add to companiesServed table");
-        }
-        else {
-            console.log("SUCCESS: Added company info to companiesServed table");
-        }
-    });
+    let stored = false;
+
+    let result = await determineStored(databaseConnection, companyName, companyType);
+
+    if (result[0] != "" && result[0] != undefined) {
+        stored = true;
+    }
+
+    if (!stored) {
+        let queryCommand = "INSERT INTO schedularDatabase.companiesServed "
+            + "(companyName, companyType) VALUES ('" + companyName + "', '" + companyType + "');";
+        databaseConnection.query(queryCommand, function(error, sqlResult) {
+            if (error) {
+                console.log("ERROR: Unable to add to companiesServed table");
+            }
+            else {
+                console.log("SUCCESS: Added company info to companiesServed table");
+            }
+        });
+    }
 }
 
 function storeWCInitInfo1(databaseConnection, email, fullName, companyName,
@@ -306,6 +316,22 @@ function storeWCInitInfo1(databaseConnection, email, fullName, companyName,
 }
 
 // retrieving information
+function determineStored(databaseConnection, compName, compType) {
+    let queryCommand = "SELECT * FROM schedularDatabase.companiesServed WHERE companyName = "
+        + "'compName';";
+    
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to determine if company is stored in database");
+            }
+            else {
+                resolve(sqlResult);
+            } 
+        });
+    });
+}
+
 function getType(databaseConnection, queryCommand) {
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
@@ -339,7 +365,7 @@ function getNumE(databaseConnection, queryCommand) {
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
             if (error) {
-                console.log("ERROR: Unable to retrieve numberOfEmployees");
+                console.log("ERROR: Unable to retrieve numberOfEmployees" + error);
             }
             else {
                 let num = sqlResult[0].numOfEmps;
@@ -361,7 +387,7 @@ async function getNumOfEmps(databaseConnection, email, companyType) {
     }
     else {
         let queryCommand = "SELECT numOfEmps FROM schedularDatabase." + table 
-            + " WHERE email = '" + email + "';";
+            + " WHERE supEmail = '" + email + "';";
         
         numOfEmps = await getNumE(databaseConnection, queryCommand);
     }
@@ -388,7 +414,7 @@ function getNumL(databaseConnection, queryCommand) {
 async function getNumOfLocs(databaseConnection, email, companyType) {
     console.log("Retrieving the number of locations");
 
-    let numOfLocs = 0;
+    let numOfLocs = 1;
     let table = determineSupTable(companyType);
 
     if (table == "") {
@@ -396,7 +422,7 @@ async function getNumOfLocs(databaseConnection, email, companyType) {
     }
     else {
         let queryCommand = "SELECT numOfLoc FROM schedularDatabase." + table
-            + " WHERE email = '" + email + "';";
+            + " WHERE supEmail = '" + email + "';";
 
         numOfLocs = await getNumL(databaseConnection, queryCommand);
     }
@@ -405,6 +431,41 @@ async function getNumOfLocs(databaseConnection, email, companyType) {
     return numOfLocs;
 }
 
+function getYN(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve Y/N");
+            }
+            else {
+                let resp = sqlResult[0].multLoc;
+                console.log("Returning: " + resp);
+                resolve(resp);
+            }
+        });
+    });
+}
+
+async function getMultLoc(databaseConnection, email, companyType) {
+    console.log("Retrieving yes/no regarding multiple locations");
+
+    let table = determineSupTable(companyType);
+    let multLoc = "";
+
+    if (table == "") {
+        console.log("ERROR: Invalid table");
+    }
+    else {
+        let queryCommand = "SELECT multLoc FROM schedularDatabase." + table
+            + " WHERE supEmail = '" + email + "';";
+        
+        multLoc = await getYN(databaseConnection, queryCommand);
+    }
+
+    console.log("Ultimately returning: " + multLoc);
+    return multLoc;
+}
+
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
-    getNumOfEmps, getNumOfLocs};
+    getNumOfEmps, getNumOfLocs, getMultLoc};

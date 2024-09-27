@@ -120,8 +120,104 @@ function createTrainingSchedule(trainingDays, monday, tuesday, wednesday, thursd
         console.log("Adding Sunday");
         trainingDays.push(sunday);
     }
+}
 
+function getEmpNames(roster, request, numOfEmps) {
+    let num = 1;
+    while (num <= numOfEmps) {
+        if (num == 1) {
+            roster.push(request.body.empName1);
+        }
+        else if (num == 2) {
+            roster.push(request.body.empName2);
+        }
+        else if (num == 3) {
+            roster.push(request.body.empName3);
+        }
+        else if (num == 4) {
+            roster.push(request.body.empName4);
+        }
+        else if (num == 5) {
+            roster.push(request.body.empName5);
+        }
+        else if (num == 6) {
+            roster.push(request.body.empName6);
+        }
+        else if (num == 7) {
+            roster.push(request.body.empName7);
+        }
+        else if (num == 8) {
+            roster.push(request.body.empName8);
+        }
+        else if (num == 9) {
+            roster.push(request.body.empName9);
+        }
+        else if (num == 10) {
+            roster.push(request.body.empName10);
+        }
+        else if (num == 11) {
+            roster.push(request.body.empName11);
+        }
+        else if (num == 12) {
+            roster.push(request.body.empName12);
+        }
+        else if (num == 13) {
+            roster.push(request.body.empName13);
+        }
+        else if (num == 14) {
+            roster.push(request.body.empName14);
+        }
+        else if (num == 15) {
+            roster.push(request.body.empName15);
+        }
+        else if (num == 16) {
+            roster.push(request.body.empName16);
+        }
+        else if (num == 17) {
+            roster.push(request.body.empName17);
+        }
+        else if (num == 18) {
+            roster.push(request.body.empName18);
+        }
+        else if (num == 19) {
+            roster.push(request.body.empName19);
+        }
+        else if (num == 20) {
+            roster.push(request.body.empName20);
+        }
+        else if (num == 21) {
+            roster.push(request.body.empName21);
+        }
+        else if (num == 22) {
+            roster.push(request.body.empName22);
+        }
+        else if (num == 23) {
+            roster.push(request.body.empName23);
+        }
+        else if (num == 24) {
+            roster.push(request.body.empName24);
+        }
+        else if (num == 25) {
+            roster.push(request.body.empName25);
+        }
+        else if (num == 26) {
+            roster.push(request.body.empName26);
+        }
+        else if (num == 27) {
+            roster.push(request.body.empName27);
+        }
+        else if (num == 28) {
+            roster.push(request.body.empName28);
+        }
+        else if (num == 29) {
+            roster.push(request.body.empName29);
+        }
+        else if (num == 30) {
+            roster.push(request.body.empName30);
+        }
+        num = num + 1;
+    }
 }
 
 module.exports = {authenticateUser, checkPswds, determineRole, 
-    splitInitialSetUp, splitUsers, createTrainingSchedule};
+    splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames};
