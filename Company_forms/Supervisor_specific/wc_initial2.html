@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" src="/server.js"></script>
         <title> Two-Way Schedular</title>
         <style>
             body {
@@ -20,7 +19,7 @@
 
             div {
                 background-color: rgb(229, 229, 232);
-                height: 900px;
+                height: 1500px;
                 width: 1050px;
                 margin-top: 20px;
                 margin-left:70px;
@@ -38,51 +37,99 @@
         <div>
             <br>
             <form action="/wc_initial2" method="post">
-                <label class="regInput" for="empNames">Who are the employee(s) under your supervision?</label>
                 <br>
-                <label class="regInput" for="empNames">If there is more than one employee under your supervision with the same name, enter the name that they are referred to by (their nickname)</label>
+                <label class="regInput" for="Employees">Who are the employee(s) under your supervision?</label>
                 <br>
-                <input class="regInput" type="text" name="empName" id="empName" placeholder="Full Name Employee 1"/>
+                <label class="regInput" for="Emp">If there is more than one employee under your supervision with the same name, enter the name that they are referred to by (their nickname)</label>
                 <br>
-                <h1 id="moreInfo"></h1>
+                <input class="regInput" type="text" id="empName1" name="empName1" placeholder="Full Name Employee 1"/>
+                <br>
+                <input class="regInput" type="text" id="empName2" name="empName2" placeholder="Full Name Employee 2"/>
+                <br>
+                <input class="regInput" type="text" id="empName3" name="empName3" placeholder="Full Name Employee 3"/>
+                <br>
+                <input class="regInput" type="text" id="empName4" name="empName4" placeholder="Full Name Employee 4"/>
+                <br>
+                <input class="regInput" type="text" id="empName5" name="empName5" placeholder="Full Name Employee 5"/>
+                <br>
+                <input class="regInput" type="text" id="empName6" name="empName6" placeholder="Full Name Employee 6"/>
+                <br>
+                <input class="regInput" type="text" id="empName7" name="empName7" placeholder="Full Name Employee 7"/>
+                <br>
+                <input class="regInput" type="text" id="empName8" name="empName8" placeholder="Full Name Employee 8"/>
+                <br>
+                <input class="regInput" type="text" id="empName9" name="empName9" placeholder="Full Name Employee 9"/>
+                <br>
+                <input class="regInput" type="text" id="empName10" name="empName10" placeholder="Full Name Employee 10"/>
+                <br>
+                <input class="regInput" type="text" id="empName11" name="empName11" placeholder="Full Name Employee 11"/>
+                <br>
+                <input class="regInput" type="text" id="empName12" name="empName12" placeholder="Full Name Employee 12"/>
+                <br>
+                <input class="regInput" type="text" id="empName13" name="empName13" placeholder="Full Name Employee 13"/>
+                <br>
+                <input class="regInput" type="text" id="empName14" name="empName14" placeholder="Full Name Employee 14"/>
+                <br>
+                <input class="regInput" type="text" id="empName15" name="empName15" placeholder="Full Name Employee 15"/>
+                <br>
+                <input class="regInput" type="text" id="empName16" name="empName16" placeholder="Full Name Employee 16"/>
+                <br>
+                <input class="regInput" type="text" id="empName17" name="empName17" placeholder="Full Name Employee 17"/>
+                <br>
+                <input class="regInput" type="text" id="empName18" name="empName18" placeholder="Full Name Employee 18"/>
+                <br>
+                <input class="regInput" type="text" id="empName19" name="empName19" placeholder="Full Name Employee 19"/>
+                <br>
+                <input class="regInput" type="text" id="empName20" name="empName20" placeholder="Full Name Employee 20"/>
+                <br>
+                <input class="regInput" type="text" id="empName21" name="empName21" placeholder="Full Name Employee 21"/>
+                <br>
+                <input class="regInput" type="text" id="empName22" name="empName22" placeholder="Full Name Employee 22"/>
+                <br>
+                <input class="regInput" type="text" id="empName23" name="empName23" placeholder="Full Name Employee 23"/>
+                <br>
+                <input class="regInput" type="text" id="empName24" name="empName24" placeholder="Full Name Employee 24"/>
+                <br>
+                <input class="regInput" type="text" id="empName25" name="empName25" placeholder="Full Name Employee 25"/>
+                <br>
+                <input class="regInput" type="text" id="empName26" name="empName26" placeholder="Full Name Employee 26"/>
+                <br>
+                <input class="regInput" type="text" id="empName27" name="empName27" placeholder="Full Name Employee 27"/>
+                <br>
+                <input class="regInput" type="text" id="empName28" name="empName28" placeholder="Full Name Employee 28"/>
+                <br>
+                <input class="regInput" type="text" id="empName29" name="empName29" placeholder="Full Name Employee 29"/>
+                <br>
+                <input class="regInput" type="text" id="empName30" name="empName30" placeholder="Full Name Employee 30"/>
+                <br>
+                <br>
+                <label class="regInput" for="loc1">If you are responsible for multiple locations</label>
+                <br>
+                <label class="regInput" for="loc2">Enter the names of the locations under your supervision:</label>
+                <br>
+                <input class="regInput" type="text" id="locName1" name="locName1" placeholder="Location #1"/>
+                <br>
+                <input class="regInput" type="text" id="locName2" name="locName2" placeholder="Location #2"/>
+                <br>
+                <input class="regInput" type="text" id="locName3" name="locName3" placeholder="Location #3"/>
+                <br>
+                <input class="regInput" type="text" id="locName4" name="locName4" placeholder="Location #4"/>
+                <br>
+                <input class="regInput" type="text" id="locName5" name="locName5" placeholder="Location #5"/>
+                <br>
+                <input class="regInput" type="text" id="locName6" name="locName6" placeholder="Location #6"/>
+                <br>
+                <input class="regInput" type="text" id="locName7" name="locName7" placeholder="Location #7"/>
+                <br>
+                <input class="regInput" type="text" id="locName8" name="locName8" placeholder="Location #8"/>
+                <br>
+                <input class="regInput" type="text" id="locName9" name="locName9" placeholder="Location #9"/>
+                <br>
+                <input class="regInput" type="text" id="locName10" name="locName10" placeholder="Location #10"/>
                 <br>
                 <br>
                 <input class="button" type="submit" value="Submit"/>
             </form>
         </div>
-
-        <script type="text/javascript">
-            let generateEmployeesLoc = function() {
-                let numOfEmps = databaseFunctions.getNumOfEmps(databaseConnection, email, companyType);
-                let numOfLoc = databaseFunctions.getNumOfLocs(databaseConnection, email, companyType);
-                let doc = document.getElementById("moreInfo");
-
-                if (numOfEmps > 1) {
-                    for (index = 2; index <= numOfEmps; index++) {
-                        let element = document.createElement("input");
-                        element.class = "regInput";
-                        element.type = "text";
-                        element.name = "empName" + index;
-                        element.id = "empName" + index;
-                        element.place = "Full Name Employee " + index;
-                    }
-                }
-
-                if (numOfLoc > 0) {
-                    let label = document.createElement("label");
-                    label.class = "regInput";
-                    label.innerHTML = "Enter the name(s) of the locations under your supervision:";
-
-                    for (index = 1; index <= numOfLoc; index++) {
-                        let element = document.createElement("input");
-                        element.class = "regInput";
-                        element.type = "text";
-                        element.name = "empName" + index;
-                        element.id = "empName" + index;
-                        element.placeholder = "Full Name Employee " + index;
-                    }
-                }
-            } ();
-        </script>
     </body>
 </html>
