@@ -89,9 +89,9 @@ program.post("/sign_up", function(request, response) {
     if (match) {
         // set the global variables
         username = email;
-        console.log("Global username changed to " + username);
+        //console.log("Global username changed to " + username);
         fullName = fname + " " + lname;
-        console.log("Global fullName changed to " + fullName);
+        //console.log("Global fullName changed to " + fullName);
 
         // store the initial information in the database
         databaseFunctions.storeGeneralSignUpInfo(databaseConnection, email, 
@@ -124,7 +124,7 @@ program.post("/company_type", function(request, response) { // for supervisors o
 program.post("/company_name", function(request, response) { // for employees only
     let companyName = request.body.companyName;
 
-    console.log("The user's company is: " + companyName); // TESTING
+    //console.log("The user's company is: " + companyName); // TESTING
 
     // put the company name in the user table
     databaseFunctions.storeCompanyName(databaseConnection, username, companyName);
@@ -138,7 +138,7 @@ program.post("/company_name", function(request, response) { // for employees onl
 program.post("/supervisor_name", function(request, response) { // for employees only
     let supName = request.body.supervisorName;
 
-    console.log("The user's supervisor is: " + supName); // TESTING
+    //console.log("The user's supervisor is: " + supName); // TESTING
 
     // last of employee sign-up/ set-up...
     // build the account...
@@ -183,7 +183,7 @@ program.post("/wc_initial1", function(request, response) {
         thursday, friday, saturday, sunday);
     
     let stringTraining = trainingDays.toString();
-    console.log("The training schedule going into the database is: " + stringTraining);
+    //console.log("The training schedule going into the database is: " + stringTraining);
 
     // add company name and type to the companiesServed database (for reference)
     databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
@@ -194,43 +194,67 @@ program.post("/wc_initial1", function(request, response) {
     
     // store the missing information in the users database
     databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
-
-    // TEST: make sure that the initial account was created correctly
-    tester.printSupTable(databaseConnection, companyType[0]);
-    tester.printCompaniesServedTable(databaseConnection);
-    tester.printUserTable(databaseConnection);
     
     // direct to the next page of the initial setup questionnaire
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wc_initial2.html");
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
 });
 
 program.post("/wc_initial2", async function(request, response) {
     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    let multLocs = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
     let roster = new Array();
+    let locations = new Array();
 
     // get the names of employees
     serverFunctions.getEmpNames(roster, request, numOfEmps);
     console.log("Roster: " + roster);
 
-    // get the location names
+    // format for database
+    let stringRoster = roster.toString();
+
+    // store the roster in the database
+    databaseFunctions.storeRoster(databaseConnection, username, companyType, stringRoster);
+
+    // see if the supervisor was in charge of multiple locations
+    if (multLocs == "yes") {
+        let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+        // get the location names
+        serverFunctions.getLocNames(locations, request, numOfLocs);
+        console.log("Locations: " + locations);
+        
+        // format for database
+        let stringLocations = locations.toString();
+
+        // store the locations in the database
+        databaseFunctions.storeLocNames(databaseConnection, username, companyType, stringLocations);
+    }
+
+    // Test to make sure that everything was built correctly
+    tester.printSupTable(databaseConnection, companyType[0]);
+    tester.printCompaniesServedTable(databaseConnection);
+    tester.printUserTable(databaseConnection);
 
     response.sendFile("/Company_forms/Supervisor_specific/home_page.ejs");
 });
 
-// program.get("/getNumOfEmps", async function(request, response) {
-//     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
-//     response.send(JSON.stringify(numOfEmps));
-// });
+program.post("/r_initial1", function(request, response) {
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial2.html");
+});
 
-// program.get("/multLocYN", async function(request, response) {
-//     let yN = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
-//     response.send(JSON.stringify(yN));
-// });
+program.get("/getNumOfEmps", async function(request, response) {
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    response.send(JSON.stringify(numOfEmps));
+});
 
-// program.get("/numLoc", async function(request, response) {
-//     let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
-//     response.send(JSON.stringify(numOfLocs));
-// });
+program.get("/multLocYN", async function(request, response) {
+    let yN = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
+    response.send(JSON.stringify(yN));
+});
+
+program.get("/numLoc", async function(request, response) {
+    let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+    response.send(JSON.stringify(numOfLocs));
+});
 
 // listen on the port localhost:4000
 program.listen(4000);
