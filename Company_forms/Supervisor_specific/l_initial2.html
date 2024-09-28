@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 5000px;
+                width: 1010px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .dentInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 350px;
+                font-size: 16px;
+            }
+            .box {
+                margin-left: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <form action="/l_initial2" method="post">
+                <button type="button" class="button" onClick="genForm()">
+                    Press to Generate
+                </button>
+                <br>
+                <label class="regInput" for="Employees">Who are the employee(s) under your supervision?</label>
+                <br>
+                <label class="regInput" for="Emp">If there is more than one employee under your supervision</label>
+                <br>
+                <label class="regInput" for="Emp2">with the same name, enter the name that they are referred</label>
+                <br>
+                <label class="regInput" for="Emp2">to by (their nickname)</label>
+                <br>
+                <input class="regInput" type="hidden" id="empName1" name="empName1" placeholder="Full Name Employee 1"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName2" name="empName2" placeholder="Full Name Employee 2"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName3" name="empName3" placeholder="Full Name Employee 3"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName4" name="empName4" placeholder="Full Name Employee 4"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName5" name="empName5" placeholder="Full Name Employee 5"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName6" name="empName6" placeholder="Full Name Employee 6"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName7" name="empName7" placeholder="Full Name Employee 7"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName8" name="empName8" placeholder="Full Name Employee 8"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName9" name="empName9" placeholder="Full Name Employee 9"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName10" name="empName10" placeholder="Full Name Employee 10"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName11" name="empName11" placeholder="Full Name Employee 11"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName12" name="empName12" placeholder="Full Name Employee 12"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName13" name="empName13" placeholder="Full Name Employee 13"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName14" name="empName14" placeholder="Full Name Employee 14"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName15" name="empName15" placeholder="Full Name Employee 15"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName16" name="empName16" placeholder="Full Name Employee 16"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName17" name="empName17" placeholder="Full Name Employee 17"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName18" name="empName18" placeholder="Full Name Employee 18"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName19" name="empName19" placeholder="Full Name Employee 19"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName20" name="empName20" placeholder="Full Name Employee 20"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName21" name="empName21" placeholder="Full Name Employee 21"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName22" name="empName22" placeholder="Full Name Employee 22"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName23" name="empName23" placeholder="Full Name Employee 23"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName24" name="empName24" placeholder="Full Name Employee 24"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName25" name="empName25" placeholder="Full Name Employee 25"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName26" name="empName26" placeholder="Full Name Employee 26"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName27" name="empName27" placeholder="Full Name Employee 27"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName28" name="empName28" placeholder="Full Name Employee 28"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName29" name="empName29" placeholder="Full Name Employee 29"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName30" name="empName30" placeholder="Full Name Employee 30"/>
+                <br>
+                <br>
+                <label class="regInput" for="loc1" id="loc1"></label>
+                <br>
+                <label class="regInput" for="loc2" id="loc2"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName1" name="locName1" placeholder="Location #1"/>
+                <br>
+                <label class="dentInput" id="allergies1.1"></label>
+                <br>
+                <label class="dentInput" id="allergies1.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen1" id="pollen1" value="Pollen"/>
+                <label id="pollenl1"></label>
+                <br>
+                <input class="box" type="hidden" name="mold1" id="mold1" value="Mold"/>
+                <label id="moldl1"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew1" id="mildew1" value="Mildew"/>
+                <label id="mildewl1"></label>
+                <br>
+                <input class="box" type="hidden" name="latex1" id="latex1" value="Latex"/>
+                <label id="latexl1"></label>
+                <br>
+                <input class="box" type="hidden" name="bees1" id="bees1" value="Bees"/>
+                <label id="beesl1"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps1" id="wasps1" value="Wasps"/>
+                <label id="waspsl1"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets1" id="hornets1" value="Hornets"/>
+                <label id="hornetsl1"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow1" id="yellow1" value="Yellow Jackets"/>
+                <label id="yellowl1"></label>
+                <br>
+                <input class="box" type="hidden" name="fire1" id="fire1" value="Fire Ants"/>
+                <label id="firel1"></label>
+                <br>
+                <input class="box" type="hidden" name="roach1" id="roach1" value="Cockroaches"/>
+                <label id="roachl1"></label>
+                <br>
+                <input class="box" type="hidden" name="dust1" id="dust1" value="Dust Mites"/>
+                <label id="dustl1"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName2" name="locName2" placeholder="Location #2"/>
+                <br>
+                <label class="dentInput" id="allergies2.1"></label>
+                <br>
+                <label class="dentInput" id="allergies2.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen2" id="pollen2" value="Pollen"/>
+                <label id="pollenl2"></label>
+                <br>
+                <input class="box" type="hidden" name="mold2" id="mold2" value="Mold"/>
+                <label id="moldl2"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew2" id="mildew2" value="Mildew"/>
+                <label id="mildewl2"></label>
+                <br>
+                <input class="box" type="hidden" name="latex2" id="latex2" value="Latex"/>
+                <label id="latexl2"></label>
+                <br>
+                <input class="box" type="hidden" name="bees2" id="bees2" value="Bees"/>
+                <label id="beesl2"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps2" id="wasps2" value="Wasps"/>
+                <label id="waspsl2"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets2" id="hornets2" value="Hornets"/>
+                <label id="hornetsl2"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow2" id="yellow2" value="Yellow Jackets"/>
+                <label id="yellowl2"></label>
+                <br>
+                <input class="box" type="hidden" name="fire2" id="fire2" value="Fire Ants"/>
+                <label id="firel2"></label>
+                <br>
+                <input class="box" type="hidden" name="roach2" id="roach2" value="Cockroaches"/>
+                <label id="roachl2"></label>
+                <br>
+                <input class="box" type="hidden" name="dust2" id="dust2" value="Dust Mites"/>
+                <label id="dustl2"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName3" name="locName3" placeholder="Location #3"/>
+                <br>
+                <label class="dentInput" id="allergies3.1"></label>
+                <br>
+                <label class="dentInput" id="allergies3.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen3" id="pollen3" value="Pollen"/>
+                <label id="pollenl3"></label>
+                <br>
+                <input class="box" type="hidden" name="mold3" id="mold3" value="Mold"/>
+                <label id="moldl3"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew3" id="mildew3" value="Mildew"/>
+                <label id="mildewl3"></label>
+                <br>
+                <input class="box" type="hidden" name="latex3" id="latex3" value="Latex"/>
+                <label id="latexl3"></label>
+                <br>
+                <input class="box" type="hidden" name="bees3" id="bees3" value="Bees"/>
+                <label id="beesl3"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps3" id="wasps3" value="Wasps"/>
+                <label id="waspsl3"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets3" id="hornets3" value="Hornets"/>
+                <label id="hornetsl3"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow3" id="yellow3" value="Yellow Jackets"/>
+                <label id="yellowl3"></label>
+                <br>
+                <input class="box" type="hidden" name="fire3" id="fire3" value="Fire Ants"/>
+                <label id="firel3"></label>
+                <br>
+                <input class="box" type="hidden" name="roach3" id="roach3" value="Cockroaches"/>
+                <label id="roachl3"></label>
+                <br>
+                <input class="box" type="hidden" name="dust3" id="dust3" value="Dust Mites"/>
+                <label id="dustl3"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName4" name="locName4" placeholder="Location #4"/>
+                <br>
+                <label class="dentInput" id="allergies4.1"></label>
+                <br>
+                <label class="dentInput" id="allergies4.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen4" id="pollen4" value="Pollen"/>
+                <label id="pollenl4"></label>
+                <br>
+                <input class="box" type="hidden" name="mold4" id="mold4" value="Mold"/>
+                <label id="moldl4"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew4" id="mildew4" value="Mildew"/>
+                <label id="mildewl4"></label>
+                <br>
+                <input class="box" type="hidden" name="latex4" id="latex4" value="Latex"/>
+                <label id="latexl4"></label>
+                <br>
+                <input class="box" type="hidden" name="bees4" id="bees4" value="Bees"/>
+                <label id="beesl4"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps4" id="wasps4" value="Wasps"/>
+                <label id="waspsl4"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets4" id="hornets4" value="Hornets"/>
+                <label id="hornetsl4"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow4" id="yellow4" value="Yellow Jackets"/>
+                <label id="yellowl4"></label>
+                <br>
+                <input class="box" type="hidden" name="fire4" id="fire4" value="Fire Ants"/>
+                <label id="firel4"></label>
+                <br>
+                <input class="box" type="hidden" name="roach4" id="roach4" value="Cockroaches"/>
+                <label id="roachl4"></label>
+                <br>
+                <input class="box" type="hidden" name="dust4" id="dust4" value="Dust Mites"/>
+                <label id="dustl4"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName5" name="locName5" placeholder="Location #5"/>
+                <br>
+                <label class="dentInput" id="allergies5.1"></label>
+                <br>
+                <label class="dentInput" id="allergies5.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen5" id="pollen5" value="Pollen"/>
+                <label id="pollenl5"></label>
+                <br>
+                <input class="box" type="hidden" name="mold5" id="mold5" value="Mold"/>
+                <label id="moldl5"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew5" id="mildew5" value="Mildew"/>
+                <label id="mildewl5"></label>
+                <br>
+                <input class="box" type="hidden" name="latex5" id="latex5" value="Latex"/>
+                <label id="latexl5"></label>
+                <br>
+                <input class="box" type="hidden" name="bees5" id="bees5" value="Bees"/>
+                <label id="beesl5"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps5" id="wasps5" value="Wasps"/>
+                <label id="waspsl5"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets5" id="hornets5" value="Hornets"/>
+                <label id="hornetsl5"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow5" id="yellow5" value="Yellow Jackets"/>
+                <label id="yellowl5"></label>
+                <br>
+                <input class="box" type="hidden" name="fire5" id="fire5" value="Fire Ants"/>
+                <label id="firel5"></label>
+                <br>
+                <input class="box" type="hidden" name="roach5" id="roach5" value="Cockroaches"/>
+                <label id="roachl5"></label>
+                <br>
+                <input class="box" type="hidden" name="dust5" id="dust5" value="Dust Mites"/>
+                <label id="dustl5"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName6" name="locName6" placeholder="Location #6"/>
+                <br>
+                <label class="dentInput" id="allergies6.1"></label>
+                <br>
+                <label class="dentInput" id="allergies6.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen6" id="pollen6" value="Pollen"/>
+                <label id="pollenl6"></label>
+                <br>
+                <input class="box" type="hidden" name="mold6" id="mold6" value="Mold"/>
+                <label id="moldl6"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew6" id="mildew6" value="Mildew"/>
+                <label id="mildewl6"></label>
+                <br>
+                <input class="box" type="hidden" name="latex6" id="latex6" value="Latex"/>
+                <label id="latexl6"></label>
+                <br>
+                <input class="box" type="hidden" name="bees6" id="bees6" value="Bees"/>
+                <label id="beesl6"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps6" id="wasps6" value="Wasps"/>
+                <label id="waspsl6"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets6" id="hornets6" value="Hornets"/>
+                <label id="hornetsl6"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow6" id="yellow6" value="Yellow Jackets"/>
+                <label id="yellowl6"></label>
+                <br>
+                <input class="box" type="hidden" name="fire6" id="fire6" value="Fire Ants"/>
+                <label id="firel6"></label>
+                <br>
+                <input class="box" type="hidden" name="roach6" id="roach6" value="Cockroaches"/>
+                <label id="roachl6"></label>
+                <br>
+                <input class="box" type="hidden" name="dust6" id="dust6" value="Dust Mites"/>
+                <label id="dustl6"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName7" name="locName7" placeholder="Location #7"/>
+                <br>
+                <label class="dentInput" id="allergies7.1"></label>
+                <br>
+                <label class="dentInput" id="allergies7.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen7" id="pollen7" value="Pollen"/>
+                <label id="pollenl7"></label>
+                <br>
+                <input class="box" type="hidden" name="mold7" id="mold7" value="Mold"/>
+                <label id="moldl7"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew7" id="mildew7" value="Mildew"/>
+                <label id="mildewl7"></label>
+                <br>
+                <input class="box" type="hidden" name="latex7" id="latex7" value="Latex"/>
+                <label id="latexl7"></label>
+                <br>
+                <input class="box" type="hidden" name="bees7" id="bees7" value="Bees"/>
+                <label id="beesl7"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps7" id="wasps7" value="Wasps"/>
+                <label id="waspsl7"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets7" id="hornets7" value="Hornets"/>
+                <label id="hornetsl7"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow7" id="yellow7" value="Yellow Jackets"/>
+                <label id="yellowl7"></label>
+                <br>
+                <input class="box" type="hidden" name="fire7" id="fire7" value="Fire Ants"/>
+                <label id="firel7"></label>
+                <br>
+                <input class="box" type="hidden" name="roach7" id="roach7" value="Cockroaches"/>
+                <label id="roachl7"></label>
+                <br>
+                <input class="box" type="hidden" name="dust7" id="dust7" value="Dust Mites"/>
+                <label id="dustl7"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName8" name="locName8" placeholder="Location #8"/>
+                <br>
+                <label class="dentInput" id="allergies8.1"></label>
+                <br>
+                <label class="dentInput" id="allergies8.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen8" id="pollen8" value="Pollen"/>
+                <label id="pollenl8"></label>
+                <br>
+                <input class="box" type="hidden" name="mold8" id="mold8" value="Mold"/>
+                <label id="moldl8"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew8" id="mildew8" value="Mildew"/>
+                <label id="mildewl8"></label>
+                <br>
+                <input class="box" type="hidden" name="latex8" id="latex8" value="Latex"/>
+                <label id="latexl8"></label>
+                <br>
+                <input class="box" type="hidden" name="bees8" id="bees8" value="Bees"/>
+                <label id="beesl8"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps8" id="wasps8" value="Wasps"/>
+                <label id="waspsl8"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets8" id="hornets8" value="Hornets"/>
+                <label id="hornetsl8"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow8" id="yellow8" value="Yellow Jackets"/>
+                <label id="yellowl8"></label>
+                <br>
+                <input class="box" type="hidden" name="fire8" id="fire8" value="Fire Ants"/>
+                <label id="firel8"></label>
+                <br>
+                <input class="box" type="hidden" name="roach8" id="roach8" value="Cockroaches"/>
+                <label id="roachl8"></label>
+                <br>
+                <input class="box" type="hidden" name="dust8" id="dust8" value="Dust Mites"/>
+                <label id="dustl8"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName9" name="locName9" placeholder="Location #9"/>
+                <br>
+                <label class="dentInput" id="allergies9.1"></label>
+                <br>
+                <label class="dentInput" id="allergies9.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen9" id="pollen9" value="Pollen"/>
+                <label id="pollenl9"></label>
+                <br>
+                <input class="box" type="hidden" name="mold9" id="mold9" value="Mold"/>
+                <label id="moldl9"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew9" id="mildew9" value="Mildew"/>
+                <label id="mildewl9"></label>
+                <br>
+                <input class="box" type="hidden" name="latex9" id="latex9" value="Latex"/>
+                <label id="latexl9"></label>
+                <br>
+                <input class="box" type="hidden" name="bees9" id="bees9" value="Bees"/>
+                <label id="beesl9"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps9" id="wasps9" value="Wasps"/>
+                <label id="waspsl9"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets9" id="hornets9" value="Hornets"/>
+                <label id="hornetsl9"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow9" id="yellow9" value="Yellow Jackets"/>
+                <label id="yellowl9"></label>
+                <br>
+                <input class="box" type="hidden" name="fire9" id="fire9" value="Fire Ants"/>
+                <label id="firel9"></label>
+                <br>
+                <input class="box" type="hidden" name="roach9" id="roach9" value="Cockroaches"/>
+                <label id="roachl9"></label>
+                <br>
+                <input class="box" type="hidden" name="dust9" id="dust9" value="Dust Mites"/>
+                <label id="dustl9"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName10" name="locName10" placeholder="Location #10"/>
+                <br>
+                <label class="dentInput" id="allergies10.1"></label>
+                <br>
+                <label class="dentInput" id="allergies10.2"></label>
+                <br>
+                <input class="box" type="hidden" name="pollen10" id="pollen10" value="Pollen"/>
+                <label id="pollenl10"></label>
+                <br>
+                <input class="box" type="hidden" name="mold10" id="mold10" value="Mold"/>
+                <label id="moldl10"></label>
+                <br>
+                <input class="box" type="hidden" name="mildew10" id="mildew10" value="Mildew"/>
+                <label id="mildewl10"></label>
+                <br>
+                <input class="box" type="hidden" name="latex10" id="latex10" value="Latex"/>
+                <label id="latexl10"></label>
+                <br>
+                <input class="box" type="hidden" name="bees10" id="bees10" value="Bees"/>
+                <label id="beesl10"></label>
+                <br>
+                <input class="box" type="hidden" name="wasps10" id="wasps10" value="Wasps"/>
+                <label id="waspsl10"></label>
+                <br>
+                <input class="box" type="hidden" name="hornets10" id="hornets10" value="Hornets"/>
+                <label id="hornetsl10"></label>
+                <br>
+                <input class="box" type="hidden" name="yellow10" id="yellow10" value="Yellow Jackets"/>
+                <label id="yellowl10"></label>
+                <br>
+                <input class="box" type="hidden" name="fire10" id="fire10" value="Fire Ants"/>
+                <label id="firel10"></label>
+                <br>
+                <input class="box" type="hidden" name="roach10" id="roach10" value="Cockroaches"/>
+                <label id="roachl10"></label>
+                <br>
+                <input class="box" type="hidden" name="dust10" id="dust10" value="Dust Mites"/>
+                <label id="dustl10"></label>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+        <script type="text/javascript">
+            async function genForm() {
+                
+                // generate the employee entries first
+                let response = await fetch("/getNumOfEmps");
+                if (!response.ok) {
+                    console.log("ERROR: issue with getting the number of employees");
+                }
+                let resJson = await response.json()
+                console.log("Response: " + resJson);
+
+                // // turn string to an int
+                let numOfEmps = parseInt(resJson, 10);
+        
+                // create the employee inputs
+                for (index = 1; index <= 5 /*numOfEmps*/; index++) {
+                    document.getElementById("empName" + index).type = "text";
+                }
+        
+                // get whether the supervisor is in charge of multiple locations or not
+                let multLocResp = await fetch("/multLocYN");
+                if (!multLocResp.ok) {
+                    console.log("ERRROR: issue with getting Y/N of multiple locations");
+                }
+                let multLocRespStr = await multLocResp.json();
+
+                console.log(" Multiple locations: " + multLocRespStr);
+
+                if (multLocRespStr == "yes") {
+                    // create the label
+                    document.getElementById("loc1").innerHTML = "If you are responsible for multiple locations";
+                    document.getElementById("loc2").innerHTML = "Enter the names of the locations under your supervision:";
+
+                    // get the number of locations
+                    let numResp = await fetch("/numLoc");
+                    if (!numResp.ok) {
+                        console.log("ERROR: issue getting number of locations");
+                    }
+
+                    let numRes = await numResp.json();
+                    console.log("Number of Locations: " + numRes);
+                    let num = parseInt(numRes, 10);
+                    
+                    // create the location inputs
+                    for (let index = 1; index <= 5 /*num*/; index++) {
+                        document.getElementById("locName" + index).type = "text";
+                        document.getElementById("allergies" + index + ".1").innerHTML = "Does the location contain any of these allergies?";
+                        document.getElementById("allergies" + index + ".2").innerHTML = "Select all that apply:";
+                        document.getElementById("pollen" + index).type = "checkbox";
+                        document.getElementById("pollenl" + index).innerHTML = "Pollen";
+                        document.getElementById("mold" + index).type = "checkbox";
+                        document.getElementById("moldl" + index).innerHTML = "Mold";
+                        document.getElementById("mildew" + index).type = "checkbox";
+                        document.getElementById("mildewl" + index).innerHTML = "Mildew";
+                        document.getElementById("latex" + index).type = "checkbox";
+                        document.getElementById("latexl" + index).innerHTML = "Latex";
+                        document.getElementById("bees" + index).type = "checkbox";
+                        document.getElementById("beesl" + index).innerHTML = "Bees";
+                        document.getElementById("wasps" + index).type = "checkbox";
+                        document.getElementById("waspsl" + index).innerHTML = "Wasps";
+                        document.getElementById("hornets" + index).type = "checkbox";
+                        document.getElementById("hornetsl" + index).innerHTML = "Hornets";
+                        document.getElementById("yellow" + index).type = "checkbox";
+                        document.getElementById("yellowl" + index).innerHTML = "Yellow Jackets";
+                        document.getElementById("fire" + index).type = "checkbox";
+                        document.getElementById("firel" + index).innerHTML = "Fire Ants";
+                        document.getElementById("roach" + index).type = "checkbox";
+                        document.getElementById("roachl" + index).innerHTML = "Cockroaches";
+                        document.getElementById("dust" + index).type = "checkbox";
+                        document.getElementById("dustl" + index).innerHTML = "Dust Mites";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -8,15 +8,9 @@
             }
             
             h1 {
-                color: white;
+                color: black;
                 text-align: center;
-                font-size: 74px;
-            }
-
-            h2 {
-                color: blue;
-                text-align: center;
-                font-size: 59px;
+                font-size: 30px;
             }
 
             .button {
@@ -25,108 +19,103 @@
                 text-align: center;
                 height: 50px;
                 width: 100px;
-                margin-left: 250px;
+                margin-left: 470px;
                 font-size: 16px;
             }
 
             div {
                 background-color: rgb(229, 229, 232);
-                height: 600px;
-                width: 600px;
-                margin-top: 50px;
-                margin-left:300px;
+                height: 900px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
             }
 
-            .fname_email_pswd {
-                width: 200px;
+            .regInput {
+                width: 430px;
                 height: 30px;
-                margin-left: 45px;
+                margin-left: 300px;
                 font-size: 16px;
             }
 
-            .lname_uname_pswd_inputs {
-                width:200px;
-                height: 30px;
-                margin-left: 70px;
-                font-size: 16px;
-            }
-
-            .lnameT {
-                width: 200px;
-                height: 30px;
-                margin-left: 195px;
-                font-size: 16px;
-            }
-
-            .unameT {
-                width:200px;
-                height:30px;
-                margin-left:235px;
-                font-size:16px;
-            }
-
-            .pswd2T {
-                width:200px;
-                height:30px;
-                margin-left: 205px;
-                font-size: 16px;
-            }
-
-            .dropdown_link {
-                width:250px;
-                height:30px;
-                margin-left: 170px;
-                font-size:16px;
+            .box {
+                margin-left: 300px;
             }
 
             .dropdown_input {
-                width: 250px;
+                width: 440px;
                 height: 30px;
                 background-color: white;
-                margin-left: 170px;
+                margin-left: 300px;
                 font-size: 16px;
             }
         </style>
     </head>
     <body>
-        <h1>Two-Way Schedular</h1>
         <div>
-            <h2>Sign Up</h2>
-            <form action="/sign_up" method="post">
-                <label class="fname_email_pswd" for="fname">First Name</label>
-                <label class="lnameT" for="lname"> Last Name</label>
+            <br>
+            <h1>Before we begin, please answer some questions about your company...</h1>
+            <form action="/r_initial1" method="post">
+                <label class="regInput" for="companyName">Enter the name of your company:</label>
                 <br>
-                <input class="fname_email_pswd" type="text" name="fnameInput" id="fnameInput" placeholder="First Name"/>
-                <input class="lname_uname_pswd_inputs" type="text" name="lnameInput" id="lnameInput" placeholder="Last Name"/>
-                <br>
-                <br>
-                <label class="fname_email_pswd" for="email">Email</label>
-                <label class="unameT" for="username">Username (Optional)</label>
-                <br>
-                <input class="fname_email_pswd" type="text" name="email" id="email" placeholder="example@example.com"/>
-                <input class="lname_uname_pswd_inputs" type="text" name="username" id="username" placeholder="Username"/>
+                <input class="regInput" type="text" name="companyName" id="companyName" placeholder="Company Name"/>
                 <br>
                 <br>
-                <label class="fname_email_pswd" for="pswd">Password</label>
-                <label class="pswd2T" for="pswd2">Re-enter Password</label>
+                <label class="regInput" for="numOfEmps">How many employees are under your supervision? Up to 30</label>
                 <br>
-                <input class="fname_email_pswd" type="password" name="pswd" id="pswd" placeholder="Password"/>
-                <input class="lname_uname_pswd_inputs" type="password" name="pswd2" id="pswd2" placeholder="Password"/>
+                <input class="regInput" type="number" name="numOfEmps" id="numOfEmps" placeholder="Enter a Number"/>
                 <br>
                 <br>
-                <label class="dropdown_link" for="role">Job Role</label>
+                <label class="regInput" for="shiftNum">How many shifts are there? Up to 10</label>
                 <br>
-                <select class="dropdown_input" name="role" id="role">
-                    <option value="placeholder">-- Supervisor Status --</option>
-                    <option value="employee">Employee</option>
-                    <option value="supervisor">Supervisor</option> 
+                <input class="regInput" type="number" name="numOfShifts"  id="numOfShifts" placeholder="Enter a Number"/>
+                <br>
+                <br>
+                <label class="regInput" for="multLoc">Are you responsible for multiple locations?</label>
+                <br>
+                <select class="dropdown_input" name="multLoc" id="multLoc">
+                    <option value="placeholder">-- Yes or No --</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
                 </select>
+                <br>
+                <label class="regInput" for="numOfLoc">If yes, how many locations? Up to 10</label>
+                <br>
+                <input class="regInput" type="number" name="numOfLoc" id="numOfLoc" placeholder="Enter a number"/>
+                <br>
+                <br>
+                <label class="regInput" for="weekdays">What are the shift days during the week?</label>
+                <br>
+                <label class="regInput" for="weekdays2">Select all that apply:</label>
+                <br>
+                <input class="box" type="checkbox" name="monday" id="monday" value="Monday"/>
+                <label for="monday">Monday</label>
+                <br>
+                <input class="box" type="checkbox" name="tuesday" id="tuesday" value="Tuesday"/>
+                <label for="tuesday">Tuesday</label>
+                <br>
+                <input class="box" type="checkbox" name="wednesday" id="wednesday" value="Wednesday"/>
+                <label for="wednesday">Wednesday</label>
+                <br>
+                <input class="box" type="checkbox" name="thursday" id="thursday" value="Thursday"/>
+                <label for="thursday">Thursday</label>
+                <br>
+                <input class="box" type="checkbox" name="friday" id="friday" value="Friday"/>
+                <label for="friday">Friday</label>
+                <br>
+                <br>
+                <label class="regInput" for="weekends">What are the shift days during the weekend?</label>
+                <br>
+                <label class="regInput" for="weekends2">Select all that apply:</label>
+                <br>
+                <input class="box" type="checkbox" name="saturday" id="saturday" value="Saturday"/>
+                <label for="saturday">Saturday</label>
+                <br>
+                <input class="box" type="checkbox" name="sunday" id="sunday" value="Sunday"/>
+                <label for="sunday">Sunday</label>
                 <br>
                 <br>
                 <input class="button" type="submit" value="Submit"/>
-                <br>
-                <br>
-                <a class="dropdown_link" href="index.html">Already have an account? Sign-in</a>
             </form>
         </div>
     </body>

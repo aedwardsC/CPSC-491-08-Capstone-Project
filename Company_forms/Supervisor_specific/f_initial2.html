@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 5000px;
+                width: 1010px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .dentInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 350px;
+                font-size: 16px;
+            }
+            .box {
+                margin-left: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <form action="/f_initial2" method="post">
+                <button type="button" class="button" onClick="genForm()">
+                    Press to Generate
+                </button>
+                <br>
+                <label class="regInput" for="Employees">Who are the employee(s) under your supervision?</label>
+                <br>
+                <label class="regInput" for="Emp">If there is more than one employee under your supervision</label>
+                <br>
+                <label class="regInput" for="Emp2">with the same name, enter the name that they are referred</label>
+                <br>
+                <label class="regInput" for="Emp2">to by (their nickname)</label>
+                <br>
+                <input class="regInput" type="hidden" id="empName1" name="empName1" placeholder="Full Name Employee 1"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName2" name="empName2" placeholder="Full Name Employee 2"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName3" name="empName3" placeholder="Full Name Employee 3"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName4" name="empName4" placeholder="Full Name Employee 4"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName5" name="empName5" placeholder="Full Name Employee 5"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName6" name="empName6" placeholder="Full Name Employee 6"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName7" name="empName7" placeholder="Full Name Employee 7"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName8" name="empName8" placeholder="Full Name Employee 8"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName9" name="empName9" placeholder="Full Name Employee 9"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName10" name="empName10" placeholder="Full Name Employee 10"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName11" name="empName11" placeholder="Full Name Employee 11"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName12" name="empName12" placeholder="Full Name Employee 12"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName13" name="empName13" placeholder="Full Name Employee 13"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName14" name="empName14" placeholder="Full Name Employee 14"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName15" name="empName15" placeholder="Full Name Employee 15"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName16" name="empName16" placeholder="Full Name Employee 16"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName17" name="empName17" placeholder="Full Name Employee 17"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName18" name="empName18" placeholder="Full Name Employee 18"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName19" name="empName19" placeholder="Full Name Employee 19"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName20" name="empName20" placeholder="Full Name Employee 20"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName21" name="empName21" placeholder="Full Name Employee 21"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName22" name="empName22" placeholder="Full Name Employee 22"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName23" name="empName23" placeholder="Full Name Employee 23"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName24" name="empName24" placeholder="Full Name Employee 24"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName25" name="empName25" placeholder="Full Name Employee 25"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName26" name="empName26" placeholder="Full Name Employee 26"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName27" name="empName27" placeholder="Full Name Employee 27"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName28" name="empName28" placeholder="Full Name Employee 28"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName29" name="empName29" placeholder="Full Name Employee 29"/>
+                <br>
+                <input class="regInput" type="hidden" id="empName30" name="empName30" placeholder="Full Name Employee 30"/>
+                <br>
+                <br>
+                <label class="regInput" for="loc1" id="loc1"></label>
+                <br>
+                <label class="regInput" for="loc2" id="loc2"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName1" name="locName1" placeholder="Location #1"/>
+                <br>
+                <label class="dentInput" id="allergies1.1"></label>
+                <br>
+                <label class="dentInput" id="allergies1.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk1" id="milk1" value="Milk"/>
+                <label id="milkl1"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs1" id="eggs1" value="Eggs"/>
+                <label id="eggsl1"></label>
+                <br>
+                <input class="box" type="hidden" name="shell1" id="shell1" value="Crustaceon Shellfish"/>
+                <label id="shelll1"></label>
+                <br>
+                <input class="box" type="hidden" name="tree1" id="tree1" value="Tree Nuts"/>
+                <label id="treel1"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts1" id="peanuts1" value="Peanuts"/>
+                <label id="peanutsl1"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat1" id="wheat1" value="Wheat"/>
+                <label id="wheatl1"></label>
+                <br>
+                <input class="box" type="hidden" name="soy1" id="soy1" value="Soybeans"/>
+                <label id="soyl1"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame1" id="sesame1" value="Sesame"/>
+                <label id="sesamel1"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName2" name="locName2" placeholder="Location #2"/>
+                <br>
+                <label class="dentInput" id="allergies2.1"></label>
+                <br>
+                <label class="dentInput" id="allergies2.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk2" id="milk2" value="Milk"/>
+                <label id="milkl2"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs2" id="eggs2" value="Eggs"/>
+                <label id="eggsl2"></label>
+                <br>
+                <input class="box" type="hidden" name="shell2" id="shell2" value="Crustaceon Shellfish"/>
+                <label id="shelll2"></label>
+                <br>
+                <input class="box" type="hidden" name="tree2" id="tree2" value="Tree Nuts"/>
+                <label id="treel2"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts2" id="peanuts2" value="Peanuts"/>
+                <label id="peanutsl2"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat2" id="wheat2" value="Wheat"/>
+                <label id="wheatl2"></label>
+                <br>
+                <input class="box" type="hidden" name="soy2" id="soy2" value="Soybeans"/>
+                <label id="soyl2"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame2" id="sesame2" value="Sesame"/>
+                <label id="sesamel2"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName3" name="locName3" placeholder="Location #3"/>
+                <br>
+                <label class="dentInput" id="allergies3.1"></label>
+                <br>
+                <label class="dentInput" id="allergies3.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk3" id="milk3" value="Milk"/>
+                <label id="milkl3"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs3" id="eggs3" value="Eggs"/>
+                <label id="eggsl3"></label>
+                <br>
+                <input class="box" type="hidden" name="shell3" id="shell3" value="Crustaceon Shellfish"/>
+                <label id="shelll3"></label>
+                <br>
+                <input class="box" type="hidden" name="tree3" id="tree3" value="Tree Nuts"/>
+                <label id="treel3"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts3" id="peanuts3" value="Peanuts"/>
+                <label id="peanutsl3"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat3" id="wheat3" value="Wheat"/>
+                <label id="wheatl3"></label>
+                <br>
+                <input class="box" type="hidden" name="soy3" id="soy3" value="Soybeans"/>
+                <label id="soyl3"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame3" id="sesame3" value="Sesame"/>
+                <label id="sesamel3"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName4" name="locName4" placeholder="Location #4"/>
+                <br>
+                <label class="dentInput" id="allergies4.1"></label>
+                <br>
+                <label class="dentInput" id="allergies4.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk4" id="milk4" value="Milk"/>
+                <label id="milkl4"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs4" id="eggs4" value="Eggs"/>
+                <label id="eggsl4"></label>
+                <br>
+                <input class="box" type="hidden" name="shell4" id="shell4" value="Crustaceon Shellfish"/>
+                <label id="shelll4"></label>
+                <br>
+                <input class="box" type="hidden" name="tree4" id="tree4" value="Tree Nuts"/>
+                <label id="treel4"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts4" id="peanuts4" value="Peanuts"/>
+                <label id="peanutsl4"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat4" id="wheat4" value="Wheat"/>
+                <label id="wheatl4"></label>
+                <br>
+                <input class="box" type="hidden" name="soy4" id="soy4" value="Soybeans"/>
+                <label id="soyl4"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame4" id="sesame4" value="Sesame"/>
+                <label id="sesamel4"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName5" name="locName5" placeholder="Location #5"/>
+                <br>
+                <label class="dentInput" id="allergies5.1"></label>
+                <br>
+                <label class="dentInput" id="allergies5.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk5" id="milk5" value="Milk"/>
+                <label id="milkl5"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs5" id="eggs5" value="Eggs"/>
+                <label id="eggsl5"></label>
+                <br>
+                <input class="box" type="hidden" name="shell5" id="shell5" value="Crustaceon Shellfish"/>
+                <label id="shelll5"></label>
+                <br>
+                <input class="box" type="hidden" name="tree5" id="tree5" value="Tree Nuts"/>
+                <label id="treel5"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts5" id="peanuts5" value="Peanuts"/>
+                <label id="peanutsl5"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat5" id="wheat5" value="Wheat"/>
+                <label id="wheatl5"></label>
+                <br>
+                <input class="box" type="hidden" name="soy5" id="soy5" value="Soybeans"/>
+                <label id="soyl5"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame5" id="sesame5" value="Sesame"/>
+                <label id="sesamel5"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName6" name="locName6" placeholder="Location #6"/>
+                <br>
+                <label class="dentInput" id="allergies6.1"></label>
+                <br>
+                <label class="dentInput" id="allergies6.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk6" id="milk6" value="Milk"/>
+                <label id="milkl6"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs6" id="eggs6" value="Eggs"/>
+                <label id="eggsl6"></label>
+                <br>
+                <input class="box" type="hidden" name="shell6" id="shell6" value="Crustaceon Shellfish"/>
+                <label id="shelll6"></label>
+                <br>
+                <input class="box" type="hidden" name="tree6" id="tree6" value="Tree Nuts"/>
+                <label id="treel6"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts6" id="peanuts6" value="Peanuts"/>
+                <label id="peanutsl6"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat6" id="wheat6" value="Wheat"/>
+                <label id="wheatl6"></label>
+                <br>
+                <input class="box" type="hidden" name="soy6" id="soy6" value="Soybeans"/>
+                <label id="soyl6"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame6" id="sesame6" value="Sesame"/>
+                <label id="sesamel6"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName7" name="locName7" placeholder="Location #7"/>
+                <br>
+                <label class="dentInput" id="allergies7.1"></label>
+                <br>
+                <label class="dentInput" id="allergies7.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk7" id="milk7" value="Milk"/>
+                <label id="milkl7"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs7" id="eggs7" value="Eggs"/>
+                <label id="eggsl7"></label>
+                <br>
+                <input class="box" type="hidden" name="shell7" id="shell7" value="Crustaceon Shellfish"/>
+                <label id="shelll7"></label>
+                <br>
+                <input class="box" type="hidden" name="tree7" id="tree7" value="Tree Nuts"/>
+                <label id="treel7"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts7" id="peanuts7" value="Peanuts"/>
+                <label id="peanutsl7"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat7" id="wheat7" value="Wheat"/>
+                <label id="wheatl7"></label>
+                <br>
+                <input class="box" type="hidden" name="soy7" id="soy7" value="Soybeans"/>
+                <label id="soyl7"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame7" id="sesame7" value="Sesame"/>
+                <label id="sesamel7"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName8" name="locName8" placeholder="Location #8"/>
+                <br>
+                <label class="dentInput" id="allergies8.1"></label>
+                <br>
+                <label class="dentInput" id="allergies8.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk8" id="milk8" value="Milk"/>
+                <label id="milkl8"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs8" id="eggs8" value="Eggs"/>
+                <label id="eggsl8"></label>
+                <br>
+                <input class="box" type="hidden" name="shell8" id="shell8" value="Crustaceon Shellfish"/>
+                <label id="shelll8"></label>
+                <br>
+                <input class="box" type="hidden" name="tree8" id="tree8" value="Tree Nuts"/>
+                <label id="treel8"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts8" id="peanuts8" value="Peanuts"/>
+                <label id="peanutsl8"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat8" id="wheat8" value="Wheat"/>
+                <label id="wheatl8"></label>
+                <br>
+                <input class="box" type="hidden" name="soy8" id="soy8" value="Soybeans"/>
+                <label id="soyl8"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame8" id="sesame8" value="Sesame"/>
+                <label id="sesamel8"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName9" name="locName9" placeholder="Location #9"/>
+                <br>
+                <label class="dentInput" id="allergies9.1"></label>
+                <br>
+                <label class="dentInput" id="allergies9.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk9" id="milk9" value="Milk"/>
+                <label id="milkl9"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs9" id="eggs9" value="Eggs"/>
+                <label id="eggsl9"></label>
+                <br>
+                <input class="box" type="hidden" name="shell9" id="shell9" value="Crustaceon Shellfish"/>
+                <label id="shelll9"></label>
+                <br>
+                <input class="box" type="hidden" name="tree9" id="tree9" value="Tree Nuts"/>
+                <label id="treel9"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts9" id="peanuts9" value="Peanuts"/>
+                <label id="peanutsl9"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat9" id="wheat9" value="Wheat"/>
+                <label id="wheatl9"></label>
+                <br>
+                <input class="box" type="hidden" name="soy9" id="soy9" value="Soybeans"/>
+                <label id="soyl9"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame9" id="sesame9" value="Sesame"/>
+                <label id="sesamel9"></label>
+                <br>
+                <input class="regInput" type="hidden" id="locName10" name="locName10" placeholder="Location #10"/>
+                <br>
+                <label class="dentInput" id="allergies10.1"></label>
+                <br>
+                <label class="dentInput" id="allergies10.2"></label>
+                <br>
+                <input class="box" type="hidden" name="milk10" id="milk10" value="Milk"/>
+                <label id="milkl10"></label>
+                <br>
+                <input class="box" type="hidden" name="eggs10" id="eggs10" value="Eggs"/>
+                <label id="eggsl10"></label>
+                <br>
+                <input class="box" type="hidden" name="shell10" id="shell10" value="Crustaceon Shellfish"/>
+                <label id="shelll10"></label>
+                <br>
+                <input class="box" type="hidden" name="tree10" id="tree10" value="Tree Nuts"/>
+                <label id="treel10"></label>
+                <br>
+                <input class="box" type="hidden" name="peanuts10" id="peanuts10" value="Peanuts"/>
+                <label id="peanutsl10"></label>
+                <br>
+                <input class="box" type="hidden" name="wheat10" id="wheat10" value="Wheat"/>
+                <label id="wheatl10"></label>
+                <br>
+                <input class="box" type="hidden" name="soy10" id="soy10" value="Soybeans"/>
+                <label id="soyl10"></label>
+                <br>
+                <input class="box" type="hidden" name="sesame10" id="sesame10" value="Sesame"/>
+                <label id="sesamel10"></label>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+        <script type="text/javascript">
+            async function genForm() {
+                
+                // generate the employee entries first
+                let response = await fetch("/getNumOfEmps");
+                if (!response.ok) {
+                    console.log("ERROR: issue with getting the number of employees");
+                }
+                let resJson = await response.json()
+                console.log("Response: " + resJson);
+
+                // // turn string to an int
+                let numOfEmps = parseInt(resJson, 10);
+        
+                // create the employee inputs
+                for (index = 1; index <= 5 /*numOfEmps*/; index++) {
+                    document.getElementById("empName" + index).type = "text";
+                }
+        
+                // get whether the supervisor is in charge of multiple locations or not
+                let multLocResp = await fetch("/multLocYN");
+                if (!multLocResp.ok) {
+                    console.log("ERRROR: issue with getting Y/N of multiple locations");
+                }
+                let multLocRespStr = await multLocResp.json();
+
+                console.log(" Multiple locations: " + multLocRespStr);
+
+                if (multLocRespStr == "yes") {
+                    // create the label
+                    document.getElementById("loc1").innerHTML = "If you are responsible for multiple locations";
+                    document.getElementById("loc2").innerHTML = "Enter the names of the locations under your supervision:";
+
+                    // get the number of locations
+                    let numResp = await fetch("/numLoc");
+                    if (!numResp.ok) {
+                        console.log("ERROR: issue getting number of locations");
+                    }
+
+                    let numRes = await numResp.json();
+                    console.log("Number of Locations: " + numRes);
+                    let num = parseInt(numRes, 10);
+                    
+                    // create the location inputs
+                    for (let index = 1; index <= 5 /*num*/; index++) {
+                        document.getElementById("locName" + index).type = "text";
+                        document.getElementById("allergies" + index + ".1").innerHTML = "Does your kitchen contain any of these food items?";
+                        document.getElementById("allergies" + index + ".2").innerHTML = "Select all that apply:";
+                        document.getElementById("milk" + index).type = "checkbox";
+                        document.getElementById("milkl" + index).innerHTML = "Milk";
+                        document.getElementById("eggs" + index).type = "checkbox";
+                        document.getElementById("eggsl" + index).innerHTML = "Eggs";
+                        document.getElementById("shell" + index).type = "checkbox";
+                        document.getElementById("shelll" + index).innerHTML = "Crustaceon Shellfish";
+                        document.getElementById("tree" + index).type = "checkbox";
+                        document.getElementById("treel" + index).innerHTML = "Tree Nuts";
+                        document.getElementById("peanuts" + index).type = "checkbox";
+                        document.getElementById("peanutsl" + index).innerHTML = "Peanuts";
+                        document.getElementById("wheat" + index).type = "checkbox";
+                        document.getElementById("wheatl" + index).innerHTML = "Wheat";
+                        document.getElementById("soy" + index).type = "checkbox";
+                        document.getElementById("soyl" + index).innerHTML = "Soybeans";
+                        document.getElementById("sesame" + index).type = "checkbox";
+                        document.getElementById("sesamel" + index).innerHTML = "Sesame";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

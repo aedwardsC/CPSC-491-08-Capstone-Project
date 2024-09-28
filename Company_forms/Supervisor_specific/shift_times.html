@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 1000px;
+                width: 1010px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .splitLeft {
+                width: 200px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .split {
+                width:200px;
+                height: 30px;
+                margin-left: 20px;
+                font-size: 16px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <form action="/shift_times" method="post">
+                <button type="button" class="button" onClick="genForm()">
+                    Press to Generate
+                </button>
+                <br>
+                <label class="regInput" id="shiftL1"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift1" id="startShift1" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift1" id="endShift1" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL2"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift2" id="startShift2" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift2" id="endShift2" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL3"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift3" id="startShift3" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift3" id="endShift3" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL4"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift4" id="startShift4" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift4" id="endShift4" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL5"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift5" id="startShift5" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift5" id="endShift5" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL6"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift6" id="startShift6" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift6" id="endShift6" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL7"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift7" id="startShift7" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift2" id="endShift2" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL8"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift8" id="startShift8" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift8" id="endShift8" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL9"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift9" id="startShift9" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift9" id="endShift9" placeholder="End Time"/>
+                <br>
+                <label class="regInput" id="shiftL10"></label>
+                <br>
+                <input class="splitLeft" type="hidden" name="startShift10" id="startShift10" placeholder="Start Time"/>
+                <input class="split" type="hidden" name="endShift10" id="endShift10" placeholder="End Time"/>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+        <script type="text/javascript">
+            async function genForm() {
+                // generate the shifts to get the times
+                let response = await fetch("/getNumOfShifts");
+                if (!response.ok) {
+                    console.log("ERROR: issue with getting the number of shifts");
+                }
+                let resJson = await response.json()
+                console.log("Response: " + resJson);
+
+                // // turn string to an int
+                let numOfShifts = parseInt(resJson, 10);
+        
+                // create the employee inputs
+                for (index = 1; index <= 5 /*numOfShifts*/; index++) {
+                    document.getElementById("shiftL" + index).innerHTML = "Shift " + index;
+                    document.getElementById("startShift" + index).type = "text";
+                    document.getElementById("endShift" + index).type = "text";
+                }
+            }
+        </script>
+    </body>
+</html>
