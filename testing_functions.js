@@ -1,7 +1,5 @@
 // For Testing Purposes
 function printEmpTable(databaseConnection, companyType) {
-    //console.log("Retrieving the Employee Information");
-
     let table = determineEmpTable(companyType);
     let queryCommand = "SELECT * FROM schedularDatabase." + table + ";";
     
@@ -23,8 +21,6 @@ function printEmpTable(databaseConnection, companyType) {
 }
 
 function printUserTable(databaseConnection) {
-    //console.log("Retrieving the User Table information");
-
     let queryCommand = "SELECT * FROM schedularDatabase.usersTable;";
     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
         if (error) {
@@ -49,8 +45,6 @@ function printUserTable(databaseConnection) {
 }
 
 function printCompaniesServedTable(databaseConnection) {
-    //console.log("Retrieving the Companies Served Table information");
-
     let queryCommand = "SELECT * FROM schedularDatabase.companiesServed;";
     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
         if (error) {
@@ -68,12 +62,7 @@ function printCompaniesServedTable(databaseConnection) {
     });
 }
 
-function printSupTable(databaseConnection, companyType) {
-    // console.log("Retrieving the Supervisor Table Information");
-
-    let table = determineSupTable(companyType);
-    let queryCommand = "SELECT * FROM schedularDatabase." + table + ";";
-    
+function printSupWC(databaseConnection, queryCommand, table) {
     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
         if (error) {
             console.log("TEST ERROR: Unable to read from Supervisor table");
@@ -86,15 +75,118 @@ function printSupTable(databaseConnection, companyType) {
                 console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
                 console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
                 console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
-                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
-                console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc);
-                console.log("Supervisor Training Days: " + JSON.stringify(sqlResult[index].trainingDays)); 
                 console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
+                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc);
+                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
+                console.log("Supervisor Training Days: " + JSON.stringify(sqlResult[index].trainingDays)); 
+                console.log(""); // spacing for readability 
+            }
+        }
+    });
+}
+
+function printSupR(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            for (let index = 0; index < sqlResult.length; index++) {
+                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
+                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
+                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
+                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Number of Shifts: " + sqlResult[index].numOfShifts);
+                console.log("Supervisor Shift Weekdays: " + JSON.stringify(sqlResult[index].shiftDaysWeek));
+                console.log("Supervisor Shift Weekends: " + JSON.stringify(sqlResult[index].shiftDaysWeekend));
+                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
+                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc); 
                 console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
                 console.log(""); // spacing for readability 
             }
         }
     });
+}
+
+function printSupEF(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            for (let index = 0; index < sqlResult.length; index++) {
+                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
+                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
+                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
+                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Number of Shifts: " + sqlResult[index].numOfShifts);
+                console.log("Supervisor Shift Weekdays: " + JSON.stringify(sqlResult[index].shiftDaysWeek));
+                console.log("Supervisor Shift Weekends: " + JSON.stringify(sqlResult[index].shiftDaysWeekend));
+                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
+                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc); 
+                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
+                console.log("Supervisor Allergies: " + JSON.stringify(sqlResult[index].allergies));
+                console.log(""); // spacing for readability  
+            }
+        }
+    });
+}
+
+function printSupL(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            for (let index = 0; index < sqlResult.length; index++) {
+                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
+                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
+                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
+                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Number of Shifts: " + sqlResult[index].numOfShifts);
+                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
+                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc); 
+                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
+                console.log("Supervisor Location Allergies: " + JSON.stringify(sqlResult[index].allergies));
+                console.log(""); // spacing for readability  
+            }
+        }
+    });
+}
+
+function printSupTable(databaseConnection, companyType) {
+    let table = determineSupTable(companyType);
+    let queryCommand = "SELECT * FROM schedularDatabase." + table + ";";
+
+    if (table == "wcSupInfo") {
+        printSupWC(databaseConnection, queryCommand, table);
+    }
+    else if (table == "rSupInfo") {
+        printSupR(databaseConnection, queryCommand, table);
+    }
+    else if (table == "eSupInfo" || table == "fSupInfo") {
+        printSupEF(databaseConnection, queryCommand, table);
+    }
+    else if (table == "lSupInfo") {
+        printSupL(databaseConnection, queryCommand, table);
+    }
+    else {
+        console.log("ERROR: Inavlide table name");
+    }
 }
 
 // helper functions

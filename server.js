@@ -199,13 +199,125 @@ program.post("/wc_initial1", function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
 });
 
-program.post("/wc_initial2", async function(request, response) {
+program.post("/wcr_initial2", async function(request, response) {
     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
     let multLocs = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
     let roster = new Array();
     let locations = new Array();
 
     // get the names of employees
+    serverFunctions.getEmpNames(roster, request, numOfEmps);
+    // console.log("Roster: " + roster);
+
+    // format for database
+    let stringRoster = roster.toString();
+
+    // store the roster in the database
+    databaseFunctions.storeRoster(databaseConnection, username, companyType, stringRoster);
+
+    // see if the supervisor was in charge of multiple locations
+    if (multLocs == "yes") {
+        let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+        // get the location names
+        serverFunctions.getLocNames(locations, request, numOfLocs);
+        // console.log("Locations: " + locations);
+        
+        // format for database
+        let stringLocations = locations.toString();
+
+        // store the locations in the database
+        databaseFunctions.storeLocNames(databaseConnection, username, companyType, stringLocations);
+    }
+
+    if (companyType == "whiteColar") {
+        // Test to make sure that everything was built correctly
+        tester.printSupTable(databaseConnection, companyType[0]);
+        tester.printCompaniesServedTable(databaseConnection);
+        tester.printUserTable(databaseConnection);
+
+        let fName = serverFunctions.getFName(fullName);
+        
+        let formVal = {name:fName};
+        response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
+            formVal);
+        // response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
+    }
+    else if (companyType == "retail") {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/shift_times.html");
+    }
+});
+
+program.post("/r_initial1", function(request, response) {
+    let weekdayShifts = new Array();
+    let weekendShifts = new Array();
+
+    // get the information from the form
+    let companyName = request.body.companyName;
+    let numOfEmps = request.body.numOfEmps;
+    let multLoc = request.body.multLoc;
+    let numOfLoc = request.body.numOfLoc;
+    let numOfShifts = request.body.numOfShifts;
+    let mon = request.body.monday;
+    let tues = request.body.tuesday;
+    let wed = request.body.wednesday;
+    let thur = request.body.thursday
+    let fri = request.body.friday;
+    let sat = request.body.saturday;
+    let sun = request.body.sunday;
+
+    // create the weekday shift
+    serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed,
+        thur, fri);
+
+    // create the weekend shift
+    serverFunctions.createWeekendShift(weekendShifts, sat, sun);
+
+    // format for the database
+    let stringWeekday = weekdayShifts.toString();
+    let stringWeekend = weekendShifts.toString();
+
+    // add company name and type to the companiesServed database (for reference)
+    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+
+    // store company information for the supervisor in the approporiate supervisor database
+    databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
+        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
+    
+    // store the missing information in the users database
+    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
+});
+
+program.post("/l_initial1", function(request, response) {
+    // get the information from the form
+    let companyName = request.body.companyName;
+    let numOfEmps = request.body.numOfEmps;
+    let numOfShifts = request.body.numOfShifts;
+    let multLoc = request.body.multLoc;
+    let numOfLoc = request.body.numOfLoc;
+
+    // add the company name and type to the companiesServed database (for reference)
+    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+
+    // store company information for the supervisor in the approporiate supervisor database
+    databaseFunctions.storeLInitInfo1(databaseConnection, username, fullName, 
+        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc);
+
+    // store the missing information in the users database
+    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial2.html");
+});
+
+program.post("/l_initial2", async function(request, response) {
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    let multLocs = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
+    let roster = new Array();
+    let locations = new Array();
+    let allergiesArr = new Array();
+    
+    // get the names of the employees
     serverFunctions.getEmpNames(roster, request, numOfEmps);
     console.log("Roster: " + roster);
 
@@ -227,18 +339,216 @@ program.post("/wc_initial2", async function(request, response) {
 
         // store the locations in the database
         databaseFunctions.storeLocNames(databaseConnection, username, companyType, stringLocations);
+
+        // add any allergies at the locations
+        serverFunctions.getAllergies(allergiesArr, request, numOfLocs, locations);
+        
+        // format for database
+        let strAllergies = allergiesArr.toString();
+        
+        // store the allergies
+        databaseFunctions.storeAllergies(databaseConnection, username, companyType, strAllergies);
     }
 
-    // Test to make sure that everything was built correctly
-    tester.printSupTable(databaseConnection, companyType[0]);
-    tester.printCompaniesServedTable(databaseConnection);
-    tester.printUserTable(databaseConnection);
-
-    response.sendFile("/Company_forms/Supervisor_specific/home_page.ejs");
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/shift_times.html");
 });
 
-program.post("/r_initial1", function(request, response) {
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial2.html");
+program.post("/e_initial1", function(request, response) {
+    let weekdayShifts = new Array();
+    let weekendShifts = new Array();
+
+    // get the information from the form
+    let companyName = request.body.companyName;
+    let numOfEmps = request.body.numOfEmps;
+    let numOfShifts = request.body.numOfShifts;
+    let multLoc = request.body.multLoc;
+    let numOfLoc = request.body.numOfLoc;
+    let mon = request.body.monday;
+    let tues = request.body.tuesday;
+    let wed = request.body.wednesday;
+    let thur = request.body.thursday;
+    let fri = request.body.friday;
+    let sat = request.body.saturday;
+    let sun = request.body.sunday;
+
+    // create the weekday shift
+    serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed,
+        thur, fri);
+
+    // create the weekend shift
+    serverFunctions.createWeekendShift(weekendShifts, sat, sun);
+
+    // format for the database
+    let stringWeekday = weekdayShifts.toString();
+    let stringWeekend = weekendShifts.toString();
+
+    // add company name and type to the companiesServed database (for reference)
+    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+
+    // store company information for the supervisor in the approporiate supervisor database
+    databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
+        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
+    
+    // store the missing information in the users database
+    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/e_initial2.html");
+});
+
+program.post("/e_initial2", async function(request, response) {
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    let multLocs = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
+    let roster = new Array();
+    let locations = new Array();
+    let allergiesArr = new Array();
+    
+    // get the names of the employees
+    serverFunctions.getEmpNames(roster, request, numOfEmps);
+    console.log("Roster: " + roster);
+
+    // format for database
+    let stringRoster = roster.toString();
+
+    // store the roster in the database
+    databaseFunctions.storeRoster(databaseConnection, username, companyType, stringRoster);
+
+    // see if the supervisor was in charge of multiple locations
+    if (multLocs == "yes") {
+        let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+        // get the location names
+        serverFunctions.getLocNames(locations, request, numOfLocs);
+        console.log("Locations: " + locations);
+        
+        // format for database
+        let stringLocations = locations.toString();
+
+        // store the locations in the database
+        databaseFunctions.storeLocNames(databaseConnection, username, companyType, stringLocations);
+
+        // add any allergies at the locations
+        serverFunctions.getFoodAllergies(allergiesArr, request, numOfLocs, locations);
+        
+        // format for database
+        let strAllergies = allergiesArr.toString();
+        
+        // store the allergies
+        databaseFunctions.storeAllergies(databaseConnection, username, companyType, strAllergies);
+    }
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/shift_times.html");
+});
+
+program.post("/f_initial1", function(request, response) {
+    let weekdayShifts = new Array();
+    let weekendShifts = new Array();
+
+    // get the information from the form
+    let companyName = request.body.companyName;
+    let numOfEmps = request.body.numOfEmps;
+    let numOfShifts = request.body.numOfShifts;
+    let multLoc = request.body.multLoc;
+    let numOfLoc = request.body.numOfLoc;
+    let mon = request.body.monday;
+    let tues = request.body.tuesday;
+    let wed = request.body.wednesday;
+    let thur = request.body.thursday;
+    let fri = request.body.friday;
+    let sat = request.body.saturday;
+    let sun = request.body.sunday;
+
+    // create the weekday shift
+    serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed,
+        thur, fri);
+
+    // create the weekend shift
+    serverFunctions.createWeekendShift(weekendShifts, sat, sun);
+
+    // format for the database
+    let stringWeekday = weekdayShifts.toString();
+    let stringWeekend = weekendShifts.toString();
+
+    // add company name and type to the companiesServed database (for reference)
+    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+
+    // store company information for the supervisor in the approporiate supervisor database
+    databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
+        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
+    
+    // store the missing information in the users database
+    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/f_initial2.html");
+});
+
+program.post("/f_initial2", async function(request, response) {
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    let multLocs = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
+    let roster = new Array();
+    let locations = new Array();
+    let allergiesArr = new Array();
+    
+    // get the names of the employees
+    serverFunctions.getEmpNames(roster, request, numOfEmps);
+    console.log("Roster: " + roster);
+
+    // format for database
+    let stringRoster = roster.toString();
+
+    // store the roster in the database
+    databaseFunctions.storeRoster(databaseConnection, username, companyType, stringRoster);
+
+    // see if the supervisor was in charge of multiple locations
+    if (multLocs == "yes") {
+        let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+        // get the location names
+        serverFunctions.getLocNames(locations, request, numOfLocs);
+        console.log("Locations: " + locations);
+        
+        // format for database
+        let stringLocations = locations.toString();
+
+        // store the locations in the database
+        databaseFunctions.storeLocNames(databaseConnection, username, companyType, stringLocations);
+
+        // add any allergies at the locations
+        serverFunctions.getFoodAllergies(allergiesArr, request, numOfLocs, locations);
+        
+        // format for database
+        let strAllergies = allergiesArr.toString();
+        
+        // store the allergies
+        databaseFunctions.storeAllergies(databaseConnection, username, companyType, strAllergies);
+    }
+    
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/shift_times.html");
+});
+
+program.post("/shift_times", async function(request, response) {
+    if (companyType != "whiteCollar") { // white collar users should not be accessing this feature
+        let numOfShifts = await databaseFunctions.getNumOfShifts(databaseConnection, username, companyType);
+        let shiftTimes = new Array();
+        
+        // get the times for the shifts
+        serverFunctions.getShiftTimes(shiftTimes, request, numOfShifts);
+        console.log("Shift times: " + shiftTimes);
+        
+        // format for database
+        let stringShifts = shiftTimes.toString();
+        
+        // store the shift times in the database
+        databaseFunctions.storeShiftTimes(databaseConnection, username, companyType, stringShifts);
+        
+        // Test to make sure that everything was built correctly
+        tester.printSupTable(databaseConnection, companyType[0]);
+        tester.printCompaniesServedTable(databaseConnection);
+        tester.printUserTable(databaseConnection);
+
+        let fName = serverFunctions.getFName(fullName);
+
+        let formVal = {name:fName};
+        response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
+            formVal);
+        //response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
+    }
 });
 
 program.get("/getNumOfEmps", async function(request, response) {
@@ -254,6 +564,11 @@ program.get("/multLocYN", async function(request, response) {
 program.get("/numLoc", async function(request, response) {
     let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
     response.send(JSON.stringify(numOfLocs));
+});
+
+program.get("/getNumOfShifts", async function(request, response) {
+    let numOfShifts = await databaseFunctions.getNumOfShifts(databaseConnection, username, companyType);
+    response.send(JSON.stringify(numOfShifts));
 });
 
 // listen on the port localhost:4000
