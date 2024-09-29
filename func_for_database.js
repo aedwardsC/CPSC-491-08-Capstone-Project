@@ -33,11 +33,9 @@ function startDatabase(databaseConnection) {
             let databaseExists = false;
             // go through the results to find the database
             for (let index = 0; index < sqlResult.length; index++) {
-                //console.log(sqlResult[index].Database);
                 if (sqlResult[index].Database == "schedularDatabase") {
                     databaseExists = true;
                 }
-                // console.log("DatabaseExists = " + databaseExists);
             }
 
             // if the database exists...
@@ -141,8 +139,6 @@ function startDatabase(databaseConnection) {
 function determineEmpTable(type) {
     let table = "";
 
-    //console.log("In determineEmpTable: " + type);
-
     if (type == "whiteCollar") {
         table = "wcEmpInfo";
     }
@@ -159,7 +155,6 @@ function determineEmpTable(type) {
         table = "rEmpInfo";
     }
 
-    // console.log("In determineEmpTable table = " + table);
     return table;
 }
 
@@ -188,8 +183,6 @@ function determineSupTable(type) {
 // functions for storing information
 function storeGeneralSignUpInfo(databaseConnection, email, uname, 
     fname, lname, password, status) {
-    //console.log("Adding to the usersTable");
-
     let queryCommand = "INSERT INTO schedularDatabase.usersTable (email, "
         + "username, fname, lname, password, status) VALUES ('" + email 
         + "', '" + uname + "', '" + fname + "', '" + lname + "', '"
@@ -205,8 +198,6 @@ function storeGeneralSignUpInfo(databaseConnection, email, uname,
 }
 
 function storeCompanyType(databaseConnection, email, companyType) {
-    //console.log("Adding to the users table");
-
     let queryCommand = "UPDATE schedularDatabase.usersTable SET companyType = " 
         + "'" + companyType + "' WHERE email = '" + email + "';";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
@@ -244,8 +235,6 @@ function buildEmpAccount(databaseConnection, email, fullName, companyType,
 }
 
 function buildSupAccount(databaseConnection, email, companyName) {
-    //console.log("Finishing building the supervisor account in Users Table");
-
     let queryCommand = "UPDATE schedularDatabase.usersTable SET companyName = "
         + "'" + companyName + "' WHERE email = '" + email + "';";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
@@ -259,8 +248,6 @@ function buildSupAccount(databaseConnection, email, companyName) {
 }
 
 function storeCompanyName(databaseConnection, email, companyName) {
-    //console.log("Storing the company name in the user table");
-
     let queryCommand = "UPDATE schedularDatabase.usersTable SET companyName = "
         + "'" + companyName + "' WHERE email = '" + email + "';";
     databaseConnection.query(queryCommand, function(error, sqlResult) {
@@ -274,14 +261,12 @@ function storeCompanyName(databaseConnection, email, companyName) {
 }
 
 async function storeCompanyNameType(databaseConnection, companyName, companyType) {
-    //console.log("Storing company info in Companies Served table");
-
     let stored = false;
 
     let result = await determineStored(databaseConnection, companyName, companyType);
 
     for (let i = 0; i < result.length; i++) {
-        if (result[i].companyName == companyName) {
+        if (result[i].companyName === companyName) {
             stored = true;
             console.log("The company is already registered");
         }
@@ -292,7 +277,7 @@ async function storeCompanyNameType(databaseConnection, companyName, companyType
             + "(companyName, companyType) VALUES ('" + companyName + "', '" + companyType + "');";
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
-                console.log("ERROR: Unable to add to companiesServed table" + error);
+                console.log("ERROR: Unable to add to companiesServed table");
             }
             else {
                 console.log("SUCCESS: Added company info to companiesServed table");
@@ -303,8 +288,6 @@ async function storeCompanyNameType(databaseConnection, companyName, companyType
 
 function storeWCInitInfo1(databaseConnection, email, fullName, companyName,
     numOfEmps, shiftHours, numOfLoc, multLoc, stringTraining) {
-    //console.log("Storing the information from wc_initial1");
-
     let queryCommand = "INSERT INTO schedularDatabase.wcSupInfo (supEmail, supFullName, "
         + "companyName, numOfEmps, shiftHours, numOfLoc, multLoc, trainingDays) VALUES ('" + email
         + "', '" + fullName + "', '" + companyName + "', " + numOfEmps + ", '" + shiftHours
@@ -321,8 +304,6 @@ function storeWCInitInfo1(databaseConnection, email, fullName, companyName,
 
 function storeREFInitInfo1(databaseConnection, companyType, email, fullName, 
     companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend) {
-    //console.log("Storing the information from r_initial1");
-    
     let table = determineSupTable(companyType);
 
     if (table == "") {
@@ -358,7 +339,7 @@ function storeLInitInfo1(databaseConnection, email, fullName,
         
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
-            console.log("ERROR: Unable to add init1 to lSupInfo" + error);
+            console.log("ERROR: Unable to add init1 to lSupInfo");
         }
         else {
             console.log("SUCCESS: Added init1 to lSupInfo");
@@ -367,7 +348,6 @@ function storeLInitInfo1(databaseConnection, email, fullName,
 }
 
 function storeRoster(databaseConnection, email, companyType, roster) {
-    //console.log("Storing roster in supervisor' table");
     let table = determineSupTable(companyType);
 
     if (table == "") {
@@ -388,7 +368,6 @@ function storeRoster(databaseConnection, email, companyType, roster) {
 }
 
 function storeLocNames(databaseConnection, email, companyType, locations) {
-    //console.log("Storing names of locations in supervisor' table");
     let table = determineSupTable(companyType);
 
     if (table == "") {
@@ -399,7 +378,7 @@ function storeLocNames(databaseConnection, email, companyType, locations) {
             + " SET locationNames = " + "'" + locations + "' WHERE supEmail = '" + email + "';";
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
-                console.log("ERROR: Unable to update the Supervisor's table with the location names");
+                console.log("ERROR: Unable to update the Supervisor's table with the location names" + error);
             }
             else {
                 console.log("SUCCESS: Location names added to " + table);
@@ -409,7 +388,6 @@ function storeLocNames(databaseConnection, email, companyType, locations) {
 }
 
 function storeShiftTimes(databaseConnection, email, companyType, stringShifts) {
-    //console.log("Storing shift times in supervisor' table");
     let table = determineSupTable(companyType);
 
     if (table == "") {
@@ -475,7 +453,6 @@ function getType(databaseConnection, queryCommand) {
             }
             else {
                 let type = sqlResult[0].companyType;
-                //console.log("Returning: " + type);
                 resolve(type);
             }
         });
@@ -483,14 +460,10 @@ function getType(databaseConnection, queryCommand) {
 }
 
 async function companyTypeFromName(databaseConnection, companyName, companyType, email) {
-    //console.log("Retrieving company type of " + companyName);
-    
     let queryCommand = "SELECT companyType FROM schedularDatabase.companiesServed "
         + "WHERE companyName = '" + companyName + "';";
     
     companyType.push(await getType(databaseConnection, queryCommand));
-
-    //console.log("Company Type in DB Functions: " + companyType[0]);
 
     // store the type in the user table -> Here because of race condition
     storeCompanyType(databaseConnection, email, companyType);
@@ -500,11 +473,10 @@ function getNumE(databaseConnection, queryCommand) {
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
             if (error) {
-                console.log("ERROR: Unable to retrieve numberOfEmployees" + error);
+                console.log("ERROR: Unable to retrieve numberOfEmployees");
             }
             else {
                 let num = sqlResult[0].numOfEmps;
-                //console.log("Returning: " + num);
                 resolve(num);
             }
         });
@@ -512,8 +484,6 @@ function getNumE(databaseConnection, queryCommand) {
 }
 
 async function getNumOfEmps(databaseConnection, email, companyType) {
-    //console.log("Retrieving the number of employees from supervisor's table");
-
     let numOfEmps = 0;
     let table = determineSupTable(companyType);
 
@@ -527,7 +497,6 @@ async function getNumOfEmps(databaseConnection, email, companyType) {
         numOfEmps = await getNumE(databaseConnection, queryCommand);
     }
 
-    //console.log("Ultimately returning: " + numOfEmps);
     return numOfEmps;
 }
 
@@ -539,7 +508,6 @@ function getNumL(databaseConnection, queryCommand) {
             }
             else {
                 let num = sqlResult[0].numOfLoc;
-                //console.log("Returning: " + num);
                 resolve(num);
             }
         });
@@ -547,8 +515,6 @@ function getNumL(databaseConnection, queryCommand) {
 }
 
 async function getNumOfLocs(databaseConnection, email, companyType) {
-    //console.log("Retrieving the number of locations from supervisor table");
-
     let numOfLocs = 1;
     let table = determineSupTable(companyType);
 
@@ -562,7 +528,6 @@ async function getNumOfLocs(databaseConnection, email, companyType) {
         numOfLocs = await getNumL(databaseConnection, queryCommand);
     }
 
-    //console.log("Ultimately returning: " + numOfLocs);
     return numOfLocs;
 }
 
@@ -574,7 +539,6 @@ function getYN(databaseConnection, queryCommand) {
             }
             else {
                 let resp = sqlResult[0].multLoc;
-                //console.log("Returning: " + resp);
                 resolve(resp);
             }
         });
@@ -582,8 +546,6 @@ function getYN(databaseConnection, queryCommand) {
 }
 
 async function getMultLoc(databaseConnection, email, companyType) {
-    //console.log("Retrieving yes/no regarding multiple locations from supervisor table");
-
     let table = determineSupTable(companyType);
     let multLoc = "";
 
@@ -597,7 +559,6 @@ async function getMultLoc(databaseConnection, email, companyType) {
         multLoc = await getYN(databaseConnection, queryCommand);
     }
 
-    //console.log("Ultimately returning: " + multLoc);
     return multLoc;
 }
 
@@ -609,7 +570,6 @@ function getShiftNum(databaseConnection, queryCommand) {
             }
             else {
                 let num = sqlResult[0].numOfShifts;
-                //console.log("Returning: " + num);
                 resolve(num);
             }
         });
@@ -635,11 +595,26 @@ async function getNumOfShifts(databaseConnection, email, companyType) {
         numOfShifts = await getShiftNum(databaseConnection, queryCommand);
     }
 
-    //console.log("Ultimately returning: " + numOfShifts);
     return numOfShifts;
+}
+
+function getUsernamesEmails(databaseConnection) {
+    let queryCommand = "SELECT * FROM schedularDatabase.usersTable;";
+
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to read the usernames/email from usersTable");
+            }
+            else {
+                resolve(sqlResult);
+            } 
+        });
+    });
 }
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames,
-    getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies};
+    getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
+    getUsernamesEmails};

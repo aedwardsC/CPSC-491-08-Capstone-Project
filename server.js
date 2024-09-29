@@ -73,7 +73,7 @@ program.post("/sign_in", function(request, response) {
     serverFunctions.splitUsers(response, role, username, fName);
 });
 
-program.post("/sign_up", function(request, response) {
+program.post("/sign_up", async function(request, response) {
     // get the info from the form
     let fname = request.body.fnameInput; // first name
     let lname = request.body.lnameInput; // last name
@@ -86,7 +86,19 @@ program.post("/sign_up", function(request, response) {
     // make sure that the 2 passwords match
     let match = serverFunctions.checkPswds(pswd, pswd2);
 
-    if (match) {
+    let usernameEmailUnique = false;
+    let emailUnique = await serverFunctions.checkEmail(databaseConnection, databaseFunctions,
+        email);
+
+    if (uname != "") {
+        usernameEmailUnique = await serverFunctions.checkUsername(databaseConnection, 
+            databaseFunctions, uname);
+    }
+    else if (uname == "") {
+        usernameEmailUnique = true;
+    }
+
+    if (match && usernameEmailUnique && emailUnique) {
         // set the global variables
         username = email;
         //console.log("Global username changed to " + username);
@@ -115,16 +127,12 @@ program.post("/company_type", function(request, response) { // for supervisors o
     databaseFunctions.storeCompanyType(databaseConnection, username, 
         companyType[0]);
 
-    console.log("The user's company type from form: " + companyType[0]); // TESTING
-
     // use the company type to determine which initial setup to give them
     serverFunctions.splitInitialSetUp(response, companyType[0]);
 });
 
 program.post("/company_name", function(request, response) { // for employees only
     let companyName = request.body.companyName;
-
-    //console.log("The user's company is: " + companyName); // TESTING
 
     // put the company name in the user table
     databaseFunctions.storeCompanyName(databaseConnection, username, companyName);
@@ -137,8 +145,6 @@ program.post("/company_name", function(request, response) { // for employees onl
 
 program.post("/supervisor_name", function(request, response) { // for employees only
     let supName = request.body.supervisorName;
-
-    //console.log("The user's supervisor is: " + supName); // TESTING
 
     // last of employee sign-up/ set-up...
     // build the account...
@@ -174,29 +180,45 @@ program.post("/wc_initial1", function(request, response) {
     let saturday = request.body.saturday;
     let sunday = request.body.sunday;
 
-    // create the general shift hours for database storage (s-e,s-e)
-    let shiftHours = startOfMornShift + "-" + endOfMornShift + "," + startOfLateShift
-        + "-" + endOfLateShift;
-
-    // create the array for the training days
-    serverFunctions.createTrainingSchedule(trainingDays, monday, tuesday, wednesday,
-        thursday, friday, saturday, sunday);
-    
-    let stringTraining = trainingDays.toString();
-    //console.log("The training schedule going into the database is: " + stringTraining);
-
-    // add company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
-
-    // store company information for the supervisor in the approporiate supervisor database
-    databaseFunctions.storeWCInitInfo1(databaseConnection, username, fullName, companyName,
-        numOfEmps, shiftHours, numOfLoc, multLoc, stringTraining);
-    
-    // store the missing information in the users database
-    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
-    
-    // direct to the next page of the initial setup questionnaire
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
+    // validate required form data
+    if (companyName == "" || numOfEmps == 0 || numOfEmps == "" || multLoc == "placeholder") {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wc_initial1.html"); // do not accept the input
+    }
+    else {
+        // handling blank number input
+        if (multLoc == "no") {
+            numOfLoc = 0;
+        }
+        
+        // create the general shift hours for database storage (s-e,s-e)
+        let shiftHours = "";
+        if (startOfLateShift == "") {
+            shiftHours = startOfMornShift + "-" + endOfMornShift;
+        }
+        else {
+            shiftHours = startOfMornShift + "-" + endOfMornShift + "," + startOfLateShift
+                + "-" + endOfLateShift;
+        }
+        
+        // create the array for the training days
+        serverFunctions.createTrainingSchedule(trainingDays, monday, tuesday, wednesday,
+            thursday, friday, saturday, sunday);
+        
+        let stringTraining = trainingDays.toString();
+        
+        // add company name and type to the companiesServed database (for reference)
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        
+        // store company information for the supervisor in the approporiate supervisor database
+        databaseFunctions.storeWCInitInfo1(databaseConnection, username, fullName, companyName,
+            numOfEmps, shiftHours, numOfLoc, multLoc, stringTraining);
+        
+        // store the missing information in the users database
+        databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+        
+        // direct to the next page of the initial setup questionnaire
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
+    }
 });
 
 program.post("/wcr_initial2", async function(request, response) {
@@ -207,7 +229,6 @@ program.post("/wcr_initial2", async function(request, response) {
 
     // get the names of employees
     serverFunctions.getEmpNames(roster, request, numOfEmps);
-    // console.log("Roster: " + roster);
 
     // format for database
     let stringRoster = roster.toString();
@@ -220,7 +241,6 @@ program.post("/wcr_initial2", async function(request, response) {
         let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
         // get the location names
         serverFunctions.getLocNames(locations, request, numOfLocs);
-        // console.log("Locations: " + locations);
         
         // format for database
         let stringLocations = locations.toString();
@@ -229,17 +249,17 @@ program.post("/wcr_initial2", async function(request, response) {
         databaseFunctions.storeLocNames(databaseConnection, username, companyType, stringLocations);
     }
 
-    if (companyType == "whiteColar") {
+    if (companyType == "whiteCollar") {
         // Test to make sure that everything was built correctly
         tester.printSupTable(databaseConnection, companyType[0]);
         tester.printCompaniesServedTable(databaseConnection);
         tester.printUserTable(databaseConnection);
 
-        let fName = serverFunctions.getFName(fullName);
+        //let fName = serverFunctions.getFName(fullName);
         
-        let formVal = {name:fName};
-        response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
-            formVal);
+        // let formVal = {name:fName};
+        // response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
+        //     formVal);
         // response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
     }
     else if (companyType == "retail") {
@@ -265,28 +285,39 @@ program.post("/r_initial1", function(request, response) {
     let sat = request.body.saturday;
     let sun = request.body.sunday;
 
-    // create the weekday shift
-    serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed,
-        thur, fri);
-
-    // create the weekend shift
-    serverFunctions.createWeekendShift(weekendShifts, sat, sun);
-
-    // format for the database
-    let stringWeekday = weekdayShifts.toString();
-    let stringWeekend = weekendShifts.toString();
-
-    // add company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
-
-    // store company information for the supervisor in the approporiate supervisor database
-    databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
-        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
-    
-    // store the missing information in the users database
-    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
-
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
+    // validate required form data
+    if (companyName == "" || numOfEmps == 0 || numOfEmps == "" || numOfShifts == 0 
+        || numOfShifts == "" || multLoc == "placeholder") {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/r_initial1.html"); // do not accept the input
+    }
+    else {
+        // handling blank number input
+        if (multLoc == "no") {
+            numOfLoc = 0;
+        }
+        
+        // create the weekday shift
+        serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed, thur, fri);
+        
+        // create the weekend shift
+        serverFunctions.createWeekendShift(weekendShifts, sat, sun);
+        
+        // format for the database
+        let stringWeekday = weekdayShifts.toString();
+        let stringWeekend = weekendShifts.toString();
+        
+        // add company name and type to the companiesServed database (for reference)
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        
+        // store company information for the supervisor in the approporiate supervisor database
+        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
+            companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
+            
+        // store the missing information in the users database
+        databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+        
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wcr_initial2.html");
+    }
 });
 
 program.post("/l_initial1", function(request, response) {
@@ -297,17 +328,29 @@ program.post("/l_initial1", function(request, response) {
     let multLoc = request.body.multLoc;
     let numOfLoc = request.body.numOfLoc;
 
-    // add the company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
-
-    // store company information for the supervisor in the approporiate supervisor database
-    databaseFunctions.storeLInitInfo1(databaseConnection, username, fullName, 
-        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc);
-
-    // store the missing information in the users database
-    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
-
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial2.html");
+    // validate required form data
+    if (companyName == "" || numOfEmps == 0 || numOfEmps == "" || numOfShifts == 0 
+        || numOfShifts == "" || multLoc == "placeholder") {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial1.html"); // do not accept the input
+    }
+    else {
+        // handling blank number input
+        if (multLoc == "no") {
+            numOfLoc = 0;
+        }
+        
+        // add the company name and type to the companiesServed database (for reference)
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        
+        // store company information for the supervisor in the approporiate supervisor database
+        databaseFunctions.storeLInitInfo1(databaseConnection, username, fullName, 
+            companyName, numOfEmps, numOfShifts, numOfLoc, multLoc);
+            
+        // store the missing information in the users database
+        databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+        
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial2.html");
+    }
 });
 
 program.post("/l_initial2", async function(request, response) {
@@ -371,28 +414,40 @@ program.post("/e_initial1", function(request, response) {
     let sat = request.body.saturday;
     let sun = request.body.sunday;
 
-    // create the weekday shift
-    serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed,
-        thur, fri);
-
-    // create the weekend shift
-    serverFunctions.createWeekendShift(weekendShifts, sat, sun);
-
-    // format for the database
-    let stringWeekday = weekdayShifts.toString();
-    let stringWeekend = weekendShifts.toString();
-
-    // add company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
-
-    // store company information for the supervisor in the approporiate supervisor database
-    databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
-        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
-    
-    // store the missing information in the users database
-    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
-
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/e_initial2.html");
+    // validate required form data
+    if (companyName == "" || numOfEmps == 0 || numOfEmps == "" || numOfShifts == 0 
+        || numOfShifts == "" || multLoc == "placeholder") {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/e_initial1.html"); // do not accept the input
+    }
+    else {
+        // handling blank number input
+        if (multLoc == "no") {
+            numOfLoc = 0;
+        }
+        
+        // create the weekday shift
+        serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed, thur, fri);
+        
+        // create the weekend shift
+        serverFunctions.createWeekendShift(weekendShifts, sat, sun);
+        
+        // format for the database
+        let stringWeekday = weekdayShifts.toString();
+        let stringWeekend = weekendShifts.toString();
+        
+        // add company name and type to the companiesServed database (for reference)
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        
+        // store company information for the supervisor in the approporiate supervisor database
+        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, 
+            fullName, companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, 
+            stringWeekend);
+        
+        // store the missing information in the users database
+        databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+        
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/e_initial2.html");
+    }
 });
 
 program.post("/e_initial2", async function(request, response) {
@@ -455,28 +510,40 @@ program.post("/f_initial1", function(request, response) {
     let sat = request.body.saturday;
     let sun = request.body.sunday;
 
-    // create the weekday shift
-    serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed,
-        thur, fri);
+    // validate required form data
+    if (companyName == "" || numOfEmps == 0 || numOfEmps == "" || numOfShifts == 0 
+        || numOfShifts == "" || multLoc == "placeholder") {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/f_initial1.html"); // do not accept the input
+    }
+    else {
+        // handling blank number input
+        if (multLoc == "no") {
+            numOfLoc = 0;
+        }
 
-    // create the weekend shift
-    serverFunctions.createWeekendShift(weekendShifts, sat, sun);
-
-    // format for the database
-    let stringWeekday = weekdayShifts.toString();
-    let stringWeekend = weekendShifts.toString();
-
-    // add company name and type to the companiesServed database (for reference)
-    databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
-
-    // store company information for the supervisor in the approporiate supervisor database
-    databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
-        companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
-    
-    // store the missing information in the users database
-    databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
-
-    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/f_initial2.html");
+        // create the weekday shift
+        serverFunctions.createWeekDayShift(weekdayShifts, mon, tues, wed, thur, fri);
+        
+        // create the weekend shift
+        serverFunctions.createWeekendShift(weekendShifts, sat, sun);
+        
+        // format for the database
+        let stringWeekday = weekdayShifts.toString();
+        let stringWeekend = weekendShifts.toString();
+        
+        // add company name and type to the companiesServed database (for reference)
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        
+        // store company information for the supervisor in the approporiate supervisor database
+        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, 
+            fullName, companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, 
+            stringWeekend);
+            
+        // store the missing information in the users database
+        databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
+        
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/f_initial2.html");
+        }
 });
 
 program.post("/f_initial2", async function(request, response) {
@@ -526,28 +593,33 @@ program.post("/shift_times", async function(request, response) {
     if (companyType != "whiteCollar") { // white collar users should not be accessing this feature
         let numOfShifts = await databaseFunctions.getNumOfShifts(databaseConnection, username, companyType);
         let shiftTimes = new Array();
-        
-        // get the times for the shifts
-        serverFunctions.getShiftTimes(shiftTimes, request, numOfShifts);
-        console.log("Shift times: " + shiftTimes);
-        
-        // format for database
-        let stringShifts = shiftTimes.toString();
-        
-        // store the shift times in the database
-        databaseFunctions.storeShiftTimes(databaseConnection, username, companyType, stringShifts);
-        
-        // Test to make sure that everything was built correctly
-        tester.printSupTable(databaseConnection, companyType[0]);
-        tester.printCompaniesServedTable(databaseConnection);
-        tester.printUserTable(databaseConnection);
 
-        let fName = serverFunctions.getFName(fullName);
-
-        let formVal = {name:fName};
-        response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
-            formVal);
-        //response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
+        // make sure that the shift that was entered wasn't 0 
+        if (numOfShifts == 0) {
+            response.sendFile(__dirname + "/Company_forms/Supervisor_specific/shift_number.html");
+        }
+        else {
+            // get the times for the shifts
+            serverFunctions.getShiftTimes(shiftTimes, request, numOfShifts);
+            console.log("Shift times: " + shiftTimes);
+            
+            // format for database
+            let stringShifts = shiftTimes.toString();
+            
+            // store the shift times in the database
+            databaseFunctions.storeShiftTimes(databaseConnection, username, companyType, stringShifts);
+            
+            // Test to make sure that everything was built correctly
+            tester.printSupTable(databaseConnection, companyType[0]);
+            tester.printCompaniesServedTable(databaseConnection);
+            tester.printUserTable(databaseConnection);
+            
+            // let fName = serverFunctions.getFName(fullName);
+            // let formVal = {name:fName};
+            // response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
+            //     formVal);
+            //response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
+        }
     }
 });
 

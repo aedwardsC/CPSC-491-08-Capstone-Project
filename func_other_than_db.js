@@ -31,11 +31,9 @@ function checkPswds(pswd1, pswd2) {
 function determineRole(response, role) {
     // determine if supervisor
     if (role == "supervisor") {
-        //console.log("The user is a supervisor");
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/company_type.html");
     }
     else if (role == "employee") {
-        //console.log("The user is an employee");
         response.sendFile(__dirname + "/Company_forms/Employee_specific/company_name.html");
     }
     else {
@@ -46,29 +44,24 @@ function determineRole(response, role) {
 function splitInitialSetUp(response, companyType) {
     // if company type = white collar -> direct to white collar initial setup
     if (companyType == "whiteCollar") {
-        //console.log("Sending to White Collar Init");
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/wc_initial1.html");
     }
     else if (companyType == "retail") {
         // if company type = retail -> redirect to retail initial setup
-        //console.log("Sending to Retail Init");
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/r_initial1.html");
     }
     else if (companyType == "entertainment") {
         // if company type = entertainment 
         // -> redirect to entertainment initial setup
-        //console.log("Sending to Entertainment Init");
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/e_initial1.html");
     }
     else if (companyType == "food") {
         // if company type = food -> redirect to food initial setup
-        //console.log("Sending to Food Init");
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/f_initial1.html");
     }
     else if (companyType == "lawEnforcement") {
         // if company type = law enforcement 
         // -> redirect to law enforcement initial setup
-        //console.log("Sending to Law Enforcement Init");
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/l_initial1.html");
     }
     else {
@@ -79,11 +72,9 @@ function splitInitialSetUp(response, companyType) {
 function splitUsers(response, role, fName) {
     // if role is an employee -> direct to the Disclaimer page
     if (role == "employee") {
-        //console.log("User is employee -> directing to disclaimer");
         response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
     }
     else if (role == "supervisor") { // else -> send to supervisor home page
-        //console.log("User is supervisor -> directing to home page")
         let formVal = {name:fName};
         response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
             formVal);
@@ -93,65 +84,51 @@ function splitUsers(response, role, fName) {
 function createTrainingSchedule(trainingDays, monday, tuesday, wednesday, thursday, friday, 
     saturday, sunday) {
     if (monday == "Monday") {
-        //console.log("Adding Monday");
         trainingDays.push(monday);
     }
     if (tuesday == "Tuesday") {
-        //console.log("Adding Tuesday");
         trainingDays.push(tuesday);
     }
     if (wednesday == "Wednesday") {
-        //console.log("Adding Wednesday");
         trainingDays.push(wednesday);
     }
     if (thursday == "Thursday") {
-        //console.log("Adding Thursday");
         trainingDays.push(thursday);
     }
     if (friday == "Friday") {
-        //console.log("Adding Friday");
         trainingDays.push(friday);
     }
     if (saturday == "Saturday") {
-        //console.log("Adding Saturday");
         trainingDays.push(saturday);
     }
     if (sunday == "Sunday") {
-        //console.log("Adding Sunday");
         trainingDays.push(sunday);
     }
 }
 
 function createWeekDayShift(weekdayShifts, mon, tues, wed, thur, fri) {
         if (mon == "Monday") {
-            //console.log("Adding Monday");
             weekdayShifts.push(mon);
         }
         if (tues == "Tuesday") {
-            //console.log("Adding Tuesday");
             weekdayShifts.push(tues);
         }
         if (wed == "Wednesday") {
-            //console.log("Adding Wednesday");
             weekdayShifts.push(wed);
         }
         if (thur == "Thursday") {
-            //console.log("Adding Thursday");
             weekdayShifts.push(thur);
         }
         if (fri == "Friday") {
-            //console.log("Adding Friday");
             weekdayShifts.push(fri);
         }
 }
 
 function createWeekendShift(weekendShifts, sat, sun) {
     if (sat == "Saturday") {
-        //console.log("Adding Monday");
         weekendShifts.push(sat);
     }
     if (sun == "Sunday") {
-        //console.log("Adding Tuesday");
         weekendShifts.push(sun);
     }
 }
@@ -989,7 +966,31 @@ function getFoodAllergies(allergiesArr, request, numOfLocs, locations) {
     }
 }
 
+async function checkUsername(databaseConnection, databaseFunctions, uname) {
+    let users = await databaseFunctions.getUsernamesEmails(databaseConnection);
+
+    for (let index = 0; index < users.length; index++) {
+        if (users[index].username == uname) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+async function checkEmail(databaseConnection, databaseFunctions, email) {
+    let users = await databaseFunctions.getUsernamesEmails(databaseConnection);
+
+    for (let index = 0; index < users.length; index++) {
+        if (users[index].email == email) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 module.exports = {authenticateUser, checkPswds, determineRole, 
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, getFName,
-    getAllergies, getFoodAllergies};
+    getAllergies, getFoodAllergies, checkUsername, checkEmail};
