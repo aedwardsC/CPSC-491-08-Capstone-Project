@@ -19,7 +19,7 @@
 
             div {
                 background-color: rgb(229, 229, 232);
-                height: 5000px;
+                height: 4000px;
                 width: 1010px;
                 margin-top: 20px;
                 margin-left:70px;
@@ -439,11 +439,11 @@
                 let resJson = await response.json()
                 console.log("Response: " + resJson);
 
-                // // turn string to an int
+                // turn string to an int
                 let numOfEmps = parseInt(resJson, 10);
         
                 // create the employee inputs
-                for (index = 1; index <= 5 /*numOfEmps*/; index++) {
+                for (index = 1; index <= numOfEmps; index++) {
                     document.getElementById("empName" + index).type = "text";
                 }
         
@@ -472,7 +472,7 @@
                     let num = parseInt(numRes, 10);
                     
                     // create the location inputs
-                    for (let index = 1; index <= 5 /*num*/; index++) {
+                    for (let index = 1; index <= num; index++) {
                         document.getElementById("locName" + index).type = "text";
                         document.getElementById("allergies" + index + ".1").innerHTML = "Does your kitchen contain any of these food items?";
                         document.getElementById("allergies" + index + ".2").innerHTML = "Select all that apply:";

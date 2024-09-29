@@ -529,11 +529,11 @@
                 let resJson = await response.json()
                 console.log("Response: " + resJson);
 
-                // // turn string to an int
+                // turn string to an int
                 let numOfEmps = parseInt(resJson, 10);
         
                 // create the employee inputs
-                for (index = 1; index <= 5 /*numOfEmps*/; index++) {
+                for (index = 1; index <= numOfEmps; index++) {
                     document.getElementById("empName" + index).type = "text";
                 }
         
@@ -562,7 +562,7 @@
                     let num = parseInt(numRes, 10);
                     
                     // create the location inputs
-                    for (let index = 1; index <= 5 /*num*/; index++) {
+                    for (let index = 1; index <= num; index++) {
                         document.getElementById("locName" + index).type = "text";
                         document.getElementById("allergies" + index + ".1").innerHTML = "Does the location contain any of these allergies?";
                         document.getElementById("allergies" + index + ".2").innerHTML = "Select all that apply:";
