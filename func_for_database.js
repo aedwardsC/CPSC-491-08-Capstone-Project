@@ -263,7 +263,7 @@ function storeCompanyName(databaseConnection, email, companyName) {
 async function storeCompanyNameType(databaseConnection, companyName, companyType) {
     let stored = false;
 
-    let result = await determineStored(databaseConnection, companyName, companyType);
+    let result = await determineStored(databaseConnection);
 
     for (let i = 0; i < result.length; i++) {
         if (result[i].companyName === companyName) {
@@ -430,7 +430,7 @@ function storeAllergies(databaseConnection, email, companyType, strAllergies) {
 }
 
 // retrieving information
-function determineStored(databaseConnection, compName, compType) {
+function determineStored(databaseConnection) {
     let queryCommand = "SELECT companyName FROM schedularDatabase.companiesServed;";
     
     return new Promise((resolve, reject) => {
@@ -598,7 +598,7 @@ async function getNumOfShifts(databaseConnection, email, companyType) {
     return numOfShifts;
 }
 
-function getUsernamesEmails(databaseConnection) {
+function getUsernamesEmails(databaseConnection) { // for checking uniqueness in sign-up
     let queryCommand = "SELECT * FROM schedularDatabase.usersTable;";
 
     return new Promise((resolve, reject) => {
@@ -613,8 +613,40 @@ function getUsernamesEmails(databaseConnection) {
     });
 }
 
+function getUserInfo(databaseConnection, username) { // for authentication while signing-in
+    let queryCommand = "SELECT * FROM schedularDatabase.usersTable WHERE email = '" 
+        + username + "' OR username = '" + username + "';";
+    
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve the user's account");
+            }
+            else {
+                resolve(sqlResult);
+            }
+        });
+    });
+}
+
+function getUserPassword(databaseConnection, username) { // for authentication while signing-in
+    let queryCommand = "SELECT password FROM schedularDatabase.usersTable WHERE email = '" 
+        + username + "' OR username = '" + username + "';";
+    
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve the user's account");
+            }
+            else {
+                resolve(sqlResult);
+            }
+        });
+    });
+}
+
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
-    getUsernamesEmails};
+    getUsernamesEmails, getUserInfo, getUserPassword};

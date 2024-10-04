@@ -2,23 +2,43 @@ function stringToArray(givenString) {
     // convert the string from the database into a vector to be manipulated
 }
 
-function authenticateUser(response, databaseConnection, username, password, dbFunc) {
-    // SELECT password FROM schedularDatabase WHERE email=username OR username=username;
+async function authenticateUser(databaseConnection, username, password, 
+    databaseFunctions) {
+    // get the company type, roll, first name, and last name from the database
+    let user = await databaseFunctions.getUserPassword(databaseConnection, username);
 
-    // if find nothing -> direct to error page
+    // if find nothing -> return false
+    if (user == "") {
+        console.log("The user doesn't exits");
+        return false;
+    }
+    else {
+        // if passwords match return true
+        if (user[0].password === password) {
+            console.log("The passwords match!");
+            return true;
+        }
+        else { // else -> return false
+            return false;
+        }
+    }
+}
 
-    // compare password provided with password from database
-        // if passwords match return the username, their company type, and their status
-        // and their full name
-        // else -> direct to error page 
-    
-    return [username, "whiteCollar", "employee", "Amanda", "Walker"]; // FOR TESTING -> CHANGE LATER
-
+async function getUserInfo(databaseConnection, databaseFunction, uname) {
+    let user = await databaseFunction.getUserInfo(databaseConnection, uname);
+    let userInfo = new Array();
+    userInfo.push(user[0].email);
+    userInfo.push(user[0].companyType);
+    userInfo.push(user[0].status);
+    userInfo.push(user[0].fname); 
+    userInfo.push(user[0].lname);
+    console.log("Returning: " + userInfo);
+    return userInfo;
 }
 
 function checkPswds(pswd1, pswd2) {
     // see if the password match
-    if (pswd1 == pswd2) {
+    if (pswd1 === pswd2) {
         console.log("The passwords match -> returning TRUE");
         return true;
     }
@@ -993,4 +1013,4 @@ async function checkEmail(databaseConnection, databaseFunctions, email) {
 module.exports = {authenticateUser, checkPswds, determineRole, 
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, getFName,
-    getAllergies, getFoodAllergies, checkUsername, checkEmail};
+    getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo};

@@ -38,7 +38,7 @@ program.get("/", function(request, response) {
     response.sendFile(__dirname + "/index.html");
 });
 
-program.post("/sign_in", function(request, response) {
+program.post("/sign_in", async function(request, response) {
     // get the username from the form
     let uname = request.body.usernameInput;
 
@@ -51,26 +51,35 @@ program.post("/sign_in", function(request, response) {
     let role = "";
 
     // authenticate
-    let userInfo = serverFunctions.authenticateUser(response, databaseConnection, 
+    let userAuth = await serverFunctions.authenticateUser(databaseConnection, 
         uname, pswd, databaseFunctions);
-    
-    //parse the array of info
-    username = userInfo[0];
-    companyType = userInfo[1];
-    role = userInfo[2];
-    fName = userInfo[3];
-    lName = userInfo[4];
 
-    // put value to the final variable
-    fullName = fName + " " + lName;
+    console.log("User Auth: " + userAuth);
 
-    // FOR TESTING
-    console.log("Username = " + username);
-    console.log("companyType = " + companyType);
-    console.log("Role = " + role);
-    console.log("Full Name = " + fullName);
-    
-    serverFunctions.splitUsers(response, role, username, fName);
+    if (userAuth) {
+        userInfo = serverFunction.getUserInfo(databaseConnection, databaseFunction, uname);
+
+        // parse the array of info
+        username = userInfo[0];
+        companyType = userInfo[1];
+        role = userInfo[2];
+        fName = userInfo[3];
+        lName = userInfo[4];
+        
+        // put value to the final variable
+        fullName = fName + " " + lName;
+        
+        // FOR TESTING
+        console.log("Username = " + username);
+        console.log("companyType = " + companyType);
+        console.log("Role = " + role);
+        console.log("Full Name = " + fullName);
+        
+        serverFunctions.splitUsers(response, role, username, fName);
+    }
+    else {
+        response.sendFile(__dirname + "/Company_forms/incorrect_information.html");
+    }
 });
 
 program.post("/sign_up", async function(request, response) {
