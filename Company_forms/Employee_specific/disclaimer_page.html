@@ -8,7 +8,7 @@
             }
             
             h1 {
-                color: white;
+                color: black;
                 text-align: center;
                 font-size: 74px;
             }
@@ -19,24 +19,49 @@
                 text-align: center;
                 height: 50px;
                 width: 100px;
-                margin-left: 250px;
+                margin-left: 470px;
                 font-size: 16px;
             }
 
             div {
                 background-color: rgb(229, 229, 232);
                 height: 600px;
-                width: 600px;
+                width: 1010px;
                 margin-top: 50px;
-                margin-left:300px;
+                margin-left:80px;
             }
+
+            .disText {
+                width: 430px;
+                height: 30px;
+                margin-left: 225px;
+                font-size: 20px;
+            }
+
         </style>
     </head>
     <body>
         <div>
-            <h1>Disclaimer Page</h1>
+            <br>
+            <h1>Disclaimer</h1>
+            <br>
+            <label class="disText" for="disText1">*All questions in the Preference Questionnaire are optional.</label>
+            <br>
+            <label class="disText" for="disText1"> You are under no obligation to answer any question.</label>
+            <br>
+            <label class="disText" for="disText1"> Any answer will be taken as you, the user, consenting</label>
+            <br>
+            <label class="disText" for="disText1"> to have the information disclosed to others.</label>
+            <br>
+            <br>
+            <label class="disText" for="disText2">*Providing your preferences does not guarantee that they will</label>
+            <br>
+            <label class="disText" for="disText2"> be honored. The company and department's needs take priority.</label>
+            <br>
+            <br>
+            <br>
             <form action="/disclaimer" method="post">
-                <input class="button" type="submit" value="Home Page"/>
+                <input class="button" type="submit" value="Home"/>
             </form>
         </div>
     </body>
