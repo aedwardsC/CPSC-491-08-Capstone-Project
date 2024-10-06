@@ -95,9 +95,10 @@ function splitUsers(response, role, fName) {
         response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
     }
     else if (role == "supervisor") { // else -> send to supervisor home page
-        let formVal = {name:fName};
-        response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
-            formVal);
+        buildAndSendHome(response, fullName, role);
+    }
+    else {
+        console.log("ERROR: Invalid user role");
     }
 }
 
@@ -1010,7 +1011,26 @@ async function checkEmail(databaseConnection, databaseFunctions, email) {
     return true;
 }
 
+function buildAndSendHome(response, fullName, role) {
+    // get the first name for the personalization
+    let fName = getFName(fullName);
+    let formVal = {name:fName};
+
+    // send to the appropriate home page
+    if (role == "supervisor") {
+        console.log("Sending to the Supervisor Home Page");
+        response.render("sup_home_page.ejs", formVal);
+    }
+    else if (role == "employee") {
+        console.log("Sending to the Employee Home Page");
+        response.render("emp_home_page.ejs", formVal);
+    }
+    else {
+        console.log("ERROR: Incorrect role type");
+    }
+}
+
 module.exports = {authenticateUser, checkPswds, determineRole, 
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
-    getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, getFName,
+    getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo};

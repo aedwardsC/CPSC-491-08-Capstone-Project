@@ -10,6 +10,7 @@ let tester = require("./testing_functions.js");
 // set up Node.js library
 let nodeJs = require("express");
 let program = nodeJs();
+program.set("view engine", "ejs"); // for generating the files with  ejs
 
 // set up the library for parsing form data
 let dataParse = require("body-parser");
@@ -57,7 +58,7 @@ program.post("/sign_in", async function(request, response) {
     console.log("User Auth: " + userAuth);
 
     if (userAuth) {
-        userInfo = serverFunction.getUserInfo(databaseConnection, databaseFunction, uname);
+        userInfo = await serverFunctions.getUserInfo(databaseConnection, databaseFunctions, uname);
 
         // parse the array of info
         username = userInfo[0];
@@ -264,12 +265,7 @@ program.post("/wcr_initial2", async function(request, response) {
         tester.printCompaniesServedTable(databaseConnection);
         tester.printUserTable(databaseConnection);
 
-        //let fName = serverFunctions.getFName(fullName);
-        
-        // let formVal = {name:fName};
-        // response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
-        //     formVal);
-        // response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
+        serverFunctions.buildAndSendHome(response, fullName, "supervisor");
     }
     else if (companyType == "retail") {
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/shift_times.html");
@@ -552,7 +548,7 @@ program.post("/f_initial1", function(request, response) {
         databaseFunctions.buildSupAccount(databaseConnection, username, companyName);
         
         response.sendFile(__dirname + "/Company_forms/Supervisor_specific/f_initial2.html");
-        }
+    }
 });
 
 program.post("/f_initial2", async function(request, response) {
@@ -623,13 +619,22 @@ program.post("/shift_times", async function(request, response) {
             tester.printCompaniesServedTable(databaseConnection);
             tester.printUserTable(databaseConnection);
             
-            // let fName = serverFunctions.getFName(fullName);
-            // let formVal = {name:fName};
-            // response.render(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs",
-            //     formVal);
-            //response.sendFile(__dirname + "/Company_forms/Supervisor_specific/home_page.ejs");
+            serverFunctions.buildAndSendHome(response, fullName, "supervisor");
         }
     }
+});
+
+program.post("/disclaimer", function(request, response) {
+    // send to the employee Home Page
+    serverFunctions.buildAndSendHome(response, fullName, "employee");
+});
+
+program.post("/viewDisclaimer", function(request, response) {
+    response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
+});
+
+program.post("/inputPref", function(request, response) {
+    console.log("Sending to preference form for " + companyType);
 });
 
 program.get("/getNumOfEmps", async function(request, response) {
