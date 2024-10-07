@@ -21,8 +21,9 @@ program.use(nodeJs.static(__dirname + "/Company_forms"));
 
 // important global variables -> used frequently
 var username = "";
-var companyType = new Array(); // made an array due to a race condition so can pass by reference for updating
+var companyTypeArray = new Array(); // made an array due to a race condition so can pass by reference for updating
 var fullName = "";
+var companyType = "";
 
 // set up the database
 let mySql = require("mysql2");
@@ -132,24 +133,25 @@ program.post("/sign_up", async function(request, response) {
 });
 
 program.post("/company_type", function(request, response) { // for supervisors only
-    companyType.push(request.body.companyType);
+    companyType = request.body.companyType;
 
     // put the company type in the user table
     databaseFunctions.storeCompanyType(databaseConnection, username, 
-        companyType[0]);
+        companyType);
 
     // use the company type to determine which initial setup to give them
-    serverFunctions.splitInitialSetUp(response, companyType[0]);
+    serverFunctions.splitInitialSetUp(response, companyType);
 });
 
-program.post("/company_name", function(request, response) { // for employees only
+program.post("/company_name", async function(request, response) { // for employees only
     let companyName = request.body.companyName;
 
     // put the company name in the user table
     databaseFunctions.storeCompanyName(databaseConnection, username, companyName);
 
     // get and store the company type from the name
-    databaseFunctions.companyTypeFromName(databaseConnection, companyName, companyType, username);
+    companyType = await databaseFunctions.companyTypeFromName(databaseConnection, companyName, 
+        companyTypeArray, username);
 
     response.sendFile(__dirname + "/Company_forms/Employee_specific/supervisor_name.html");
 });
@@ -164,7 +166,7 @@ program.post("/supervisor_name", function(request, response) { // for employees 
         companyType, supName);
 
     // TEST: make sure that the account was built correctly
-    tester.printEmpTable(databaseConnection, companyType[0]);
+    tester.printEmpTable(databaseConnection, companyType);
     tester.printUserTable(databaseConnection);
 
     // direct to the disclaimer page
@@ -218,7 +220,7 @@ program.post("/wc_initial1", function(request, response) {
         let stringTraining = trainingDays.toString();
         
         // add company name and type to the companiesServed database (for reference)
-        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
         
         // store company information for the supervisor in the approporiate supervisor database
         databaseFunctions.storeWCInitInfo1(databaseConnection, username, fullName, companyName,
@@ -262,7 +264,7 @@ program.post("/wcr_initial2", async function(request, response) {
 
     if (companyType == "whiteCollar") {
         // Test to make sure that everything was built correctly
-        tester.printSupTable(databaseConnection, companyType[0]);
+        tester.printSupTable(databaseConnection, companyType);
         tester.printCompaniesServedTable(databaseConnection);
         tester.printUserTable(databaseConnection);
 
@@ -313,10 +315,10 @@ program.post("/r_initial1", function(request, response) {
         let stringWeekend = weekendShifts.toString();
         
         // add company name and type to the companiesServed database (for reference)
-        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
         
         // store company information for the supervisor in the approporiate supervisor database
-        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, fullName, 
+        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType, username, fullName, 
             companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, stringWeekend);
             
         // store the missing information in the users database
@@ -346,7 +348,7 @@ program.post("/l_initial1", function(request, response) {
         }
         
         // add the company name and type to the companiesServed database (for reference)
-        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
         
         // store company information for the supervisor in the approporiate supervisor database
         databaseFunctions.storeLInitInfo1(databaseConnection, username, fullName, 
@@ -442,10 +444,10 @@ program.post("/e_initial1", function(request, response) {
         let stringWeekend = weekendShifts.toString();
         
         // add company name and type to the companiesServed database (for reference)
-        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
         
         // store company information for the supervisor in the approporiate supervisor database
-        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, 
+        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType, username, 
             fullName, companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, 
             stringWeekend);
         
@@ -538,10 +540,10 @@ program.post("/f_initial1", function(request, response) {
         let stringWeekend = weekendShifts.toString();
         
         // add company name and type to the companiesServed database (for reference)
-        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType[0]);
+        databaseFunctions.storeCompanyNameType(databaseConnection, companyName, companyType);
         
         // store company information for the supervisor in the approporiate supervisor database
-        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType[0], username, 
+        databaseFunctions.storeREFInitInfo1(databaseConnection, companyType, username, 
             fullName, companyName, numOfEmps, numOfShifts, numOfLoc, multLoc, stringWeekday, 
             stringWeekend);
             
@@ -616,7 +618,7 @@ program.post("/shift_times", async function(request, response) {
             databaseFunctions.storeShiftTimes(databaseConnection, username, companyType, stringShifts);
             
             // Test to make sure that everything was built correctly
-            tester.printSupTable(databaseConnection, companyType[0]);
+            tester.printSupTable(databaseConnection, companyType);
             tester.printCompaniesServedTable(databaseConnection);
             tester.printUserTable(databaseConnection);
             
@@ -656,8 +658,10 @@ program.post("/wc_pref", function(request, response) {
     // store all info in the database
 });
 
+// for dynamically creating the supervisor forms
 program.get("/getNumOfEmps", async function(request, response) {
-    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, companyType);
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
+        companyType);
     response.send(JSON.stringify(numOfEmps));
 });
 
@@ -667,13 +671,71 @@ program.get("/multLocYN", async function(request, response) {
 });
 
 program.get("/numLoc", async function(request, response) {
-    let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, companyType);
+    let numOfLocs = await databaseFunctions.getNumOfLocs(databaseConnection, username, 
+        companyType);
     response.send(JSON.stringify(numOfLocs));
 });
 
 program.get("/getNumOfShifts", async function(request, response) {
-    let numOfShifts = await databaseFunctions.getNumOfShifts(databaseConnection, username, companyType);
+    let numOfShifts = await databaseFunctions.getNumOfShifts(databaseConnection, username, 
+        companyType);
     response.send(JSON.stringify(numOfShifts));
+});
+
+// for dynamically creating the employee forms
+program.get("/getShifts", async function(request, response) {
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+    
+    // get the shifts - NOT DONE
+    let shifts = new Array();
+    serverFunctions.getShiftTimes(databaseConnection, databaseFunctions, supervisor, 
+        companyType, shifts);
+
+    console.log("Shifts retrieved = " + shifts);
+    // send the array of shifts
+    response.send(shifts);  
+});
+
+program.get("/getMultLoc", async function(request, response) {
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+
+    // get the supervisor's response of multiple locations from their table
+    let yN = await databaseFunctions.getMultLoc(databaseConnection, supervisor, companyType);
+
+    // send the response
+    response.send(JSON.stringify(yN));
+});
+
+program.get("/getNumLocEmp", async function(request, response) {
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+    
+    // get the number of locations from the supervisor's table
+    let locNum = await databaseFunctions.getNumOfLocs(databaseConnection, supervisor, 
+        companyType);
+    
+    // send the response
+    response.send(JSON.stringify(locNum));
+});
+
+program.get("/getLocationNames", async function(request, response) {
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+    
+    // get the names of the locations - NOT DONE
+    let locations = new Array();
+    serverFunctions.getLocNames(databaseConnection, databaseFunctions, supervisor, 
+        companyType, locations);
+    
+    console.log("Locations = " + locations);
+    // send the array
+    response.send(locations);
 });
 
 // listen on the port localhost:4000

@@ -459,14 +459,16 @@ function getType(databaseConnection, queryCommand) {
     });
 }
 
-async function companyTypeFromName(databaseConnection, companyName, companyType, email) {
+async function companyTypeFromName(databaseConnection, companyName, companyTypeArray, email) {
     let queryCommand = "SELECT companyType FROM schedularDatabase.companiesServed "
         + "WHERE companyName = '" + companyName + "';";
     
-    companyType.push(await getType(databaseConnection, queryCommand));
+    companyTypeArray.push(await getType(databaseConnection, queryCommand));
 
     // store the type in the user table -> Here because of race condition
-    storeCompanyType(databaseConnection, email, companyType);
+    storeCompanyType(databaseConnection, email, companyTypeArray[companyTypeArray.length - 1]);
+
+    return companyTypeArray[companyTypeArray.length - 1];
 }
 
 function getNumE(databaseConnection, queryCommand) {
@@ -644,9 +646,87 @@ function getUserPassword(databaseConnection, username) { // for authentication w
         });
     });
 }
+function getSupName(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve supervisor's name from emp table");
+            }
+            else {
+                let name = sqlResult[0].supName;
+                console.log("name in getSupName = " + name);
+
+                // parse the name into first name
+                let index = 0;
+                let firstName = "";
+                while (name[index] != " " && index < name.length) {
+                    firstName = firstName + name[index];
+                    index++;
+                }
+
+                index += 1;
+                // parse the remainder into the last name
+                let lastName = "";
+                while (name[index] != " " && index < name.length) {
+                    lastName = lastName + name[index];
+                    index++;
+                }
+
+                // return the first and last name as an array
+                resolve([firstName, lastName]);
+            }
+        });
+    });
+}
+
+function getSupEmail(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve supervisor's email from users table");
+            }
+            else {
+                // get the email
+                let email = sqlResult[0].email;
+                console.log("email in getSupEmail = " + email);
+
+                // return the email
+                resolve(email);
+            }
+        });
+    });
+}
+
+async function getSupervisor(databaseConnection, email, companyType) {
+    let table = determineEmpTable(companyType);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine Supervisor - Invalid company type");
+    }
+    else {
+        // retrieve the supervisor's name from the employee's table
+        let queryCommand1 = "SELECT supName FROM schedularDatabase." + table
+            + " WHERE email = '" + email + "';";
+        
+        let name = await getSupName(databaseConnection, queryCommand1);
+        console.log("Name[0] in getSupervisor = " + name[0]);
+        console.log("Name[1] in getSupervisor = " + name[1]);
+        
+        // retrieve the supervisor's email from the user's table using the full name 
+        // and company type
+        let queryCommand2 = "SELECT email FROM schedularDatabase.usersTable WHERE "
+            + "fname = '" + name[0] + "' AND lname = '" + name[1] + "' and companyType = '"
+            + companyType + "';";
+
+        let supEmail = await getSupEmail(databaseConnection, queryCommand2);
+
+        // return the email
+        return supEmail;
+    }
+}
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
-    getUsernamesEmails, getUserInfo, getUserPassword};
+    getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor};
