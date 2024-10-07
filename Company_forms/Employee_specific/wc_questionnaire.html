@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+
+            h1 {
+                color: black;
+                text-align: center;
+                font-size: 60px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 1000px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            .box {
+                margin-left: 300px;
+            }
+
+            .formInfo {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .labelInfo {
+                color: rgb(78, 76, 76); 
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 20px;
+            }
+
+            .boxL {
+                font-size: 16px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>My Schedule Preferences</h1>
+            <br>
+            <label class="labelInfo">*As a reminder, all answers are voluntary</label>
+            <br>
+            <br>
+            <label class="labelInfo">*If you are updating your preference(s),</label>
+            <br>
+            <label class="labelInfo">   please leave the questions that you do not</label>
+            <br>
+            <label class="labelInfo">   want to change blank</label>
+            <br>
+            <br>
+            <label class="labelInfo">*Do not use apostrophes in your answer(s)</label>
+            <br>
+            <br>
+            <form action="/wc_pref" method="post">
+                <button type="button" class="button" onClick="genChoices()">
+                    Press to Generate
+                </button>
+                <br>
+                <br>
+                <label id="nickName1" class="formInfo" for="nickname"></label>
+                <br>
+                <label id="nickName2" class="formInfo" for="nickname"></label>
+                <br>
+                <input class="formInfo" type="hidden" id="nickname" name="nickname" placeholder="Enter nickname"/>
+                <br>
+                <br>
+                <label id="shiftLabel" class="formInfo" for="shiftPref"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="firstShift" id="firstShift" value=""/>
+                <label class="boxL" id="fistShiftLabel" for="firstShift"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="laterShift" id="lateerShift" value=""/>
+                <label class="boxL" id="laterShiftLabel" for="laterShift"></label>
+                <br>
+                <br>
+                <label id="locationLabel1" class="formInfo" for="locationLabel1"></label>
+                <br>
+                <label id="locationLabel2" class="formInfo" for="locationLabel2"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location1" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location2" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location3" id="location3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location4" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location5" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location6" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location7" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location8" id="location8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location9" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="hidden" type="checkbox" name="location10" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+        <script type="text/javascript">
+            async function genChoices() {
+                // generate the information for the nickname info
+                document.getElementById("nickName1").innerHTML = "Do you go by a nickname at work?";
+                document.getElementById("nickName2").innerHTML = "If yes, enter it below:";
+                document.getElementById("nickname").type = "text";
+
+                // generate the information for the shift times
+                document.getElementById("shiftLabel").innerHTML = "Which shift(s) (time) would you prefer to work?";
+                // get the shift times
+                let shifts = await fetch("/getShifts");
+                // display the first shift
+                document.getElementById("firstShift").type = "checkbox";
+                document.getElementById("firstShift").value = shifts[0];
+                document.getElementById("firstShiftLabel").innerHTML = shifts[0];
+                // see if there is a second shift
+                if (shifts.length > 1) {
+                    document.getElementById("laterShift").type = "checkbox";
+                    document.getElementById("laterShift").value = shifts[1];
+                    document.getElementById("laterShiftLabel").innerHTML = shifts[1];
+                }
+
+                // see if in charge of multiple locations
+                let multLoc = await fetch("/getMultLoc");
+                // if there are, get the number and generate the locations
+                if (multLoc == "yes") {
+                    // create the labels
+                    document.getElementById("locationLabel1").innerHTML = "What location(s) would you prefer to work at?";
+                    document.getElementBYId("locationLabel2").innerHTML = "Select all that apply:";
+
+                    // get the number of locations
+                    let numLoc = await fetch("/getNumLocEmp");
+
+                    // get the location names
+                    let locations = await fetch("/getLocationNames");
+
+                    // generate the location checkboxes
+                    for (let index = 1; index <= numLoc; index++) {
+                        document.getElementById("location" + index).type = "checkbox";
+                        document.getElementById("location" + index).value = locations[index - 1];
+                        document.getElementById("locationLabel" + index).innerHTML = locations[index - 1];
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
