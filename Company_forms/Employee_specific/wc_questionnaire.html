@@ -88,10 +88,10 @@
                 <br>
                 <label id="shiftLabel" class="formInfo" for="shiftPref"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="firstShift" id="firstShift" value=""/>
+                <input class="box" type="hidden" name="firstShift" id="firstShift" value=""/>
                 <label class="boxL" id="fistShiftLabel" for="firstShift"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="laterShift" id="lateerShift" value=""/>
+                <input class="box" type="hidden" name="laterShift" id="laterShift" value=""/>
                 <label class="boxL" id="laterShiftLabel" for="laterShift"></label>
                 <br>
                 <br>
@@ -99,34 +99,34 @@
                 <br>
                 <label id="locationLabel2" class="formInfo" for="locationLabel2"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location1" id="location1" value=""/>
+                <input class="box" type="hidden" name="location1" id="location1" value=""/>
                 <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location2" id="location2" value=""/>
+                <input class="box" type="hidden" name="location2" id="location2" value=""/>
                 <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location3" id="location3" value=""/>
+                <input class="box" type="hidden" name="location3" id="location3" value=""/>
                 <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location4" id="location4" value=""/>
+                <input class="box" type="hidden" name="location4" id="location4" value=""/>
                 <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location5" id="location5" value=""/>
+                <input class="box" type="hidden" name="location5" id="location5" value=""/>
                 <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location6" id="location6" value=""/>
+                <input class="box" type="hidden" name="location6" id="location6" value=""/>
                 <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location7" id="location7" value=""/>
+                <input class="box" type="hidden" name="location7" id="location7" value=""/>
                 <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location8" id="location8" value=""/>
+                <input class="box" type="hidden" name="location8" id="location8" value=""/>
                 <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location9" id="location9" value=""/>
+                <input class="box" type="hidden" name="location9" id="location9" value=""/>
                 <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
                 <br>
-                <input class="hidden" type="checkbox" name="location10" id="location10" value=""/>
+                <input class="box" type="hidden" name="location10" id="location10" value=""/>
                 <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
                 <br>
                 <br>
@@ -162,7 +162,7 @@
                     // create the labels
                     document.getElementById("locationLabel1").innerHTML = "What location(s) would you prefer to work at?";
                     document.getElementBYId("locationLabel2").innerHTML = "Select all that apply:";
-
+                    
                     // get the number of locations
                     let numLoc = await fetch("/getNumLocEmp");
 
