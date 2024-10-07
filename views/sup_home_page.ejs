@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+            
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 150px;
+                font-size: 16px;
+            }
 
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 400px;
+                width: 400px;
+                margin-top: 50px;
+                margin-left:400px;
+            }
+
+            .formElement {
+                width: 300px;
+                height: 30px;
+                margin-left: 45px;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome <%=name%> </h1>
+        <div>
+            <form action="/sup_home" method="post">
+                <label for="placeholder"></label>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <label class="formElement" for="home">Home Page</label>
+                <label class="formElement" for="home">Welcome </label>
+                <br>
+                <input class="formElement" type="text" name="companyName" id="companyName" placeholder="Enter your company's name"/>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+    </body>
+</html>
