@@ -1030,7 +1030,29 @@ function buildAndSendHome(response, fullName, role) {
     }
 }
 
+function directQuestionnaire(response, companyType) {
+    if (companyType == "whiteCollar") {
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/wc_questionnaire.html");
+    }
+    else if (companyType == "retail") {
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/r_questionnaire.html");
+    }
+    else if (companyType == "lawEnforcement") {
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/l_questionnaire.html");
+    }
+    else if (companyType == "food") {
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/f_questionnaire.html");
+    }
+    else if (companyType == "entertainment") {
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/e_questionnaire.html");
+    }
+    else {
+        console.log("ERROR: Cannot direct to questionnaire. Invalid company type");
+    }
+}
+
 module.exports = {authenticateUser, checkPswds, determineRole, 
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
-    getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo};
+    getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
+    directQuestionnaire};

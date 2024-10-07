@@ -58,7 +58,8 @@ program.post("/sign_in", async function(request, response) {
     console.log("User Auth: " + userAuth);
 
     if (userAuth) {
-        userInfo = await serverFunctions.getUserInfo(databaseConnection, databaseFunctions, uname);
+        userInfo = await serverFunctions.getUserInfo(databaseConnection, databaseFunctions, 
+            uname);
 
         // parse the array of info
         username = userInfo[0];
@@ -635,6 +636,24 @@ program.post("/viewDisclaimer", function(request, response) {
 
 program.post("/inputPref", function(request, response) {
     console.log("Sending to preference form for " + companyType);
+
+    // send to the appropriate questionnaire form based on their company type
+    serverFunctions.directQuestionnaire(response, companyType);
+});
+
+program.post("/wc_pref", function(request, response) {
+    // get the variables from the form
+    let nickname = "";
+
+    if (request.body.nickname != "Enter nickname") {
+        nickname = request.body.nickname;
+    }
+
+    // get the shift time preferences
+
+    // get the location preferences
+
+    // store all info in the database
 });
 
 program.get("/getNumOfEmps", async function(request, response) {
