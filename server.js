@@ -688,14 +688,13 @@ program.get("/getShifts", async function(request, response) {
     let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
         companyType);
     
-    // get the shifts - NOT DONE
-    let shifts = new Array();
-    serverFunctions.getShiftTimes(databaseConnection, databaseFunctions, supervisor, 
-        companyType, shifts);
+    // get the shifts
+    let shifts = await databaseFunctions.getShifts(databaseConnection, supervisor, 
+        companyType);
 
     console.log("Shifts retrieved = " + shifts);
     // send the array of shifts
-    response.send(shifts);  
+    response.send(JSON.stringify(shifts));  
 });
 
 program.get("/getMultLoc", async function(request, response) {
@@ -728,14 +727,13 @@ program.get("/getLocationNames", async function(request, response) {
     let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
         companyType);
     
-    // get the names of the locations - NOT DONE
-    let locations = new Array();
-    serverFunctions.getLocNames(databaseConnection, databaseFunctions, supervisor, 
-        companyType, locations);
+    // get the names of the locations
+    let locations = await databaseFunctions.getLocationNames(databaseConnection, supervisor, 
+        companyType);
     
     console.log("Locations = " + locations);
     // send the array
-    response.send(locations);
+    response.send(JSON.stringify(locations));
 });
 
 // listen on the port localhost:4000

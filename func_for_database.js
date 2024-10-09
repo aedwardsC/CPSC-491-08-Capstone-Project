@@ -183,10 +183,10 @@ function determineSupTable(type) {
 // functions for storing information
 function storeGeneralSignUpInfo(databaseConnection, email, uname, 
     fname, lname, password, status) {
-    let queryCommand = "INSERT INTO schedularDatabase.usersTable (email, "
-        + "username, fname, lname, password, status) VALUES ('" + email 
-        + "', '" + uname + "', '" + fname + "', '" + lname + "', '"
-        + password + "', '" + status + "');";
+    let queryCommand = 'INSERT INTO schedularDatabase.usersTable (email, '
+        + 'username, fname, lname, password, status) VALUES ("' + email 
+        + '", "' + uname + '", "' + fname + '", "' + lname + '", "'
+        + password + '", "' + status + '");';
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to insert general info into usersTable");
@@ -198,8 +198,8 @@ function storeGeneralSignUpInfo(databaseConnection, email, uname,
 }
 
 function storeCompanyType(databaseConnection, email, companyType) {
-    let queryCommand = "UPDATE schedularDatabase.usersTable SET companyType = " 
-        + "'" + companyType + "' WHERE email = '" + email + "';";
+    let queryCommand = 'UPDATE schedularDatabase.usersTable SET companyType = ' 
+        + '"' + companyType + '" WHERE email = "' + email + '";';
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to insert company type to usersTable");
@@ -220,9 +220,9 @@ function buildEmpAccount(databaseConnection, email, fullName, companyType,
         console.log("ERROR: Employee Company Type is invalid");
     }
     else {
-        let queryCommand = "INSERT INTO schedularDatabase." + table
-            + " (email, fullName, supName) VALUES ('" + email + "', '" + fullName + "', '"
-            + supName + "');";
+        let queryCommand = 'INSERT INTO schedularDatabase.' + table
+            + ' (email, fullName, supName) VALUES ("' + email + '", "' + fullName + '", "'
+            + supName + '");';
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
                 console.log("ERROR: Unable to enter info in Employee's table");
@@ -235,8 +235,8 @@ function buildEmpAccount(databaseConnection, email, fullName, companyType,
 }
 
 function buildSupAccount(databaseConnection, email, companyName) {
-    let queryCommand = "UPDATE schedularDatabase.usersTable SET companyName = "
-        + "'" + companyName + "' WHERE email = '" + email + "';";
+    let queryCommand = 'UPDATE schedularDatabase.usersTable SET companyName = '
+        + '"' + companyName + '" WHERE email = "' + email + '";';
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to update Users Table with Sup Company Name");
@@ -248,8 +248,8 @@ function buildSupAccount(databaseConnection, email, companyName) {
 }
 
 function storeCompanyName(databaseConnection, email, companyName) {
-    let queryCommand = "UPDATE schedularDatabase.usersTable SET companyName = "
-        + "'" + companyName + "' WHERE email = '" + email + "';";
+    let queryCommand = 'UPDATE schedularDatabase.usersTable SET companyName = '
+        + '"' + companyName + '" WHERE email = "' + email + '";';
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to add company name to usersTable");
@@ -273,8 +273,8 @@ async function storeCompanyNameType(databaseConnection, companyName, companyType
     }
 
     if (!stored) {
-        let queryCommand = "INSERT INTO schedularDatabase.companiesServed "
-            + "(companyName, companyType) VALUES ('" + companyName + "', '" + companyType + "');";
+        let queryCommand = 'INSERT INTO schedularDatabase.companiesServed '
+            + '(companyName, companyType) VALUES ("' + companyName + '", "' + companyType + '");';
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
                 console.log("ERROR: Unable to add to companiesServed table");
@@ -288,10 +288,10 @@ async function storeCompanyNameType(databaseConnection, companyName, companyType
 
 function storeWCInitInfo1(databaseConnection, email, fullName, companyName,
     numOfEmps, shiftHours, numOfLoc, multLoc, stringTraining) {
-    let queryCommand = "INSERT INTO schedularDatabase.wcSupInfo (supEmail, supFullName, "
-        + "companyName, numOfEmps, shiftHours, numOfLoc, multLoc, trainingDays) VALUES ('" + email
-        + "', '" + fullName + "', '" + companyName + "', " + numOfEmps + ", '" + shiftHours
-        + "', " + numOfLoc + ", '" + multLoc + "', '" + stringTraining + "');";
+    let queryCommand = 'INSERT INTO schedularDatabase.wcSupInfo (supEmail, supFullName, '
+        + 'companyName, numOfEmps, shiftHours, numOfLoc, multLoc, trainingDays) VALUES ("' + email
+        + '", "' + fullName + '", "' + companyName + '", "' + numOfEmps + '", "' + shiftHours
+        + '", "' + numOfLoc + '", "' + multLoc + '", "' + stringTraining + '");';
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
             console.log("ERROR: Unable to add init1 to wcSupInfo");
@@ -310,12 +310,12 @@ function storeREFInitInfo1(databaseConnection, companyType, email, fullName,
         console.log("ERROR: Invalid company type");
     }
     else {
-        let queryCommand = "INSERT INTO schedularDatabase." + table + " "
-            + "(supEmail, supFullName, companyName, numOfEmps, numOfShifts, "
-            + "numOfLoc, multLoc, shiftDaysWeek, shiftDaysWeekend) VALUES "
-            + "('" + email + "', '" + fullName + "', '" + companyName+ "', "
-            + numOfEmps + ", " + numOfShifts + ", " + numOfLoc + ", '" + multLoc
-            + "', '" + stringWeekday + "', '" + stringWeekend + "');";
+        let queryCommand = 'INSERT INTO schedularDatabase.' + table + ' '
+            + '(supEmail, supFullName, companyName, numOfEmps, numOfShifts, '
+            + 'numOfLoc, multLoc, shiftDaysWeek, shiftDaysWeekend) VALUES '
+            + '("' + email + '", "' + fullName + '", "' + companyName+ '", '
+            + numOfEmps + ', ' + numOfShifts + ', ' + numOfLoc + ', "' + multLoc
+            + '", "' + stringWeekday + '", "' + stringWeekend + '");';
             
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
@@ -331,11 +331,11 @@ function storeREFInitInfo1(databaseConnection, companyType, email, fullName,
 function storeLInitInfo1(databaseConnection, email, fullName, 
     companyName, numOfEmps, numOfShifts, numOfLoc, multLoc) {
     
-    let queryCommand = "INSERT INTO schedularDatabase.lSupInfo "
-        + "(supEmail, supFullName, companyName, numOfEmps, numOfShifts, "
-        + "numOfLoc, multLoc) VALUES ('" + email + "', '" + fullName + "', '" 
-        + companyName+ "', " + numOfEmps + ", " + numOfShifts + ", " + numOfLoc 
-        + ", '" + multLoc + "');";
+    let queryCommand = 'INSERT INTO schedularDatabase.lSupInfo '
+        + '(supEmail, supFullName, companyName, numOfEmps, numOfShifts, '
+        + 'numOfLoc, multLoc) VALUES ("' + email + '", "' + fullName + '", "' 
+        + companyName+ '", ' + numOfEmps + ', ' + numOfShifts + ', ' + numOfLoc 
+        + ', "' + multLoc + '");';
         
     databaseConnection.query(queryCommand, function(error, sqlResult) {
         if (error) {
@@ -354,8 +354,8 @@ function storeRoster(databaseConnection, email, companyType, roster) {
         console.log("ERROR: Company Type is Invalid");
     }
     else {
-        let queryCommand = "UPDATE schedularDatabase." + table 
-            + " SET roster = " + "'" + roster + "' WHERE supEmail = '" + email + "';";
+        let queryCommand = 'UPDATE schedularDatabase.' + table 
+            + ' SET roster = "' + roster + '" WHERE supEmail = "' + email + '";';
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
                 console.log("ERROR: Unable to update the Supervisor's table with the roster");
@@ -374,8 +374,8 @@ function storeLocNames(databaseConnection, email, companyType, locations) {
         console.log("ERROR: Company Type is Invalid");
     }
     else {
-        let queryCommand = "UPDATE schedularDatabase." + table 
-            + " SET locationNames = " + "'" + locations + "' WHERE supEmail = '" + email + "';";
+        let queryCommand = 'UPDATE schedularDatabase.' + table 
+            + ' SET locationNames = "' + locations + '" WHERE supEmail = "' + email + '";';
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
                 console.log("ERROR: Unable to update the Supervisor's table with the location names" + error);
@@ -394,9 +394,8 @@ function storeShiftTimes(databaseConnection, email, companyType, stringShifts) {
         console.log("ERROR: Company Type is Invalid");
     }
     else {
-        let queryCommand = "UPDATE schedularDatabase." + table 
-            + " SET shiftHours = " + "'" + stringShifts 
-            + "' WHERE supEmail = '" + email + "';";
+        let queryCommand = 'UPDATE schedularDatabase.' + table 
+            + ' SET shiftHours = "' + stringShifts + '" WHERE supEmail = "' + email + '";';
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
                 console.log("ERROR: Unable to update the Supervisor's table with the shift times");
@@ -415,9 +414,9 @@ function storeAllergies(databaseConnection, email, companyType, strAllergies) {
         console.log("ERROR: Company Type is Invalid");
     }
     else {
-        let queryCommand = "UPDATE schedularDatabase." + table 
-            + " SET allergies = " + "'" + strAllergies 
-            + "' WHERE supEmail = '" + email + "';";
+        let queryCommand = 'UPDATE schedularDatabase.' + table 
+            + ' SET allergies = "' + strAllergies 
+            + '" WHERE supEmail = "' + email + '";';
         databaseConnection.query(queryCommand, function(error, sqlResult) {
             if (error) {
                 console.log("ERROR: Unable to update the Supervisor's table with the allergies");
@@ -460,8 +459,8 @@ function getType(databaseConnection, queryCommand) {
 }
 
 async function companyTypeFromName(databaseConnection, companyName, companyTypeArray, email) {
-    let queryCommand = "SELECT companyType FROM schedularDatabase.companiesServed "
-        + "WHERE companyName = '" + companyName + "';";
+    let queryCommand = 'SELECT companyType FROM schedularDatabase.companiesServed '
+        + 'WHERE companyName = "' + companyName + '";';
     
     companyTypeArray.push(await getType(databaseConnection, queryCommand));
 
@@ -493,6 +492,7 @@ async function getNumOfEmps(databaseConnection, email, companyType) {
         console.log("ERROR: Invalid table");
     }
     else {
+        // left "" to foil SQL Injection -> should not have single quote in input
         let queryCommand = "SELECT numOfEmps FROM schedularDatabase." + table 
             + " WHERE supEmail = '" + email + "';";
         
@@ -524,6 +524,7 @@ async function getNumOfLocs(databaseConnection, email, companyType) {
         console.log("ERROR: Invalid table");
     }
     else {
+        // left "" to foil SQL Injection -> should not have single quote in input
         let queryCommand = "SELECT numOfLoc FROM schedularDatabase." + table
             + " WHERE supEmail = '" + email + "';";
 
@@ -555,6 +556,7 @@ async function getMultLoc(databaseConnection, email, companyType) {
         console.log("ERROR: Invalid table");
     }
     else {
+        // left "" to foil SQL Injection -> should not have single quote in input
         let queryCommand = "SELECT multLoc FROM schedularDatabase." + table
             + " WHERE supEmail = '" + email + "';";
         
@@ -591,6 +593,7 @@ async function getNumOfShifts(databaseConnection, email, companyType) {
         return 2; // White Collar type only has 2 shifts
     }
     else {
+        // left "" to foil SQL Injection -> should not have single quote in input
         let queryCommand = "SELECT numOfShifts FROM schedularDatabase." + table
             + " WHERE supEmail = '" + email + "';";
 
@@ -616,8 +619,8 @@ function getUsernamesEmails(databaseConnection) { // for checking uniqueness in 
 }
 
 function getUserInfo(databaseConnection, username) { // for authentication while signing-in
-    let queryCommand = "SELECT * FROM schedularDatabase.usersTable WHERE email = '" 
-        + username + "' OR username = '" + username + "';";
+    let queryCommand = 'SELECT * FROM schedularDatabase.usersTable WHERE email = "' 
+        + username + '" OR username = "' + username + '";';
     
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
@@ -632,8 +635,8 @@ function getUserInfo(databaseConnection, username) { // for authentication while
 }
 
 function getUserPassword(databaseConnection, username) { // for authentication while signing-in
-    let queryCommand = "SELECT password FROM schedularDatabase.usersTable WHERE email = '" 
-        + username + "' OR username = '" + username + "';";
+    let queryCommand = 'SELECT password FROM schedularDatabase.usersTable WHERE email = "' 
+        + username + '" OR username = "' + username + '";';
     
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
@@ -705,8 +708,8 @@ async function getSupervisor(databaseConnection, email, companyType) {
     }
     else {
         // retrieve the supervisor's name from the employee's table
-        let queryCommand1 = "SELECT supName FROM schedularDatabase." + table
-            + " WHERE email = '" + email + "';";
+        let queryCommand1 = 'SELECT supName FROM schedularDatabase.' + table
+            + ' WHERE email = "' + email + '";';
         
         let name = await getSupName(databaseConnection, queryCommand1);
         console.log("Name[0] in getSupervisor = " + name[0]);
@@ -714,9 +717,9 @@ async function getSupervisor(databaseConnection, email, companyType) {
         
         // retrieve the supervisor's email from the user's table using the full name 
         // and company type
-        let queryCommand2 = "SELECT email FROM schedularDatabase.usersTable WHERE "
-            + "fname = '" + name[0] + "' AND lname = '" + name[1] + "' and companyType = '"
-            + companyType + "';";
+        let queryCommand2 = 'SELECT email FROM schedularDatabase.usersTable WHERE '
+            + 'fname = "' + name[0] + '" AND lname = "' + name[1] + '" and companyType = "'
+            + companyType + '";';
 
         let supEmail = await getSupEmail(databaseConnection, queryCommand2);
 
@@ -725,8 +728,85 @@ async function getSupervisor(databaseConnection, email, companyType) {
     }
 }
 
+function retrieveShiftsFromTable(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve shifts from supervisor table");
+            }
+            else {
+                // get the shifts
+                let shifts = sqlResult[0].shiftHours;
+                console.log("Shifts in retrieveShifts = " + shifts);
+
+                // return the shifts
+                resolve(shifts);
+            }
+        });
+    });
+}
+
+async function getShifts(databaseConnection, supervisor, companyType) {
+    // get the supervisor's table
+    let table = determineSupTable(companyType);
+    console.log("Table in getShifts = " + table);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in getShifts - Invalid companyType");
+    }
+    else {
+        let queryCommand = 'SELECT shiftHours FROM schedularDatabase.' + table
+            + ' WHERE supEmail = "' + supervisor + '";';
+        
+        // get the shifts 
+        let shifts = await retrieveShiftsFromTable(databaseConnection, queryCommand);
+        console.log("Shifts in getShifts = " + shifts);
+
+        // return the string
+        return shifts;
+    }
+}
+
+function retrieveLNamesFromTable(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve location name(s) from supervisor table");
+            }
+            else {
+                // get the names of the locations
+                let names = sqlResult[0].locationNames;
+                console.log("Names in retrieveNames = " + names);
+
+                // return the names of the locations
+                resolve(names);
+            }
+        });
+    });
+}
+async function getLocationNames(databaseConnection, supervisor, companyType) {
+    // get the supervisor's table
+    let table = determineSupTable(companyType);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in getLocationNames - Invalid companyType");
+    }
+    else {
+        let queryCommand = 'SELECT locationNames FROM schedularDatabase.' + table
+            + ' WHERE supEmail = "' + supervisor + '";';
+        
+        // get the names of the locations
+        let names = await retrieveLNamesFromTable(databaseConnection, queryCommand);
+        console.log("Names in getLocationNames = " + names);
+
+        // return the string
+        return names;
+    }
+}
+
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
-    getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor};
+    getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
+    getLocationNames};
