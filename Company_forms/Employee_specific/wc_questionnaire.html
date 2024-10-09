@@ -95,9 +95,9 @@
                 <label class="boxL" id="laterShiftLabel" for="laterShift"></label>
                 <br>
                 <br>
-                <label id="locationLabel1" class="formInfo" for="locationLabel1"></label>
+                <label id="locationInstr1" class="formInfo" for="loc1"></label>
                 <br>
-                <label id="locationLabel2" class="formInfo" for="locationLabel2"></label>
+                <label id="locationInstr2" class="formInfo" for="loc2"></label>
                 <br>
                 <input class="box" type="hidden" name="location1" id="location1" value=""/>
                 <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
@@ -143,11 +143,35 @@
                 // generate the information for the shift times
                 document.getElementById("shiftLabel").innerHTML = "Which shift(s) (time) would you prefer to work?";
                 // get the shift times
-                let shifts = await fetch("/getShifts");
+                let shiftsResp = await fetch("/getShifts");
+                if (!shiftsResp.ok) {
+                    console.log("ERRROR: issue with getting the shifts");
+                }
+                let shiftStr = await shiftsResp.json();
+                
+                // parse the shifts string into the array
+                let shifts = new Array();
+                let sIndex = 0;
+                while (sIndex < shiftStr.length) {
+                    let time = "";
+                    while (shiftStr[sIndex] != "," && sIndex < shiftStr.length) {
+                        if (shiftStr[sIndex] == "-") {
+                            time = time + " - ";
+                        }
+                        else {
+                            time = time + shiftStr[sIndex];
+                        }
+                        sIndex++;
+                    }
+                    shifts.push(time);
+                    sIndex++;
+                }
+                console.log("Shifts = " + shifts);
+
                 // display the first shift
                 document.getElementById("firstShift").type = "checkbox";
                 document.getElementById("firstShift").value = shifts[0];
-                document.getElementById("firstShiftLabel").innerHTML = shifts[0];
+                document.getElementById("fistShiftLabel").innerHTML = shifts[0];
                 // see if there is a second shift
                 if (shifts.length > 1) {
                     document.getElementById("laterShift").type = "checkbox";
@@ -156,24 +180,51 @@
                 }
 
                 // see if in charge of multiple locations
-                let multLoc = await fetch("/getMultLoc");
+                let multLocResp = await fetch("/getMultLoc");
+                if (!multLocResp.ok) {
+                    console.log("ERRROR: issue with getting Y/N of multiple locations");
+                }
+                let multLoc = await multLocResp.json();
                 // if there are, get the number and generate the locations
                 if (multLoc == "yes") {
                     // create the labels
-                    document.getElementById("locationLabel1").innerHTML = "What location(s) would you prefer to work at?";
-                    document.getElementBYId("locationLabel2").innerHTML = "Select all that apply:";
+                    document.getElementById("locationInstr1").innerHTML = "What location(s) would you prefer to work at?";
+                    document.getElementById("locationInstr2").innerHTML = "Select all that apply:";
                     
                     // get the number of locations
-                    let numLoc = await fetch("/getNumLocEmp");
+                    let numLocResp = await fetch("/getNumLocEmp");
+                    if (!numLocResp.ok) {
+                        console.log("ERROR: issue getting number of locations");
+                    }
+                    let num = await numLocResp.json();
+                    console.log("Number of Locations: " + num);
+                    let numLoc = parseInt(num, 10);
 
                     // get the location names
-                    let locations = await fetch("/getLocationNames");
+                    let locationsResp = await fetch("/getLocationNames");
+                    if (!locationsResp.ok) {
+                        console.log("ERRROR: issue with getting Y/N of multiple locations");
+                    }
+                    let locNames = await locationsResp.json();
+
+                    // parse the location string into the array
+                    let locations = new Array();
+                    let index = 0;
+                    while (index < locNames.length) {
+                        let loc = "";
+                        while (locNames[index] != "," && index < locNames.length) {
+                            loc = loc + locNames[index];
+                            index++;
+                        }
+                        locations.push(loc);
+                        index++;
+                    }
 
                     // generate the location checkboxes
-                    for (let index = 1; index <= numLoc; index++) {
-                        document.getElementById("location" + index).type = "checkbox";
-                        document.getElementById("location" + index).value = locations[index - 1];
-                        document.getElementById("locationLabel" + index).innerHTML = locations[index - 1];
+                    for (let i = 1; i <= numLoc; i++) {
+                        document.getElementById("location" + i).type = "checkbox";
+                        document.getElementById("location" + i).value = locations[i - 1];
+                        document.getElementById("locationLabel" + i).innerHTML = locations[i - 1];
                     }
                 }
             }
