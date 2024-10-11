@@ -8,24 +8,255 @@
             }
 
             h1 {
-                color: blue;
+                color: black;
                 text-align: center;
-                font-size: 59px;
+                font-size: 60px;
             }
 
             div {
                 background-color: rgb(229, 229, 232);
-                height: 450px;
-                width: 400px;
-                margin-top: 50px;
-                margin-left:400px;
+                height: 1000px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            .box {
+                margin-left: 300px;
+            }
+
+            .formInfo {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .labelInfo {
+                color: rgb(78, 76, 76); 
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 20px;
+            }
+
+            .boxL {
+                font-size: 16px;
             }
 
         </style>
     </head>
     <body>
         <div>
-            <h1>Retail Questionnaire</h1>
+            <h1>My Schedule Preferences</h1>
+            <br>
+            <label class="labelInfo">*As a reminder, all answers are voluntary</label>
+            <br>
+            <br>
+            <label class="labelInfo">*If you are updating your preference(s),</label>
+            <br>
+            <label class="labelInfo">   please leave the questions that you do not</label>
+            <br>
+            <label class="labelInfo">   want to change blank</label>
+            <br>
+            <br>
+            <label class="labelInfo">*Do not use apostrophes in your answer(s)</label>
+            <br>
+            <br>
+            <form action="/r_pref" method="post">
+                <button type="button" class="button" onClick="genChoices()">
+                    Press to Generate
+                </button>
+                <br>
+                <br>
+                <label id="nickName1" class="formInfo" for="nickname"></label>
+                <br>
+                <label id="nickName2" class="formInfo" for="nickname"></label>
+                <br>
+                <input class="formInfo" type="hidden" id="nickname" name="nickname" placeholder="Enter nickname"/>
+                <br>
+                <br>
+                <label id="shiftLabel" class="formInfo" for="shiftPref"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <br>
+                <label id="locationInstr1" class="formInfo" for="loc1"></label>
+                <br>
+                <label id="locationInstr2" class="formInfo" for="loc2"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
         </div>
+        <script type="text/javascript">
+            async function genChoices() {
+                // generate the information for the nickname info
+                document.getElementById("nickName1").innerHTML = "Do you go by a nickname at work?";
+                document.getElementById("nickName2").innerHTML = "If yes, enter it below:";
+                document.getElementById("nickname").type = "text";
+
+                // generate the information for the shift times
+                document.getElementById("shiftLabel").innerHTML = "Which shift(s) (time) would you prefer to work?";
+                // get the shift times
+                let shiftsResp = await fetch("/getShifts");
+                if (!shiftsResp.ok) {
+                    console.log("ERRROR: issue with getting the shifts");
+                }
+                let shiftStr = await shiftsResp.json();
+                
+                // parse the shifts string into the array
+                let shifts = new Array();
+                let sIndex = 0;
+                while (sIndex < shiftStr.length) {
+                    let time = "";
+                    while (shiftStr[sIndex] != "," && sIndex < shiftStr.length) {
+                        if (shiftStr[sIndex] == "-") {
+                            time = time + " - ";
+                        }
+                        else {
+                            time = time + shiftStr[sIndex];
+                        }
+                        sIndex++;
+                    }
+                    shifts.push(time);
+                    sIndex++;
+                }
+                console.log("Shifts = " + shifts);
+
+                // get the number of shifts
+                let numShiftsResp = await fetch("/getShiftNumEmp");
+                if (!numShiftsResp.ok) {
+                    console.log("ERROR: issue getting number of shifts");
+                }
+                let numS = await numShiftsResp.json();
+                console.log("Number of Shifts: " + numS);
+                let numShifts = parseInt(numS, 10);
+
+                // display the shifts
+                for (let index = 1; index <= numShifts; index++) {
+                    document.getElementById("shift" + index).type = "checkbox";
+                    document.getElementById("shift" + index).value = shifts[index - 1];
+                    document.getElementById("shiftLabel" + index).innerHTML = shifts[index - 1];
+                }
+
+                // see if in charge of multiple locations
+                let multLocResp = await fetch("/getMultLoc");
+                if (!multLocResp.ok) {
+                    console.log("ERRROR: issue with getting Y/N of multiple locations");
+                }
+                let multLoc = await multLocResp.json();
+                // if there are, get the number and generate the locations
+                if (multLoc == "yes") {
+                    // create the labels
+                    document.getElementById("locationInstr1").innerHTML = "What location(s) would you prefer to work at?";
+                    document.getElementById("locationInstr2").innerHTML = "Select all that apply:";
+                    
+                    // get the number of locations
+                    let numLocResp = await fetch("/getNumLocEmp");
+                    if (!numLocResp.ok) {
+                        console.log("ERROR: issue getting number of locations");
+                    }
+                    let num = await numLocResp.json();
+                    console.log("Number of Locations: " + num);
+                    let numLoc = parseInt(num, 10);
+
+                    // get the location names
+                    let locationsResp = await fetch("/getLocationNames");
+                    if (!locationsResp.ok) {
+                        console.log("ERRROR: issue with getting Y/N of multiple locations");
+                    }
+                    let locNames = await locationsResp.json();
+
+                    // parse the location string into the array
+                    let locations = new Array();
+                    let index = 0;
+                    while (index < locNames.length) {
+                        let loc = "";
+                        while (locNames[index] != "," && index < locNames.length) {
+                            loc = loc + locNames[index];
+                            index++;
+                        }
+                        locations.push(loc);
+                        index++;
+                    }
+
+                    // generate the location checkboxes
+                    for (let i = 1; i <= numLoc; i++) {
+                        document.getElementById("location" + i).type = "checkbox";
+                        document.getElementById("location" + i).value = locations[i - 1];
+                        document.getElementById("locationLabel" + i).innerHTML = locations[i - 1];
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
