@@ -307,6 +307,103 @@ function getEmpNames(roster, request, numOfEmps) {
     }
 }
 
+function getLocationPref(locPref, locNum, request) {
+    let num = 1;
+    while (num <= locNum) {
+        if (num == 1) {
+            if (request.body.location1 != undefined) {
+                console.log("Chosen: Location 1 - " + request.body.location1);
+                locPref.push(request.body.location1);
+            }
+            else {
+                console.log("Location 1 was not chosen");
+            }
+        }
+        else if (num == 2) {
+            if (request.body.location2 != undefined) {
+                console.log("Chosen: Location 2 - " + request.body.location2);
+                locPref.push(request.body.location2);
+            }
+            else {
+                console.log("Location 2 was not chosen");
+            }
+        }
+        else if (num == 3) {
+            if (request.body.location3 != undefined) {
+                console.log("Chosen: Location 3 - " + request.body.location3);
+                locPref.push(request.body.location3);
+            }
+            else {
+                console.log("Location 3 was not chosen");
+            }
+        }
+        else if (num == 4) {
+            if (request.body.location4 != undefined) {
+                console.log("Chosen: Location 4 - " + request.body.location4);
+                locPref.push(request.body.location4);
+            }
+            else {
+                console.log("Location 4 was not chosen");
+            }
+        }
+        else if (num == 5) {
+            if (request.body.location5 != undefined) {
+                console.log("Chosen: Location 5 - " + request.body.location5);
+                locPref.push(request.body.location5);
+            }
+            else {
+                console.log("Location 5 was not chosen");
+            }
+        }
+        else if (num == 6) {
+            if (request.body.location6 != undefined) {
+                console.log("Chosen: Location 6 - " + request.body.location6);
+                locPref.push(request.body.location6);
+            }
+            else {
+                console.log("Location 6 was not chosen");
+            }
+        }
+        else if (num == 7) {
+            if (request.body.location7 != undefined) {
+                console.log("Chosen: Location 7 - " + request.body.location7);
+                locPref.push(request.body.location7);
+            }
+            else {
+                console.log("Location 7 was not chosen");
+            }
+        }
+        else if (num == 8) {
+            if (request.body.location8 != undefined) {
+                console.log("Chosen: Location 8 - " + request.body.location8);
+                locPref.push(request.body.location8);
+            }
+            else {
+                console.log("Location 8 was not chosen");
+            }
+        }
+        else if (num == 9) {
+            if (request.body.location9 != undefined) {
+                console.log("Chosen: Location 9 - " + request.body.location9);
+                locPref.push(request.body.location9);
+            }
+            else {
+                console.log("Location 9 was not chosen");
+            }
+        }
+        else if (num == 10) {
+            if (request.body.location10 != undefined) {
+                console.log("Chosen: Location 10 - " + request.body.location10);
+                locPref.push(request.body.location10);
+            }
+            else {
+                console.log("Location 10 was not chosen");
+            }
+        }
+        num++;
+    }
+}
+
 function getLocNames(locations, request, numOfLocs) {
     let num = 1;
     while (num <= numOfLocs) {
@@ -1055,4 +1152,4 @@ module.exports = {authenticateUser, checkPswds, determineRole,
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
-    directQuestionnaire};
+    directQuestionnaire, getLocationPref};

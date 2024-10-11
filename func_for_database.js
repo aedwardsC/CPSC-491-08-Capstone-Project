@@ -428,6 +428,43 @@ function storeAllergies(databaseConnection, email, companyType, strAllergies) {
     }
 }
 
+function addPref(databaseConnection, queryCommand, pref, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult) {
+        if (error) {
+            console.log("ERROR: Unable to add " + pref + " to " + table);
+        }
+        else {
+            console.log("SUCCESS: Added " + pref + " to " + table);
+        }
+    });
+}
+
+function storeWCEmpPref(databaseConnection, email, nickname, shiftPref, locPref) {
+    let table = "White Collar Employee Table"; // purely for Success/Error Logs
+    // go through eacch one one-by-one to make sure not empty
+    
+    // if the nickname is not empty, store in the database
+    if (nickname != "") {
+        let queryCommand = 'UPDATE schedularDatabase.wcEmpInfo ' 
+            + 'SET nickname = "' + nickname + '" WHERE email = "' + email + '";';
+        addPref(databaseConnection, queryCommand, "nickname", table);
+    }
+    
+    if (shiftPref.length > 0) {
+        let shifts = shiftPref.toString();
+        let queryCommand = 'UPDATE schedularDatabase.wcEmpInfo ' 
+            + 'SET shiftTimePref = "' + shifts + '" WHERE email = "' + email + '";';
+        addPref(databaseConnection, queryCommand, "shift preferences", table);
+    }
+
+    if (locPref.length > 0) {
+        let locations = locPref.toString();
+        let queryCommand = 'UPDATE schedularDatabase.wcEmpInfo ' 
+            + 'SET locationPref = "' + locations + '" WHERE email = "' + email + '";';
+        addPref(databaseConnection, queryCommand, "location preferences", table);
+    }
+}
+
 // retrieving information
 function determineStored(databaseConnection) {
     let queryCommand = "SELECT companyName FROM schedularDatabase.companiesServed;";
@@ -657,7 +694,7 @@ function getSupName(databaseConnection, queryCommand) {
             }
             else {
                 let name = sqlResult[0].supName;
-                console.log("name in getSupName = " + name);
+                // console.log("name in getSupName = " + name);
 
                 // parse the name into first name
                 let index = 0;
@@ -691,7 +728,7 @@ function getSupEmail(databaseConnection, queryCommand) {
             else {
                 // get the email
                 let email = sqlResult[0].email;
-                console.log("email in getSupEmail = " + email);
+                // console.log("email in getSupEmail = " + email);
 
                 // return the email
                 resolve(email);
@@ -712,8 +749,8 @@ async function getSupervisor(databaseConnection, email, companyType) {
             + ' WHERE email = "' + email + '";';
         
         let name = await getSupName(databaseConnection, queryCommand1);
-        console.log("Name[0] in getSupervisor = " + name[0]);
-        console.log("Name[1] in getSupervisor = " + name[1]);
+        // console.log("Name[0] in getSupervisor = " + name[0]);
+        // console.log("Name[1] in getSupervisor = " + name[1]);
         
         // retrieve the supervisor's email from the user's table using the full name 
         // and company type
@@ -809,4 +846,4 @@ module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, compa
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
     getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
-    getLocationNames};
+    getLocationNames, storeWCEmpPref};

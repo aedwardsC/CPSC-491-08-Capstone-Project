@@ -11,9 +11,9 @@ function printEmpTable(databaseConnection, companyType) {
             console.log(table);
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("Employee Email: " + JSON.stringify(sqlResult[index].email));
-                console.log("Employee Name: " + JSON.stringify(sqlResult[index].fullName));
-                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supName));
+                console.log("Employee Email: " + sqlResult[index].email);
+                console.log("Employee Name: " + sqlResult[index].fullName);
+                console.log("Supervisor Name: " + sqlResult[index].supName);
                 console.log(""); // spacing for readability
             }
         }
@@ -30,14 +30,14 @@ function printUserTable(databaseConnection) {
             console.log("usersTable");
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("User Email: " + JSON.stringify(sqlResult[index].email));
-                console.log("User Username: " + JSON.stringify(sqlResult[index].username));
-                console.log("User First Name: " + JSON.stringify(sqlResult[index].fname));
-                console.log("User Last Name: " + JSON.stringify(sqlResult[index].lname));
-                console.log("User Password: " + JSON.stringify(sqlResult[index].password));
-                console.log("User Role: " + JSON.stringify(sqlResult[index].status));
-                console.log("User Company Type: " + JSON.stringify(sqlResult[index].companyType));
-                console.log("User Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("User Email: " + sqlResult[index].email);
+                console.log("User Username: " + sqlResult[index].username);
+                console.log("User First Name: " + sqlResult[index].fname);
+                console.log("User Last Name: " + sqlResult[index].lname);
+                console.log("User Password: " + sqlResult[index].password);
+                console.log("User Role: " + sqlResult[index].status);
+                console.log("User Company Type: " + sqlResult[index].companyType);
+                console.log("User Company Name: " + sqlResult[index].companyName);
                 console.log(""); // spacing for readability   
             }
         }
@@ -54,8 +54,8 @@ function printCompaniesServedTable(databaseConnection) {
             console.log("companiesServed");
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("Company Name: " + JSON.stringify(sqlResult[index].companyName));
-                console.log("Company Type: " + JSON.stringify(sqlResult[index].companyType));
+                console.log("Company Name: " + sqlResult[index].companyName);
+                console.log("Company Type: " + sqlResult[index].companyType);
                 console.log(""); // spacing for readability
             }
         }
@@ -71,16 +71,16 @@ function printSupWC(databaseConnection, queryCommand, table) {
             console.log(table);
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
-                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
-                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Email: " + sqlResult[index].supEmail);
+                console.log("Supervisor Name: " + sqlResult[index].supFullName);
+                console.log("Supervisor Company Name: " + sqlResult[index].companyName);
                 console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
-                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
-                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
-                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Roster: " + sqlResult[index].roster); 
+                console.log("Supervisor Shift Hours: " + sqlResult[index].shiftHours);
+                console.log("Supervisor Multiple Locations: " + sqlResult[index].multLoc);
                 console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc);
-                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
-                console.log("Supervisor Training Days: " + JSON.stringify(sqlResult[index].trainingDays)); 
+                console.log("Supervisor Locations: " + sqlResult[index].locationNames);
+                console.log("Supervisor Training Days: " + sqlResult[index].trainingDays); 
                 console.log(""); // spacing for readability 
             }
         }
@@ -96,18 +96,18 @@ function printSupR(databaseConnection, queryCommand, table) {
             console.log(table);
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
-                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
-                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Email: " + sqlResult[index].supEmail);
+                console.log("Supervisor Name: " + sqlResult[index].supFullName);
+                console.log("Supervisor Company Name: " + sqlResult[index].companyName);
                 console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
-                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Roster: " + sqlResult[index].roster); 
                 console.log("Supervisor Number of Shifts: " + sqlResult[index].numOfShifts);
-                console.log("Supervisor Shift Weekdays: " + JSON.stringify(sqlResult[index].shiftDaysWeek));
-                console.log("Supervisor Shift Weekends: " + JSON.stringify(sqlResult[index].shiftDaysWeekend));
-                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
-                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Shift Weekdays: " + sqlResult[index].shiftDaysWeek);
+                console.log("Supervisor Shift Weekends: " + sqlResult[index].shiftDaysWeekend);
+                console.log("Supervisor Shift Hours: " + sqlResult[index].shiftHours);
+                console.log("Supervisor Multiple Locations: " + sqlResult[index].multLoc);
                 console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc); 
-                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
+                console.log("Supervisor Locations: " + sqlResult[index].locationNames);
                 console.log(""); // spacing for readability 
             }
         }
@@ -123,19 +123,19 @@ function printSupEF(databaseConnection, queryCommand, table) {
             console.log(table);
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
-                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
-                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Email: " + sqlResult[index].supEmail);
+                console.log("Supervisor Name: " + sqlResult[index].supFullName);
+                console.log("Supervisor Company Name: " + sqlResult[index].companyName);
                 console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
-                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Roster: " + sqlResult[index].roster); 
                 console.log("Supervisor Number of Shifts: " + sqlResult[index].numOfShifts);
-                console.log("Supervisor Shift Weekdays: " + JSON.stringify(sqlResult[index].shiftDaysWeek));
-                console.log("Supervisor Shift Weekends: " + JSON.stringify(sqlResult[index].shiftDaysWeekend));
-                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
-                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Shift Weekdays: " + sqlResult[index].shiftDaysWeek);
+                console.log("Supervisor Shift Weekends: " + sqlResult[index].shiftDaysWeekend);
+                console.log("Supervisor Shift Hours: " + sqlResult[index].shiftHours);
+                console.log("Supervisor Multiple Locations: " + sqlResult[index].multLoc);
                 console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc); 
-                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
-                console.log("Supervisor Allergies: " + JSON.stringify(sqlResult[index].allergies));
+                console.log("Supervisor Locations: " + sqlResult[index].locationNames);
+                console.log("Supervisor Allergies: " + sqlResult[index].allergies);
                 console.log(""); // spacing for readability  
             }
         }
@@ -151,17 +151,17 @@ function printSupL(databaseConnection, queryCommand, table) {
             console.log(table);
             console.log(""); // spacing for readability
             for (let index = 0; index < sqlResult.length; index++) {
-                console.log("Supervisor Email: " + JSON.stringify(sqlResult[index].supEmail));
-                console.log("Supervisor Name: " + JSON.stringify(sqlResult[index].supFullName));
-                console.log("Supervisor Company Name: " + JSON.stringify(sqlResult[index].companyName));
+                console.log("Supervisor Email: " + sqlResult[index].supEmail);
+                console.log("Supervisor Name: " + sqlResult[index].supFullName);
+                console.log("Supervisor Company Name: " + sqlResult[index].companyName);
                 console.log("Supervisor Number of Employees: " + sqlResult[index].numOfEmps);
-                console.log("Supervisor Roster: " + JSON.stringify(sqlResult[index].roster)); 
+                console.log("Supervisor Roster: " + sqlResult[index].roster); 
                 console.log("Supervisor Number of Shifts: " + sqlResult[index].numOfShifts);
-                console.log("Supervisor Shift Hours: " + JSON.stringify(sqlResult[index].shiftHours));
-                console.log("Supervisor Multiple Locations: " + JSON.stringify(sqlResult[index].multLoc));
+                console.log("Supervisor Shift Hours: " + sqlResult[index].shiftHours);
+                console.log("Supervisor Multiple Locations: " + sqlResult[index].multLoc);
                 console.log("Supervisor Number of Locations: " + sqlResult[index].numOfLoc); 
-                console.log("Supervisor Locations: " + JSON.stringify(sqlResult[index].locationNames));
-                console.log("Supervisor Location Allergies: " + JSON.stringify(sqlResult[index].allergies));
+                console.log("Supervisor Locations: " + sqlResult[index].locationNames);
+                console.log("Supervisor Location Allergies: " + sqlResult[index].allergies);
                 console.log(""); // spacing for readability  
             }
         }
@@ -183,6 +183,119 @@ function printSupTable(databaseConnection, companyType) {
     }
     else if (table == "lSupInfo") {
         printSupL(databaseConnection, queryCommand, table);
+    }
+    else {
+        console.log("ERROR: Inavlide table name");
+    }
+}
+
+function printFullEmpWC(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read full Employee table" + error);
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Employee Email: " + sqlResult[0].email);
+            console.log("Employee Name: " + sqlResult[0].fullName);
+            console.log("Employee Nickname: " + sqlResult[0].nickname);
+            console.log("Employee Supervisor's Name: " + sqlResult[0].supName);
+            console.log("Employee Time Off: " + sqlResult[0].timeOff);
+            console.log("Employee Location Preference(s): " + sqlResult[0].locationPref); 
+            console.log("Employee Shift Preference(s): " + sqlResult[0].shiftTimePref);
+            console.log(""); // spacing for readability  
+        }
+    });   
+}
+
+function printFullEmpR(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read full Employee table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Employee Email: " + sqlResult[0].email);
+            console.log("Employee Name: " + sqlResult[0].fullName);
+            console.log("Employee Nickname: " + sqlResult[0].nickname);
+            console.log("Employee Supervisor's Name: " + sqlResult[0].supName);
+            console.log("Employee Time Off: " + sqlResult[0].timeOff);
+            console.log("Employee Location Preference(s): " + sqlResult[0].locationPref); 
+            console.log("Employee Shift Time Preference(s): " + sqlResult[0].shiftTimePref);
+            console.log("Employee Week Preference(s): " + sqlResult[0].weekPref);
+            console.log("Employee Day Preference(s): " + sqlResult[0].dayPref);
+            console.log("Employee Allergies: " + sqlResult[0].allergies);
+            console.log(""); // spacing for readability  
+        }
+    });
+}
+
+function printFullEmpL(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read full Employee table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Employee Email: " + sqlResult[0].email);
+            console.log("Employee Name: " + sqlResult[0].fullName);
+            console.log("Employee Nickname: " + sqlResult[0].nickname);
+            console.log("Employee Supervisor's Name: " + sqlResult[0].supName);
+            console.log("Employee Time Off: " + sqlResult[0].timeOff);
+            console.log("Employee Location Preference(s): " + sqlResult[0].locationPref); 
+            console.log("Employee Shift Time Preference(s): " + sqlResult[0].shiftTimePref);
+            console.log("Employee Last Shift: " + sqlResult[0].lastShift);
+            console.log("Employee Years Served: " + sqlResult[0].yearsServed);
+            console.log("Employee Allergies: " + sqlResult[0].allergies);
+            console.log(""); // spacing for readability  
+        }
+    });
+}
+
+function printFullEmpEF(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read full Employee table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Employee Email: " + sqlResult[0].email);
+            console.log("Employee Name: " + sqlResult[0].fullName);
+            console.log("Employee Nickname: " + sqlResult[0].nickname);
+            console.log("Employee Supervisor's Name: " + sqlResult[0].supName);
+            console.log("Employee Time Off: " + sqlResult[0].timeOff);
+            console.log("Employee Location Preference(s): " + sqlResult[0].locationPref); 
+            console.log("Employee Shift Time Preference(s): " + sqlResult[0].shiftTimePref);
+            console.log("Employee Week Preference(s): " + sqlResult[0].weekPref);
+            console.log("Employee Day Preference(s): " + sqlResult[0].dayPref);
+            console.log(""); // spacing for readability  
+        }
+    });
+}
+
+function printFullEmpTable(databaseConnection, username, companyType) {
+    let table = determineEmpTable(companyType);
+
+    console.log("In printFull - table = " + table);
+
+    let queryCommand = 'SELECT * FROM schedularDatabase.' + table 
+        + ' WHERE email = "' + username + '";';
+
+    if (table == "wcEmpInfo") {
+        printFullEmpWC(databaseConnection, queryCommand, table);
+    }
+    else if (table == "rEmpInfo") {
+        printFullEmpR(databaseConnection, queryCommand, table);
+    }
+    else if (table == "eEmpInfo" || table == "fEmpInfo") {
+        printFullEmpEF(databaseConnection, queryCommand, table);
+    }
+    else if (table == "lEmpInfo") {
+        printFullEmpL(databaseConnection, queryCommand, table);
     }
     else {
         console.log("ERROR: Inavlide table name");
@@ -234,4 +347,4 @@ function determineSupTable(type) {
 }
 
 module.exports = {printEmpTable, printUserTable, printCompaniesServedTable,
-    printSupTable};
+    printSupTable, printFullEmpTable};
