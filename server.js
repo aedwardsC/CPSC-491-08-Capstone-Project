@@ -699,6 +699,73 @@ program.post("/wc_pref", async function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Employee_specific/congratulations.html");
 });
 
+program.post("/r_pref", async function(request, response) {
+    // get the variables from the form
+    let nickname = "";
+    if (request.body.nickname != "Enter nickname") {
+        nickname = request.body.nickname;
+        console.log("The nickname is: " + nickname);
+    }
+    else {
+        console.log("The user did not supply a nickname");
+    }
+
+    // get the number of shifts
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+
+    // get the number of shifts
+    let num = await databaseFunctions.getNumOfShifts(databaseConnection, supervisor, 
+        companyType);
+    // get the shifts
+    let shiftPref = new Array(); // there can be multiple shift preferences
+    serverFunctions.getShiftTimePref(shiftPref, request, num);
+    console.log("Shift Preference(s): " + shiftPref);
+
+    // get if prefer weekdays/weekends/both
+    let weekPref = new Array(); // there can be multiple preferences
+    // see if there are weekdays offered
+    let weekdays = await databaseFunctions.getWeekdays(databaseConnection, supervisor, 
+        companyType);
+    // see if there are weekends offfered
+    let weekends = await databaseFunctions.getWeekends(databaseConnection, supervisor,
+        companyType);
+    if (weekdays.length > 0 && weekends.length > 0) {
+        serverFunctions.getWeekDayEnd(weekPref, request);
+        console.log("Week Preference(s): " + weekPref);
+    }
+
+    // get the number of days
+    let dayNum = await serverFunctions.getNumOfDays(databaseConnection, databaseFunctions, 
+        supervisor, companyType);
+    
+    // get the day preferences
+    let dayPref = new Array(); // there can be multiple days
+    serverFunctions.getDayPref(dayPref, request, dayNum);
+    console.log("Day Preference(s): " + dayPref);
+    
+    // get the location preferences
+    let locPref = new Array(); // there can be multiple location preferences
+    // get the number of locations from the supervisor's table
+    let locNum = await databaseFunctions.getNumOfLocs(databaseConnection, supervisor, 
+        companyType);
+    // parse through the forms location variables
+    serverFunctions.getLocationPref(locPref, locNum, request);
+    console.log("Location Preference(s): " + locPref);
+
+    // store all info in the database
+    databaseFunctions.storeREmpPref(databaseConnection, username, nickname, shiftPref,
+        weekPref, dayPref, locPref);
+        
+    // Test to make sure that everything has been saved properly
+    tester.printFullEmpTable(databaseConnection, username, companyType);
+
+    // send to the congratulations page
+    response.sendFile(__dirname + "/Company_forms/Employee_specific/congratulations.html");
+});
+
+
 // for dynamically creating the supervisor forms
 program.get("/getNumOfEmps", async function(request, response) {
     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
@@ -782,13 +849,41 @@ program.get("/getShiftNumEmp", async function(request, response) {
     let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
         companyType);
 
-    // get the number of locations
-    let numLoc = await databaseFunctions.getNumOfLocs(databaseConnection, supervisor, 
+    // get the number of shifts
+    let numShifts = await databaseFunctions.getNumOfShifts(databaseConnection, supervisor, 
         companyType);
     
-    console.log("Number of locations: " + numLoc);
+    console.log("Number of shifts: " + numShifts);
     // send the information
-    response.send(JSON.stringify(numLoc));
+    response.send(JSON.stringify(numShifts));
+});
+
+program.get("/getWeekdaysEmp", async function(request, response) {
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+    
+    // get the weekday shifts
+    let weekdays = await databaseFunctions.getWeekdays(databaseConnection, supervisor,
+        companyType);
+
+    console.log("Weekday Shifts: " + weekdays);
+    // send the information
+    response.send(JSON.stringify(weekdays));
+});
+
+program.get("/getWeekendEmp", async function(request, response) {
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+    
+    // get the weekend shifts
+    let weekends = await databaseFunctions.getWeekends(databaseConnection, supervisor,
+        companyType);
+
+    console.log("Weekend Shifts: " + weekends);
+    // send the information
+    response.send(JSON.stringify(weekends));
 });
 
 // listen on the port localhost:4000

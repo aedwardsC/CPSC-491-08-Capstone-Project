@@ -439,29 +439,76 @@ function addPref(databaseConnection, queryCommand, pref, table) {
     });
 }
 
+function buildSingleEmpUpdate(table, catToChange, catVal, email) {
+    let query = 'UPDATE schedularDatabase.' + table + ' '
+            + 'SET ' + catToChange + ' = "' + catVal + '" WHERE email = "' + email + '";';
+    return query;
+}
+
 function storeWCEmpPref(databaseConnection, email, nickname, shiftPref, locPref) {
-    let table = "White Collar Employee Table"; // purely for Success/Error Logs
-    // go through eacch one one-by-one to make sure not empty
+    let tableName = "White Collar Employee Table"; // purely for Success/Error Logs
+    let table = "wcEmpInfo";
+    
+    // go through each one one-by-one to make sure not empty
     
     // if the nickname is not empty, store in the database
     if (nickname != "") {
-        let queryCommand = 'UPDATE schedularDatabase.wcEmpInfo ' 
-            + 'SET nickname = "' + nickname + '" WHERE email = "' + email + '";';
-        addPref(databaseConnection, queryCommand, "nickname", table);
+        let queryCommand = buildSingleEmpUpdate(table, "nickname", nickname, email);
+        addPref(databaseConnection, queryCommand, "nickname", tableName);
     }
     
     if (shiftPref.length > 0) {
         let shifts = shiftPref.toString();
-        let queryCommand = 'UPDATE schedularDatabase.wcEmpInfo ' 
-            + 'SET shiftTimePref = "' + shifts + '" WHERE email = "' + email + '";';
+        let queryCommand = buildSingleEmpUpdate(table, "shiftTimePref", shifts, email);
         addPref(databaseConnection, queryCommand, "shift preferences", table);
     }
 
     if (locPref.length > 0) {
         let locations = locPref.toString();
-        let queryCommand = 'UPDATE schedularDatabase.wcEmpInfo ' 
-            + 'SET locationPref = "' + locations + '" WHERE email = "' + email + '";';
+        let queryCommand = buildSingleEmpUpdate(table, "locationPref", locations, email);
         addPref(databaseConnection, queryCommand, "location preferences", table);
+    }
+}
+
+function storeREmpPref(databaseConnection, email, nickname, shiftPref, weekPref, 
+    dayPref, locPref) {
+    let tableName = "Retail Employee Table"; // purely for Success/Error Logs
+    let table = "rEmpInfo";
+
+    // go through the each one one-by-one to make sure not empty
+
+    // if the nickname is not empty, store in the database
+    if (nickname != "") {
+        let queryCommand = buildSingleEmpUpdate(table, "nickname", nickname, email);
+        addPref(databaseConnection, queryCommand, "nickname", tableName);
+    }
+
+    // if the shift preferences aren't empty, store in the database
+    if (shiftPref.length > 0) {
+        let shifts = shiftPref.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "shiftTimePref", shifts, email);
+        addPref(databaseConnection, queryCommand, "shift time(s)", tableName);
+    }
+
+    // if the weekday/end preferences aren't empty, store in the database
+    if (weekPref.length > 0) {
+        let pref = weekPref.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "weekPref", pref, email);
+        addPref(databaseConnection, queryCommand, "weekday/end preference(s)", tableName);
+    }
+
+    // if the days aren't empty, store in the database
+    if (dayPref.length > 0) {
+        let days = dayPref.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "dayPref", days, email);
+        addPref(databaseConnection, queryCommand, "day(s) preference(s)", tableName);
+    }
+
+    // if the locations aren't empty, store in the database
+    if (locPref.length > 0) {
+        let locations = locPref.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "locationPref", locations, email);
+        addPref(databaseConnection, queryCommand, "location preference(s)", table);
     }
 }
 
@@ -765,6 +812,74 @@ async function getSupervisor(databaseConnection, email, companyType) {
     }
 }
 
+function retrieveDaysFromTable(databaseConnection, queryCommand, dayType) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve shift day(s) from supervisor table");
+            }
+            else {
+                if (dayType == "weekdays") {
+                    // get the days
+                    let days = sqlResult[0].shiftDaysWeek;
+                    console.log("Days in retrieveWeekdays = " + days);
+                    
+                    // return the days
+                    resolve(days);
+                }
+                else if (dayType == "weekends") {
+                   // get the days
+                   let days = sqlResult[0].shiftDaysWeekend;
+                   console.log("Days in retrieveWeekends = " + days);
+                   
+                   // return the days
+                   resolve(days); 
+                }
+            }
+        });
+    });
+}
+
+async function getWeekdays(databaseConnection, email, companyType) {
+    // get the supervisor's table
+    let table = determineSupTable(companyType);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in getWeekdays - Invalid companyType");
+    }
+    else {
+        let queryCommand = 'SELECT shiftDaysWeek FROM schedularDatabase.' + table
+            + ' WHERE supEmail = "' + email + '";';
+        
+        // get the names of the days
+        let days = await retrieveDaysFromTable(databaseConnection, queryCommand, "weekdays");
+        console.log("Days in getWeekdays = " + days);
+
+        // return the string
+        return days;
+    }
+}
+
+async function getWeekends(databaseConnection, email, companyType) {
+    // get the supervisor's table
+    let table = determineSupTable(companyType);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in getWeekends - Invalid companyType");
+    }
+    else {
+        let queryCommand = 'SELECT shiftDaysWeekend FROM schedularDatabase.' + table
+            + ' WHERE supEmail = "' + email + '";';
+        
+        // get the names of the days
+        let days = await retrieveDaysFromTable(databaseConnection, queryCommand, "weekends");
+        console.log("Days in getWeekends = " + days);
+
+        // return the string
+        return days;
+    }
+}
+
 function retrieveShiftsFromTable(databaseConnection, queryCommand) {
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
@@ -843,7 +958,7 @@ async function getLocationNames(databaseConnection, supervisor, companyType) {
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
-    getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames,
+    getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames, storeREmpPref,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
     getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
-    getLocationNames, storeWCEmpPref};
+    getLocationNames, storeWCEmpPref, getWeekdays, getWeekends};

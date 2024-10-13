@@ -1,5 +1,15 @@
-function stringToArray(givenString) {
+function stringToArray(givenString, givenArray) {
     // convert the string from the database into a vector to be manipulated
+    let index = 0;
+    while (index < givenString.length) {
+        let temp = "";
+        while (givenString[index] != "," && index < givenString.length) {
+            temp = temp + givenString[index];
+            index++;
+        }
+        givenArray.push(temp);
+        index++;
+    }
 }
 
 async function authenticateUser(databaseConnection, username, password, 
@@ -304,103 +314,6 @@ function getEmpNames(roster, request, numOfEmps) {
             roster.push(request.body.empName30);
         }
         num = num + 1;
-    }
-}
-
-function getLocationPref(locPref, locNum, request) {
-    let num = 1;
-    while (num <= locNum) {
-        if (num == 1) {
-            if (request.body.location1 != undefined) {
-                console.log("Chosen: Location 1 - " + request.body.location1);
-                locPref.push(request.body.location1);
-            }
-            else {
-                console.log("Location 1 was not chosen");
-            }
-        }
-        else if (num == 2) {
-            if (request.body.location2 != undefined) {
-                console.log("Chosen: Location 2 - " + request.body.location2);
-                locPref.push(request.body.location2);
-            }
-            else {
-                console.log("Location 2 was not chosen");
-            }
-        }
-        else if (num == 3) {
-            if (request.body.location3 != undefined) {
-                console.log("Chosen: Location 3 - " + request.body.location3);
-                locPref.push(request.body.location3);
-            }
-            else {
-                console.log("Location 3 was not chosen");
-            }
-        }
-        else if (num == 4) {
-            if (request.body.location4 != undefined) {
-                console.log("Chosen: Location 4 - " + request.body.location4);
-                locPref.push(request.body.location4);
-            }
-            else {
-                console.log("Location 4 was not chosen");
-            }
-        }
-        else if (num == 5) {
-            if (request.body.location5 != undefined) {
-                console.log("Chosen: Location 5 - " + request.body.location5);
-                locPref.push(request.body.location5);
-            }
-            else {
-                console.log("Location 5 was not chosen");
-            }
-        }
-        else if (num == 6) {
-            if (request.body.location6 != undefined) {
-                console.log("Chosen: Location 6 - " + request.body.location6);
-                locPref.push(request.body.location6);
-            }
-            else {
-                console.log("Location 6 was not chosen");
-            }
-        }
-        else if (num == 7) {
-            if (request.body.location7 != undefined) {
-                console.log("Chosen: Location 7 - " + request.body.location7);
-                locPref.push(request.body.location7);
-            }
-            else {
-                console.log("Location 7 was not chosen");
-            }
-        }
-        else if (num == 8) {
-            if (request.body.location8 != undefined) {
-                console.log("Chosen: Location 8 - " + request.body.location8);
-                locPref.push(request.body.location8);
-            }
-            else {
-                console.log("Location 8 was not chosen");
-            }
-        }
-        else if (num == 9) {
-            if (request.body.location9 != undefined) {
-                console.log("Chosen: Location 9 - " + request.body.location9);
-                locPref.push(request.body.location9);
-            }
-            else {
-                console.log("Location 9 was not chosen");
-            }
-        }
-        else if (num == 10) {
-            if (request.body.location10 != undefined) {
-                console.log("Chosen: Location 10 - " + request.body.location10);
-                locPref.push(request.body.location10);
-            }
-            else {
-                console.log("Location 10 was not chosen");
-            }
-        }
-        num++;
     }
 }
 
@@ -1084,6 +997,285 @@ function getFoodAllergies(allergiesArr, request, numOfLocs, locations) {
     }
 }
 
+function getLocationPref(locPref, locNum, request) {
+    let num = 1;
+    while (num <= locNum) {
+        if (num == 1) {
+            if (request.body.location1 != undefined) {
+                console.log("Chosen: Location 1 - " + request.body.location1);
+                locPref.push(request.body.location1);
+            }
+            else {
+                console.log("Location 1 was not chosen");
+            }
+        }
+        else if (num == 2) {
+            if (request.body.location2 != undefined) {
+                console.log("Chosen: Location 2 - " + request.body.location2);
+                locPref.push(request.body.location2);
+            }
+            else {
+                console.log("Location 2 was not chosen");
+            }
+        }
+        else if (num == 3) {
+            if (request.body.location3 != undefined) {
+                console.log("Chosen: Location 3 - " + request.body.location3);
+                locPref.push(request.body.location3);
+            }
+            else {
+                console.log("Location 3 was not chosen");
+            }
+        }
+        else if (num == 4) {
+            if (request.body.location4 != undefined) {
+                console.log("Chosen: Location 4 - " + request.body.location4);
+                locPref.push(request.body.location4);
+            }
+            else {
+                console.log("Location 4 was not chosen");
+            }
+        }
+        else if (num == 5) {
+            if (request.body.location5 != undefined) {
+                console.log("Chosen: Location 5 - " + request.body.location5);
+                locPref.push(request.body.location5);
+            }
+            else {
+                console.log("Location 5 was not chosen");
+            }
+        }
+        else if (num == 6) {
+            if (request.body.location6 != undefined) {
+                console.log("Chosen: Location 6 - " + request.body.location6);
+                locPref.push(request.body.location6);
+            }
+            else {
+                console.log("Location 6 was not chosen");
+            }
+        }
+        else if (num == 7) {
+            if (request.body.location7 != undefined) {
+                console.log("Chosen: Location 7 - " + request.body.location7);
+                locPref.push(request.body.location7);
+            }
+            else {
+                console.log("Location 7 was not chosen");
+            }
+        }
+        else if (num == 8) {
+            if (request.body.location8 != undefined) {
+                console.log("Chosen: Location 8 - " + request.body.location8);
+                locPref.push(request.body.location8);
+            }
+            else {
+                console.log("Location 8 was not chosen");
+            }
+        }
+        else if (num == 9) {
+            if (request.body.location9 != undefined) {
+                console.log("Chosen: Location 9 - " + request.body.location9);
+                locPref.push(request.body.location9);
+            }
+            else {
+                console.log("Location 9 was not chosen");
+            }
+        }
+        else if (num == 10) {
+            if (request.body.location10 != undefined) {
+                console.log("Chosen: Location 10 - " + request.body.location10);
+                locPref.push(request.body.location10);
+            }
+            else {
+                console.log("Location 10 was not chosen");
+            }
+        }
+        num++;
+    }
+}
+
+function getShiftTimePref(shiftPref, request, shiftNum) {
+    let num = 1;
+    while (num <= shiftNum) {
+        if (num == 1) {
+            if (request.body.shift1 != undefined) {
+                console.log("Chosen: Shift 1 - " + request.body.shift1);
+                shiftPref.push(request.body.shift1);
+            }
+            else {
+                console.log("Shift 1 was not chosen");
+            }
+        }
+        else if (num == 2) {
+            if (request.body.shift2 != undefined) {
+                console.log("Chosen: Shift 2 - " + request.body.shift2);
+                shiftPref.push(request.body.shift2);
+            }
+            else {
+                console.log("Shift 2 was not chosen");
+            }
+        }
+        else if (num == 3) {
+            if (request.body.shift3 != undefined) {
+                console.log("Chosen: Shift 3 - " + request.body.shift3);
+                shiftPref.push(request.body.shift3);
+            }
+            else {
+                console.log("Shift 3 was not chosen");
+            }
+        }
+        else if (num == 4) {
+            if (request.body.shift4 != undefined) {
+                console.log("Chosen: Shift 4 - " + request.body.shift4);
+                shiftPref.push(request.body.shift4);
+            }
+            else {
+                console.log("Shift 4 was not chosen");
+            }
+        }
+        else if (num == 5) {
+            if (request.body.shift5 != undefined) {
+                console.log("Chosen: Shift 5 - " + request.body.shift5);
+                shiftPref.push(request.body.shift5);
+            }
+            else {
+                console.log("Shift 5 was not chosen");
+            }
+        }
+        else if (num == 6) {
+            if (request.body.shift6 != undefined) {
+                console.log("Chosen: Shift 6 - " + request.body.shift6);
+                shiftPref.push(request.body.shift6);
+            }
+            else {
+                console.log("Shift 6 was not chosen");
+            }
+        }
+        else if (num == 7) {
+            if (request.body.shift7 != undefined) {
+                console.log("Chosen: Shift 7 - " + request.body.shift7);
+                shiftPref.push(request.body.shift7);
+            }
+            else {
+                console.log("Shift 7 was not chosen");
+            }
+        }
+        else if (num == 8) {
+            if (request.body.shift8 != undefined) {
+                console.log("Chosen: Shift 8 - " + request.body.shift8);
+                shiftPref.push(request.body.shift8);
+            }
+            else {
+                console.log("Shift 8 was not chosen");
+            }
+        }
+        else if (num == 9) {
+            if (request.body.shift9 != undefined) {
+                console.log("Chosen: Shift 9 - " + request.body.shift9);
+                shiftPref.push(request.body.shift9);
+            }
+            else {
+                console.log("Shift 9 was not chosen");
+            }
+        }
+        else if (num == 10) {
+            if (request.body.shift10 != undefined) {
+                console.log("Chosen: Shift 10 - " + request.body.shift10);
+                shiftPref.push(request.body.shift10);
+            }
+            else {
+                console.log("Shift 10 was not chosen");
+            }
+        }
+        num++;
+    }
+}
+
+function getWeekDayEnd(weekPref, request) {
+    if (request.body.weekdays == "weekdays") {
+        weekPref.push("Weekdays");
+    }
+
+    if (request.body.weekends == "weekends") {
+        weekPref.push("Weekends");
+    }
+}
+
+function getDayPref(dayPref, request, numOfDays) {
+    let num = 1;
+    while (num <= numOfDays) {
+        if (num == 1) {
+            if (request.body.day1 != undefined) {
+                console.log("Chosen: " + request.body.day1);
+                dayPref.push(request.body.day1);
+            }
+        }
+        else if (num == 2) {
+            if (request.body.day2 != undefined) {
+                console.log("Chosen: " + request.body.day2);
+                dayPref.push(request.body.day2);
+            }
+        }
+        else if (num == 3) {
+            if (request.body.day3 != undefined) {
+                console.log("Chosen: " + request.body.day3);
+                dayPref.push(request.body.day3);
+            }
+        }
+        else if (num == 4) {
+            if (request.body.day4 != undefined) {
+                console.log("Chosen: " + request.body.day4);
+                dayPref.push(request.body.day4);
+            }
+        }
+        else if (num == 5) {
+            if (request.body.day5 != undefined) {
+                console.log("Chosen: " + request.body.day5);
+                dayPref.push(request.body.day5);
+            }
+        }
+        else if (num == 6) {
+            if (request.body.day6 != undefined) {
+                console.log("Chosen: " + request.body.day6);
+                dayPref.push(request.body.day6);
+            }
+        }
+        else if (num == 7) {
+            if (request.body.day7 != undefined) {
+                console.log("Chosen: " + request.body.day7);
+                dayPref.push(request.body.day7);
+            }
+        }
+        num++;
+    }
+}
+
+async function getNumOfDays(databaseConnection, databaseFunctions, supervisor, companyType) {
+    // get the weekdays
+    let weekdays = await databaseFunctions.getWeekdays(databaseConnection, supervisor, 
+        companyType);
+
+    // get the weekends
+    let weekends = await databaseFunctions.getWeekends(databaseConnection, supervisor,
+        companyType);
+
+    // parse the weekdays and weekends into an array
+    let days = new Array();
+    if (weekdays!= "") {
+        stringToArray(weekdays, days);
+    }
+    if (weekends != "") {
+        stringToArray(weekends, days);
+    }
+
+    // verify the data
+    console.log("Days: " + days);
+    console.log("Number of days: " + days.length);
+
+    // return the number of days
+    return days.length;
+}
+
 async function checkUsername(databaseConnection, databaseFunctions, uname) {
     let users = await databaseFunctions.getUsernamesEmails(databaseConnection);
 
@@ -1152,4 +1344,5 @@ module.exports = {authenticateUser, checkPswds, determineRole,
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
-    directQuestionnaire, getLocationPref};
+    directQuestionnaire, getLocationPref, getShiftTimePref, getWeekDayEnd, getDayPref,
+    getNumOfDays};
