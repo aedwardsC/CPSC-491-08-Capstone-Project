@@ -166,7 +166,6 @@
                     shifts.push(time);
                     sIndex++;
                 }
-                console.log("Shifts = " + shifts);
 
                 // display the first shift
                 document.getElementById("firstShift").type = "checkbox";
@@ -179,7 +178,7 @@
                     document.getElementById("laterShiftLabel").innerHTML = shifts[1];
                 }
 
-                // see if in charge of multiple locations
+                // see if there are multiple locations
                 let multLocResp = await fetch("/getMultLoc");
                 if (!multLocResp.ok) {
                     console.log("ERRROR: issue with getting Y/N of multiple locations");
@@ -197,7 +196,6 @@
                         console.log("ERROR: issue getting number of locations");
                     }
                     let num = await numLocResp.json();
-                    console.log("Number of Locations: " + num);
                     let numLoc = parseInt(num, 10);
 
                     // get the location names

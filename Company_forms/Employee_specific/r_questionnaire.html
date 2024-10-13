@@ -15,7 +15,7 @@
 
             div {
                 background-color: rgb(229, 229, 232);
-                height: 1000px;
+                height: 2000px;
                 width: 1050px;
                 margin-top: 20px;
                 margin-left:70px;
@@ -119,6 +119,41 @@
                 <label class="boxL" id="shiftLabel10" for="shift10"></label>
                 <br>
                 <br>
+                <label id="weekLabel1" class="formInfo" for="week"></label>
+                <br>
+                <label id="weekLabel2" class="formInfo" for="week"></label>
+                <br>
+                <input class="box" type="hidden" name="weekdays" id="weekdays" value="weekdays"/>
+                <label class="boxL" id="weekdaysLabel" for="weekdaysLabel"></label>
+                <br>
+                <input class="box" type="hidden" name="weekends" id="weekends" value="weekends"/>
+                <label class="boxL" id="weekendsLabel" for="weekendsLabel"></label>
+                <br>
+                <br>
+                <label id="dayLabel" class="formInfo" for="days"></label>
+                <br>
+                <input class="box" type="hidden" name="day1" id="day1" value=""/>
+                <label class="boxL" id="labelDay1" for="day1"></label>
+                <br>
+                <input class="box" type="hidden" name="day2" id="day2" value=""/>
+                <label class="boxL" id="labelDay2" for="day2"></label>
+                <br>
+                <input class="box" type="hidden" name="day3" id="day3" value=""/>
+                <label class="boxL" id="labelDay3" for="day3"></label>
+                <br>
+                <input class="box" type="hidden" name="day4" id="day4" value=""/>
+                <label class="boxL" id="labelDay4" for="day4"></label>
+                <br>
+                <input class="box" type="hidden" name="day5" id="day5" value=""/>
+                <label class="boxL" id="labelDay5" for="day5"></label>
+                <br>
+                <input class="box" type="hidden" name="day6" id="day6" value=""/>
+                <label class="boxL" id="labelDay6" for="day6"></label>
+                <br>
+                <input class="box" type="hidden" name="day7" id="day7" value=""/>
+                <label class="boxL" id="labelDay7" for="day7"></label>
+                <br>
+                <br>
                 <label id="locationInstr1" class="formInfo" for="loc1"></label>
                 <br>
                 <label id="locationInstr2" class="formInfo" for="loc2"></label>
@@ -208,7 +243,77 @@
                     document.getElementById("shiftLabel" + index).innerHTML = shifts[index - 1];
                 }
 
-                // see if in charge of multiple locations
+                // get if shifts are on weekdays, weekends, or both
+                // get the weekday shifts
+                let weekdayResp = await fetch("/getWeekdaysEmp");
+                if (!weekdayResp.ok) {
+                    console.log("ERRROR: issue with getting the week days shifts");
+                }
+                let weekdays = await weekdayResp.json();
+
+                // get the weekend shifts
+                let weekendResp = await fetch("/getWeekendEmp");
+                if (!weekendResp.ok) {
+                    console.log("ERRPR: issue with getting the week days shifts");
+                }
+                let weekends = await weekendResp.json();
+                console.log("Weekends: " + weekends);
+
+                // see if shifts include both weekdays and weekends
+                if (weekdays != "" && weekends != "") {
+                    document.getElementById("weekLabel1").innerHTML = "Would you prefer to work";
+                    document.getElementById("weekLabel2").innerHTML = "weekdays or weekends?";
+                    document.getElementById("weekdays").type = "checkbox";
+                    document.getElementById("weekdaysLabel").innerHTML = "Weekdays";
+                    document.getElementById("weekends").type = "checkbox";
+                    document.getElementById("weekendsLabel").innerHTML = "Weekends";
+                }
+
+                // parse the weekdays and weekends into an array for display
+                let days = new Array();
+                if (weekdays!= "") {
+                    let index = 0;
+                    while (index < weekdays.length) {
+                        let day = "";
+                        while (weekdays[index] != "," && index < weekdays.length) {
+                            day = day + weekdays[index];
+                            index++;
+                        }
+                        days.push(day);
+                        console.log("Day: " + day);
+                        index++;
+                    }
+                    console.log("Days: " + days);
+                }
+                if (weekends != "") {
+                    let index = 0;
+                    while (index < weekends.length) {
+                        let day = "";
+                        console.log("Weekends[" + index + "]: " + weekends[index]);
+                        while (weekends[index] != "," && index < weekends.length) {
+                            day = day + weekends[index];
+                            index++;
+                        }
+                        console.log("Day: " + day);
+                        days.push(day);
+                        index++;
+                    }
+                    console.log("Days: " + days);
+                }
+
+                // generate the question labels
+                document.getElementById("dayLabel").innerHTML = "What day(s) would you prefer to work?";
+                
+                // generate the day checkboxes
+                console.log("Days = " + days);
+                for (let i = 1; i <= days.length; i++) {
+                    console.log("i = " + i);
+                    document.getElementById("day" + i).type = "checkbox";
+                    document.getElementById("day" + i).value = days[i - 1];
+                    document.getElementById("labelDay" + i).innerHTML = days[i - 1];
+                }
+
+                // see if there are multiple locations
                 let multLocResp = await fetch("/getMultLoc");
                 if (!multLocResp.ok) {
                     console.log("ERRROR: issue with getting Y/N of multiple locations");
