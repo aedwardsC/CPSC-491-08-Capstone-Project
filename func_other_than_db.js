@@ -1276,6 +1276,33 @@ async function getNumOfDays(databaseConnection, databaseFunctions, supervisor, c
     return days.length;
 }
 
+function getEmpAllergiesEF(allergies, request) {
+    if (request.body.milk == "Milk") {
+        allergies.push(request.body.milk);
+    }
+    if (request.body.eggs == "Eggs") {
+        allergies.push(request.body.eggs);
+    }
+    if (request.body.shell == "Crustaceon Shellfish") {
+        allergies.push(request.body.shell);
+    }
+    if (request.body.tree == "Tree Nuts") {
+        allergies.push(request.body.tree);
+    }
+    if (request.body.peanuts == "Peanuts") {
+        allergies.push(request.body.peanuts);
+    }
+    if (request.body.wheat == "Wheat") {
+        allergies.push(request.body.wheat);
+    }
+    if (request.body.soy == "Soybeans") {
+        allergies.push(request.body.soy);
+    }
+    if (request.body.sesame == "Sesame") {
+        allergies.push(request.body.sesame);
+    }
+}
+
 async function checkUsername(databaseConnection, databaseFunctions, uname) {
     let users = await databaseFunctions.getUsernamesEmails(databaseConnection);
 
@@ -1329,11 +1356,8 @@ function directQuestionnaire(response, companyType) {
     else if (companyType == "lawEnforcement") {
         response.sendFile(__dirname + "/Company_forms/Employee_specific/l_questionnaire.html");
     }
-    else if (companyType == "food") {
-        response.sendFile(__dirname + "/Company_forms/Employee_specific/f_questionnaire.html");
-    }
-    else if (companyType == "entertainment") {
-        response.sendFile(__dirname + "/Company_forms/Employee_specific/e_questionnaire.html");
+    else if (companyType == "food" || companyType == "entertainment") {
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/ef_questionnaire.html");
     }
     else {
         console.log("ERROR: Cannot direct to questionnaire. Invalid company type");
@@ -1345,4 +1369,4 @@ module.exports = {authenticateUser, checkPswds, determineRole,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
     directQuestionnaire, getLocationPref, getShiftTimePref, getWeekDayEnd, getDayPref,
-    getNumOfDays};
+    getNumOfDays, getEmpAllergiesEF};
