@@ -833,6 +833,67 @@ program.post("/ef_pref", async function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Employee_specific/congratulations.html");
 });
 
+program.post("/l_pref", async function(request, response) {
+    // get the variables from the form
+    let nickname = "";
+    if (request.body.nickname != "Enter nickname") {
+        nickname = request.body.nickname;
+        console.log("The nickname is: " + nickname);
+    }
+    else {
+        console.log("The user did not supply a nickname");
+    }
+
+    // get the years of service
+    let serveYears = 0;
+    if (request.body.yearsServe != "") {
+        serveYears = request.body.yearsServe;
+        console.log("Years served by employee: " + serveYears);
+    }
+    else {
+        console.log("Employee must supply a number for YearsServed");
+        response.sendFile(__dirname + "/Company_forms/Employee_specific/l_questionnaire.html");
+    }
+
+    // get the allergies
+    let allergies = new Array();
+    serverFunctions.getEmpAllergiesL(allergies, request);
+    console.log("Allergies: " + allergies);
+
+    // get the supervisor's email
+    let supervisor = await databaseFunctions.getSupervisor(databaseConnection, username, 
+        companyType);
+    // get the number of shifts
+    let num = await databaseFunctions.getNumOfShifts(databaseConnection, supervisor,
+        companyType);
+    // get the shifts
+    let shiftPref = new Array(); // there can be multiple shift preferences
+    serverFunctions.getShiftTimePref(shiftPref, request, num);
+    console.log("Shift Preference(s): " + shiftPref);
+    // get the last shift worked
+    let lastWorked = request.body.lastShift;
+    console.log("The last shift that the employee worked was: " + lastWorked);
+
+    // get the location preferences
+    let locPref = new Array(); // there can be multiple location preferences
+    // get the number of locations from the supervisor's table
+    let locNum = await databaseFunctions.getNumOfLocs(databaseConnection, supervisor, 
+        companyType);
+    // parse through the forms location variables
+    serverFunctions.getLocationPref(locPref, locNum, request);
+    console.log("Location Preference(s): " + locPref);
+
+    // store all info in the database - NOT DONE
+    databaseFunctions.storeLEmpPref(databaseConnection, username, nickname, serveYears,
+        allergies, shiftPref, lastWorked, locPref);
+    
+    // test to make sure that everything has been saved properly
+    // tester.printFullEmpTable(databaseConnection, username, companyType);
+    
+    // send to the congratulations page
+    response.sendFile(__dirname + "/Company_forms/Employee_specific/congratulations.html");
+});
+
 
 // for dynamically creating the supervisor forms
 program.get("/getNumOfEmps", async function(request, response) {

@@ -1303,6 +1303,42 @@ function getEmpAllergiesEF(allergies, request) {
     }
 }
 
+function getEmpAllergiesL(allergies, request) {
+    if (request.body.pollen == "Pollen") {
+        allergies.push(request.body.pollen);
+    }
+    if (request.body.mold == "Mold") {
+        allergies.push(request.body.mold);
+    }
+    if (request.body.mildew == "Mildew") {
+        allergies.push(request.body.mildew);
+    }
+    if (request.body.latex == "Latex") {
+        allergies.push(request.body.latex);
+    }
+    if (request.body.bees == "Bees") {
+        allergies.push(request.body.bees);
+    }
+    if (request.body.wasps == "Wasps") {
+        allergies.push(request.body.wasps);
+    }
+    if (request.body.hornets == "Hornets") {
+        allergies.push(request.body.hornets);
+    }
+    if (request.body.yellow == "Yellow Jackets") {
+        allergies.push(request.body.yellow);
+    }
+    if (request.body.fire == "Fire Ants") {
+        allergies.push(request.body.fire);
+    }
+    if (request.body.roach == "Cockroaches") {
+        allergies.push(request.body.roach);
+    }
+    if (request.body.dust == "Dust Mites") {
+        allergiesArr.push(request.body.dust);
+    }
+}
+
 async function checkUsername(databaseConnection, databaseFunctions, uname) {
     let users = await databaseFunctions.getUsernamesEmails(databaseConnection);
 
@@ -1369,4 +1405,4 @@ module.exports = {authenticateUser, checkPswds, determineRole,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
     directQuestionnaire, getLocationPref, getShiftTimePref, getWeekDayEnd, getDayPref,
-    getNumOfDays, getEmpAllergiesEF};
+    getNumOfDays, getEmpAllergiesEF, getEmpAllergiesL};

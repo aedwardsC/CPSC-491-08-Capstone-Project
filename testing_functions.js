@@ -271,6 +271,7 @@ function printFullEmpEF(databaseConnection, queryCommand, table) {
             console.log("Employee Shift Time Preference(s): " + sqlResult[0].shiftTimePref);
             console.log("Employee Week Preference(s): " + sqlResult[0].weekPref);
             console.log("Employee Day Preference(s): " + sqlResult[0].dayPref);
+            console.log("Employee Allergies: " + sqlResult[0].allergies);
             console.log(""); // spacing for readability  
         }
     });

@@ -572,6 +572,10 @@ function storeEFEmpPref(databaseConnection, email, companyType, nickname, allerg
     }
 }
 
+function storeLEmpPref(databaseConnection, email, nickname, serveYears, allergies, shiftPref, lastWorked, locPref) {
+    let table = "Law Enforcement Employee Table";
+}
+
 // retrieving information
 function determineStored(databaseConnection) {
     let queryCommand = "SELECT companyName FROM schedularDatabase.companiesServed;";
@@ -1021,4 +1025,4 @@ module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, compa
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames, storeREmpPref,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
     getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
-    getLocationNames, storeWCEmpPref, getWeekdays, getWeekends, storeEFEmpPref};
+    getLocationNames, storeWCEmpPref, getWeekdays, getWeekends, storeEFEmpPref, storeLEmpPref};
