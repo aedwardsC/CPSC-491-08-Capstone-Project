@@ -568,12 +568,56 @@ function storeEFEmpPref(databaseConnection, email, companyType, nickname, allerg
     if (locPref.length > 0) {
         let locations = locPref.toString();
         let queryCommand = buildSingleEmpUpdate(table, "locationPref", locations, email);
-        addPref(databaseConnection, queryCommand, "location preference(s)", table);
+        addPref(databaseConnection, queryCommand, "location preference(s)", tableName);
     }
 }
 
-function storeLEmpPref(databaseConnection, email, nickname, serveYears, allergies, shiftPref, lastWorked, locPref) {
-    let table = "Law Enforcement Employee Table";
+function storeLEmpPref(databaseConnection, email, nickname, serveYears, allergies, 
+    shiftPref, lastWorked, locPref) {
+    let tableName = "Law Enforcement Employee Table";
+    let table = "lEmpInfo";
+
+    // go through each one one-by-one to make sure not empty
+
+    // if the nickname is not empty, store in the database
+    if (nickname != "") {
+        let queryCommand = buildSingleEmpUpdate(table, "nickname", nickname, email);
+        addPref(databaseConnection, queryCommand, "nickname", tableName);
+    }
+
+    // if the allergies are not empty, store in the database
+    if (allergies.length > 0) {
+        let aller = allergies.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "allergies", aller, email);
+        addPref(databaseConnection, queryCommand, "allergies", tableName);
+    }
+    
+    // if the shift preferences aren't empty, store in the database
+    if (shiftPref.length > 0) {
+        let shifts = shiftPref.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "shiftTimePref", shifts, email);
+        addPref(databaseConnection, queryCommand, "shift time(s)", tableName);
+    }
+    
+    // if the locations aren't empty, store in the database
+    if (locPref.length > 0) {
+        let locations = locPref.toString();
+        let queryCommand = buildSingleEmpUpdate(table, "locationPref", locations, email);
+        addPref(databaseConnection, queryCommand, "location preference(s)", tableName);
+    }
+
+    // if the last worked string isn't empty, store in the database
+    if (lastWorked.length > 0) {
+        let queryCommand = buildSingleEmpUpdate(table, "lastShift", lastWorked, email);
+        addPref(databaseConnection, queryCommand, "last shift", tableName);
+    }
+
+    // store the years served time in the database
+    if (serveYears != -1) {
+        let years = parseInt(serveYears, 10);
+        let queryCommand = buildSingleEmpUpdate(table, "yearsServed", years, email);
+        addPref(databaseConnection, queryCommand, "year(s) served", tableName);
+    }
 }
 
 // retrieving information

@@ -845,14 +845,10 @@ program.post("/l_pref", async function(request, response) {
     }
 
     // get the years of service
-    let serveYears = 0;
+    let serveYears = -1;
     if (request.body.yearsServe != "") {
         serveYears = request.body.yearsServe;
         console.log("Years served by employee: " + serveYears);
-    }
-    else {
-        console.log("Employee must supply a number for YearsServed");
-        response.sendFile(__dirname + "/Company_forms/Employee_specific/l_questionnaire.html");
     }
 
     // get the allergies
@@ -871,7 +867,7 @@ program.post("/l_pref", async function(request, response) {
     serverFunctions.getShiftTimePref(shiftPref, request, num);
     console.log("Shift Preference(s): " + shiftPref);
     // get the last shift worked
-    let lastWorked = request.body.lastShift;
+    let lastWorked = request.body.lastShift[0];
     console.log("The last shift that the employee worked was: " + lastWorked);
 
     // get the location preferences
@@ -883,12 +879,12 @@ program.post("/l_pref", async function(request, response) {
     serverFunctions.getLocationPref(locPref, locNum, request);
     console.log("Location Preference(s): " + locPref);
 
-    // store all info in the database - NOT DONE
+    // store all info in the database
     databaseFunctions.storeLEmpPref(databaseConnection, username, nickname, serveYears,
         allergies, shiftPref, lastWorked, locPref);
     
     // test to make sure that everything has been saved properly
-    // tester.printFullEmpTable(databaseConnection, username, companyType);
+    tester.printFullEmpTable(databaseConnection, username, companyType);
     
     // send to the congratulations page
     response.sendFile(__dirname + "/Company_forms/Employee_specific/congratulations.html");

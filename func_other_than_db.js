@@ -1335,7 +1335,7 @@ function getEmpAllergiesL(allergies, request) {
         allergies.push(request.body.roach);
     }
     if (request.body.dust == "Dust Mites") {
-        allergiesArr.push(request.body.dust);
+        allergies.push(request.body.dust);
     }
 }
 
