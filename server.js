@@ -78,7 +78,7 @@ program.post("/sign_in", async function(request, response) {
         console.log("Role = " + role);
         console.log("Full Name = " + fullName);
         
-        serverFunctions.splitUsers(response, role, username, fName);
+        serverFunctions.splitUsers(response, role, fullName);
     }
     else {
         response.sendFile(__dirname + "/Company_forms/incorrect_information.html");
@@ -890,6 +890,15 @@ program.post("/l_pref", async function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Employee_specific/congratulations.html");
 });
 
+program.post("/checkSchedule", function(request, response) {
+    // direct to the schedule checker page
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/schedule_checker_landing.html");
+});
+
+program.post("/updateEmpInfo", function(request, response) {
+    // direct to the update landing page
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
+});
 
 // for dynamically creating the supervisor forms
 program.get("/getNumOfEmps", async function(request, response) {

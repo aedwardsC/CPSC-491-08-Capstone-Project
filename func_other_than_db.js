@@ -99,7 +99,7 @@ function splitInitialSetUp(response, companyType) {
     }
 }
 
-function splitUsers(response, role, fName) {
+function splitUsers(response, role, fullName) {
     // if role is an employee -> direct to the Disclaimer page
     if (role == "employee") {
         response.sendFile(__dirname + "/Company_forms/Employee_specific/disclaimer_page.html");
