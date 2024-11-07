@@ -900,6 +900,130 @@ program.post("/updateEmpInfo", function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
 });
 
+program.post("/returnHomeSup", function(request, response) {
+    // send the supervisor back to their personalized Home page
+    serverFunctions.buildAndSendHome(response, fullName, "supervisor");
+});
+
+program.post("/timeOff", function(request, response) {
+    // go to the update time_off pagge
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/time_off.html");
+});
+
+program.post("/addRemove", function(request, response) {
+    // go to the page to add/remove an employee
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/add_remove.html");
+});
+
+program.post("/updateTimeOff", async function(request, response) {
+    // get the data from form
+    let empName = request.body.name;
+    let timeOff = request.body.timeOff;
+
+    // Verify the inputs in the console
+    console.log("Employee Name: " + empName);
+    console.log("Time Off: " + timeOff);
+
+    // make sure that the employee exists
+    // get the supervisor's roster
+    let roster = await databaseFunctions.getRoster(databaseConnection, username, companyType);
+    console.log("Original Roster: " + roster);
+    // search the roster for the name - NOT DONE
+    let exist = serverFunctions.checkRoster(roster, empName);
+
+    if (exist) {
+        // get the employee's email
+        let empEmail = await databaseFunctions.getEmployee(databaseConnection, fullName, 
+            empName, companyType);
+        
+        // add the time off to the employee's table
+        databaseFunctions.updateTimeOff(databaseConnection, empEmail, timeOff, companyType);
+
+        // FOR TESTING - print the employee's table
+        tester.printFullEmpTable(databaseConnection, empEmail, companyType);
+    }
+    else {
+        console.log("The employee does not exist");
+    }
+
+    // redirect to the menu
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
+});
+
+program.post("/add", function(request, response) {
+    // direct to the page to add to the roster
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/add_emp.html");
+});
+
+program.post("/remove", function(request, response) {
+    // direct to the page to remove from the roster
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/remove_emp.html");
+});
+
+program.post("/addEmp", async function(request, response) {
+    // get the name from the form
+    let name = request.body.name;
+
+    // get the supervisor's roster
+    let roster = await databaseFunctions.getRoster(databaseConnection, username, companyType);
+    console.log("Original Roster: " + roster);
+
+    // get the number of employees
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
+        companyType);
+    console.log("Original Number of Employees: " + numOfEmps);
+
+    // add the name to the roster
+    roster = roster + "," + name;
+    console.log("New Roster: " + roster);
+
+    // increment the number of employees
+    numOfEmps = numOfEmps + 1;
+    console.log("New Number of Employees: " + numOfEmps);
+
+    // update the roster
+    databaseFunctions.updateRoster(databaseConnection, username, roster, numOfEmps, 
+        companyType);
+
+    // FOR TESTING - print the supervisor's table
+    tester.printFullSupTable(databaseConnection, username, companyType);
+
+    // direct back to the update landing page
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
+});
+
+program.post("/removeEmp", async function(request, response) {
+    // get the name from the form
+    let name = request.body.name;
+
+    // get the supervisor's roster
+    let roster = await databaseFunctions.getRoster(databaseConnection, username, companyType);
+    console.log("Original Roster: " + roster);
+
+    // get the number of employees
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
+        companyType);
+    console.log("Original Number of Employees: " + numOfEmps);
+
+    // remove the name from the roster
+    let newRoster = serverFunctions.removeFromRoster(roster, name);
+    console.log("New Roster: " + newRoster);
+
+    // decrement the number of employees
+    numOfEmps = numOfEmps - 1;
+    console.log("New Number of Employees: " + numOfEmps);
+
+    // update the roster
+    databaseFunctions.updateRoster(databaseConnection, username, newRoster, numOfEmps, 
+        companyType);
+
+    // FOR TESTING - print the supervisor's table
+    tester.printFullSupTable(databaseConnection, username, companyType);
+
+    // direct back to the update landing page
+    response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
+});
+
 // for dynamically creating the supervisor forms
 program.get("/getNumOfEmps", async function(request, response) {
     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 

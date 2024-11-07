@@ -189,6 +189,124 @@ function printSupTable(databaseConnection, companyType) {
     }
 }
 
+function printFullSupWC(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Supervisor Email: " + sqlResult[0].supEmail);
+            console.log("Supervisor Name: " + sqlResult[0].supFullName);
+            console.log("Supervisor Company Name: " + sqlResult[0].companyName);
+            console.log("Supervisor Number of Employees: " + sqlResult[0].numOfEmps);
+            console.log("Supervisor Roster: " + sqlResult[0].roster); 
+            console.log("Supervisor Shift Hours: " + sqlResult[0].shiftHours);
+            console.log("Supervisor Multiple Locations: " + sqlResult[0].multLoc);
+            console.log("Supervisor Number of Locations: " + sqlResult[0].numOfLoc);
+            console.log("Supervisor Locations: " + sqlResult[0].locationNames);
+            console.log("Supervisor Training Days: " + sqlResult[0].trainingDays); 
+        }
+    });
+}
+
+function printFullSupR(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Supervisor Email: " + sqlResult[0].supEmail);
+            console.log("Supervisor Name: " + sqlResult[0].supFullName);
+            console.log("Supervisor Company Name: " + sqlResult[0].companyName);
+            console.log("Supervisor Number of Employees: " + sqlResult[0].numOfEmps);
+            console.log("Supervisor Roster: " + sqlResult[0].roster); 
+            console.log("Supervisor Number of Shifts: " + sqlResult[0].numOfShifts);
+            console.log("Supervisor Shift Weekdays: " + sqlResult[0].shiftDaysWeek);
+            console.log("Supervisor Shift Weekends: " + sqlResult[0].shiftDaysWeekend);
+            console.log("Supervisor Shift Hours: " + sqlResult[0].shiftHours);
+            console.log("Supervisor Multiple Locations: " + sqlResult[0].multLoc);
+            console.log("Supervisor Number of Locations: " + sqlResult[0].numOfLoc); 
+            console.log("Supervisor Locations: " + sqlResult[0].locationNames);
+        }
+    });
+}
+
+function printFullSupEF(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Supervisor Email: " + sqlResult[0].supEmail);
+            console.log("Supervisor Name: " + sqlResult[0].supFullName);
+            console.log("Supervisor Company Name: " + sqlResult[0].companyName);
+            console.log("Supervisor Number of Employees: " + sqlResult[0].numOfEmps);
+            console.log("Supervisor Roster: " + sqlResult[0].roster); 
+            console.log("Supervisor Number of Shifts: " + sqlResult[0].numOfShifts);
+            console.log("Supervisor Shift Weekdays: " + sqlResult[0].shiftDaysWeek);
+            console.log("Supervisor Shift Weekends: " + sqlResult[0].shiftDaysWeekend);
+            console.log("Supervisor Shift Hours: " + sqlResult[0].shiftHours);
+            console.log("Supervisor Multiple Locations: " + sqlResult[0].multLoc);
+            console.log("Supervisor Number of Locations: " + sqlResult[0].numOfLoc); 
+            console.log("Supervisor Locations: " + sqlResult[0].locationNames);
+            console.log("Supervisor Allergies: " + sqlResult[0].allergies);
+        }
+    });  
+}
+
+function printFullSupL(databaseConnection, queryCommand, table) {
+    databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
+        if (error) {
+            console.log("TEST ERROR: Unable to read from Supervisor table");
+        }
+        else {
+            console.log(table);
+            console.log(""); // spacing for readability
+            console.log("Supervisor Email: " + sqlResult[0].supEmail);
+            console.log("Supervisor Name: " + sqlResult[0].supFullName);
+            console.log("Supervisor Company Name: " + sqlResult[0].companyName);
+            console.log("Supervisor Number of Employees: " + sqlResult[0].numOfEmps);
+            console.log("Supervisor Roster: " + sqlResult[0].roster); 
+            console.log("Supervisor Number of Shifts: " + sqlResult[0].numOfShifts);
+            console.log("Supervisor Shift Hours: " + sqlResult[0].shiftHours);
+            console.log("Supervisor Multiple Locations: " + sqlResult[0].multLoc);
+            console.log("Supervisor Number of Locations: " + sqlResult[0].numOfLoc); 
+            console.log("Supervisor Locations: " + sqlResult[0].locationNames);
+            console.log("Supervisor Location Allergies: " + sqlResult[0].allergies);
+                  
+        }
+    });
+}
+
+function printFullSupTable(databaseConnection, email, companyType) {
+    // determine the table
+    let table = determineSupTable(companyType);
+    let queryCommand = 'SELECT * FROM schedularDatabase.' + table 
+        + ' WHERE supEmail = "' + email + '";';
+    
+    if (table == "wcSupInfo") {
+        printFullSupWC(databaseConnection, queryCommand, table);
+    }
+    else if (table == "rSupInfo") {
+        printFullSupR(databaseConnection, queryCommand, table);
+    }
+    else if (table == "eSupInfo" || table == "fSupInfo") {
+        printFullSupEF(databaseConnection, queryCommand, table);
+    }
+    else if (table == "lSupInfo") {
+        printFullSupL(databaseConnection, queryCommand, table);
+    }
+    else {
+        console.log("ERROR: Inavlide table name");
+    }
+}
+
 function printFullEmpWC(databaseConnection, queryCommand, table) {
     databaseConnection.query(queryCommand, function(error, sqlResult, tableInfo) {
         if (error) {
@@ -347,4 +465,4 @@ function determineSupTable(type) {
 }
 
 module.exports = {printEmpTable, printUserTable, printCompaniesServedTable,
-    printSupTable, printFullEmpTable};
+    printSupTable, printFullEmpTable, printFullSupTable};

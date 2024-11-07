@@ -1400,9 +1400,51 @@ function directQuestionnaire(response, companyType) {
     }
 }
 
+function removeFromRoster(roster, name) {
+    // convert the string to an array
+    let rosterArr = new Array();
+    stringToArray(roster, rosterArr);
+
+    // go through the array until find the name
+    let tempRoster = new Array();
+    for (let index = 0; index < rosterArr.length; index++) {
+        console.log("Name in the array: " + rosterArr[index]);
+        if (rosterArr[index] != name) {
+            console.log("Re-adding the name to the roster");
+            tempRoster.push(rosterArr[index]);
+        }
+        else {
+            console.log("Removing from the roster");
+        }
+    }
+
+    // convert the array to a string
+    let newRoster = tempRoster.toString();
+
+    // return the string
+    return newRoster;
+}
+
+function checkRoster(roster, empName) {
+    // convert the string to an array
+    let rosterArr = new Array();
+    stringToArray(roster, rosterArr);
+
+    // go through the array looking for the name
+    let found = false;
+    for (let index = 0; index < rosterArr.length; index++) {
+        if (rosterArr[index] == empName) {
+            found = true;
+            return found;
+        }
+    }
+
+    return found;
+}
+
 module.exports = {authenticateUser, checkPswds, determineRole, 
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
     directQuestionnaire, getLocationPref, getShiftTimePref, getWeekDayEnd, getDayPref,
-    getNumOfDays, getEmpAllergiesEF, getEmpAllergiesL};
+    getNumOfDays, getEmpAllergiesEF, getEmpAllergiesL, removeFromRoster, checkRoster};

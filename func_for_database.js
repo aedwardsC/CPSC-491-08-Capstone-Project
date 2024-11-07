@@ -180,6 +180,50 @@ function determineSupTable(type) {
     return table;
 }
 
+function determineEmpTableName(table) {
+    let name = "";
+
+    if (table == "wcEmpInfo") {
+        name = "White Collar Employee Table";
+    }
+    else if (table == "rEmpInfo") {
+        name = "Retail Employee Table";
+    }
+    else if (table == "eEmpInfo") {
+        name = "Entertainment Employee Table";
+    }
+    else if (table == "fEmpInfo") {
+        name = "Food Employee Table";
+    }
+    else if (table == "lEmpInfo") {
+        name = "Law Enforcement Table";
+    }
+
+    return name;
+}
+
+function determineSupTableName(table) {
+    let name = "";
+
+    if (table == "wcSupInfo") {
+        name = "White Collar Supervisor Table";
+    }
+    else if (table == "rSupInfo") {
+        name = "Retail Supervisor Table";
+    }
+    else if (table == "eSupInfo") {
+        name = "Entertainment Supervisor Table";
+    }
+    else if (table == "fSupInfo") {
+        name = "Food Supervisor Table";
+    }
+    else if (table == "lSupInfo") {
+        name = "Law Enforcement Supervisor Table";
+    }
+
+    return name;
+}
+
 // functions for storing information
 function storeGeneralSignUpInfo(databaseConnection, email, uname, 
     fname, lname, password, status) {
@@ -620,6 +664,51 @@ function storeLEmpPref(databaseConnection, email, nickname, serveYears, allergie
     }
 }
 
+function updateTimeOff(databaseConnection, email, timeOff, companyType) {
+    // determine the table the employee belongs to
+    let table = determineEmpTable(companyType);
+    if (table == "") {
+        console.log("ERROR: Unable to determine Employee's Table - invalid company type");
+    }
+    else {
+        let tableName = determineEmpTableName(table);
+        let queryCommand = buildSingleEmpUpdate(table, "timeOff", timeOff, email);
+        addPref(databaseConnection, queryCommand, "time off", tableName);
+    }
+}
+
+function updateRoster(databaseConnection, email, roster, num, companyType) {
+    // determine the table
+    let table = determineSupTable(companyType);
+    if (table == "") {
+        console.log("ERROR: Unable to determine Supervisor's table - Invalid company type");
+    }
+    else {
+        let tableName = determineSupTableName(table);
+        let queryCommand = 'UPDATE schedularDatabase.' + table + ' SET '
+            + 'roster = "' + roster + '" WHERE supEmail = "' + email + '";';
+        databaseConnection.query(queryCommand, function(error, sqlResult) {
+            if (error) {
+                console.log("ERROR: Unable to update the roster in " + tableName);
+            }
+            else {
+                console.log("SUCCESS: Updated the roster in " + tableName);
+            }
+        });
+
+        let query2 = 'UPDATE schedularDatabase.' + table + ' SET '
+            + 'numOfEmps = ' + num + ';';
+        databaseConnection.query(query2, function(error, sqlResult) {
+            if (error) {
+                console.log("ERROR: Unable to update the number of employees in " + tableName);
+            }
+            else {
+                console.log("SUCCESS: Updated the number of employees in " + tableName);
+            }
+        });
+    }
+}
+
 // retrieving information
 function determineStored(databaseConnection) {
     let queryCommand = "SELECT companyName FROM schedularDatabase.companiesServed;";
@@ -920,6 +1009,43 @@ async function getSupervisor(databaseConnection, email, companyType) {
     }
 }
 
+function getEmpEmail(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve employee's email");
+            }
+            else {
+                // get the email
+                let email = sqlResult[0].email;
+                console.log("In getEmpEmail - email: " + email);
+
+                // return the email
+                resolve(email);
+            }
+        });
+    });
+}
+
+async function getEmployee(databaseConnection, supName, empName, companyType) {
+    // get the employee table for the company type
+    let table = determineEmpTable(companyType);
+    if (table == "") {
+        console.log("ERROR: Unable to determine Employee Table - Invalid company type");
+    }
+    else {
+        // search the table where matches: fullName, nickname, supName
+        let queryCommand = 'SELECT email FROM schedularDatabase.' + table
+            + ' WHERE (fullName = "' + empName + '" OR nickname = "' + empName + '")'
+            + ' AND supName = "' + supName + '";';
+        let empEmail = await getEmpEmail(databaseConnection, queryCommand);
+
+        // verify the returning email in the console
+        console.log("In getEmployee - empEmail: " + empEmail);
+        return empEmail;
+    }
+}
+
 function retrieveDaysFromTable(databaseConnection, queryCommand, dayType) {
     return new Promise((resolve, reject) => {
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
@@ -1064,9 +1190,48 @@ async function getLocationNames(databaseConnection, supervisor, companyType) {
     }
 }
 
+function retrieveRosterFromTable(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve roster from supervisor table");
+            }
+            else {
+                // get the roster
+                let roster = sqlResult[0].roster;
+                console.log("Roster in retrieveRosterFromTable: " + roster);
+
+                // return the roster
+                resolve(roster);
+            }
+        });
+    });
+}
+
+async function getRoster(databaseConnection, email, companyType) {
+    // get the supervisor's table
+    let table = determineSupTable(companyType);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in getRoster - Invalid companyType");
+    }
+    else {
+        let queryCommand = 'SELECT roster FROM schedularDatabase.' + table
+            + ' WHERE supEmail = "' + email + '";';
+        
+        // get the names of the locations
+        let roster = await retrieveRosterFromTable(databaseConnection, queryCommand);
+        console.log("Roster in getRoster = " + roster);
+
+        // return the string
+        return roster;
+    }
+}
+
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames, storeREmpPref,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
     getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
-    getLocationNames, storeWCEmpPref, getWeekdays, getWeekends, storeEFEmpPref, storeLEmpPref};
+    getLocationNames, storeWCEmpPref, getWeekdays, getWeekends, storeEFEmpPref, storeLEmpPref,
+    getEmployee, updateTimeOff, getRoster, updateRoster};
