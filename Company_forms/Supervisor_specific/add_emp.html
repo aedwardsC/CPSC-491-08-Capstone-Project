@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+            
+            h1 {
+                color: black;
+                text-align: center;
+                font-size: 40px;
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 600px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <h1>Add an Employee</h1>
+            <form action="/addRemove" method="post">
+                <input class="button" type="submit" value="Back"/>
+            </form>
+            <br>
+            <br>
+            <form action="/addEmp" method="post">
+                <label class="regInput" for="nameLabel1">Enter the full name or nickname of the employee</label>
+                <br>
+                <label class="regInput" for="nameLabel2">that you wish to add to your roster:</label>
+                <br>
+                <input class="regInput" type="text" name="name" id="name" placeholder="Full Name or Nickname"/>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Add"/>
+            </form>
+        </div>
+    </body>
+</html>

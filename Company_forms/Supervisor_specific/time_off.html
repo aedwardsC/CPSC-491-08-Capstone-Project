@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(88, 155, 243, 0.76);
+            }
+            
+            h1 {
+                color: black;
+                text-align: center;
+                font-size: 40px;
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 600px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .regInput {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br>
+            <h1>Update Time Off</h1>
+            <form action="/updateEmpInfo" method="post">
+                <input class="button" type="submit" value="Back"/>
+            </form>
+            <br>
+            <br>
+            <form action="/updateTimeOff" method="post">
+                <label class="regInput" for="nameLabel">Who has approved time off?</label>
+                <br>
+                <input class="regInput" type="text" name="name" id="name" placeholder="Employee Name"/>
+                <br>
+                <br>
+                <label class="regInput" for="timeOffLabel1">What day(s) (including vacation/sick leave/personal time/training)</label>
+                <br>
+                <label class="regInput" for="timeOffLabel2">does the employee have off?</label>
+                <br>
+                <label class="regInput" for="timeOffLabel3">Mark the date in MM/DD/YYYY. If multiple days,</label>
+                <br>
+                <label class="regInput" for="timeOffLabel4">provide the first and last day separated by a dash</label>
+                <br>
+                <label class="regInput" for="timeOffLabel5">(MM/DD/YYYY-MM/DD/YYYY).</label>
+                <br>
+                <input class="regInput" type="text" name="timeOff" id="timeOff" placeholder="MM/DD/YYYY or MM/DD/YYYY-MM/DD/YYYY"/>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
+        </div>
+    </body>
+</html>

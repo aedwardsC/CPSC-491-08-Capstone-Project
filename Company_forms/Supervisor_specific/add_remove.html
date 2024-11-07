@@ -25,31 +25,29 @@
 
             h2 {
                 color: white;
-                font-size: 25px;
+                font-size: 40px;
                 text-align: center;
             }
 
         </style>
     </head>
     <body>
-        <h1>Update Employee Information</h1>
-        <h2>You've chosen to update your employee(s)' information.</h2>
-        <h2>You can update time off or add/remove</h2>
-        <h2>an employee from your roster.</h2>
-        <h2>What would you like to do?</h2>
+        <h1>Add or Remove</h1>
+        <h2>You've chosen to update your roster.</h2>
+        <h2>Which would you like to do?</h2>
         <br>
         <br>
-        <form action="/timeOff" method="post">
-            <input class="button" type="submit" value="Update Time Off"/>
+        <form action="/add" method="post">
+            <input class="button" type="submit" value="Add"/>
         </form>
         <br>
         <br>
-        <form action="/addRemove" method="post">
-            <input class="button" type="submit" value="Add / Remove"/>
+        <form action="/remove" method="post">
+            <input class="button" type="submit" value="Remove"/>
         </form>
         <br>
-        <form action="/returnHomeSup" method="post">
-            <input class="button" type="submit" value="Home"/>
+        <form action="/updateEmpInfo" method="post">
+            <input class="button" type="submit" value="Back"/>
         </form>
     </body>
 </html>
