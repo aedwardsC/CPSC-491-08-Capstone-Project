@@ -6,25 +6,3137 @@
             body {
                 background-color: rgba(88, 155, 243, 0.76);
             }
-            
+
             h1 {
-                color: blue;
+                color: black;
                 text-align: center;
-                font-size: 59px;
+                font-size: 60px;
             }
 
             div {
                 background-color: rgb(229, 229, 232);
-                height: 600px;
-                width: 600px;
-                margin-top: 50px;
-                margin-left:300px;
+                height: 2000px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
             }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            .box {
+                margin-left: 300px;
+            }
+
+            .formInfo {
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 16px;
+            }
+
+            .labelInfo {
+                color: rgb(78, 76, 76); 
+                width: 430px;
+                height: 30px;
+                margin-left: 300px;
+                font-size: 20px;
+            }
+
+            .boxL {
+                font-size: 16px;
+            }
+
         </style>
     </head>
     <body>
         <div>
-            <h1>Check Schedule</h1>
+            <h1>My Schedule Preferences</h1>
+            <br>
+            <label class="labelInfo">*As a reminder, all answers are voluntary</label>
+            <br>
+            <br>
+            <label class="labelInfo">*If you are updating your preference(s),</label>
+            <br>
+            <label class="labelInfo">   please leave the questions that you do not</label>
+            <br>
+            <label class="labelInfo">   want to change blank</label>
+            <br>
+            <br>
+            <form action="/sched_check" method="post">
+                <button type="button" class="button" onClick="genChoices()">
+                    Press to Generate
+                </button>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+                <br>
+                <br>
+                <label class="formInfo" id="emp1" for="emp1">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable1" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.1" value=""/>
+                <label class="boxL" id="shiftLabel1.1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.2" value=""/>
+                <label class="boxL" id="shiftLabel1.2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.3" value=""/>
+                <label class="boxL" id="shiftLabel1.3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.4" value=""/>
+                <label class="boxL" id="shiftLabel1.4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.5" value=""/>
+                <label class="boxL" id="shiftLabel1.5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.6" value=""/>
+                <label class="boxL" id="shiftLabel1.6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.7" value=""/>
+                <label class="boxL" id="shiftLabel1.7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.8" value=""/>
+                <label class="boxL" id="shiftLabel1.8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.9" value=""/>
+                <label class="boxL" id="shiftLabel1.9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift1" id="shift1.10" value=""/>
+                <label class="boxL" id="shiftLabel1.10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable1" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.1" value=""/>
+                <label class="boxL" id="locationLabel1.1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.2" value=""/>
+                <label class="boxL" id="locationLabel1.2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.3" value=""/>
+                <label class="boxL" id="locationLabel1.3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.4" value=""/>
+                <label class="boxL" id="locationLabel1.4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.5" value=""/>
+                <label class="boxL" id="locationLabel1.5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.6" value=""/>
+                <label class="boxL" id="locationLabel1.6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.7" value=""/>
+                <label class="boxL" id="locationLabel1.7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.8" value=""/>
+                <label class="boxL" id="locationLabel1.8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.9" value=""/>
+                <label class="boxL" id="locationLabel1.9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location1" id="location1.10" value=""/>
+                <label class="boxL" id="locationLabel1.10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable1" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day1" id="day1.1" value=""/>
+                <label class="boxL" id="dayLabel1.1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day2" id="day1.2" value=""/>
+                <label class="boxL" id="dayLabel1.2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day3" id="day1.3" value=""/>
+                <label class="boxL" id="dayLabel1.3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day4" id="day1.4" value=""/>
+                <label class="boxL" id="dayLabel1.4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day5" id="day1.5" value=""/>
+                <label class="boxL" id="dayLabel1.5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day6" id="day1.6" value=""/>
+                <label class="boxL" id="dayLabel1.6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day7" id="day1.7" value=""/>
+                <label class="boxL" id="dayLabel1.7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp2" for="emp2">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable2" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.1" value=""/>
+                <label class="boxL" id="shiftLabel2.1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.2" value=""/>
+                <label class="boxL" id="shiftLabel2.2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.3" value=""/>
+                <label class="boxL" id="shiftLabel2.3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.4" value=""/>
+                <label class="boxL" id="shiftLabel2.4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.5" value=""/>
+                <label class="boxL" id="shiftLabel2.5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.6" value=""/>
+                <label class="boxL" id="shiftLabel2.6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.7" value=""/>
+                <label class="boxL" id="shiftLabel2.7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.8" value=""/>
+                <label class="boxL" id="shiftLabel2.8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.9" value=""/>
+                <label class="boxL" id="shiftLabel2.9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift2" id="shift2.10" value=""/>
+                <label class="boxL" id="shiftLabel2.10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable2" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.1" value=""/>
+                <label class="boxL" id="locationLabel2.1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.2" value=""/>
+                <label class="boxL" id="locationLabel2.2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.3" value=""/>
+                <label class="boxL" id="locationLabel2.3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.4" value=""/>
+                <label class="boxL" id="locationLabel2.4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.5" value=""/>
+                <label class="boxL" id="locationLabel2.5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.6" value=""/>
+                <label class="boxL" id="locationLabel2.6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.7" value=""/>
+                <label class="boxL" id="locationLabel2.7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.8" value=""/>
+                <label class="boxL" id="locationLabel2.8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.9" value=""/>
+                <label class="boxL" id="locationLabel2.9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location2" id="location2.10" value=""/>
+                <label class="boxL" id="locationLabel2.10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable2" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day8" id="day2.1" value=""/>
+                <label class="boxL" id="dayLabel2.1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day9" id="day2.2" value=""/>
+                <label class="boxL" id="dayLabel2.2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day10" id="day2.3" value=""/>
+                <label class="boxL" id="dayLabel2.3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day11" id="day2.4" value=""/>
+                <label class="boxL" id="dayLabel2.4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day12" id="day2.5" value=""/>
+                <label class="boxL" id="dayLabel2.5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day13" id="day2.6" value=""/>
+                <label class="boxL" id="dayLabel2.6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day14" id="day2.7" value=""/>
+                <label class="boxL" id="dayLabel2.7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp3" for="emp3">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable3" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.1" value=""/>
+                <label class="boxL" id="shiftLabel3.1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.2" value=""/>
+                <label class="boxL" id="shiftLabel3.2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.3" value=""/>
+                <label class="boxL" id="shiftLabel3.3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.4" value=""/>
+                <label class="boxL" id="shiftLabel3.4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.5" value=""/>
+                <label class="boxL" id="shiftLabel3.5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.6" value=""/>
+                <label class="boxL" id="shiftLabel3.6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.7" value=""/>
+                <label class="boxL" id="shiftLabel3.7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.8" value=""/>
+                <label class="boxL" id="shiftLabel3.8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.9" value=""/>
+                <label class="boxL" id="shiftLabel3.9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift3" id="shift3.10" value=""/>
+                <label class="boxL" id="shiftLabel3.10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location3" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day15" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day16" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day17" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day18" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day19" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day20" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day21" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp4" for="emp4">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift4" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location4" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day22" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day23" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day24" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day25" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day26" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day27" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day28" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp5" for="emp5">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift5" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location5" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day29" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day30" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day31" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day32" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day33" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day34" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day35" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp6" for="emp6">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift6" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location6" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day36" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day37" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day38" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day39" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day40" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day41" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day42" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp7" for="emp7">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift7" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location7" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day43" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day44" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day45" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day46" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day47" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day48" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day49" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp8" for="emp8">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift8" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location8" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day50" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day51" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day52" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day53" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day54" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day55" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day56" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp9" for="emp9">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift9" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location9" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day57" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day58" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day59" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day60" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day61" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day62" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day63" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp10" for="emp10">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift10" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location10" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day64" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day65" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day66" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day67" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day68" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day69" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day70" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp11" for="emp11">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift11" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location11" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day71" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day72" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day73" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day74" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day75" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day76" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day77" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp12" for="emp12">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift12" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location12" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day78" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day79" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day80" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day81" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day82" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day83" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day84" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp13" for="emp13">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift13" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location13" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day85" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day86" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day87" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day88" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day89" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day90" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day91" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp14" for="emp14">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift14" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location14" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day92" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day93" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day94" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day95" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day96" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day97" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day98" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp15" for="emp15">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift15" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location15" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day99" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day100" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day101" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day102" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day103" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day104" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day105" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp16" for="emp16">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift16" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location16" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day106" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day107" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day108" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day109" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day110" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day111" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day112" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp17" for="emp17">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift17" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location17" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day113" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day114" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day115" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day116" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day117" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day118" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day119" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp18" for="emp18">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift18" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location18" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day120" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day121" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day122" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day123" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day124" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day125" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day126" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp19" for="emp19">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift19" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location19" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day127" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day128" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day129" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day130" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day131" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day132" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day133" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp20" for="emp20">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift20" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location20" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day134" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day135" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day136" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day137" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day138" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day139" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day140" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp21" for="emp21">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift21" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location21" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day141" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day142" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day143" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day144" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day145" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day146" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day147" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp22" for="emp22">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift22" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location22" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day148" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day149" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day150" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day151" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day152" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day153" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day154" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp23" for="emp23">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift23" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location23" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day155" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day156" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day157" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day158" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day159" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day160" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day161" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp24" for="emp24">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift24" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location24" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day162" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day163" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day164" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day165" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day166" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day167" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day168" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp25" for="emp25">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift25" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location25" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day169" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day170" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day171" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day172" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day173" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day174" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day175" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp26" for="emp26">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift26" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location26" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day176" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day177" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day178" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day179" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day180" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day181" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day182" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp27" for="emp27">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift27" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location27" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day183" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day184" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day185" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day186" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day187" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day188" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day189" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp28" for="emp28">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift28" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location28" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day190" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day191" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day192" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day193" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day194" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day195" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day196" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp29" for="emp29">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift29" id="shift10" value=""/>
+                <label class="boxL" id="shiftLabel10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location2" value=""/>
+                <label class="boxL" id="locationLabel2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="locationt3" value=""/>
+                <label class="boxL" id="locationLabel3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location4" value=""/>
+                <label class="boxL" id="locationLabel4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location5" value=""/>
+                <label class="boxL" id="locationLabel5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location6" value=""/>
+                <label class="boxL" id="locationLabel6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location7" value=""/>
+                <label class="boxL" id="locationLabel7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="locationt8" value=""/>
+                <label class="boxL" id="locationLabel8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location9" value=""/>
+                <label class="boxL" id="locationLabel9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location29" id="location10" value=""/>
+                <label class="boxL" id="locationLabel10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day197" id="day1" value=""/>
+                <label class="boxL" id="dayLabel1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day198" id="day2" value=""/>
+                <label class="boxL" id="dayLabel2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day199" id="day3" value=""/>
+                <label class="boxL" id="dayLabel3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day200" id="day4" value=""/>
+                <label class="boxL" id="dayLabel4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day201" id="day5" value=""/>
+                <label class="boxL" id="dayLabel5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day202" id="day6" value=""/>
+                <label class="boxL" id="dayLabel6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day203" id="day7" value=""/>
+                <label class="boxL" id="dayLabel7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <label class="formInfo" id="emp30" for="emp30">Select the Shift information for: </label>
+                <br>
+                <label class="formInfo" id="shiftLable30" for="shiftLable">Select the shift time:</label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.1" value=""/>
+                <label class="boxL" id="shiftLabel1" for="shift1"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.2" value=""/>
+                <label class="boxL" id="shiftLabel2" for="shift2"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.3" value=""/>
+                <label class="boxL" id="shiftLabel3" for="shift3"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.4" value=""/>
+                <label class="boxL" id="shiftLabel4" for="shift4"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.5" value=""/>
+                <label class="boxL" id="shiftLabel5" for="shift5"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.6" value=""/>
+                <label class="boxL" id="shiftLabel6" for="shift6"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.7" value=""/>
+                <label class="boxL" id="shiftLabel7" for="shift7"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.8" value=""/>
+                <label class="boxL" id="shiftLabel8" for="shift8"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.9" value=""/>
+                <label class="boxL" id="shiftLabel9" for="shift9"></label>
+                <br>
+                <input class="box" type="hidden" name="shift30" id="shift30.10" value=""/>
+                <label class="boxL" id="shiftLabel29.10" for="shift10"></label>
+                <br>
+                <label class="formInfo" id="locationLable30" for="locationLable">Select the location: </label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.1" value=""/>
+                <label class="boxL" id="locationLabel1" for="locationLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.2" value=""/>
+                <label class="boxL" id="locationLabel30.2" for="locationLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="locationt30.3" value=""/>
+                <label class="boxL" id="locationLabel30.3" for="locationLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.4" value=""/>
+                <label class="boxL" id="locationLabel30.4" for="locationLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.5" value=""/>
+                <label class="boxL" id="locationLabel30.5" for="locationLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.6" value=""/>
+                <label class="boxL" id="locationLabel30.6" for="locationLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.7" value=""/>
+                <label class="boxL" id="locationLabel30.7" for="locationLabel7"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="locationt30.8" value=""/>
+                <label class="boxL" id="locationLabel30.8" for="locationLabel8"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.9" value=""/>
+                <label class="boxL" id="locationLabel30.9" for="locationLabel9"></label>
+                <br>
+                <input class="box" type="hidden" name="location30" id="location30.10" value=""/>
+                <label class="boxL" id="locationLabel30.10" for="locationLabel10"></label>
+                <br>
+                <label class="formInfo" id="dayLable30" for="dayLable">Select the day(s): </label>
+                <br>
+                <input class="box" type="hidden" name="day204" id="day30.1" value=""/>
+                <label class="boxL" id="dayLabel30.1" for="dayLabel1"></label>
+                <br>
+                <input class="box" type="hidden" name="day205" id="day30.2" value=""/>
+                <label class="boxL" id="dayLabel30.2" for="dayLabel2"></label>
+                <br>
+                <input class="box" type="hidden" name="day206" id="day30.3" value=""/>
+                <label class="boxL" id="dayLabel30.3" for="dayLabel3"></label>
+                <br>
+                <input class="box" type="hidden" name="day207" id="day30.4" value=""/>
+                <label class="boxL" id="dayLabel30.4" for="dayLabel4"></label>
+                <br>
+                <input class="box" type="hidden" name="day208" id="day30.5" value=""/>
+                <label class="boxL" id="dayLabel30.5" for="dayLabel5"></label>
+                <br>
+                <input class="box" type="hidden" name="day209" id="day30.6" value=""/>
+                <label class="boxL" id="dayLabel30.6" for="dayLabel6"></label>
+                <br>
+                <input class="box" type="hidden" name="day210" id="day30.7" value=""/>
+                <label class="boxL" id="dayLabel30.7" for="dayLabel7"></label>
+                <br>
+                <br>
+                <input class="button" type="submit" value="Submit"/>
+            </form>
         </div>
+        <script type="text/javascript">
+            async function genChoices() {
+                // get the roster
+                let rosterInit = await fetch("/getRoster");
+                if (!rosterInit.ok) {
+                    console.log("ERROR: issue with getting the roster");
+                }
+                let rosterStr = await rosterInit.json();
+                // convert string to an array
+                let roster = new Array();
+                let sIndex = 0;
+                while (sIndex < rosterStr.length) {
+                    let name = "";
+                    while (rosterStr[sIndex] != "," && sIndex < rosterStr.length) {
+                        name = name + rosterStr[sIndex];
+                        sIndex++;
+                    }
+                    roster.push(name);
+                    sIndex++;
+                }
+                console.log("Roster = " + roster);
+                let numOfEmps = roster.length;
+                console.log("Number of Employees = " + numOfEmps);
+
+                // generate the intro
+                for (let index = 0; index < roster.length; index++) {
+                    document.getElementById("emp" + (index + 1)).innerHTML = "Select the Shift Information for: " + roster[index];   
+                }
+
+                // get the company type
+                let companyTypeInit = await fetch("/getSupCompType");
+                if (!companyTypeInit.ok) {
+                    console.log("ERROR: issue with getting the company type");
+                }
+                let companyType = await companyTypeInit.json();
+                console.log("Company type = " + companyType);
+                
+                // get the shift information
+                let shiftsResp = await fetch("/getShifts");
+                if (!shiftsResp.ok) {
+                    console.log("ERRROR: issue with getting the shifts");
+                }
+                let shiftStr = await shiftsResp.json();
+                
+                // parse the shifts string into the array
+                let shifts = new Array();
+                sIndex = 0;
+                while (sIndex < shiftStr.length) {
+                    let time = "";
+                    while (shiftStr[sIndex] != "," && sIndex < shiftStr.length) {
+                        if (shiftStr[sIndex] == "-") {
+                            time = time + " - ";
+                        }
+                        else {
+                            time = time + shiftStr[sIndex];
+                        }
+                        sIndex++;
+                    }
+                    shifts.push(time);
+                    sIndex++;
+                }
+
+                // generate the shift time intro
+                document.getElementById("shiftLabel").innerHTML = "Select the shift time:";
+
+                // generate the shift values
+                if (companyType == "whiteCollar") {
+                    // display the first shift
+                    document.getElementById("shift1").type = "radio";
+                    document.getElementById("shift1").value = shifts[0];
+                    document.getElementById("shiftLabel1").innerHTML = shifts[0];
+                    
+                    // see if there is a second shift
+                    if (shifts.length > 1) {
+                        document.getElementById("shift2").type = "radio";
+                        document.getElementById("shift2").value = shifts[1];
+                        document.getElementById("shiftLabel2").innerHTML = shifts[1];
+                    }
+                }
+                else { // for all other company types
+                    for (let index = 0; index < shifts.length; index++) {
+                        document.getElementById("shift" + (index + 1)).type = "radio";
+                        document.getElementById("shift" + (index + 1)).value = shifts[index];
+                        document.getElementById("shiftLabel" + (index + 1)).innerHTML = shifts[index];
+                    }
+                }
+                
+                // see if there are multiple locations
+                let multLocResp = await fetch("/getMultLocSup");
+                if (!multLocResp.ok) {
+                    console.log("ERRROR: issue with getting Y/N of multiple locations");
+                }
+                let multLoc = await multLocResp.json();
+                // if there are, get the number and generate the locations
+                if (multLoc == "yes") {
+                    // create the labels
+                    document.getElementById("locationLable").innerHTML = "Select the location:";
+                    
+                    // get the location names
+                    let locationsResp = await fetch("/getLocationNamesSup");
+                    if (!locationsResp.ok) {
+                        console.log("ERRROR: issue with getting location names");
+                    }
+                    let locNames = await locationsResp.json();
+
+                    // parse the location string into the array
+                    let locations = new Array();
+                    let index = 0;
+                    while (index < locNames.length) {
+                        let loc = "";
+                        while (locNames[index] != "," && index < locNames.length) {
+                            loc = loc + locNames[index];
+                            index++;
+                        }
+                        locations.push(loc);
+                        index++;
+                    }
+
+                    // generate the location checkboxes
+                    for (let i = 0; i < locations.length; i++) {
+                        document.getElementById("location" + (i + 1)).type = "radio";
+                        document.getElementById("location" + (i + 1)).value = locations[i];
+                        document.getElementById("locationLabel" + (i + 1)).innerHTML = locations[i];
+                    }
+                }
+
+                // only for retail, entertainment, and food
+                if (companyType != "whiteCollar" && companyType != "lawEnforcement") {
+                    document.getElementById("dayLabel").innerHTML = "Select the day(s):";
+                    
+                    // get the weekday shifts
+                    let weekdayResp = await fetch("/getWeekdaysEmp");
+                    if (!weekdayResp.ok) {
+                        console.log("ERRROR: issue with getting the week days shifts");
+                    }
+                    let weekdays = await weekdayResp.json();
+                    // get the weekend shifts
+                    let weekendResp = await fetch("/getWeekendEmp");
+                    if (!weekendResp.ok) {
+                        console.log("ERRPR: issue with getting the week days shifts");
+                    }
+                    let weekends = await weekendResp.json();
+                    console.log("Weekends: " + weekends);
+                    
+                    // parse the weekdays and weekends into an array for display
+                    let days = new Array();
+                    if (weekdays!= "") {
+                        let index = 0;
+                        while (index < weekdays.length) {
+                            let day = "";
+                            while (weekdays[index] != "," && index < weekdays.length) {
+                                day = day + weekdays[index];
+                                index++;
+                            }
+                            days.push(day);
+                            console.log("Day: " + day);
+                            index++;
+                        }
+                        console.log("Days: " + days);
+                    }
+                    if (weekends != "") {
+                        let index = 0;
+                        while (index < weekends.length) {
+                            let day = "";
+                            console.log("Weekends[" + index + "]: " + weekends[index]);
+                            while (weekends[index] != "," && index < weekends.length) {
+                                day = day + weekends[index];
+                                index++;
+                            }
+                            console.log("Day: " + day);
+                            days.push(day);
+                            index++;
+                        }
+                        console.log("Days: " + days);
+                    }
+                    
+                    // generate the day checkboxes
+                    console.log("Days = " + days);
+                    for (let i = 0; i < days.length; i++) {
+                        document.getElementById("day" + (i + 1)).type = "checkbox";
+                        document.getElementById("day" + (i + 1)).value = days[i];
+                        document.getElementById("dayLabel" + (i + 1)).innerHTML = days[i];
+                    }
+                }
+
+
+                /*
+                // generate the information for the nickname info
+                document.getElementById("nickName1").innerHTML = "Do you go by a nickname at work?";
+                document.getElementById("nickName2").innerHTML = "If yes, enter it below:";
+                document.getElementById("nickname").type = "text";
+
+                // generate the information for the shift times
+                document.getElementById("shiftLabel").innerHTML = "Which shift(s) (time) would you prefer to work?";
+                // get the shift times
+                let shiftsResp = await fetch("/getShifts");
+                if (!shiftsResp.ok) {
+                    console.log("ERRROR: issue with getting the shifts");
+                }
+                let shiftStr = await shiftsResp.json();
+                
+                // parse the shifts string into the array
+                let shifts = new Array();
+                let sIndex = 0;
+                while (sIndex < shiftStr.length) {
+                    let time = "";
+                    while (shiftStr[sIndex] != "," && sIndex < shiftStr.length) {
+                        if (shiftStr[sIndex] == "-") {
+                            time = time + " - ";
+                        }
+                        else {
+                            time = time + shiftStr[sIndex];
+                        }
+                        sIndex++;
+                    }
+                    shifts.push(time);
+                    sIndex++;
+                }
+                console.log("Shifts = " + shifts);
+
+                // get the number of shifts
+                let numShiftsResp = await fetch("/getShiftNumEmp");
+                if (!numShiftsResp.ok) {
+                    console.log("ERROR: issue getting number of shifts");
+                }
+                let numS = await numShiftsResp.json();
+                console.log("Number of Shifts: " + numS);
+                let numShifts = parseInt(numS, 10);
+
+                // display the shifts
+                for (let index = 1; index <= numShifts; index++) {
+                    document.getElementById("shift" + index).type = "checkbox";
+                    document.getElementById("shift" + index).value = shifts[index - 1];
+                    document.getElementById("shiftLabel" + index).innerHTML = shifts[index - 1];
+                }
+
+                // get if shifts are on weekdays, weekends, or both
+                // get the weekday shifts
+                let weekdayResp = await fetch("/getWeekdaysEmp");
+                if (!weekdayResp.ok) {
+                    console.log("ERRROR: issue with getting the week days shifts");
+                }
+                let weekdays = await weekdayResp.json();
+
+                // get the weekend shifts
+                let weekendResp = await fetch("/getWeekendEmp");
+                if (!weekendResp.ok) {
+                    console.log("ERRPR: issue with getting the week days shifts");
+                }
+                let weekends = await weekendResp.json();
+                console.log("Weekends: " + weekends);
+
+                // see if shifts include both weekdays and weekends
+                if (weekdays != "" && weekends != "") {
+                    document.getElementById("weekLabel1").innerHTML = "Would you prefer to work";
+                    document.getElementById("weekLabel2").innerHTML = "weekdays or weekends?";
+                    document.getElementById("weekdays").type = "checkbox";
+                    document.getElementById("weekdaysLabel").innerHTML = "Weekdays";
+                    document.getElementById("weekends").type = "checkbox";
+                    document.getElementById("weekendsLabel").innerHTML = "Weekends";
+                }
+
+                // parse the weekdays and weekends into an array for display
+                let days = new Array();
+                if (weekdays!= "") {
+                    let index = 0;
+                    while (index < weekdays.length) {
+                        let day = "";
+                        while (weekdays[index] != "," && index < weekdays.length) {
+                            day = day + weekdays[index];
+                            index++;
+                        }
+                        days.push(day);
+                        console.log("Day: " + day);
+                        index++;
+                    }
+                    console.log("Days: " + days);
+                }
+                if (weekends != "") {
+                    let index = 0;
+                    while (index < weekends.length) {
+                        let day = "";
+                        console.log("Weekends[" + index + "]: " + weekends[index]);
+                        while (weekends[index] != "," && index < weekends.length) {
+                            day = day + weekends[index];
+                            index++;
+                        }
+                        console.log("Day: " + day);
+                        days.push(day);
+                        index++;
+                    }
+                    console.log("Days: " + days);
+                }
+
+                // generate the question labels
+                document.getElementById("dayLabel").innerHTML = "What day(s) would you prefer to work?";
+                
+                // generate the day checkboxes
+                console.log("Days = " + days);
+                for (let i = 1; i <= days.length; i++) {
+                    console.log("i = " + i);
+                    document.getElementById("day" + i).type = "checkbox";
+                    document.getElementById("day" + i).value = days[i - 1];
+                    document.getElementById("labelDay" + i).innerHTML = days[i - 1];
+                }
+
+                // see if there are multiple locations
+                let multLocResp = await fetch("/getMultLoc");
+                if (!multLocResp.ok) {
+                    console.log("ERRROR: issue with getting Y/N of multiple locations");
+                }
+                let multLoc = await multLocResp.json();
+                // if there are, get the number and generate the locations
+                if (multLoc == "yes") {
+                    // create the labels
+                    document.getElementById("locationInstr1").innerHTML = "What location(s) would you prefer to work at?";
+                    document.getElementById("locationInstr2").innerHTML = "Select all that apply:";
+                    
+                    // get the number of locations
+                    let numLocResp = await fetch("/getNumLocEmp");
+                    if (!numLocResp.ok) {
+                        console.log("ERROR: issue getting number of locations");
+                    }
+                    let num = await numLocResp.json();
+                    console.log("Number of Locations: " + num);
+                    let numLoc = parseInt(num, 10);
+
+                    // get the location names
+                    let locationsResp = await fetch("/getLocationNames");
+                    if (!locationsResp.ok) {
+                        console.log("ERRROR: issue with getting Y/N of multiple locations");
+                    }
+                    let locNames = await locationsResp.json();
+
+                    // parse the location string into the array
+                    let locations = new Array();
+                    let index = 0;
+                    while (index < locNames.length) {
+                        let loc = "";
+                        while (locNames[index] != "," && index < locNames.length) {
+                            loc = loc + locNames[index];
+                            index++;
+                        }
+                        locations.push(loc);
+                        index++;
+                    }
+
+                    // generate the location checkboxes
+                    for (let i = 1; i <= numLoc; i++) {
+                        document.getElementById("location" + i).type = "checkbox";
+                        document.getElementById("location" + i).value = locations[i - 1];
+                        document.getElementById("locationLabel" + i).innerHTML = locations[i - 1];
+                    }
+                } */
+            }
+        </script>
     </body>
 </html>
