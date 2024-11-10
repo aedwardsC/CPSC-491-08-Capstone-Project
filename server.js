@@ -1144,6 +1144,69 @@ program.get("/getWeekendEmp", async function(request, response) {
     response.send(JSON.stringify(weekends));
 });
 
+program.get("/getRoster", async function(request, response) {
+    // get the roster from the database
+    let roster = await databaseFunctions.getRoster(databaseConnection, username, companyType);
+    console.log("Roster: " + roster);
+
+    // send the roster
+    response.send(JSON.stringify(roster));
+});
+
+program.get("/getSupCompType", async function(request, response) {
+    // send the company type
+    response.send(JSON.stringify(companyType));
+});
+
+program.get("/getShiftsSup", async function(request, response) {
+    // get the shift(s)
+    let shifts = await databaseFunctions.getShifts(databaseConnection, username, 
+        companyType);
+
+    console.log("Shifts: " + shifts);
+    // send the shift(s)
+    response.send(JSON.stringify(shifts));  
+});
+
+program.get("/getMultLocSup", async function(request, response) {
+    // get the yes/no from the database
+    let yN = await databaseFunctions.getMultLoc(databaseConnection, username, companyType);
+    console.log("Multiple Loc: " + yN);
+
+    // send the response
+    response.send(JSON.stringify(yN));
+});
+
+program.get("/getLocationNamesSup", async function(request, response) {
+    // get the location names from the database
+    let locations = await databaseFunctions.getLocationNames(databaseConnection, username, 
+        companyType);
+    
+    console.log("Locations: " + locations);
+    // send the location names
+    response.send(JSON.stringify(locations));
+});
+
+program.get("/getWeekdaysSup", async function(request, response) {
+    // get the weekdays from the database
+    let weekdays = await databaseFunctions.getWeekdays(databaseConnection, username,
+        companyType);
+
+    console.log("Weekday Shifts: " + weekdays);
+    // send the information
+    response.send(JSON.stringify(weekdays));
+});
+
+program.get("/getWeekendSup", async function(request, response) {
+    // get the weekends from the database
+    let weekends = await databaseFunctions.getWeekends(databaseConnection, username,
+        companyType);
+
+    console.log("Weekend Shifts: " + weekends);
+    // send the information
+    response.send(JSON.stringify(weekends));
+});
+
 // listen on the port localhost:4000
 program.listen(4000);
 console.log("Please go to localhost:4000");
