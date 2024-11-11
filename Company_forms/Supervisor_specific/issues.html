@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Two-Way Schedular</title>
+        <style>
+            body {
+                background-color: rgba(223, 86, 86, 0.76);
+            }
+
+            h1 {
+                color: white;
+                text-align: center;
+                font-size: 60px;
+            }
+
+            div {
+                background-color: rgb(229, 229, 232);
+                height: 1600px;
+                width: 1050px;
+                margin-top: 20px;
+                margin-left:70px;
+            }
+
+            .button {
+                background-color: blue;
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 470px;
+                font-size: 16px;
+            }
+
+            .name {
+                width: 320px;
+                height: 30px;
+                margin-left: 100px;
+                font-size: 16px;
+                display: inline-block;
+            }
+
+            .spec {
+                width: 200px;
+                height: 30px;
+                margin-left: 20px;
+                font-size: 16px;
+                display: inline-block;
+            }
+
+            .pref {
+                width: 320px;
+                height: 30px;
+                margin-left: 80px;
+                font-size: 16px;
+                display: inline-block;
+            }
+
+            .nameL {
+                color: rgb(78, 76, 76); 
+                width: 1000px;
+                height: 30px;
+                margin-left: 100px;
+                font-size: 20px;
+            }
+
+            .specL {
+                color: rgb(78, 76, 76);
+                width: 1000px;
+                height: 30px;
+                margin-left: 160px;
+                font-size: 20px;
+            }
+
+            .prefL {
+                color: rgb(78, 76, 76);
+                width: 1000px;
+                height: 30px;
+                margin-left: 110px;
+                font-size: 20px; 
+            }
+
+            .leftButton {
+                background-color: rgb(107, 104, 104);
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 10px;
+                font-size: 16px;
+            }
+
+            .centerButton {
+                background-color: rgb(107, 104, 104);
+                color: white;
+                text-align: center;
+                height: 50px;
+                width: 100px;
+                margin-left: 570px;
+                font-size: 16px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <form action="/returnHomeSup" method="post">
+            <input class="leftButton" type="submit" value="Home"/>
+        </form>
+        <br>
+        <form action="/checkSchedule" method="post">
+            <input class="leftButton" type="submit" value="Check Again"/>
+        </form>
+        <h1>Conflict(s) have been detected</h1>
+        <br>
+        <div>
+            <button type="button" class="button" onClick="genChoices()">
+                Press to Generate
+            </button>
+            <br>
+            <br>
+            <label class="nameL">Name of Employee</label>
+            <label class="specL">Source of Conflict</label>
+            <label class="prefL">Preference</label>
+            <br>
+            <br>
+            <label class="name" id="emp1" for="emp1"></label>
+            <label class="spec" id="source1" for="source1"></label>
+            <label class="pref" id="pref1" for="pref1"></label>
+            <br>
+            <br>
+            <label class="name" id="emp2" for="emp2"></label>
+            <label class="spec" id="source2" for="source2"></label>
+            <label class="pref" id="pref2" for="pref2"></label>
+            <br>
+            <br>
+            <label class="name" id="emp3" for="emp3"></label>
+            <label class="spec" id="source3" for="source3"></label>
+            <label class="pref" id="pref3" for="pref3"></label>
+            <br>
+            <br>
+            <label class="name" id="emp4" for="emp4"></label>
+            <label class="spec" id="source4" for="source4"></label>
+            <label class="pref" id="pref4" for="pref4"></label>
+            <br>
+            <br>
+            <label class="name" id="emp5" for="emp5"></label>
+            <label class="spec" id="source5" for="source5"></label>
+            <label class="pref" id="pref5" for="pref5"></label>
+            <br>
+            <br>
+            <label class="name" id="emp6" for="emp6"></label>
+            <label class="spec" id="source6" for="source6"></label>
+            <label class="pref" id="pref6" for="pref6"></label>
+            <br>
+            <br>
+            <label class="name" id="emp7" for="emp7"></label>
+            <label class="spec" id="source7" for="source7"></label>
+            <label class="pref" id="pref7" for="pref7"></label>
+            <br>
+            <br>
+            <label class="name" id="emp8" for="emp8"></label>
+            <label class="spec" id="source8" for="source8"></label>
+            <label class="pref" id="pref8" for="pref8"></label>
+            <br>
+            <br>
+            <label class="name" id="emp9" for="emp9"></label>
+            <label class="spec" id="source9" for="source9"></label>
+            <label class="pref" id="pref9" for="pref9"></label>
+            <br>
+            <br>
+            <label class="name" id="emp10" for="emp10"></label>
+            <label class="spec" id="source10" for="source10"></label>
+            <label class="pref" id="pref10" for="pref10"></label>
+            <br>
+            <br>
+            <label class="name" id="emp11" for="emp11"></label>
+            <label class="spec" id="source11" for="source11"></label>
+            <label class="pref" id="pref11" for="pref11"></label>
+            <br>
+            <br>
+            <label class="name" id="emp12" for="emp12"></label>
+            <label class="spec" id="source12" for="source12"></label>
+            <label class="pref" id="pref12" for="pref12"></label>
+            <br>
+            <br>
+            <label class="name" id="emp13" for="emp13"></label>
+            <label class="spec" id="source13" for="source13"></label>
+            <label class="pref" id="pref13" for="pref13"></label>
+            <br>
+            <br>
+            <label class="name" id="emp14" for="emp14"></label>
+            <label class="spec" id="source14" for="source14"></label>
+            <label class="pref" id="pref14" for="pref14"></label>
+            <br>
+            <br>
+            <label class="name" id="emp15" for="emp15"></label>
+            <label class="spec" id="source15" for="source15"></label>
+            <label class="pref" id="pref15" for="pref15"></label>
+            <br>
+            <br>
+            <label class="name" id="emp16" for="emp16"></label>
+            <label class="spec" id="source16" for="source16"></label>
+            <label class="pref" id="pref16" for="pref16"></label>
+            <br>
+            <br>
+            <label class="name" id="emp17" for="emp17"></label>
+            <label class="spec" id="source17" for="source17"></label>
+            <label class="pref" id="pref17" for="pref17"></label>
+            <br>
+            <br>
+            <label class="name" id="emp18" for="emp18"></label>
+            <label class="spec" id="source18" for="source18"></label>
+            <label class="pref" id="pref18" for="pref18"></label>
+            <br>
+            <br>
+            <label class="name" id="emp19" for="emp19"></label>
+            <label class="spec" id="source19" for="source19"></label>
+            <label class="pref" id="pref19" for="pref19"></label>
+            <br>
+            <br>
+            <label class="name" id="emp20" for="emp20"></label>
+            <label class="spec" id="source20" for="source20"></label>
+            <label class="pref" id="pref20" for="pref20"></label>
+            <br>
+            <br>
+            <label class="name" id="emp21" for="emp21"></label>
+            <label class="spec" id="source21" for="source21"></label>
+            <label class="pref" id="pref1" for="pref1"></label>
+            <br>
+            <br>
+            <label class="name" id="emp22" for="emp22"></label>
+            <label class="spec" id="source22" for="source22"></label>
+            <label class="pref" id="pref22" for="pref22"></label>
+            <br>
+            <br>
+            <label class="name" id="emp23" for="emp23"></label>
+            <label class="spec" id="source23" for="source23"></label>
+            <label class="pref" id="pref23" for="pref23"></label>
+            <br>
+            <br>
+            <label class="name" id="emp24" for="emp24"></label>
+            <label class="spec" id="source24" for="source24"></label>
+            <label class="pref" id="pref24" for="pref24"></label>
+            <br>
+            <br>
+            <label class="name" id="emp25" for="emp25"></label>
+            <label class="spec" id="source25" for="source25"></label>
+            <label class="pref" id="pref25" for="pref25"></label>
+            <br>
+            <br>
+            <label class="name" id="emp26" for="emp26"></label>
+            <label class="spec" id="source26" for="source26"></label>
+            <label class="pref" id="pref26" for="pref26"></label>
+            <br>
+            <br>
+            <label class="name" id="emp27" for="emp27"></label>
+            <label class="spec" id="source27" for="source27"></label>
+            <label class="pref" id="pref27" for="pref27"></label>
+            <br>
+            <br>
+            <label class="name" id="emp28" for="emp28"></label>
+            <label class="spec" id="source28" for="source28"></label>
+            <label class="pref" id="pref28" for="pref28"></label>
+            <br>
+            <br>
+            <label class="name" id="emp29" for="emp29"></label>
+            <label class="spec" id="source29" for="source29"></label>
+            <label class="pref" id="pref29" for="pref29"></label>
+            <br>
+            <br>
+            <label class="name" id="emp30" for="emp30"></label>
+            <label class="spec" id="source30" for="source30"></label>
+            <label class="pref" id="pref30" for="pref30"></label>
+            <br>
+            <br>
+        </div>
+        <br>
+        <form action="/returnHomeSup" method="post">
+            <input class="centerButton" type="submit" value="Home"/>
+        </form>
+        <br>
+        <form action="/checkSchedule" method="post">
+            <input class="centerButton" type="submit" value="Check Again"/>
+        </form>
+        <script type="text/javascript">
+            async function genChoices() {
+                // get the issues
+                let issueInit = await fetch("/getIssues");
+                if (!issueInit.ok) {
+                    console.log("ERROR: issue with getting the issues");
+                }
+                let issueStr = await issueInit.json();
+                // convert string to an array
+                let issues = new Array();
+                let index = 0;
+                while (index < issueStr.length) {
+                    let issue = "";
+                    while (issueStr[index] != "," && index < issueStr.length) {
+                        issue = issue + issueStr[index];
+                        index++;
+                    }
+                    issues.push(issue);
+                    index++;
+                }
+                console.log("Issues = " + issues);
+
+                // print the issues
+                let i = 0;
+                let entryNum = 1;
+                while (i < issues.length) {
+                    document.getElementById("emp" + entryNum).innerHTML = issues[i];
+                    i++;
+                    document.getElementById("source" + entryNum).innerHTML = issues[i];
+                    i++;
+                    document.getElementById("pref" + entryNum).innerHTML = issues[i];
+                    i++;
+                    entryNum++;
+                }
+            }
+        </script>
+    </body>
+</html>
