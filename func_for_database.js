@@ -102,7 +102,7 @@ function startDatabase(databaseConnection) {
                     + " supFullName VARCHAR(255), companyName VARCHAR(255),"
                     + " numOfEmps INT, roster VARCHAR(255),"
                     + " locationNames VARCHAR(255), shiftHours VARCHAR(255),"
-                    + " multLoc VARCHAR(255), numOfLoc INT";
+                    + " multLoc VARCHAR(255), numOfLoc INT, discoveredIssues VARCHAR(255)";
                 tableElements = commonElements + ", trainingDays VARCHAR(255)";
                 createTable(databaseConnection, tableName, tableElements);
                
@@ -709,6 +709,27 @@ function updateRoster(databaseConnection, email, roster, num, companyType) {
     }
 }
 
+function updateIssues(databaseConnection, email, companyType, discoveredIssues) {
+    // determine the table
+    let table = determineSupTable(companyType);
+    if (table == "") {
+        console.log("ERROR: Unable to determine Supervisor's table - Invalid company type");
+    }
+    else {
+        let tableName = determineSupTableName(table);
+        let queryCommand = 'UPDATE schedularDatabase.' + table + ' SET '
+            + 'discoveredIssues = "' + discoveredIssues + '" WHERE supEmail = "' + email + '";';
+        databaseConnection.query(queryCommand, function(error, sqlResult) {
+            if (error) {
+                console.log("ERROR: Unable to update the discovered issues in " + tableName);
+            }
+            else {
+                console.log("SUCCESS: Updated the discovered in " + tableName);
+            }
+        });
+    }
+}
+
 // retrieving information
 function determineStored(databaseConnection) {
     let queryCommand = "SELECT companyName FROM schedularDatabase.companiesServed;";
@@ -1219,7 +1240,7 @@ async function getRoster(databaseConnection, email, companyType) {
         let queryCommand = 'SELECT roster FROM schedularDatabase.' + table
             + ' WHERE supEmail = "' + email + '";';
         
-        // get the names of the locations
+        // get the roster
         let roster = await retrieveRosterFromTable(databaseConnection, queryCommand);
         console.log("Roster in getRoster = " + roster);
 
@@ -1228,10 +1249,54 @@ async function getRoster(databaseConnection, email, companyType) {
     }
 }
 
+function retrieveIssuesFromTable(databaseConnection, queryCommand) {
+    return new Promise((resolve, reject) => {
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve issues from supervisor table");
+            }
+            else {
+                // get the issue(s)
+                let issues = sqlResult[0].discoveredIssues;
+                console.log("Issues in retrieveIssuesFromTable: " + issues);
+
+                // return the issue(s)
+                resolve(issues);
+            }
+        });
+    });
+}
+
+async function retrieveIssues(databaseConnection, email, companyType) {
+    // get the supervisor's table
+    let table = determineSupTable(companyType);
+    
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in retrieveIssues - Invalid companyType");
+    }
+    else {
+        let queryCommand = 'SELECT discoveredIssues FROM schedularDatabase.' + table
+            + ' WHERE supEmail = "' + email + '";';
+        
+        // get the issues
+        let issues = await retrieveIssuesFromTable(databaseConnection, queryCommand);
+        console.log("Issue(s) in retrieveIssues = " + issues);
+
+        // return the string
+        return issues;
+    }
+}
+
+async function issueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
+    companyType, username) {
+    // split based on company type
+}
+
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
     storeCompanyName, storeCompanyNameType, buildEmpAccount, buildSupAccount, storeWCInitInfo1, 
     getNumOfEmps, getNumOfLocs, getMultLoc, storeRoster, storeLocNames, storeREmpPref,
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
     getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
     getLocationNames, storeWCEmpPref, getWeekdays, getWeekends, storeEFEmpPref, storeLEmpPref,
-    getEmployee, updateTimeOff, getRoster, updateRoster};
+    getEmployee, updateTimeOff, getRoster, updateRoster, retrieveIssues, updateIssues,
+    issueSearch};

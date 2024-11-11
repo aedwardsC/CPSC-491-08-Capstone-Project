@@ -1024,6 +1024,34 @@ program.post("/removeEmp", async function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
 });
 
+program.post("/sched_check", async function(request, response) {
+    // array to hold all of the issues
+    let discoveredIssues = new Array();
+
+    // split to the different company searches (each have their own things to look for)
+    let scheduleInfo = new Array();
+    // get the number of employees
+    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
+        companyType);
+    // IN PROGRESS
+    serverFunctions.getScheduleCheckerInfo(request, scheduleInfo, numOfEmps, companyType);
+    // NOT DONE
+    databaseFunctions.issueSearch(databaseConnection, discoveredIssues, scheduleInfo,
+        companyType, username);
+    
+    // store the array of issues (even blank) in the database
+    databaseFunctions.updateIssues(databaseConnection, username, companyType, 
+        discoveredIssues);
+
+    // if the issues array is empty, go to the all good page
+    if (discoveredIssues.length == 0) {
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/no_issues.html");
+    }
+    else { // else, go to the issues page
+        response.sendFile(__dirname + "/Company_forms/Supervisor_specific/issues.html");
+    }
+});
+
 // for dynamically creating the supervisor forms
 program.get("/getNumOfEmps", async function(request, response) {
     let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
@@ -1205,6 +1233,15 @@ program.get("/getWeekendSup", async function(request, response) {
     console.log("Weekend Shifts: " + weekends);
     // send the information
     response.send(JSON.stringify(weekends));
+});
+
+program.get("/getIssues", function(request, response) {
+    // get the issues stored in the database
+    let issues = databaseFunctions.retrieveIssues(databaseConnection, username, companyType);
+    console.log("The issues: " + issues);
+
+    // send the information
+    response.send(JSON.stringify(issues));
 });
 
 // listen on the port localhost:4000

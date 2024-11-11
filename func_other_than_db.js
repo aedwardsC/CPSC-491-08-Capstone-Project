@@ -1442,9 +1442,510 @@ function checkRoster(roster, empName) {
     return found;
 }
 
+function wclShceduleCheckerInfo(request, scheduleInfo, numOfEmps) {
+    let num = 1;
+    while (num <= numOfEmps) {
+        if (num == 1) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 2) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 3) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 4) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 5) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 6) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 7) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 8) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 9) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 10) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 11) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 12) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 13) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 14) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 15) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 16) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 17) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 18) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 19) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 20) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 21) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 22) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 23) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 24) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 25) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 26) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 27) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 28) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 29) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 30) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+    }
+}
+
+function refShceduleCheckerInfo(request, scheduleInfo, numOfEmps) {
+    let num = 1;
+    while (num <= numOfEmps) {
+        if (num == 1) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 2) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 3) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 4) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 5) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 6) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 7) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 8) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 9) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 10) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 11) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 12) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 13) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 14) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 15) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 16) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 17) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 18) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 19) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 20) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 21) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 22) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 23) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 24) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 25) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 26) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 27) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+
+            // get the days
+        }
+        else if (num == 28) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 29) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+        else if (num == 30) {
+            // get the name
+
+            // get the shift
+
+            // get the location
+        }
+    }
+}
+
+function getScheduleCheckerInfo(request, scheduleInfo, numOfEmps, companyType) {
+    if (companyType == "whiteCollar" || companyType == "lawEnforcement") {
+        // get the information that is whiteCollar Specific
+        wclShceduleCheckerInfo(request, scheduleInfo, numOfEmps);
+    }
+    else if (companyType == "retail" || companyType == "entertainment" || companyType == "food") {
+        // get the information that is retail specific
+        refShceduleCheckerInfo(request, scheduleInfo, numOfEmps);
+    }
+    else {
+        console.log("ERROR: Invalid company type in getScheduleCheckerInfo");
+    }
+}
+
 module.exports = {authenticateUser, checkPswds, determineRole, 
     splitInitialSetUp, splitUsers, createTrainingSchedule, getEmpNames,
     getLocNames, createWeekDayShift, createWeekendShift, getShiftTimes, buildAndSendHome,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
     directQuestionnaire, getLocationPref, getShiftTimePref, getWeekDayEnd, getDayPref,
-    getNumOfDays, getEmpAllergiesEF, getEmpAllergiesL, removeFromRoster, checkRoster};
+    getNumOfDays, getEmpAllergiesEF, getEmpAllergiesL, removeFromRoster, checkRoster,
+    getScheduleCheckerInfo};
