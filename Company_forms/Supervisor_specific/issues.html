@@ -295,7 +295,23 @@
                 while (index < issueStr.length) {
                     let issue = "";
                     while (issueStr[index] != "," && index < issueStr.length) {
-                        issue = issue + issueStr[index];
+                        if (issueStr[index] == "[") {
+                            while (issueStr[index] != "]" && index < issueStr.length) {
+                                index++;
+                                if (issueStr[index] == ",") {
+                                    issue = issue + ", "; // for diplay formatting
+                                    console.log(issue + " 1");
+                                }
+                                else if (issueStr[index] != "]") {
+                                    issue = issue + issueStr[index];
+                                    console.log(issue + " 2");
+                                }
+                            }
+                        }
+                        else if (issueStr[index] != "]") {
+                            issue = issue + issueStr[index];
+                            console.log(issue + " 3");
+                        }
                         index++;
                     }
                     issues.push(issue);
@@ -311,6 +327,7 @@
                     i++;
                     document.getElementById("source" + entryNum).innerHTML = issues[i];
                     i++;
+                    console.log(issues[i]);
                     document.getElementById("pref" + entryNum).innerHTML = issues[i];
                     i++;
                     entryNum++;
