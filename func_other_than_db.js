@@ -1401,6 +1401,7 @@ function directQuestionnaire(response, companyType) {
 }
 
 function removeFromRoster(roster, name) {
+    let removed = false;
     // convert the string to an array
     let rosterArr = new Array();
     stringToArray(roster, rosterArr);
@@ -1415,6 +1416,7 @@ function removeFromRoster(roster, name) {
         }
         else {
             console.log("Removing from the roster");
+            removed = true;
         }
     }
 
@@ -1422,7 +1424,7 @@ function removeFromRoster(roster, name) {
     let newRoster = tempRoster.toString();
 
     // return the string
-    return newRoster;
+    return [newRoster, removed];
 }
 
 function checkRoster(roster, empName) {
@@ -1442,503 +1444,2265 @@ function checkRoster(roster, empName) {
     return found;
 }
 
-function wclShceduleCheckerInfo(request, scheduleInfo, numOfEmps) {
+function wclScheduleCheckerInfo(request, scheduleInfo, roster) {
     let num = 1;
-    while (num <= numOfEmps) {
+    console.log("Number of Employees: " + roster.length);
+    while (num <= roster.length) {
+        console.log("Num: " + num);
         if (num == 1) {
             // get the name
+            console.log("Employee: " + roster[0]);
+            scheduleInfo.push(roster[0]);
 
             // get the shift
+            let shift = request.body.shift1[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location1[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 2) {
             // get the name
+            console.log("Employee: " + roster[1]);
+            scheduleInfo.push(roster[1]);
 
             // get the shift
+            let shift = request.body.shift2[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location2[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 3) {
             // get the name
+            console.log("Employee: " + roster[2]);
+            scheduleInfo.push(roster[2]);
 
             // get the shift
+            let shift = request.body.shift3[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location3[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 4) {
             // get the name
+            console.log("Employee: " + roster[3]);
+            scheduleInfo.push(roster[3]);
 
             // get the shift
+            let shift = request.body.shift4[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location4[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 5) {
             // get the name
+            console.log("Employee: " + roster[4]);
+            scheduleInfo.push(roster[4]);
 
             // get the shift
+            let shift = request.body.shift5[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location5[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 6) {
             // get the name
+            console.log("Employee: " + roster[5]);
+            scheduleInfo.push(roster[5]);
 
             // get the shift
+            let shift = request.body.shift6[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location6[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 7) {
             // get the name
+            console.log("Employee: " + roster[6]);
+            scheduleInfo.push(roster[6]);
 
             // get the shift
+            let shift = request.body.shift7[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location7[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 8) {
             // get the name
+            console.log("Employee: " + roster[7]);
+            scheduleInfo.push(roster[7]);
 
             // get the shift
+            let shift = request.body.shift8[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location8[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 9) {
             // get the name
+            console.log("Employee: " + roster[8]);
+            scheduleInfo.push(roster[8]);
 
             // get the shift
+            let shift = request.body.shift9[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location9[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 10) {
             // get the name
+            console.log("Employee: " + roster[9]);
+            scheduleInfo.push(roster[9]);
 
             // get the shift
+            let shift = request.body.shift10[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location10[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 11) {
             // get the name
+            console.log("Employee: " + roster[10]);
+            scheduleInfo.push(roster[10]);
 
             // get the shift
+            let shift = request.body.shift11[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location11[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 12) {
             // get the name
+            console.log("Employee: " + roster[11]);
+            scheduleInfo.push(roster[11]);
 
             // get the shift
+            let shift = request.body.shift12[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location12[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 13) {
             // get the name
+            console.log("Employee: " + roster[12]);
+            scheduleInfo.push(roster[12]);
 
             // get the shift
+            let shift = request.body.shift13[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location13[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 14) {
             // get the name
+            console.log("Employee: " + roster[13]);
+            scheduleInfo.push(roster[13]);
 
             // get the shift
+            let shift = request.body.shift14[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location14[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 15) {
             // get the name
+            console.log("Employee: " + roster[14]);
+            scheduleInfo.push(roster[14]);
 
             // get the shift
+            let shift = request.body.shift15[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location15[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 16) {
             // get the name
+            console.log("Employee: " + roster[15]);
+            scheduleInfo.push(roster[15]);
 
             // get the shift
+            let shift = request.body.shift16[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location16[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 17) {
             // get the name
+            console.log("Employee: " + roster[16]);
+            scheduleInfo.push(roster[16]);
 
             // get the shift
+            let shift = request.body.shift17[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location17[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 18) {
             // get the name
+            console.log("Employee: " + roster[17]);
+            scheduleInfo.push(roster[17]);
 
             // get the shift
+            let shift = request.body.shift18[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location18[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 19) {
             // get the name
+            console.log("Employee: " + roster[18]);
+            scheduleInfo.push(roster[18]);
 
             // get the shift
+            let shift = request.body.shift19[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location19[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 20) {
             // get the name
+            console.log("Employee: " + roster[19]);
+            scheduleInfo.push(roster[19]);
 
             // get the shift
+            let shift = request.body.shift20[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location20[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 21) {
             // get the name
+            console.log("Employee: " + roster[20]);
+            scheduleInfo.push(roster[20]);
 
             // get the shift
+            let shift = request.body.shift21[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location21[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 22) {
             // get the name
+            console.log("Employee: " + roster[21]);
+            scheduleInfo.push(roster[21]);
 
             // get the shift
+            let shift = request.body.shift22[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location22[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 23) {
             // get the name
+            console.log("Employee: " + roster[22]);
+            scheduleInfo.push(roster[22]);
 
             // get the shift
+            let shift = request.body.shift23[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location23[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 24) {
             // get the name
+            console.log("Employee: " + roster[23]);
+            scheduleInfo.push(roster[23]);
 
             // get the shift
+            let shift = request.body.shift24[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location24[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 25) {
             // get the name
+            console.log("Employee: " + roster[24]);
+            scheduleInfo.push(roster[24]);
 
             // get the shift
+            let shift = request.body.shift25[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location25[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 26) {
             // get the name
+            console.log("Employee: " + roster[25]);
+            scheduleInfo.push(roster[25]);
 
             // get the shift
+            let shift = request.body.shift26[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location26[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 27) {
             // get the name
+            console.log("Employee: " + roster[26]);
+            scheduleInfo.push(roster[26]);
 
             // get the shift
+            let shift = request.body.shift27[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location27[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 28) {
             // get the name
+            console.log("Employee: " + roster[27]);
+            scheduleInfo.push(roster[27]);
 
             // get the shift
+            let shift = request.body.shift28[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location28[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 29) {
             // get the name
+            console.log("Employee: " + roster[28]);
+            scheduleInfo.push(roster[28]);
 
             // get the shift
+            let shift = request.body.shift29[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location29[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
         else if (num == 30) {
             // get the name
+            console.log("Employee: " + roster[29]);
+            scheduleInfo.push(roster[29]);
 
             // get the shift
+            let shift = request.body.shift30[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location30[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
         }
+        num++;
     }
 }
 
-function refShceduleCheckerInfo(request, scheduleInfo, numOfEmps) {
+function refScheduleCheckerInfo(request, scheduleInfo, roster) {
     let num = 1;
-    while (num <= numOfEmps) {
+    console.log("Number of Employees: " + roster.length);
+    while (num <= roster.length) {
         if (num == 1) {
             // get the name
+            console.log("Employee: " + roster[0]);
+            scheduleInfo.push(roster[0]);
 
             // get the shift
+            let shift = request.body.shift1[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location1[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day1 != undefined) {
+                console.log("Selected Day: " + request.body.day1);
+                days.push(request.body.day1);
+            }
+            if (request.body.day2 != undefined) {
+                console.log("Selected Day: " + request.body.day2);
+                days.push(request.body.day2);
+            }
+            if (request.body.day3 != undefined) {
+                console.log("Selected Day: " + request.body.day3);
+                days.push(request.body.day3);
+            }
+            if (request.body.day4 != undefined) {
+                console.log("Selected Day: " + request.body.day4);
+                days.push(request.body.day4);
+            }
+            if (request.body.day5 != undefined) {
+                console.log("Selected Day: " + request.body.day5);
+                days.push(request.body.day5);
+            }
+            if (request.body.day6 != undefined) {
+                console.log("Selected Day: " + request.body.day6);
+                days.push(request.body.day6);
+            }
+            if (request.body.day7 != undefined) {
+                console.log("Selected Day: " + request.body.day7);
+                days.push(request.body.day7);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 2) {
             // get the name
+            console.log("Employee: " + roster[1]);
+            scheduleInfo.push(roster[1]);
 
             // get the shift
+            let shift = request.body.shift2[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location2[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day8 != undefined) {
+                console.log("Selected Day: " + request.body.day8);
+                days.push(request.body.day8);
+            }
+            if (request.body.day9 != undefined) {
+                console.log("Selected Day: " + request.body.day9);
+                days.push(request.body.day9);
+            }
+            if (request.body.day10 != undefined) {
+                console.log("Selected Day: " + request.body.day10);
+                days.push(request.body.day10);
+            }
+            if (request.body.day11 != undefined) {
+                console.log("Selected Day: " + request.body.day11);
+                days.push(request.body.day11);
+            }
+            if (request.body.day12 != undefined) {
+                console.log("Selected Day: " + request.body.day12);
+                days.push(request.body.day12);
+            }
+            if (request.body.day13 != undefined) {
+                console.log("Selected Day: " + request.body.day13);
+                days.push(request.body.day13);
+            }
+            if (request.body.day14 != undefined) {
+                console.log("Selected Day: " + request.body.day14);
+                days.push(request.body.day14);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 3) {
             // get the name
+            console.log("Employee: " + roster[2]);
+            scheduleInfo.push(roster[2]);
 
             // get the shift
+            let shift = request.body.shift3[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location3[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day15 != undefined) {
+                console.log("Selected Day: " + request.body.day15);
+                days.push(request.body.day15);
+            }
+            if (request.body.day16 != undefined) {
+                console.log("Selected Day: " + request.body.day16);
+                days.push(request.body.day16);
+            }
+            if (request.body.day17 != undefined) {
+                console.log("Selected Day: " + request.body.day17);
+                days.push(request.body.day17);
+            }
+            if (request.body.day18 != undefined) {
+                console.log("Selected Day: " + request.body.day18);
+                days.push(request.body.day18);
+            }
+            if (request.body.day19 != undefined) {
+                console.log("Selected Day: " + request.body.day19);
+                days.push(request.body.day19);
+            }
+            if (request.body.day20 != undefined) {
+                console.log("Selected Day: " + request.body.day20);
+                days.push(request.body.day20);
+            }
+            if (request.body.day21 != undefined) {
+                console.log("Selected Day: " + request.body.day21);
+                days.push(request.body.day21);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 4) {
             // get the name
+            console.log("Employee: " + roster[3]);
+            scheduleInfo.push(roster[3]);
 
             // get the shift
+            let shift = request.body.shift4[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location4[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day22 != undefined) {
+                console.log("Selected Day: " + request.body.day22);
+                days.push(request.body.day22);
+            }
+            if (request.body.day23 != undefined) {
+                console.log("Selected Day: " + request.body.day23);
+                days.push(request.body.day23);
+            }
+            if (request.body.day24 != undefined) {
+                console.log("Selected Day: " + request.body.day24);
+                days.push(request.body.day24);
+            }
+            if (request.body.day25 != undefined) {
+                console.log("Selected Day: " + request.body.day25);
+                days.push(request.body.day25);
+            }
+            if (request.body.day26 != undefined) {
+                console.log("Selected Day: " + request.body.day26);
+                days.push(request.body.day26);
+            }
+            if (request.body.day27 != undefined) {
+                console.log("Selected Day: " + request.body.day27);
+                days.push(request.body.day27);
+            }
+            if (request.body.day28 != undefined) {
+                console.log("Selected Day: " + request.body.day28);
+                days.push(request.body.day28);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 5) {
             // get the name
+            console.log("Employee: " + roster[4]);
+            scheduleInfo.push(roster[4]);
 
             // get the shift
+            let shift = request.body.shift5[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location5[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day29 != undefined) {
+                console.log("Selected Day: " + request.body.day29);
+                days.push(request.body.day29);
+            }
+            if (request.body.day30 != undefined) {
+                console.log("Selected Day: " + request.body.day30);
+                days.push(request.body.day30);
+            }
+            if (request.body.day31 != undefined) {
+                console.log("Selected Day: " + request.body.day31);
+                days.push(request.body.day31);
+            }
+            if (request.body.day32 != undefined) {
+                console.log("Selected Day: " + request.body.day32);
+                days.push(request.body.day32);
+            }
+            if (request.body.day33 != undefined) {
+                console.log("Selected Day: " + request.body.day33);
+                days.push(request.body.day33);
+            }
+            if (request.body.day34 != undefined) {
+                console.log("Selected Day: " + request.body.day34);
+                days.push(request.body.day34);
+            }
+            if (request.body.day35 != undefined) {
+                console.log("Selected Day: " + request.body.day35);
+                days.push(request.body.day35);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 6) {
             // get the name
+            console.log("Employee: " + roster[5]);
+            scheduleInfo.push(roster[5]);
 
             // get the shift
+            let shift = request.body.shift6[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location6[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day36 != undefined) {
+                console.log("Selected Day: " + request.body.day36);
+                days.push(request.body.day36);
+            }
+            if (request.body.day37 != undefined) {
+                console.log("Selected Day: " + request.body.day37);
+                days.push(request.body.day37);
+            }
+            if (request.body.day38 != undefined) {
+                console.log("Selected Day: " + request.body.day38);
+                days.push(request.body.day38);
+            }
+            if (request.body.day39 != undefined) {
+                console.log("Selected Day: " + request.body.day39);
+                days.push(request.body.day39);
+            }
+            if (request.body.day40 != undefined) {
+                console.log("Selected Day: " + request.body.day40);
+                days.push(request.body.day40);
+            }
+            if (request.body.day41 != undefined) {
+                console.log("Selected Day: " + request.body.day41);
+                days.push(request.body.day41);
+            }
+            if (request.body.day42 != undefined) {
+                console.log("Selected Day: " + request.body.day42);
+                days.push(request.body.day42);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 7) {
             // get the name
+            console.log("Employee: " + roster[6]);
+            scheduleInfo.push(roster[6]);
 
             // get the shift
+            let shift = request.body.shift7[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location7[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day43 != undefined) {
+                console.log("Selected Day: " + request.body.day43);
+                days.push(request.body.day43);
+            }
+            if (request.body.day44 != undefined) {
+                console.log("Selected Day: " + request.body.day44);
+                days.push(request.body.day44);
+            }
+            if (request.body.day45 != undefined) {
+                console.log("Selected Day: " + request.body.day45);
+                days.push(request.body.day45);
+            }
+            if (request.body.day46 != undefined) {
+                console.log("Selected Day: " + request.body.day46);
+                days.push(request.body.day46);
+            }
+            if (request.body.day47 != undefined) {
+                console.log("Selected Day: " + request.body.day47);
+                days.push(request.body.day47);
+            }
+            if (request.body.day48 != undefined) {
+                console.log("Selected Day: " + request.body.day48);
+                days.push(request.body.day48);
+            }
+            if (request.body.day49 != undefined) {
+                console.log("Selected Day: " + request.body.day49);
+                days.push(request.body.day49);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 8) {
             // get the name
+            console.log("Employee: " + roster[7]);
+            scheduleInfo.push(roster[7]);
 
             // get the shift
+            let shift = request.body.shift8[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location8[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day49 != undefined) {
+                console.log("Selected Day: " + request.body.day50);
+                days.push(request.body.day50);
+            }
+            if (request.body.day51 != undefined) {
+                console.log("Selected Day: " + request.body.day51);
+                days.push(request.body.day51);
+            }
+            if (request.body.day52 != undefined) {
+                console.log("Selected Day: " + request.body.day52);
+                days.push(request.body.day52);
+            }
+            if (request.body.day53 != undefined) {
+                console.log("Selected Day: " + request.body.day53);
+                days.push(request.body.day53);
+            }
+            if (request.body.day54 != undefined) {
+                console.log("Selected Day: " + request.body.day54);
+                days.push(request.body.day54);
+            }
+            if (request.body.day55 != undefined) {
+                console.log("Selected Day: " + request.body.day55);
+                days.push(request.body.day55);
+            }
+            if (request.body.day56 != undefined) {
+                console.log("Selected Day: " + request.body.day56);
+                days.push(request.body.day56);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 9) {
             // get the name
+            console.log("Employee: " + roster[8]);
+            scheduleInfo.push(roster[8]);
 
             // get the shift
+            let shift = request.body.shift9[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location9[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day57 != undefined) {
+                console.log("Selected Day: " + request.body.day57);
+                days.push(request.body.day57);
+            }
+            if (request.body.day58 != undefined) {
+                console.log("Selected Day: " + request.body.day58);
+                days.push(request.body.day58);
+            }
+            if (request.body.day59 != undefined) {
+                console.log("Selected Day: " + request.body.day59);
+                days.push(request.body.day59);
+            }
+            if (request.body.day60 != undefined) {
+                console.log("Selected Day: " + request.body.day60);
+                days.push(request.body.day60);
+            }
+            if (request.body.day61 != undefined) {
+                console.log("Selected Day: " + request.body.day61);
+                days.push(request.body.day61);
+            }
+            if (request.body.day62 != undefined) {
+                console.log("Selected Day: " + request.body.day62);
+                days.push(request.body.day62);
+            }
+            if (request.body.day63 != undefined) {
+                console.log("Selected Day: " + request.body.day63);
+                days.push(request.body.day63);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 10) {
             // get the name
+            console.log("Employee: " + roster[9]);
+            scheduleInfo.push(roster[9]);
 
             // get the shift
+            let shift = request.body.shift10[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location10[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day64 != undefined) {
+                console.log("Selected Day: " + request.body.day64);
+                days.push(request.body.day64);
+            }
+            if (request.body.day65 != undefined) {
+                console.log("Selected Day: " + request.body.day65);
+                days.push(request.body.day65);
+            }
+            if (request.body.day66 != undefined) {
+                console.log("Selected Day: " + request.body.day66);
+                days.push(request.body.day66);
+            }
+            if (request.body.day67 != undefined) {
+                console.log("Selected Day: " + request.body.day67);
+                days.push(request.body.day67);
+            }
+            if (request.body.day68 != undefined) {
+                console.log("Selected Day: " + request.body.day68);
+                days.push(request.body.day68);
+            }
+            if (request.body.day69 != undefined) {
+                console.log("Selected Day: " + request.body.day69);
+                days.push(request.body.day69);
+            }
+            if (request.body.day70 != undefined) {
+                console.log("Selected Day: " + request.body.day70);
+                days.push(request.body.day70);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 11) {
             // get the name
+            console.log("Employee: " + roster[10]);
+            scheduleInfo.push(roster[10]);
 
             // get the shift
+            let shift = request.body.shift11[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location11[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day71 != undefined) {
+                console.log("Selected Day: " + request.body.day71);
+                days.push(request.body.day71);
+            }
+            if (request.body.day72 != undefined) {
+                console.log("Selected Day: " + request.body.day72);
+                days.push(request.body.day72);
+            }
+            if (request.body.day73 != undefined) {
+                console.log("Selected Day: " + request.body.day73);
+                days.push(request.body.day73);
+            }
+            if (request.body.day74 != undefined) {
+                console.log("Selected Day: " + request.body.day74);
+                days.push(request.body.day74);
+            }
+            if (request.body.day75 != undefined) {
+                console.log("Selected Day: " + request.body.day75);
+                days.push(request.body.day75);
+            }
+            if (request.body.day76 != undefined) {
+                console.log("Selected Day: " + request.body.day76);
+                days.push(request.body.day76);
+            }
+            if (request.body.day77 != undefined) {
+                console.log("Selected Day: " + request.body.day77);
+                days.push(request.body.day77);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 12) {
             // get the name
+            console.log("Employee: " + roster[11]);
+            scheduleInfo.push(roster[11]);
 
             // get the shift
+            let shift = request.body.shift12[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location12[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day78 != undefined) {
+                console.log("Selected Day: " + request.body.day78);
+                days.push(request.body.day78);
+            }
+            if (request.body.day79 != undefined) {
+                console.log("Selected Day: " + request.body.day79);
+                days.push(request.body.day79);
+            }
+            if (request.body.day80 != undefined) {
+                console.log("Selected Day: " + request.body.day80);
+                days.push(request.body.day80);
+            }
+            if (request.body.day81 != undefined) {
+                console.log("Selected Day: " + request.body.day81);
+                days.push(request.body.day81);
+            }
+            if (request.body.day82 != undefined) {
+                console.log("Selected Day: " + request.body.day82);
+                days.push(request.body.day82);
+            }
+            if (request.body.day83 != undefined) {
+                console.log("Selected Day: " + request.body.day83);
+                days.push(request.body.day83);
+            }
+            if (request.body.day84 != undefined) {
+                console.log("Selected Day: " + request.body.day84);
+                days.push(request.body.day84);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 13) {
             // get the name
+            console.log("Employee: " + roster[12]);
+            scheduleInfo.push(roster[12]);
 
             // get the shift
+            let shift = request.body.shift13[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location13[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day85 != undefined) {
+                console.log("Selected Day: " + request.body.day85);
+                days.push(request.body.day85);
+            }
+            if (request.body.day86 != undefined) {
+                console.log("Selected Day: " + request.body.day86);
+                days.push(request.body.day86);
+            }
+            if (request.body.day87 != undefined) {
+                console.log("Selected Day: " + request.body.day87);
+                days.push(request.body.day87);
+            }
+            if (request.body.day88 != undefined) {
+                console.log("Selected Day: " + request.body.day88);
+                days.push(request.body.day88);
+            }
+            if (request.body.day89 != undefined) {
+                console.log("Selected Day: " + request.body.day89);
+                days.push(request.body.day89);
+            }
+            if (request.body.day90 != undefined) {
+                console.log("Selected Day: " + request.body.day90);
+                days.push(request.body.day90);
+            }
+            if (request.body.day91 != undefined) {
+                console.log("Selected Day: " + request.body.day91);
+                days.push(request.body.day91);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 14) {
             // get the name
+            console.log("Employee: " + roster[13]);
+            scheduleInfo.push(roster[13]);
 
             // get the shift
+            let shift = request.body.shift14[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location14[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day92 != undefined) {
+                console.log("Selected Day: " + request.body.day92);
+                days.push(request.body.day92);
+            }
+            if (request.body.day93 != undefined) {
+                console.log("Selected Day: " + request.body.day93);
+                days.push(request.body.day93);
+            }
+            if (request.body.day94 != undefined) {
+                console.log("Selected Day: " + request.body.day94);
+                days.push(request.body.day94);
+            }
+            if (request.body.day95 != undefined) {
+                console.log("Selected Day: " + request.body.day95);
+                days.push(request.body.day95);
+            }
+            if (request.body.day96 != undefined) {
+                console.log("Selected Day: " + request.body.day96);
+                days.push(request.body.day96);
+            }
+            if (request.body.day97 != undefined) {
+                console.log("Selected Day: " + request.body.day97);
+                days.push(request.body.day97);
+            }
+            if (request.body.day98 != undefined) {
+                console.log("Selected Day: " + request.body.day98);
+                days.push(request.body.day98);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 15) {
             // get the name
+            console.log("Employee: " + roster[14]);
+            scheduleInfo.push(roster[14]);
 
             // get the shift
+            let shift = request.body.shift15[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location15[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day99 != undefined) {
+                console.log("Selected Day: " + request.body.day99);
+                days.push(request.body.day99);
+            }
+            if (request.body.day100 != undefined) {
+                console.log("Selected Day: " + request.body.day100);
+                days.push(request.body.day100);
+            }
+            if (request.body.day101 != undefined) {
+                console.log("Selected Day: " + request.body.day101);
+                days.push(request.body.day101);
+            }
+            if (request.body.day102 != undefined) {
+                console.log("Selected Day: " + request.body.day102);
+                days.push(request.body.day102);
+            }
+            if (request.body.day103 != undefined) {
+                console.log("Selected Day: " + request.body.day103);
+                days.push(request.body.day103);
+            }
+            if (request.body.day104 != undefined) {
+                console.log("Selected Day: " + request.body.day104);
+                days.push(request.body.day104);
+            }
+            if (request.body.day105 != undefined) {
+                console.log("Selected Day: " + request.body.day105);
+                days.push(request.body.day105);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 16) {
             // get the name
+            console.log("Employee: " + roster[15]);
+            scheduleInfo.push(roster[15]);
 
             // get the shift
+            let shift = request.body.shift16[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location16[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day106 != undefined) {
+                console.log("Selected Day: " + request.body.day106);
+                days.push(request.body.day106);
+            }
+            if (request.body.day107 != undefined) {
+                console.log("Selected Day: " + request.body.day107);
+                days.push(request.body.day107);
+            }
+            if (request.body.day108 != undefined) {
+                console.log("Selected Day: " + request.body.day108);
+                days.push(request.body.day108);
+            }
+            if (request.body.day109 != undefined) {
+                console.log("Selected Day: " + request.body.day109);
+                days.push(request.body.day109);
+            }
+            if (request.body.day110 != undefined) {
+                console.log("Selected Day: " + request.body.day110);
+                days.push(request.body.day110);
+            }
+            if (request.body.day111 != undefined) {
+                console.log("Selected Day: " + request.body.day111);
+                days.push(request.body.day111);
+            }
+            if (request.body.day112 != undefined) {
+                console.log("Selected Day: " + request.body.day112);
+                days.push(request.body.day112);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 17) {
             // get the name
+            console.log("Employee: " + roster[16]);
+            scheduleInfo.push(roster[16]);
 
             // get the shift
+            let shift = request.body.shift17[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location17[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day113 != undefined) {
+                console.log("Selected Day: " + request.body.day113);
+                days.push(request.body.day113);
+            }
+            if (request.body.day114 != undefined) {
+                console.log("Selected Day: " + request.body.day114);
+                days.push(request.body.day114);
+            }
+            if (request.body.day115 != undefined) {
+                console.log("Selected Day: " + request.body.day115);
+                days.push(request.body.day115);
+            }
+            if (request.body.day116 != undefined) {
+                console.log("Selected Day: " + request.body.day116);
+                days.push(request.body.day116);
+            }
+            if (request.body.day117 != undefined) {
+                console.log("Selected Day: " + request.body.day117);
+                days.push(request.body.day117);
+            }
+            if (request.body.day118 != undefined) {
+                console.log("Selected Day: " + request.body.day118);
+                days.push(request.body.day118);
+            }
+            if (request.body.day119 != undefined) {
+                console.log("Selected Day: " + request.body.day119);
+                days.push(request.body.day119);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 18) {
             // get the name
+            console.log("Employee: " + roster[17]);
+            scheduleInfo.push(roster[17]);
 
             // get the shift
+            let shift = request.body.shift18[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location18[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day120 != undefined) {
+                console.log("Selected Day: " + request.body.day120);
+                days.push(request.body.day120);
+            }
+            if (request.body.day121 != undefined) {
+                console.log("Selected Day: " + request.body.day121);
+                days.push(request.body.day121);
+            }
+            if (request.body.day122 != undefined) {
+                console.log("Selected Day: " + request.body.day122);
+                days.push(request.body.day122);
+            }
+            if (request.body.day123 != undefined) {
+                console.log("Selected Day: " + request.body.day123);
+                days.push(request.body.day123);
+            }
+            if (request.body.day124 != undefined) {
+                console.log("Selected Day: " + request.body.day124);
+                days.push(request.body.day124);
+            }
+            if (request.body.day125 != undefined) {
+                console.log("Selected Day: " + request.body.day125);
+                days.push(request.body.day125);
+            }
+            if (request.body.day126 != undefined) {
+                console.log("Selected Day: " + request.body.day126);
+                days.push(request.body.day126);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 19) {
             // get the name
+            console.log("Employee: " + roster[18]);
+            scheduleInfo.push(roster[18]);
 
             // get the shift
+            let shift = request.body.shift19[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location19[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day127 != undefined) {
+                console.log("Selected Day: " + request.body.day127);
+                days.push(request.body.day127);
+            }
+            if (request.body.day128 != undefined) {
+                console.log("Selected Day: " + request.body.day128);
+                days.push(request.body.day128);
+            }
+            if (request.body.day129 != undefined) {
+                console.log("Selected Day: " + request.body.day129);
+                days.push(request.body.day129);
+            }
+            if (request.body.day130 != undefined) {
+                console.log("Selected Day: " + request.body.day130);
+                days.push(request.body.day130);
+            }
+            if (request.body.day131 != undefined) {
+                console.log("Selected Day: " + request.body.day131);
+                days.push(request.body.day131);
+            }
+            if (request.body.day132 != undefined) {
+                console.log("Selected Day: " + request.body.day132);
+                days.push(request.body.day132);
+            }
+            if (request.body.day133 != undefined) {
+                console.log("Selected Day: " + request.body.day133);
+                days.push(request.body.day133);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 20) {
             // get the name
+            console.log("Employee: " + roster[19]);
+            scheduleInfo.push(roster[19]);
 
             // get the shift
+            let shift = request.body.shift20[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location20[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day134 != undefined) {
+                console.log("Selected Day: " + request.body.day134);
+                days.push(request.body.day134);
+            }
+            if (request.body.day135 != undefined) {
+                console.log("Selected Day: " + request.body.day135);
+                days.push(request.body.day135);
+            }
+            if (request.body.day136 != undefined) {
+                console.log("Selected Day: " + request.body.day136);
+                days.push(request.body.day136);
+            }
+            if (request.body.day137 != undefined) {
+                console.log("Selected Day: " + request.body.day137);
+                days.push(request.body.day137);
+            }
+            if (request.body.day138 != undefined) {
+                console.log("Selected Day: " + request.body.day138);
+                days.push(request.body.day138);
+            }
+            if (request.body.day139 != undefined) {
+                console.log("Selected Day: " + request.body.day139);
+                days.push(request.body.day139);
+            }
+            if (request.body.day140 != undefined) {
+                console.log("Selected Day: " + request.body.day140);
+                days.push(request.body.day140);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 21) {
             // get the name
+            console.log("Employee: " + roster[20]);
+            scheduleInfo.push(roster[20]);
 
             // get the shift
+            let shift = request.body.shift21[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location21[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day141 != undefined) {
+                console.log("Selected Day: " + request.body.day141);
+                days.push(request.body.day141);
+            }
+            if (request.body.day142 != undefined) {
+                console.log("Selected Day: " + request.body.day142);
+                days.push(request.body.day142);
+            }
+            if (request.body.day143 != undefined) {
+                console.log("Selected Day: " + request.body.day143);
+                days.push(request.body.day143);
+            }
+            if (request.body.day144 != undefined) {
+                console.log("Selected Day: " + request.body.day144);
+                days.push(request.body.day144);
+            }
+            if (request.body.day145 != undefined) {
+                console.log("Selected Day: " + request.body.day145);
+                days.push(request.body.day145);
+            }
+            if (request.body.day146 != undefined) {
+                console.log("Selected Day: " + request.body.day146);
+                days.push(request.body.day146);
+            }
+            if (request.body.day147 != undefined) {
+                console.log("Selected Day: " + request.body.day147);
+                days.push(request.body.day147);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 22) {
             // get the name
+            console.log("Employee: " + roster[21]);
+            scheduleInfo.push(roster[21]);
 
             // get the shift
+            let shift = request.body.shift22[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location22[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day148 != undefined) {
+                console.log("Selected Day: " + request.body.day148);
+                days.push(request.body.day148);
+            }
+            if (request.body.day149 != undefined) {
+                console.log("Selected Day: " + request.body.day149);
+                days.push(request.body.day149);
+            }
+            if (request.body.day150 != undefined) {
+                console.log("Selected Day: " + request.body.day150);
+                days.push(request.body.day150);
+            }
+            if (request.body.day151 != undefined) {
+                console.log("Selected Day: " + request.body.day151);
+                days.push(request.body.day151);
+            }
+            if (request.body.day152 != undefined) {
+                console.log("Selected Day: " + request.body.day152);
+                days.push(request.body.day152);
+            }
+            if (request.body.day153 != undefined) {
+                console.log("Selected Day: " + request.body.day153);
+                days.push(request.body.day153);
+            }
+            if (request.body.day154 != undefined) {
+                console.log("Selected Day: " + request.body.day154);
+                days.push(request.body.day154);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 23) {
             // get the name
+            console.log("Employee: " + roster[22]);
+            scheduleInfo.push(roster[22]);
 
             // get the shift
+            let shift = request.body.shift23[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location23[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day155 != undefined) {
+                console.log("Selected Day: " + request.body.day155);
+                days.push(request.body.day155);
+            }
+            if (request.body.day156 != undefined) {
+                console.log("Selected Day: " + request.body.day156);
+                days.push(request.body.day156);
+            }
+            if (request.body.day157 != undefined) {
+                console.log("Selected Day: " + request.body.day157);
+                days.push(request.body.day157);
+            }
+            if (request.body.day158 != undefined) {
+                console.log("Selected Day: " + request.body.day158);
+                days.push(request.body.day158);
+            }
+            if (request.body.day159 != undefined) {
+                console.log("Selected Day: " + request.body.day159);
+                days.push(request.body.day159);
+            }
+            if (request.body.day160 != undefined) {
+                console.log("Selected Day: " + request.body.day160);
+                days.push(request.body.day160);
+            }
+            if (request.body.day161 != undefined) {
+                console.log("Selected Day: " + request.body.day161);
+                days.push(request.body.day161);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 24) {
             // get the name
+            console.log("Employee: " + roster[23]);
+            scheduleInfo.push(roster[23]);
 
             // get the shift
+            let shift = request.body.shift24[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location24[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day162 != undefined) {
+                console.log("Selected Day: " + request.body.day162);
+                days.push(request.body.day162);
+            }
+            if (request.body.day163 != undefined) {
+                console.log("Selected Day: " + request.body.day163);
+                days.push(request.body.day163);
+            }
+            if (request.body.day164 != undefined) {
+                console.log("Selected Day: " + request.body.day164);
+                days.push(request.body.day164);
+            }
+            if (request.body.day165 != undefined) {
+                console.log("Selected Day: " + request.body.day165);
+                days.push(request.body.day165);
+            }
+            if (request.body.day166 != undefined) {
+                console.log("Selected Day: " + request.body.day166);
+                days.push(request.body.day166);
+            }
+            if (request.body.day167 != undefined) {
+                console.log("Selected Day: " + request.body.day167);
+                days.push(request.body.day167);
+            }
+            if (request.body.day168 != undefined) {
+                console.log("Selected Day: " + request.body.day168);
+                days.push(request.body.day168);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 25) {
             // get the name
+            console.log("Employee: " + roster[24]);
+            scheduleInfo.push(roster[24]);
 
             // get the shift
+            let shift = request.body.shift25[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location25[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day169 != undefined) {
+                console.log("Selected Day: " + request.body.day169);
+                days.push(request.body.day169);
+            }
+            if (request.body.day170 != undefined) {
+                console.log("Selected Day: " + request.body.day170);
+                days.push(request.body.day170);
+            }
+            if (request.body.day171 != undefined) {
+                console.log("Selected Day: " + request.body.day171);
+                days.push(request.body.day171);
+            }
+            if (request.body.day172 != undefined) {
+                console.log("Selected Day: " + request.body.day172);
+                days.push(request.body.day172);
+            }
+            if (request.body.day173 != undefined) {
+                console.log("Selected Day: " + request.body.day173);
+                days.push(request.body.day173);
+            }
+            if (request.body.day174 != undefined) {
+                console.log("Selected Day: " + request.body.day174);
+                days.push(request.body.day174);
+            }
+            if (request.body.day175 != undefined) {
+                console.log("Selected Day: " + request.body.day175);
+                days.push(request.body.day175);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 26) {
             // get the name
+            console.log("Employee: " + roster[25]);
+            scheduleInfo.push(roster[25]);
 
             // get the shift
+            let shift = request.body.shift26[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location26[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day176 != undefined) {
+                console.log("Selected Day: " + request.body.day176);
+                days.push(request.body.day176);
+            }
+            if (request.body.day177 != undefined) {
+                console.log("Selected Day: " + request.body.day177);
+                days.push(request.body.day1177);
+            }
+            if (request.body.day178 != undefined) {
+                console.log("Selected Day: " + request.body.day178);
+                days.push(request.body.day178);
+            }
+            if (request.body.day179 != undefined) {
+                console.log("Selected Day: " + request.body.day179);
+                days.push(request.body.day179);
+            }
+            if (request.body.day180 != undefined) {
+                console.log("Selected Day: " + request.body.day180);
+                days.push(request.body.day180);
+            }
+            if (request.body.day181 != undefined) {
+                console.log("Selected Day: " + request.body.day181);
+                days.push(request.body.day181);
+            }
+            if (request.body.day182 != undefined) {
+                console.log("Selected Day: " + request.body.day182);
+                days.push(request.body.day182);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 27) {
             // get the name
+            console.log("Employee: " + roster[26]);
+            scheduleInfo.push(roster[26]);
 
             // get the shift
+            let shift = request.body.shift27[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location27[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
 
-            // get the days
+            // get the day
+            let days = new Array();
+            if (request.body.day183 != undefined) {
+                console.log("Selected Day: " + request.body.day183);
+                days.push(request.body.day183);
+            }
+            if (request.body.day184 != undefined) {
+                console.log("Selected Day: " + request.body.day184);
+                days.push(request.body.day184);
+            }
+            if (request.body.day185 != undefined) {
+                console.log("Selected Day: " + request.body.day185);
+                days.push(request.body.day185);
+            }
+            if (request.body.day186 != undefined) {
+                console.log("Selected Day: " + request.body.day186);
+                days.push(request.body.day186);
+            }
+            if (request.body.day187 != undefined) {
+                console.log("Selected Day: " + request.body.day187);
+                days.push(request.body.day187);
+            }
+            if (request.body.day188 != undefined) {
+                console.log("Selected Day: " + request.body.day188);
+                days.push(request.body.day188);
+            }
+            if (request.body.day189 != undefined) {
+                console.log("Selected Day: " + request.body.day189);
+                days.push(request.body.day189);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 28) {
             // get the name
+            console.log("Employee: " + roster[27]);
+            scheduleInfo.push(roster[27]);
 
             // get the shift
+            let shift = request.body.shift28[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location28[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
+
+            // get the day
+            let days = new Array();
+            if (request.body.day190 != undefined) {
+                console.log("Selected Day: " + request.body.day190);
+                days.push(request.body.day190);
+            }
+            if (request.body.day191 != undefined) {
+                console.log("Selected Day: " + request.body.day191);
+                days.push(request.body.day191);
+            }
+            if (request.body.day192 != undefined) {
+                console.log("Selected Day: " + request.body.day192);
+                days.push(request.body.day192);
+            }
+            if (request.body.day193 != undefined) {
+                console.log("Selected Day: " + request.body.day193);
+                days.push(request.body.day193);
+            }
+            if (request.body.day194 != undefined) {
+                console.log("Selected Day: " + request.body.day194);
+                days.push(request.body.day194);
+            }
+            if (request.body.day195 != undefined) {
+                console.log("Selected Day: " + request.body.day195);
+                days.push(request.body.day195);
+            }
+            if (request.body.day196 != undefined) {
+                console.log("Selected Day: " + request.body.day196);
+                days.push(request.body.day196);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 29) {
             // get the name
+            console.log("Employee: " + roster[28]);
+            scheduleInfo.push(roster[28]);
 
             // get the shift
+            let shift = request.body.shift29[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location29[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
+
+            // get the day
+            let days = new Array();
+            if (request.body.day197 != undefined) {
+                console.log("Selected Day: " + request.body.day197);
+                days.push(request.body.day197);
+            }
+            if (request.body.day198 != undefined) {
+                console.log("Selected Day: " + request.body.day198);
+                days.push(request.body.day198);
+            }
+            if (request.body.day199 != undefined) {
+                console.log("Selected Day: " + request.body.day199);
+                days.push(request.body.day199);
+            }
+            if (request.body.day200 != undefined) {
+                console.log("Selected Day: " + request.body.day200);
+                days.push(request.body.day200);
+            }
+            if (request.body.day201 != undefined) {
+                console.log("Selected Day: " + request.body.day201);
+                days.push(request.body.day201);
+            }
+            if (request.body.day202 != undefined) {
+                console.log("Selected Day: " + request.body.day202);
+                days.push(request.body.day202);
+            }
+            if (request.body.day203 != undefined) {
+                console.log("Selected Day: " + request.body.day203);
+                days.push(request.body.day203);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
         else if (num == 30) {
             // get the name
+            console.log("Employee: " + roster[29]);
+            scheduleInfo.push(roster[29]);
 
             // get the shift
+            let shift = request.body.shift30[0];
+            if (shift != "") {
+                console.log("Shift: " + shift);
+                scheduleInfo.push(shift);
+            }
 
             // get the location
+            let location = request.body.location30[0];
+            if (location != "") {
+                console.log("Location: " + location);
+                scheduleInfo.push(location);
+            }
+
+            // get the day
+            let days = new Array();
+            if (request.body.day204 != undefined) {
+                console.log("Selected Day: " + request.body.day204);
+                days.push(request.body.day204);
+            }
+            if (request.body.day205 != undefined) {
+                console.log("Selected Day: " + request.body.day205);
+                days.push(request.body.day205);
+            }
+            if (request.body.day206 != undefined) {
+                console.log("Selected Day: " + request.body.day206);
+                days.push(request.body.day206);
+            }
+            if (request.body.day207 != undefined) {
+                console.log("Selected Day: " + request.body.day207);
+                days.push(request.body.day207);
+            }
+            if (request.body.day208 != undefined) {
+                console.log("Selected Day: " + request.body.day208);
+                days.push(request.body.day208);
+            }
+            if (request.body.day209 != undefined) {
+                console.log("Selected Day: " + request.body.day209);
+                days.push(request.body.day209);
+            }
+            if (request.body.day210 != undefined) {
+                console.log("Selected Day: " + request.body.day210);
+                days.push(request.body.day210);
+            }
+
+            if (days.length > 0) {
+                console.log("Days: " + days);
+                scheduleInfo.push(days);
+            }
         }
+        num++;
     }
 }
 
-function getScheduleCheckerInfo(request, scheduleInfo, numOfEmps, companyType) {
+function getScheduleCheckerInfo(request, scheduleInfo, roster, companyType) {
+    // convert the roster to an array
+    let rosterArr = new Array();
+    stringToArray(roster, rosterArr);
+
+    // split to the different searches
     if (companyType == "whiteCollar" || companyType == "lawEnforcement") {
         // get the information that is whiteCollar Specific
-        wclShceduleCheckerInfo(request, scheduleInfo, numOfEmps);
+        wclScheduleCheckerInfo(request, scheduleInfo, rosterArr);
     }
     else if (companyType == "retail" || companyType == "entertainment" || companyType == "food") {
         // get the information that is retail specific
-        refShceduleCheckerInfo(request, scheduleInfo, numOfEmps);
+        refScheduleCheckerInfo(request, scheduleInfo, rosterArr);
     }
     else {
         console.log("ERROR: Invalid company type in getScheduleCheckerInfo");
+    }
+}
+
+function clearArray(discoveredIssues) {
+    while (discoveredIssues.length != 0) {
+        let dummy = discoveredIssues.pop();
     }
 }
 
@@ -1948,4 +3712,4 @@ module.exports = {authenticateUser, checkPswds, determineRole,
     getAllergies, getFoodAllergies, checkUsername, checkEmail, getUserInfo,
     directQuestionnaire, getLocationPref, getShiftTimePref, getWeekDayEnd, getDayPref,
     getNumOfDays, getEmpAllergiesEF, getEmpAllergiesL, removeFromRoster, checkRoster,
-    getScheduleCheckerInfo};
+    getScheduleCheckerInfo, clearArray};

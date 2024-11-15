@@ -928,7 +928,7 @@ program.post("/updateTimeOff", async function(request, response) {
     // get the supervisor's roster
     let roster = await databaseFunctions.getRoster(databaseConnection, username, companyType);
     console.log("Original Roster: " + roster);
-    // search the roster for the name - NOT DONE
+    // search the roster for the name
     let exist = serverFunctions.checkRoster(roster, empName);
 
     if (exist) {
@@ -1006,16 +1006,20 @@ program.post("/removeEmp", async function(request, response) {
     console.log("Original Number of Employees: " + numOfEmps);
 
     // remove the name from the roster
-    let newRoster = serverFunctions.removeFromRoster(roster, name);
+    let result = serverFunctions.removeFromRoster(roster, name);
+    let newRoster = result[0];
+    let removed = result[1];
     console.log("New Roster: " + newRoster);
 
-    // decrement the number of employees
-    numOfEmps = numOfEmps - 1;
-    console.log("New Number of Employees: " + numOfEmps);
-
-    // update the roster
-    databaseFunctions.updateRoster(databaseConnection, username, newRoster, numOfEmps, 
-        companyType);
+    // decrement the number of employees (if actually removed an employee)
+    if (removed) {
+        numOfEmps = numOfEmps - 1;
+        console.log("New Number of Employees: " + numOfEmps);
+        
+        // update the roster
+        databaseFunctions.updateRoster(databaseConnection, username, newRoster, numOfEmps, 
+            companyType);
+    }
 
     // FOR TESTING - print the supervisor's table
     tester.printFullSupTable(databaseConnection, username, companyType);
@@ -1024,24 +1028,28 @@ program.post("/removeEmp", async function(request, response) {
     response.sendFile(__dirname + "/Company_forms/Supervisor_specific/update_landing.html");
 });
 
+let discoveredIssues = new Array(); // global variable for recall by later functions
 program.post("/sched_check", async function(request, response) {
-    // array to hold all of the issues
-    let discoveredIssues = new Array();
+    // see if the array needs to be cleared for a new session
+    if (discoveredIssues.length > 0) {
+        // clear the array
+        serverFunctions.clearArray(discoveredIssues);
+        console.log("The length of the discovered issues array for the session is: " + discoveredIssues.length);
+    }
+
+    // get the roster
+    let roster = await databaseFunctions.getRoster(databaseConnection, username, companyType);
 
     // split to the different company searches (each have their own things to look for)
     let scheduleInfo = new Array();
-    // get the number of employees
-    let numOfEmps = await databaseFunctions.getNumOfEmps(databaseConnection, username, 
+    // get if multiple locations
+    let multLoc = await databaseFunctions.getMultLoc(databaseConnection, username, 
         companyType);
-    // IN PROGRESS
-    serverFunctions.getScheduleCheckerInfo(request, scheduleInfo, numOfEmps, companyType);
-    // NOT DONE
-    databaseFunctions.issueSearch(databaseConnection, discoveredIssues, scheduleInfo,
-        companyType, username);
-    
-    // store the array of issues (even blank) in the database
-    databaseFunctions.updateIssues(databaseConnection, username, companyType, 
-        discoveredIssues);
+    serverFunctions.getScheduleCheckerInfo(request, scheduleInfo, roster, companyType);
+    // IN PROGRESS - temp is a dummy variable to force the application to wait before 
+    // moving on
+    let temp = await databaseFunctions.issueSearch(databaseConnection, discoveredIssues, 
+        scheduleInfo, companyType, multLoc, fullName);
 
     // if the issues array is empty, go to the all good page
     if (discoveredIssues.length == 0) {
@@ -1237,7 +1245,8 @@ program.get("/getWeekendSup", async function(request, response) {
 
 program.get("/getIssues", function(request, response) {
     // get the issues stored in the database
-    let issues = databaseFunctions.retrieveIssues(databaseConnection, username, companyType);
+    //let issues = databaseFunctions.retrieveIssues(databaseConnection, username, companyType);
+    let issues = discoveredIssues.toString();
     console.log("The issues: " + issues);
 
     // send the information

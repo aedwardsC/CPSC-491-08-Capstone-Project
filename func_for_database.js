@@ -102,7 +102,7 @@ function startDatabase(databaseConnection) {
                     + " supFullName VARCHAR(255), companyName VARCHAR(255),"
                     + " numOfEmps INT, roster VARCHAR(255),"
                     + " locationNames VARCHAR(255), shiftHours VARCHAR(255),"
-                    + " multLoc VARCHAR(255), numOfLoc INT, discoveredIssues VARCHAR(255)";
+                    + " multLoc VARCHAR(255), numOfLoc INT";
                 tableElements = commonElements + ", trainingDays VARCHAR(255)";
                 createTable(databaseConnection, tableName, tableElements);
                
@@ -222,6 +222,33 @@ function determineSupTableName(table) {
     }
 
     return name;
+}
+
+function stringToArray(givenString, givenArray) {
+    // convert the string from the database into a vector to be manipulated
+    let index = 0;
+    while (index < givenString.length) {
+        let temp = "";
+        while (givenString[index] != "," && index < givenString.length) {
+            temp = temp + givenString[index];
+            index++;
+        }
+        givenArray.push(temp);
+        index++;
+    }
+}
+
+function compareEntries(choice, arrayOptions) {
+    // compare the selected choice with each preference option
+    for (let index = 0; index < arrayOptions.length; index++) {
+        // if one matches -> stop looking and return true (found a match)
+        if (choice == arrayOptions[index]) {
+            return true;
+        }
+        // else keep looking
+    }
+
+    return false;
 }
 
 // functions for storing information
@@ -1249,47 +1276,477 @@ async function getRoster(databaseConnection, email, companyType) {
     }
 }
 
-function retrieveIssuesFromTable(databaseConnection, queryCommand) {
+function getShiftPref(databaseConnection, empEmail, table) {
     return new Promise((resolve, reject) => {
+        let queryCommand = 'SELECT shiftTimePref FROM schedularDatabase.' + table
+            + ' WHERE email = "' + empEmail + '";';
+        
         databaseConnection.query(queryCommand, function(error, sqlResult, table) {
             if (error) {
-                console.log("ERROR: Unable to retrieve issues from supervisor table");
+                console.log("ERROR: Unable to retrieve shift preference in getShiftPref" + error);
             }
             else {
-                // get the issue(s)
-                let issues = sqlResult[0].discoveredIssues;
-                console.log("Issues in retrieveIssuesFromTable: " + issues);
+                // get the preference(s)
+                let shiftPref = sqlResult[0].shiftTimePref;
+                console.log("Shift Preference from getShiftPref: " + shiftPref);
 
-                // return the issue(s)
-                resolve(issues);
+                // return the preference(s)
+                resolve(shiftPref);
             }
         });
     });
 }
 
-async function retrieveIssues(databaseConnection, email, companyType) {
-    // get the supervisor's table
-    let table = determineSupTable(companyType);
-    
-    if (table == "") {
-        console.log("ERROR: Unable to determine supervisor table in retrieveIssues - Invalid companyType");
+function getLocationPref(databaseConnection, empEmail, table) {
+    return new Promise((resolve, reject) => {
+        let queryCommand = 'SELECT locationPref FROM schedularDatabase.' + table
+            + ' WHERE email = "' + empEmail + '";';
+        
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve location preference in getLocationPref");
+            }
+            else {
+                // get the location(s)
+                let locPref = sqlResult[0].locationPref;
+                console.log("Location Preference from getLocationPref: " + locPref);
+
+                // return the location(s)
+                resolve(locPref);
+            }
+        });
+    }); 
+}
+
+function getDayPref(databaseConnection, empEmail, table) {
+    return new Promise((resolve, reject) => {
+        let queryCommand = 'SELECT dayPref FROM schedularDatabase.' + table
+            + ' WHERE email = "' + empEmail + '";';
+        
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve day(s) preference in getLocationPref");
+            }
+            else {
+                // get the day(s)
+                let days = sqlResult[0].dayPref;
+                console.log("Day Preference from getDayPref: " + days);
+                
+                // return the day(s)
+                resolve(days);
+            }
+        });
+    });
+}
+
+async function wcIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+    table, multLoc) {
+    // figure out the indexes
+    let nameIndex = 0;
+    let shiftIndex = 1;
+    let locationIndex = 0;
+    let indexJump = 0;
+
+    if (multLoc == "yes") {
+        locationIndex = 2;
+        indexJump = 3;
     }
     else {
-        let queryCommand = 'SELECT discoveredIssues FROM schedularDatabase.' + table
-            + ' WHERE supEmail = "' + email + '";';
-        
-        // get the issues
-        let issues = await retrieveIssuesFromTable(databaseConnection, queryCommand);
-        console.log("Issue(s) in retrieveIssues = " + issues);
-
-        // return the string
-        return issues;
+        indexJump = 2;
     }
+    
+    // perform the search for every employee listed
+    while (nameIndex < scheduleInfo.length && shiftIndex < scheduleInfo.length 
+        && locationIndex < scheduleInfo.length) {
+        // once found an issue, move on
+        let foundIssue = false;
+        // get the employee name
+        let empName = scheduleInfo[nameIndex];
+
+        // get the employee's email
+        let empEmail = await getEmployee(databaseConnection, name, empName, "whiteCollar");
+        console.log("The user's email: " + empEmail);
+
+        // compare the shift
+        let shift = scheduleInfo[shiftIndex];
+        // get the shift preference
+        let shiftPrefStr = await getShiftPref(databaseConnection, empEmail, table);
+        console.log("Shift Preference in Issue Search: " + shiftPrefStr);
+        // if the user didn't provide a preference, there's no issue
+        if (shiftPrefStr != "" && shiftPrefStr != null) {
+            // convert shiftPref to an array
+            let shiftPref = new Array();
+            stringToArray(shiftPrefStr, shiftPref);
+            // compare the shift with each entry in the array
+            let foundMatchShift = compareEntries(shift, shiftPref);
+            if (!foundMatchShift) {
+                console.log("Found a shift issue for " + empName);
+                foundIssue = true;
+                discoveredIssues.push(empName);
+                discoveredIssues.push("Shift Time");
+                discoveredIssues.push("[" + shiftPrefStr + "]");
+                console.log(" "); // for spacing the output on the console
+            }
+            else {
+                console.log("No shift issue for " + empName);
+            }
+        }
+
+        // compare the location (only if issues not found and multiple locations)
+        if (foundIssue == false && multLoc == "yes") {
+            // get the location
+            let location = scheduleInfo[locationIndex];
+            // get the location preference
+            let locationPrefStr = await getLocationPref(databaseConnection, empEmail, table);
+            console.log("Location Preference in Issue Search: " + locationPrefStr);
+            // if the user didn't provide a preference, there's no issue
+            if (locationPrefStr != "" && locationPrefStr != null) {
+                // convert locationPref to an array
+                let locationPref = new Array();
+                stringToArray(locationPrefStr, locationPref);
+                // compare the location with each entry in the array
+                let foundMatchLoc = compareEntries(location, locationPref);
+                if (!foundMatchLoc) {
+                    console.log("Found a location issue for " + empName);
+                    discoveredIssues.push(empName);
+                    discoveredIssues.push("Location Assignment");
+                    discoveredIssues.push("[" + locationPrefStr + "]");
+                    console.log(" "); // for spacing the output on the console
+                }
+                else {
+                    console.log("No location issue for " + empName);
+                    console.log(" "); // for spacing the output on the console
+                }
+            }
+        }
+
+        if (multLoc == "yes") {
+            locationIndex = locationIndex + indexJump;
+        }
+
+        // increment name and shift indexes by the index jump
+        nameIndex = nameIndex + indexJump;
+        shiftIndex = shiftIndex + indexJump;
+    }
+
+    return true; // for the dummy variable
+}
+
+function compareDayEntries(days, daysPref) {
+    let issue = false;
+    // for every entry in days
+    for (let index = 0; index < days.length; index++) {
+        // search the days to see if there is not a match
+        for (let i = 0; i < daysPref.length; i++) {
+            if (days[index] != daysPref[i]) {
+                // if not a match -> there may be an issue
+                issue = true;
+            }
+            else if (days[index] == daysPref[i]) {
+                issue = false;
+                break;
+            }
+        }
+        if (issue) {
+            return issue;
+        }
+    }
+
+    return issue;
+
+}
+
+async function rIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+    table, multLoc) {
+    // figure out the indexes
+    let nameIndex = 0;
+    let shiftIndex = 1;
+    let locationIndex = 0;
+    let indexJump = 0;
+    let dayIndex = 2;
+
+    if (multLoc == "yes") {
+        locationIndex = 2;
+        dayIndex = 3;
+        indexJump = 4;
+    }
+    else {
+        indexJump = 3;
+    }
+    
+    // perform the search for every employee listed
+    while (nameIndex < scheduleInfo.length && shiftIndex < scheduleInfo.length 
+        && locationIndex < scheduleInfo.length) {
+        // once found an issue, move on
+        let foundIssue = false;
+        // get the employee name
+        let empName = scheduleInfo[nameIndex];
+
+        // get the employee's email
+        let empEmail = await getEmployee(databaseConnection, name, empName, "retail");
+        console.log("The user's email: " + empEmail);
+
+        // compare the shift
+        let shift = scheduleInfo[shiftIndex];
+        // get the shift preference
+        let shiftPrefStr = await getShiftPref(databaseConnection, empEmail, table);
+        console.log("Shift Preference in Issue Search: " + shiftPrefStr);
+        // if the user didn't provide a preference, there's no issue
+        if (shiftPrefStr != "" && shiftPrefStr != null) {
+            // convert shiftPref to an array
+            let shiftPref = new Array();
+            stringToArray(shiftPrefStr, shiftPref);
+            // compare the shift with each entry in the array
+            let foundMatchShift = compareEntries(shift, shiftPref);
+            if (!foundMatchShift) {
+                console.log("Found a shift issue for " + empName);
+                foundIssue = true;
+                discoveredIssues.push(empName);
+                discoveredIssues.push("Shift Time");
+                discoveredIssues.push("[" + shiftPrefStr + "]");
+                console.log(" "); // for spacing the output on the console
+            }
+            else {
+                console.log("No shift issue for " + empName);
+            }
+        }
+
+        // compare the location (only if issues not found and multiple locations)
+        if (foundIssue == false && multLoc == "yes") {
+            // get the location
+            let location = scheduleInfo[locationIndex];
+            // get the location preference
+            let locationPrefStr = await getLocationPref(databaseConnection, empEmail, table);
+            console.log("Location Preference in Issue Search: " + locationPrefStr);
+            // if the user didn't provide a preference, there's no issue
+            if (locationPrefStr != "" && locationPrefStr != null) {
+                // convert locationPref to an array
+                let locationPref = new Array();
+                stringToArray(locationPrefStr, locationPref);
+                // compare the location with each entry in the array
+                let foundMatchLoc = compareEntries(location, locationPref);
+                if (!foundMatchLoc) {
+                    console.log("Found a location issue for " + empName);
+                    foundIssue = true;
+                    discoveredIssues.push(empName);
+                    discoveredIssues.push("Location Assignment");
+                    discoveredIssues.push("[" + locationPrefStr + "]");
+                    console.log(" "); // for spacing the output on the console
+                }
+                else {
+                    console.log("No location issue for " + empName);
+                }
+            }
+        }
+
+        // compare the days to see if they match (only if not found another issue)
+        if (foundIssue == false) {
+            // go through each day individually - may be scheduled less days than prefer
+            // get the day(s)
+            let days = scheduleInfo[dayIndex];
+            // get the day preference
+            let dayPrefStr = await getDayPref(databaseConnection, empEmail, table);
+            console.log("Day Preference in Issue Search: " + dayPrefStr);
+            // if the user didn't provide a preference, there's no issue
+            if (dayPrefStr != "" && dayPrefStr != null) {
+                // convert dayPref to an array
+                let daysPref = new Array();
+                stringToArray(dayPrefStr, daysPref);
+                // compare the location with each entry in the array
+                let foundDayIssue = compareDayEntries(days, daysPref);
+                if (foundDayIssue) {
+                    console.log("Found a day issue for " + empName);
+                    discoveredIssues.push(empName);
+                    discoveredIssues.push("Day Assignment");
+                    discoveredIssues.push("[" + dayPrefStr + "]");
+                    console.log(" "); // for spacing the output on the console
+                }
+                else {
+                    console.log("No day issue for " + empName);
+                    console.log(" "); // for spacing the output on the console
+                }
+            }
+        }
+
+        if (multLoc == "yes") {
+            locationIndex = locationIndex + indexJump;
+        }
+        // increment name, shift, and day indexes by the index jump
+        nameIndex = nameIndex + indexJump;
+        shiftIndex = shiftIndex + indexJump;
+        dayIndex = dayIndex + indexJump;
+    }
+
+    return true; // for the dummy variable
+}
+
+async function efIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+        table, multLoc) {
+        // figure out the indexes
+        let nameIndex = 0;
+        let shiftIndex = 1;
+        let locationIndex = 2;
+        let indexJump = 0;
+    
+        if (multLoc == "yes") {
+            indexJump = 4;
+        }
+        else {
+            indexJump = 3;
+        }
+        
+        // perform the search for every employee listed
+        while (nameIndex < scheduleInfo.length && shiftIndex < scheduleInfo.length 
+            && locationIndex < scheduleIndex.length) {
+            // once found an issue, move on
+            let foundIssue = false;
+            // get the employee name
+            let empName = scheduleInfo[nameIndex];
+    
+            // get the employee's email
+            let empEmail = await getEmployee(databaseConnection, name, empName, companyType);
+            console.log("The user's email: " + empEmail);
+    
+            // compare the shift
+            let shift = scheduleInfo[shiftIndex];
+            // get the shift preference
+            let shiftPref = await getShiftPref(databaseConnection, empEmail, table);
+            if (shift != shiftPref) {
+                foundIssue = true;
+                discoveredIssues.push(empName);
+                discoveredIssues.push("Shift Time");
+                discoveredIssues.push(shiftPref);
+            }
+    
+            // compare the location (only if issues not found and multiple locations)
+            if (foundIssue == false && multLoc == "yes") {
+                // get the location
+                let location = scheduleInfo[locationIndex];
+                // get the location preference
+                let locationPref = await getLocationPref(databaseConnection, empEmail, table);
+                if (location != locationPref) {
+                    foundIssue = true;
+                    discoveredIssues.push(empName);
+                    discoveredIssues.push("Location Assignment");
+                    discoveredIssues.push(locationPref);
+                }
+            }
+    
+            if (multLoc == "yes") {
+                locationIndex = locationIndex + indexJump;
+            }
+
+            // compare the allergies at the chosen site with the employee's allergies
+            // if any match -> add to the issues
+    
+            // compare the days to see if they match
+    
+            // increment name and shift indexes by the index jump
+            nameIndex = nameIndex + indexJump;
+            shiftIndex = shiftIndex + indexJump;
+        }
+    return true; // for the dummy variable
+}
+
+async function lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+    table, multLoc) {
+    // figure out the indexes
+    let nameIndex = 0;
+    let shiftIndex = 1;
+    let locationIndex = 2;
+    let indexJump = 0;
+
+    if (multLoc == "yes") {
+        indexJump = 3;
+    }
+    else {
+        indexJump = 2;
+    }
+    
+    // perform the search for every employee listed
+    while (nameIndex < scheduleInfo.length && shiftIndex < scheduleInfo.length 
+        && locationIndex < scheduleIndex.length) {
+        // once found an issue, move on
+        let foundIssue = false;
+        // get the employee name
+        let empName = scheduleInfo[nameIndex];
+
+        // get the employee's email
+        let empEmail = await getEmployee(databaseConnection, name, empName, companyType);
+        console.log("The user's email: " + empEmail);
+
+        // compare allergies located at the chosen site with the allergies of the user
+        // if any allergies match -> add to issues
+
+        // get the last shift worked from the database
+        // if last shift matches the current shift -> add to issues
+        // else do nothing
+
+        // compare the shift
+        let shift = scheduleInfo[shiftIndex];
+        // get the shift preference
+        let shiftPref = await getShiftPref(databaseConnection, empEmail, table);
+        if (shift != shiftPref) {
+            foundIssue = true;
+            discoveredIssues.push(empName);
+            discoveredIssues.push("Shift Time");
+            discoveredIssues.push(shiftPref);
+        }
+
+        // compare the location (only if issues not found and multiple locations)
+        if (foundIssue == false && multLoc == "yes") {
+            // get the location
+            let location = scheduleInfo[locationIndex];
+            // get the location preference
+            let locationPref = await getLocationPref(databaseConnection, empEmail, table);
+            if (location != locationPref) {
+                foundIssue = true;
+                discoveredIssues.push(empName);
+                discoveredIssues.push("Location Assignment");
+                discoveredIssues.push(locationPref);
+            }
+        }
+
+        if (multLoc == "yes") {
+            locationIndex = locationIndex + indexJump;
+        }
+
+        // increment name and shift indexes by the index jump
+        nameIndex = nameIndex + indexJump;
+        shiftIndex = shiftIndex + indexJump;
+    }
+    return true; // for the dummy variable
 }
 
 async function issueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
-    companyType, username) {
-    // split based on company type
+    companyType, multLoc, name) {
+    // get the table
+    let table = determineEmpTable(companyType);
+
+    if (table == "") {
+        console.log("ERROR: Unable to determine supervisor table in issueSearch - Invalid companyType");
+    }
+    else {
+        // split based on company type
+        if (companyType == "whiteCollar") {
+            let dummy = await wcIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+                table, multLoc);
+        }
+        else if (companyType == "retail") {
+            let dummy = await rIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+                table, multLoc);
+        }
+        else if (companyType == "entertainment" || companyType == "food") {
+            let dummy = await efIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+                table, multLoc);
+        }
+        else if (companyType == "lawEnforcement") {
+            let dummy = await lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
+                table, multLoc);
+        }
+    }
+
+    return true;
 }
 
 module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, companyTypeFromName,
@@ -1298,5 +1755,5 @@ module.exports = {startDatabase, storeGeneralSignUpInfo, storeCompanyType, compa
     getNumOfShifts, storeREFInitInfo1, storeShiftTimes, storeLInitInfo1, storeAllergies,
     getUsernamesEmails, getUserInfo, getUserPassword, getSupervisor, getShifts,
     getLocationNames, storeWCEmpPref, getWeekdays, getWeekends, storeEFEmpPref, storeLEmpPref,
-    getEmployee, updateTimeOff, getRoster, updateRoster, retrieveIssues, updateIssues,
+    getEmployee, updateTimeOff, getRoster, updateRoster, updateIssues,
     issueSearch};
