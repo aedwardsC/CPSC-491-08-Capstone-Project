@@ -1049,7 +1049,7 @@ program.post("/sched_check", async function(request, response) {
     // IN PROGRESS - temp is a dummy variable to force the application to wait before 
     // moving on
     let temp = await databaseFunctions.issueSearch(databaseConnection, discoveredIssues, 
-        scheduleInfo, companyType, multLoc, fullName);
+        scheduleInfo, companyType, multLoc, fullName, username);
 
     // if the issues array is empty, go to the all good page
     if (discoveredIssues.length == 0) {
