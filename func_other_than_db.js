@@ -2048,31 +2048,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day1 != undefined) {
+            if (request.body.day1 != undefined && request.body.day1 != "") {
                 console.log("Selected Day: " + request.body.day1);
                 days.push(request.body.day1);
             }
-            if (request.body.day2 != undefined) {
+            if (request.body.day2 != undefined && request.body.day2 != "") {
                 console.log("Selected Day: " + request.body.day2);
                 days.push(request.body.day2);
             }
-            if (request.body.day3 != undefined) {
+            if (request.body.day3 != undefined && request.body.day3 != "") {
                 console.log("Selected Day: " + request.body.day3);
                 days.push(request.body.day3);
             }
-            if (request.body.day4 != undefined) {
+            if (request.body.day4 != undefined && request.body.day4 != "") {
                 console.log("Selected Day: " + request.body.day4);
                 days.push(request.body.day4);
             }
-            if (request.body.day5 != undefined) {
+            if (request.body.day5 != undefined && request.body.day5 != "") {
                 console.log("Selected Day: " + request.body.day5);
                 days.push(request.body.day5);
             }
-            if (request.body.day6 != undefined) {
+            if (request.body.day6 != undefined && request.body.day6 != "") {
                 console.log("Selected Day: " + request.body.day6);
                 days.push(request.body.day6);
             }
-            if (request.body.day7 != undefined) {
+            if (request.body.day7 != undefined && request.body.day7 != "") {
                 console.log("Selected Day: " + request.body.day7);
                 days.push(request.body.day7);
             }
@@ -2104,31 +2104,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
             // get the day
             let days = new Array();
             if (request.body.day8 != undefined) {
-                console.log("Selected Day: " + request.body.day8);
+                console.log("Selected Day: " + request.body.day8 && request.body.day8 != "");
                 days.push(request.body.day8);
             }
             if (request.body.day9 != undefined) {
-                console.log("Selected Day: " + request.body.day9);
+                console.log("Selected Day: " + request.body.day9 && request.body.day9 != "");
                 days.push(request.body.day9);
             }
             if (request.body.day10 != undefined) {
-                console.log("Selected Day: " + request.body.day10);
+                console.log("Selected Day: " + request.body.day10 && request.body.day10 != "");
                 days.push(request.body.day10);
             }
             if (request.body.day11 != undefined) {
-                console.log("Selected Day: " + request.body.day11);
+                console.log("Selected Day: " + request.body.day11 && request.body.day11 != "");
                 days.push(request.body.day11);
             }
             if (request.body.day12 != undefined) {
-                console.log("Selected Day: " + request.body.day12);
+                console.log("Selected Day: " + request.body.day12 && request.body.day12 != "");
                 days.push(request.body.day12);
             }
             if (request.body.day13 != undefined) {
-                console.log("Selected Day: " + request.body.day13);
+                console.log("Selected Day: " + request.body.day13 && request.body.day13 != "");
                 days.push(request.body.day13);
             }
             if (request.body.day14 != undefined) {
-                console.log("Selected Day: " + request.body.day14);
+                console.log("Selected Day: " + request.body.day14 && request.body.day14 != "");
                 days.push(request.body.day14);
             }
 
@@ -2158,31 +2158,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day15 != undefined) {
+            if (request.body.day15 != undefined && request.body.day15 != "") {
                 console.log("Selected Day: " + request.body.day15);
                 days.push(request.body.day15);
             }
-            if (request.body.day16 != undefined) {
+            if (request.body.day16 != undefined  && request.body.day16 != "") {
                 console.log("Selected Day: " + request.body.day16);
                 days.push(request.body.day16);
             }
-            if (request.body.day17 != undefined) {
+            if (request.body.day17 != undefined && request.body.day17 != "") {
                 console.log("Selected Day: " + request.body.day17);
                 days.push(request.body.day17);
             }
-            if (request.body.day18 != undefined) {
+            if (request.body.day18 != undefined && request.body.day18 != "") {
                 console.log("Selected Day: " + request.body.day18);
                 days.push(request.body.day18);
             }
-            if (request.body.day19 != undefined) {
+            if (request.body.day19 != undefined && request.body.day19 != "") {
                 console.log("Selected Day: " + request.body.day19);
                 days.push(request.body.day19);
             }
-            if (request.body.day20 != undefined) {
+            if (request.body.day20 != undefined && request.body.day20 != "") {
                 console.log("Selected Day: " + request.body.day20);
                 days.push(request.body.day20);
             }
-            if (request.body.day21 != undefined) {
+            if (request.body.day21 != undefined && request.body.day21 != "") {
                 console.log("Selected Day: " + request.body.day21);
                 days.push(request.body.day21);
             }
@@ -2213,31 +2213,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day22 != undefined) {
+            if (request.body.day22 != undefined && request.body.day22 != "") {
                 console.log("Selected Day: " + request.body.day22);
                 days.push(request.body.day22);
             }
-            if (request.body.day23 != undefined) {
+            if (request.body.day23 != undefined && request.body.day23 != "") {
                 console.log("Selected Day: " + request.body.day23);
                 days.push(request.body.day23);
             }
-            if (request.body.day24 != undefined) {
+            if (request.body.day24 != undefined && request.body.day24 != "") {
                 console.log("Selected Day: " + request.body.day24);
                 days.push(request.body.day24);
             }
-            if (request.body.day25 != undefined) {
+            if (request.body.day25 != undefined && request.body.day25 != "") {
                 console.log("Selected Day: " + request.body.day25);
                 days.push(request.body.day25);
             }
-            if (request.body.day26 != undefined) {
+            if (request.body.day26 != undefined && request.body.day26 != "") {
                 console.log("Selected Day: " + request.body.day26);
                 days.push(request.body.day26);
             }
-            if (request.body.day27 != undefined) {
+            if (request.body.day27 != undefined && request.body.day27 != "") {
                 console.log("Selected Day: " + request.body.day27);
                 days.push(request.body.day27);
             }
-            if (request.body.day28 != undefined) {
+            if (request.body.day28 != undefined && request.body.day28 != "") {
                 console.log("Selected Day: " + request.body.day28);
                 days.push(request.body.day28);
             }
@@ -2268,31 +2268,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day29 != undefined) {
+            if (request.body.day29 != undefined && request.body.day29 != "") {
                 console.log("Selected Day: " + request.body.day29);
                 days.push(request.body.day29);
             }
-            if (request.body.day30 != undefined) {
+            if (request.body.day30 != undefined && request.body.day30 != "") {
                 console.log("Selected Day: " + request.body.day30);
                 days.push(request.body.day30);
             }
-            if (request.body.day31 != undefined) {
+            if (request.body.day31 != undefined && request.body.day31 != "") {
                 console.log("Selected Day: " + request.body.day31);
                 days.push(request.body.day31);
             }
-            if (request.body.day32 != undefined) {
+            if (request.body.day32 != undefined && request.body.day32 != "") {
                 console.log("Selected Day: " + request.body.day32);
                 days.push(request.body.day32);
             }
-            if (request.body.day33 != undefined) {
+            if (request.body.day33 != undefined && request.body.day33 != "") {
                 console.log("Selected Day: " + request.body.day33);
                 days.push(request.body.day33);
             }
-            if (request.body.day34 != undefined) {
+            if (request.body.day34 != undefined && request.body.day34 != "") {
                 console.log("Selected Day: " + request.body.day34);
                 days.push(request.body.day34);
             }
-            if (request.body.day35 != undefined) {
+            if (request.body.day35 != undefined && request.body.day35 != "") {
                 console.log("Selected Day: " + request.body.day35);
                 days.push(request.body.day35);
             }
@@ -2323,31 +2323,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day36 != undefined) {
+            if (request.body.day36 != undefined && request.body.day36 != "") {
                 console.log("Selected Day: " + request.body.day36);
                 days.push(request.body.day36);
             }
-            if (request.body.day37 != undefined) {
+            if (request.body.day37 != undefined && request.body.day37 != "") {
                 console.log("Selected Day: " + request.body.day37);
                 days.push(request.body.day37);
             }
-            if (request.body.day38 != undefined) {
+            if (request.body.day38 != undefined && request.body.day38 != "") {
                 console.log("Selected Day: " + request.body.day38);
                 days.push(request.body.day38);
             }
-            if (request.body.day39 != undefined) {
+            if (request.body.day39 != undefined && request.body.day39 != "") {
                 console.log("Selected Day: " + request.body.day39);
                 days.push(request.body.day39);
             }
-            if (request.body.day40 != undefined) {
+            if (request.body.day40 != undefined && request.body.day40 != "") {
                 console.log("Selected Day: " + request.body.day40);
                 days.push(request.body.day40);
             }
-            if (request.body.day41 != undefined) {
+            if (request.body.day41 != undefined && request.body.day41 != "") {
                 console.log("Selected Day: " + request.body.day41);
                 days.push(request.body.day41);
             }
-            if (request.body.day42 != undefined) {
+            if (request.body.day42 != undefined && request.body.day42 != "") {
                 console.log("Selected Day: " + request.body.day42);
                 days.push(request.body.day42);
             }
@@ -2378,31 +2378,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day43 != undefined) {
+            if (request.body.day43 != undefined && request.body.day43 != "") {
                 console.log("Selected Day: " + request.body.day43);
                 days.push(request.body.day43);
             }
-            if (request.body.day44 != undefined) {
+            if (request.body.day44 != undefined && request.body.day44 != "") {
                 console.log("Selected Day: " + request.body.day44);
                 days.push(request.body.day44);
             }
-            if (request.body.day45 != undefined) {
+            if (request.body.day45 != undefined && request.body.day45 != "") {
                 console.log("Selected Day: " + request.body.day45);
                 days.push(request.body.day45);
             }
-            if (request.body.day46 != undefined) {
+            if (request.body.day46 != undefined && request.body.day46 != "") {
                 console.log("Selected Day: " + request.body.day46);
                 days.push(request.body.day46);
             }
-            if (request.body.day47 != undefined) {
+            if (request.body.day47 != undefined && request.body.day47 != "") {
                 console.log("Selected Day: " + request.body.day47);
                 days.push(request.body.day47);
             }
-            if (request.body.day48 != undefined) {
+            if (request.body.day48 != undefined && request.body.day48 != "") {
                 console.log("Selected Day: " + request.body.day48);
                 days.push(request.body.day48);
             }
-            if (request.body.day49 != undefined) {
+            if (request.body.day49 != undefined && request.body.day49 != "") {
                 console.log("Selected Day: " + request.body.day49);
                 days.push(request.body.day49);
             }
@@ -2433,31 +2433,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day49 != undefined) {
+            if (request.body.day50 != undefined && request.body.day50 != "") {
                 console.log("Selected Day: " + request.body.day50);
                 days.push(request.body.day50);
             }
-            if (request.body.day51 != undefined) {
+            if (request.body.day51 != undefined && request.body.day51 != "") {
                 console.log("Selected Day: " + request.body.day51);
                 days.push(request.body.day51);
             }
-            if (request.body.day52 != undefined) {
+            if (request.body.day52 != undefined && request.body.day52 != "") {
                 console.log("Selected Day: " + request.body.day52);
                 days.push(request.body.day52);
             }
-            if (request.body.day53 != undefined) {
+            if (request.body.day53 != undefined && request.body.day53 != "") {
                 console.log("Selected Day: " + request.body.day53);
                 days.push(request.body.day53);
             }
-            if (request.body.day54 != undefined) {
+            if (request.body.day54 != undefined && request.body.day54 != "") {
                 console.log("Selected Day: " + request.body.day54);
                 days.push(request.body.day54);
             }
-            if (request.body.day55 != undefined) {
+            if (request.body.day55 != undefined && request.body.day55 != "") {
                 console.log("Selected Day: " + request.body.day55);
                 days.push(request.body.day55);
             }
-            if (request.body.day56 != undefined) {
+            if (request.body.day56 != undefined && request.body.day56 != "") {
                 console.log("Selected Day: " + request.body.day56);
                 days.push(request.body.day56);
             }
@@ -2488,31 +2488,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day57 != undefined) {
+            if (request.body.day57 != undefined && request.body.day57 != "") {
                 console.log("Selected Day: " + request.body.day57);
                 days.push(request.body.day57);
             }
-            if (request.body.day58 != undefined) {
+            if (request.body.day58 != undefined && request.body.day58 != "") {
                 console.log("Selected Day: " + request.body.day58);
                 days.push(request.body.day58);
             }
-            if (request.body.day59 != undefined) {
+            if (request.body.day59 != undefined && request.body.day59 != "") {
                 console.log("Selected Day: " + request.body.day59);
                 days.push(request.body.day59);
             }
-            if (request.body.day60 != undefined) {
+            if (request.body.day60 != undefined && request.body.day60 != "") {
                 console.log("Selected Day: " + request.body.day60);
                 days.push(request.body.day60);
             }
-            if (request.body.day61 != undefined) {
+            if (request.body.day61 != undefined && request.body.day61 != "") {
                 console.log("Selected Day: " + request.body.day61);
                 days.push(request.body.day61);
             }
-            if (request.body.day62 != undefined) {
+            if (request.body.day62 != undefined && request.body.day62 != "") {
                 console.log("Selected Day: " + request.body.day62);
                 days.push(request.body.day62);
             }
-            if (request.body.day63 != undefined) {
+            if (request.body.day63 != undefined && request.body.day63 != "") {
                 console.log("Selected Day: " + request.body.day63);
                 days.push(request.body.day63);
             }
@@ -2543,31 +2543,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day64 != undefined) {
+            if (request.body.day64 != undefined && request.body.day64 != "") {
                 console.log("Selected Day: " + request.body.day64);
                 days.push(request.body.day64);
             }
-            if (request.body.day65 != undefined) {
+            if (request.body.day65 != undefined && request.body.day65 != "") {
                 console.log("Selected Day: " + request.body.day65);
                 days.push(request.body.day65);
             }
-            if (request.body.day66 != undefined) {
+            if (request.body.day66 != undefined && request.body.day66 != "") {
                 console.log("Selected Day: " + request.body.day66);
                 days.push(request.body.day66);
             }
-            if (request.body.day67 != undefined) {
+            if (request.body.day67 != undefined && request.body.day67 != "") {
                 console.log("Selected Day: " + request.body.day67);
                 days.push(request.body.day67);
             }
-            if (request.body.day68 != undefined) {
+            if (request.body.day68 != undefined && request.body.day68 != "") {
                 console.log("Selected Day: " + request.body.day68);
                 days.push(request.body.day68);
             }
-            if (request.body.day69 != undefined) {
+            if (request.body.day69 != undefined && request.body.day69 != "") {
                 console.log("Selected Day: " + request.body.day69);
                 days.push(request.body.day69);
             }
-            if (request.body.day70 != undefined) {
+            if (request.body.day70 != undefined && request.body.day70 != "") {
                 console.log("Selected Day: " + request.body.day70);
                 days.push(request.body.day70);
             }
@@ -2598,31 +2598,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day71 != undefined) {
+            if (request.body.day71 != undefined && request.body.day71 != "") {
                 console.log("Selected Day: " + request.body.day71);
                 days.push(request.body.day71);
             }
-            if (request.body.day72 != undefined) {
+            if (request.body.day72 != undefined && request.body.day72 != "") {
                 console.log("Selected Day: " + request.body.day72);
                 days.push(request.body.day72);
             }
-            if (request.body.day73 != undefined) {
+            if (request.body.day73 != undefined && request.body.day73 != "") {
                 console.log("Selected Day: " + request.body.day73);
                 days.push(request.body.day73);
             }
-            if (request.body.day74 != undefined) {
+            if (request.body.day74 != undefined && request.body.day74 != "") {
                 console.log("Selected Day: " + request.body.day74);
                 days.push(request.body.day74);
             }
-            if (request.body.day75 != undefined) {
+            if (request.body.day75 != undefined && request.body.day75 != "") {
                 console.log("Selected Day: " + request.body.day75);
                 days.push(request.body.day75);
             }
-            if (request.body.day76 != undefined) {
+            if (request.body.day76 != undefined && request.body.day76 != "") {
                 console.log("Selected Day: " + request.body.day76);
                 days.push(request.body.day76);
             }
-            if (request.body.day77 != undefined) {
+            if (request.body.day77 != undefined && request.body.day77 != "") {
                 console.log("Selected Day: " + request.body.day77);
                 days.push(request.body.day77);
             }
@@ -2653,31 +2653,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day78 != undefined) {
+            if (request.body.day78 != undefined && request.body.day78 != "") {
                 console.log("Selected Day: " + request.body.day78);
                 days.push(request.body.day78);
             }
-            if (request.body.day79 != undefined) {
+            if (request.body.day79 != undefined && request.body.day79 != "") {
                 console.log("Selected Day: " + request.body.day79);
                 days.push(request.body.day79);
             }
-            if (request.body.day80 != undefined) {
+            if (request.body.day80 != undefined && request.body.day80 != "") {
                 console.log("Selected Day: " + request.body.day80);
                 days.push(request.body.day80);
             }
-            if (request.body.day81 != undefined) {
+            if (request.body.day81 != undefined && request.body.day81 != "") {
                 console.log("Selected Day: " + request.body.day81);
                 days.push(request.body.day81);
             }
-            if (request.body.day82 != undefined) {
+            if (request.body.day82 != undefined && request.body.day82 != "") {
                 console.log("Selected Day: " + request.body.day82);
                 days.push(request.body.day82);
             }
-            if (request.body.day83 != undefined) {
+            if (request.body.day83 != undefined && request.body.day83 != "") {
                 console.log("Selected Day: " + request.body.day83);
                 days.push(request.body.day83);
             }
-            if (request.body.day84 != undefined) {
+            if (request.body.day84 != undefined && request.body.day84 != "") {
                 console.log("Selected Day: " + request.body.day84);
                 days.push(request.body.day84);
             }
@@ -2708,31 +2708,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day85 != undefined) {
+            if (request.body.day85 != undefined && request.body.day85 != "") {
                 console.log("Selected Day: " + request.body.day85);
                 days.push(request.body.day85);
             }
-            if (request.body.day86 != undefined) {
+            if (request.body.day86 != undefined && request.body.day86 != "") {
                 console.log("Selected Day: " + request.body.day86);
                 days.push(request.body.day86);
             }
-            if (request.body.day87 != undefined) {
+            if (request.body.day87 != undefined && request.body.day87 != "") {
                 console.log("Selected Day: " + request.body.day87);
                 days.push(request.body.day87);
             }
-            if (request.body.day88 != undefined) {
+            if (request.body.day88 != undefined && request.body.day88 != "") {
                 console.log("Selected Day: " + request.body.day88);
                 days.push(request.body.day88);
             }
-            if (request.body.day89 != undefined) {
+            if (request.body.day89 != undefined && request.body.day89 != "") {
                 console.log("Selected Day: " + request.body.day89);
                 days.push(request.body.day89);
             }
-            if (request.body.day90 != undefined) {
+            if (request.body.day90 != undefined && request.body.day90 != "") {
                 console.log("Selected Day: " + request.body.day90);
                 days.push(request.body.day90);
             }
-            if (request.body.day91 != undefined) {
+            if (request.body.day91 != undefined && request.body.day91 != "") {
                 console.log("Selected Day: " + request.body.day91);
                 days.push(request.body.day91);
             }
@@ -2763,31 +2763,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day92 != undefined) {
+            if (request.body.day92 != undefined && request.body.day92 != "") {
                 console.log("Selected Day: " + request.body.day92);
                 days.push(request.body.day92);
             }
-            if (request.body.day93 != undefined) {
+            if (request.body.day93 != undefined && request.body.day93 != "") {
                 console.log("Selected Day: " + request.body.day93);
                 days.push(request.body.day93);
             }
-            if (request.body.day94 != undefined) {
+            if (request.body.day94 != undefined && request.body.day94 != "") {
                 console.log("Selected Day: " + request.body.day94);
                 days.push(request.body.day94);
             }
-            if (request.body.day95 != undefined) {
+            if (request.body.day95 != undefined && request.body.day95 != "") {
                 console.log("Selected Day: " + request.body.day95);
                 days.push(request.body.day95);
             }
-            if (request.body.day96 != undefined) {
+            if (request.body.day96 != undefined && request.body.day96 != "") {
                 console.log("Selected Day: " + request.body.day96);
                 days.push(request.body.day96);
             }
-            if (request.body.day97 != undefined) {
+            if (request.body.day97 != undefined && request.body.day97 != "") {
                 console.log("Selected Day: " + request.body.day97);
                 days.push(request.body.day97);
             }
-            if (request.body.day98 != undefined) {
+            if (request.body.day98 != undefined && request.body.day98 != "") {
                 console.log("Selected Day: " + request.body.day98);
                 days.push(request.body.day98);
             }
@@ -2818,31 +2818,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day99 != undefined) {
+            if (request.body.day99 != undefined && request.body.day99 != "") {
                 console.log("Selected Day: " + request.body.day99);
                 days.push(request.body.day99);
             }
-            if (request.body.day100 != undefined) {
+            if (request.body.day100 != undefined && request.body.day100 != "") {
                 console.log("Selected Day: " + request.body.day100);
                 days.push(request.body.day100);
             }
-            if (request.body.day101 != undefined) {
+            if (request.body.day101 != undefined && request.body.day101 != "") {
                 console.log("Selected Day: " + request.body.day101);
                 days.push(request.body.day101);
             }
-            if (request.body.day102 != undefined) {
+            if (request.body.day102 != undefined && request.body.day102 != "") {
                 console.log("Selected Day: " + request.body.day102);
                 days.push(request.body.day102);
             }
-            if (request.body.day103 != undefined) {
+            if (request.body.day103 != undefined && request.body.day103 != "") {
                 console.log("Selected Day: " + request.body.day103);
                 days.push(request.body.day103);
             }
-            if (request.body.day104 != undefined) {
+            if (request.body.day104 != undefined && request.body.day104 != "") {
                 console.log("Selected Day: " + request.body.day104);
                 days.push(request.body.day104);
             }
-            if (request.body.day105 != undefined) {
+            if (request.body.day105 != undefined && request.body.day105 != "") {
                 console.log("Selected Day: " + request.body.day105);
                 days.push(request.body.day105);
             }
@@ -2873,31 +2873,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day106 != undefined) {
+            if (request.body.day106 != undefined && request.body.day106 != "") {
                 console.log("Selected Day: " + request.body.day106);
                 days.push(request.body.day106);
             }
-            if (request.body.day107 != undefined) {
+            if (request.body.day107 != undefined && request.body.day107 != "") {
                 console.log("Selected Day: " + request.body.day107);
                 days.push(request.body.day107);
             }
-            if (request.body.day108 != undefined) {
+            if (request.body.day108 != undefined && request.body.day108 != "") {
                 console.log("Selected Day: " + request.body.day108);
                 days.push(request.body.day108);
             }
-            if (request.body.day109 != undefined) {
+            if (request.body.day109 != undefined && request.body.day109 != "") {
                 console.log("Selected Day: " + request.body.day109);
                 days.push(request.body.day109);
             }
-            if (request.body.day110 != undefined) {
+            if (request.body.day110 != undefined && request.body.day110 != "") {
                 console.log("Selected Day: " + request.body.day110);
                 days.push(request.body.day110);
             }
-            if (request.body.day111 != undefined) {
+            if (request.body.day111 != undefined && request.body.day111 != "") {
                 console.log("Selected Day: " + request.body.day111);
                 days.push(request.body.day111);
             }
-            if (request.body.day112 != undefined) {
+            if (request.body.day112 != undefined && request.body.day112 != "") {
                 console.log("Selected Day: " + request.body.day112);
                 days.push(request.body.day112);
             }
@@ -2928,31 +2928,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day113 != undefined) {
+            if (request.body.day113 != undefined && request.body.day113 != "") {
                 console.log("Selected Day: " + request.body.day113);
                 days.push(request.body.day113);
             }
-            if (request.body.day114 != undefined) {
+            if (request.body.day114 != undefined && request.body.day114 != "") {
                 console.log("Selected Day: " + request.body.day114);
                 days.push(request.body.day114);
             }
-            if (request.body.day115 != undefined) {
+            if (request.body.day115 != undefined && request.body.day115 != "") {
                 console.log("Selected Day: " + request.body.day115);
                 days.push(request.body.day115);
             }
-            if (request.body.day116 != undefined) {
+            if (request.body.day116 != undefined && request.body.day116 != "") {
                 console.log("Selected Day: " + request.body.day116);
                 days.push(request.body.day116);
             }
-            if (request.body.day117 != undefined) {
+            if (request.body.day117 != undefined && request.body.day117 != "") {
                 console.log("Selected Day: " + request.body.day117);
                 days.push(request.body.day117);
             }
-            if (request.body.day118 != undefined) {
+            if (request.body.day118 != undefined && request.body.day118 != "") {
                 console.log("Selected Day: " + request.body.day118);
                 days.push(request.body.day118);
             }
-            if (request.body.day119 != undefined) {
+            if (request.body.day119 != undefined && request.body.day119 != "") {
                 console.log("Selected Day: " + request.body.day119);
                 days.push(request.body.day119);
             }
@@ -2983,31 +2983,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day120 != undefined) {
+            if (request.body.day120 != undefined && request.body.day120 != "") {
                 console.log("Selected Day: " + request.body.day120);
                 days.push(request.body.day120);
             }
-            if (request.body.day121 != undefined) {
+            if (request.body.day121 != undefined && request.body.day121 != "") {
                 console.log("Selected Day: " + request.body.day121);
                 days.push(request.body.day121);
             }
-            if (request.body.day122 != undefined) {
+            if (request.body.day122 != undefined && request.body.day122 != "") {
                 console.log("Selected Day: " + request.body.day122);
                 days.push(request.body.day122);
             }
-            if (request.body.day123 != undefined) {
+            if (request.body.day123 != undefined && request.body.day123 != "") {
                 console.log("Selected Day: " + request.body.day123);
                 days.push(request.body.day123);
             }
-            if (request.body.day124 != undefined) {
+            if (request.body.day124 != undefined && request.body.day124 != "") {
                 console.log("Selected Day: " + request.body.day124);
                 days.push(request.body.day124);
             }
-            if (request.body.day125 != undefined) {
+            if (request.body.day125 != undefined && request.body.day125 != "") {
                 console.log("Selected Day: " + request.body.day125);
                 days.push(request.body.day125);
             }
-            if (request.body.day126 != undefined) {
+            if (request.body.day126 != undefined && request.body.day126 != "") {
                 console.log("Selected Day: " + request.body.day126);
                 days.push(request.body.day126);
             }
@@ -3038,31 +3038,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day127 != undefined) {
+            if (request.body.day127 != undefined && request.body.day127 != "") {
                 console.log("Selected Day: " + request.body.day127);
                 days.push(request.body.day127);
             }
-            if (request.body.day128 != undefined) {
+            if (request.body.day128 != undefined && request.body.day128 != "") {
                 console.log("Selected Day: " + request.body.day128);
                 days.push(request.body.day128);
             }
-            if (request.body.day129 != undefined) {
+            if (request.body.day129 != undefined && request.body.day129 != "") {
                 console.log("Selected Day: " + request.body.day129);
                 days.push(request.body.day129);
             }
-            if (request.body.day130 != undefined) {
+            if (request.body.day130 != undefined && request.body.day130 != "") {
                 console.log("Selected Day: " + request.body.day130);
                 days.push(request.body.day130);
             }
-            if (request.body.day131 != undefined) {
+            if (request.body.day131 != undefined && request.body.day131 != "") {
                 console.log("Selected Day: " + request.body.day131);
                 days.push(request.body.day131);
             }
-            if (request.body.day132 != undefined) {
+            if (request.body.day132 != undefined && request.body.day132 != "") {
                 console.log("Selected Day: " + request.body.day132);
                 days.push(request.body.day132);
             }
-            if (request.body.day133 != undefined) {
+            if (request.body.day133 != undefined && request.body.day133 != "") {
                 console.log("Selected Day: " + request.body.day133);
                 days.push(request.body.day133);
             }
@@ -3093,31 +3093,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day134 != undefined) {
+            if (request.body.day134 != undefined && request.body.day134 != "") {
                 console.log("Selected Day: " + request.body.day134);
                 days.push(request.body.day134);
             }
-            if (request.body.day135 != undefined) {
+            if (request.body.day135 != undefined && request.body.day135 != "") {
                 console.log("Selected Day: " + request.body.day135);
                 days.push(request.body.day135);
             }
-            if (request.body.day136 != undefined) {
+            if (request.body.day136 != undefined && request.body.day136 != "") {
                 console.log("Selected Day: " + request.body.day136);
                 days.push(request.body.day136);
             }
-            if (request.body.day137 != undefined) {
+            if (request.body.day137 != undefined && request.body.day137 != "") {
                 console.log("Selected Day: " + request.body.day137);
                 days.push(request.body.day137);
             }
-            if (request.body.day138 != undefined) {
+            if (request.body.day138 != undefined && request.body.day138 != "") {
                 console.log("Selected Day: " + request.body.day138);
                 days.push(request.body.day138);
             }
-            if (request.body.day139 != undefined) {
+            if (request.body.day139 != undefined && request.body.day139 != "") {
                 console.log("Selected Day: " + request.body.day139);
                 days.push(request.body.day139);
             }
-            if (request.body.day140 != undefined) {
+            if (request.body.day140 != undefined && request.body.day140 != "") {
                 console.log("Selected Day: " + request.body.day140);
                 days.push(request.body.day140);
             }
@@ -3148,31 +3148,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day141 != undefined) {
+            if (request.body.day141 != undefined && request.body.day141 != "") {
                 console.log("Selected Day: " + request.body.day141);
                 days.push(request.body.day141);
             }
-            if (request.body.day142 != undefined) {
+            if (request.body.day142 != undefined && request.body.day142 != "") {
                 console.log("Selected Day: " + request.body.day142);
                 days.push(request.body.day142);
             }
-            if (request.body.day143 != undefined) {
+            if (request.body.day143 != undefined && request.body.day143 != "") {
                 console.log("Selected Day: " + request.body.day143);
                 days.push(request.body.day143);
             }
-            if (request.body.day144 != undefined) {
+            if (request.body.day144 != undefined && request.body.day144 != "") {
                 console.log("Selected Day: " + request.body.day144);
                 days.push(request.body.day144);
             }
-            if (request.body.day145 != undefined) {
+            if (request.body.day145 != undefined && request.body.day145 != "") {
                 console.log("Selected Day: " + request.body.day145);
                 days.push(request.body.day145);
             }
-            if (request.body.day146 != undefined) {
+            if (request.body.day146 != undefined && request.body.day146 != "") {
                 console.log("Selected Day: " + request.body.day146);
                 days.push(request.body.day146);
             }
-            if (request.body.day147 != undefined) {
+            if (request.body.day147 != undefined && request.body.day147 != "") {
                 console.log("Selected Day: " + request.body.day147);
                 days.push(request.body.day147);
             }
@@ -3203,31 +3203,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day148 != undefined) {
+            if (request.body.day148 != undefined && request.body.day148 != "") {
                 console.log("Selected Day: " + request.body.day148);
                 days.push(request.body.day148);
             }
-            if (request.body.day149 != undefined) {
+            if (request.body.day149 != undefined && request.body.day149 != "") {
                 console.log("Selected Day: " + request.body.day149);
                 days.push(request.body.day149);
             }
-            if (request.body.day150 != undefined) {
+            if (request.body.day150 != undefined && request.body.day150 != "") {
                 console.log("Selected Day: " + request.body.day150);
                 days.push(request.body.day150);
             }
-            if (request.body.day151 != undefined) {
+            if (request.body.day151 != undefined && request.body.day151 != "") {
                 console.log("Selected Day: " + request.body.day151);
                 days.push(request.body.day151);
             }
-            if (request.body.day152 != undefined) {
+            if (request.body.day152 != undefined && request.body.day152 != "") {
                 console.log("Selected Day: " + request.body.day152);
                 days.push(request.body.day152);
             }
-            if (request.body.day153 != undefined) {
+            if (request.body.day153 != undefined && request.body.day153 != "") {
                 console.log("Selected Day: " + request.body.day153);
                 days.push(request.body.day153);
             }
-            if (request.body.day154 != undefined) {
+            if (request.body.day154 != undefined && request.body.day154 != "") {
                 console.log("Selected Day: " + request.body.day154);
                 days.push(request.body.day154);
             }
@@ -3258,31 +3258,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day155 != undefined) {
+            if (request.body.day155 != undefined && request.body.day155 != "") {
                 console.log("Selected Day: " + request.body.day155);
                 days.push(request.body.day155);
             }
-            if (request.body.day156 != undefined) {
+            if (request.body.day156 != undefined && request.body.day156 != "") {
                 console.log("Selected Day: " + request.body.day156);
                 days.push(request.body.day156);
             }
-            if (request.body.day157 != undefined) {
+            if (request.body.day157 != undefined && request.body.day157 != "") {
                 console.log("Selected Day: " + request.body.day157);
                 days.push(request.body.day157);
             }
-            if (request.body.day158 != undefined) {
+            if (request.body.day158 != undefined && request.body.day158 != "") {
                 console.log("Selected Day: " + request.body.day158);
                 days.push(request.body.day158);
             }
-            if (request.body.day159 != undefined) {
+            if (request.body.day159 != undefined && request.body.day159 != "") {
                 console.log("Selected Day: " + request.body.day159);
                 days.push(request.body.day159);
             }
-            if (request.body.day160 != undefined) {
+            if (request.body.day160 != undefined && request.body.day160 != "") {
                 console.log("Selected Day: " + request.body.day160);
                 days.push(request.body.day160);
             }
-            if (request.body.day161 != undefined) {
+            if (request.body.day161 != undefined && request.body.day161 != "") {
                 console.log("Selected Day: " + request.body.day161);
                 days.push(request.body.day161);
             }
@@ -3313,31 +3313,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day162 != undefined) {
+            if (request.body.day162 != undefined && request.body.day162 != "") {
                 console.log("Selected Day: " + request.body.day162);
                 days.push(request.body.day162);
             }
-            if (request.body.day163 != undefined) {
+            if (request.body.day163 != undefined && request.body.day163 != "") {
                 console.log("Selected Day: " + request.body.day163);
                 days.push(request.body.day163);
             }
-            if (request.body.day164 != undefined) {
+            if (request.body.day164 != undefined && request.body.day164 != "") {
                 console.log("Selected Day: " + request.body.day164);
                 days.push(request.body.day164);
             }
-            if (request.body.day165 != undefined) {
+            if (request.body.day165 != undefined && request.body.day165 != "") {
                 console.log("Selected Day: " + request.body.day165);
                 days.push(request.body.day165);
             }
-            if (request.body.day166 != undefined) {
+            if (request.body.day166 != undefined && request.body.day166 != "") {
                 console.log("Selected Day: " + request.body.day166);
                 days.push(request.body.day166);
             }
-            if (request.body.day167 != undefined) {
+            if (request.body.day167 != undefined && request.body.day167 != "") {
                 console.log("Selected Day: " + request.body.day167);
                 days.push(request.body.day167);
             }
-            if (request.body.day168 != undefined) {
+            if (request.body.day168 != undefined && request.body.day168 != "") {
                 console.log("Selected Day: " + request.body.day168);
                 days.push(request.body.day168);
             }
@@ -3368,31 +3368,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day169 != undefined) {
+            if (request.body.day169 != undefined && request.body.day169 != "") {
                 console.log("Selected Day: " + request.body.day169);
                 days.push(request.body.day169);
             }
-            if (request.body.day170 != undefined) {
+            if (request.body.day170 != undefined && request.body.day170 != "") {
                 console.log("Selected Day: " + request.body.day170);
                 days.push(request.body.day170);
             }
-            if (request.body.day171 != undefined) {
+            if (request.body.day171 != undefined && request.body.day171 != "") {
                 console.log("Selected Day: " + request.body.day171);
                 days.push(request.body.day171);
             }
-            if (request.body.day172 != undefined) {
+            if (request.body.day172 != undefined && request.body.day172 != "") {
                 console.log("Selected Day: " + request.body.day172);
                 days.push(request.body.day172);
             }
-            if (request.body.day173 != undefined) {
+            if (request.body.day173 != undefined && request.body.day173 != "") {
                 console.log("Selected Day: " + request.body.day173);
                 days.push(request.body.day173);
             }
-            if (request.body.day174 != undefined) {
+            if (request.body.day174 != undefined && request.body.day174 != "") {
                 console.log("Selected Day: " + request.body.day174);
                 days.push(request.body.day174);
             }
-            if (request.body.day175 != undefined) {
+            if (request.body.day175 != undefined && request.body.day175 != "") {
                 console.log("Selected Day: " + request.body.day175);
                 days.push(request.body.day175);
             }
@@ -3423,31 +3423,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day176 != undefined) {
+            if (request.body.day176 != undefined && request.body.day176 != "") {
                 console.log("Selected Day: " + request.body.day176);
                 days.push(request.body.day176);
             }
-            if (request.body.day177 != undefined) {
+            if (request.body.day177 != undefined && request.body.day177 != "") {
                 console.log("Selected Day: " + request.body.day177);
                 days.push(request.body.day1177);
             }
-            if (request.body.day178 != undefined) {
+            if (request.body.day178 != undefined && request.body.day178 != "") {
                 console.log("Selected Day: " + request.body.day178);
                 days.push(request.body.day178);
             }
-            if (request.body.day179 != undefined) {
+            if (request.body.day179 != undefined && request.body.day179 != "") {
                 console.log("Selected Day: " + request.body.day179);
                 days.push(request.body.day179);
             }
-            if (request.body.day180 != undefined) {
+            if (request.body.day180 != undefined && request.body.day180 != "") {
                 console.log("Selected Day: " + request.body.day180);
                 days.push(request.body.day180);
             }
-            if (request.body.day181 != undefined) {
+            if (request.body.day181 != undefined && request.body.day181 != "") {
                 console.log("Selected Day: " + request.body.day181);
                 days.push(request.body.day181);
             }
-            if (request.body.day182 != undefined) {
+            if (request.body.day182 != undefined && request.body.day182 != "") {
                 console.log("Selected Day: " + request.body.day182);
                 days.push(request.body.day182);
             }
@@ -3478,31 +3478,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day183 != undefined) {
+            if (request.body.day183 != undefined && request.body.day183 != "") {
                 console.log("Selected Day: " + request.body.day183);
                 days.push(request.body.day183);
             }
-            if (request.body.day184 != undefined) {
+            if (request.body.day184 != undefined && request.body.day184 != "") {
                 console.log("Selected Day: " + request.body.day184);
                 days.push(request.body.day184);
             }
-            if (request.body.day185 != undefined) {
+            if (request.body.day185 != undefined && request.body.day185 != "") {
                 console.log("Selected Day: " + request.body.day185);
                 days.push(request.body.day185);
             }
-            if (request.body.day186 != undefined) {
+            if (request.body.day186 != undefined && request.body.day186 != "") {
                 console.log("Selected Day: " + request.body.day186);
                 days.push(request.body.day186);
             }
-            if (request.body.day187 != undefined) {
+            if (request.body.day187 != undefined && request.body.day187 != "") {
                 console.log("Selected Day: " + request.body.day187);
                 days.push(request.body.day187);
             }
-            if (request.body.day188 != undefined) {
+            if (request.body.day188 != undefined && request.body.day188 != "") {
                 console.log("Selected Day: " + request.body.day188);
                 days.push(request.body.day188);
             }
-            if (request.body.day189 != undefined) {
+            if (request.body.day189 != undefined && request.body.day189 != "") {
                 console.log("Selected Day: " + request.body.day189);
                 days.push(request.body.day189);
             }
@@ -3533,31 +3533,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day190 != undefined) {
+            if (request.body.day190 != undefined && request.body.day190 != "") {
                 console.log("Selected Day: " + request.body.day190);
                 days.push(request.body.day190);
             }
-            if (request.body.day191 != undefined) {
+            if (request.body.day191 != undefined && request.body.day191 != "") {
                 console.log("Selected Day: " + request.body.day191);
                 days.push(request.body.day191);
             }
-            if (request.body.day192 != undefined) {
+            if (request.body.day192 != undefined && request.body.day192 != "") {
                 console.log("Selected Day: " + request.body.day192);
                 days.push(request.body.day192);
             }
-            if (request.body.day193 != undefined) {
+            if (request.body.day193 != undefined && request.body.day193 != "") {
                 console.log("Selected Day: " + request.body.day193);
                 days.push(request.body.day193);
             }
-            if (request.body.day194 != undefined) {
+            if (request.body.day194 != undefined && request.body.day194 != "") {
                 console.log("Selected Day: " + request.body.day194);
                 days.push(request.body.day194);
             }
-            if (request.body.day195 != undefined) {
+            if (request.body.day195 != undefined && request.body.day195 != "") {
                 console.log("Selected Day: " + request.body.day195);
                 days.push(request.body.day195);
             }
-            if (request.body.day196 != undefined) {
+            if (request.body.day196 != undefined && request.body.day196 != "") {
                 console.log("Selected Day: " + request.body.day196);
                 days.push(request.body.day196);
             }
@@ -3588,31 +3588,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day197 != undefined) {
+            if (request.body.day197 != undefined && request.body.day197 != "") {
                 console.log("Selected Day: " + request.body.day197);
                 days.push(request.body.day197);
             }
-            if (request.body.day198 != undefined) {
+            if (request.body.day198 != undefined && request.body.day198 != "") {
                 console.log("Selected Day: " + request.body.day198);
                 days.push(request.body.day198);
             }
-            if (request.body.day199 != undefined) {
+            if (request.body.day199 != undefined && request.body.day199 != "") {
                 console.log("Selected Day: " + request.body.day199);
                 days.push(request.body.day199);
             }
-            if (request.body.day200 != undefined) {
+            if (request.body.day200 != undefined && request.body.day200 != "") {
                 console.log("Selected Day: " + request.body.day200);
                 days.push(request.body.day200);
             }
-            if (request.body.day201 != undefined) {
+            if (request.body.day201 != undefined && request.body.day201 != "") {
                 console.log("Selected Day: " + request.body.day201);
                 days.push(request.body.day201);
             }
-            if (request.body.day202 != undefined) {
+            if (request.body.day202 != undefined && request.body.day202 != "") {
                 console.log("Selected Day: " + request.body.day202);
                 days.push(request.body.day202);
             }
-            if (request.body.day203 != undefined) {
+            if (request.body.day203 != undefined && request.body.day203 != "") {
                 console.log("Selected Day: " + request.body.day203);
                 days.push(request.body.day203);
             }
@@ -3643,31 +3643,31 @@ function refScheduleCheckerInfo(request, scheduleInfo, roster) {
 
             // get the day
             let days = new Array();
-            if (request.body.day204 != undefined) {
+            if (request.body.day204 != undefined && request.body.day204 != "") {
                 console.log("Selected Day: " + request.body.day204);
                 days.push(request.body.day204);
             }
-            if (request.body.day205 != undefined) {
+            if (request.body.day205 != undefined && request.body.day205 != "") {
                 console.log("Selected Day: " + request.body.day205);
                 days.push(request.body.day205);
             }
-            if (request.body.day206 != undefined) {
+            if (request.body.day206 != undefined && request.body.day206 != "") {
                 console.log("Selected Day: " + request.body.day206);
                 days.push(request.body.day206);
             }
-            if (request.body.day207 != undefined) {
+            if (request.body.day207 != undefined && request.body.day207 != "") {
                 console.log("Selected Day: " + request.body.day207);
                 days.push(request.body.day207);
             }
-            if (request.body.day208 != undefined) {
+            if (request.body.day208 != undefined && request.body.day208 != "") {
                 console.log("Selected Day: " + request.body.day208);
                 days.push(request.body.day208);
             }
-            if (request.body.day209 != undefined) {
+            if (request.body.day209 != undefined && request.body.day209 != "") {
                 console.log("Selected Day: " + request.body.day209);
                 days.push(request.body.day209);
             }
-            if (request.body.day210 != undefined) {
+            if (request.body.day210 != undefined && request.body.day210 != "") {
                 console.log("Selected Day: " + request.body.day210);
                 days.push(request.body.day210);
             }
