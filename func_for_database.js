@@ -1646,6 +1646,7 @@ async function rIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
 function getIndivAllergies(start, locationsAllergies, locAllergies, type) {
     for (let index = start; index < locationsAllergies.length; index++) {
         let allergy = locationsAllergies[index];
+        console.log("Allergy = " + allergy);
         if (type == "food") {
             // search for food allergies
             // keep looping while the element is an allergy
@@ -1674,6 +1675,7 @@ function getIndivAllergies(start, locationsAllergies, locAllergies, type) {
                 locAllergies.push(allergy);
             }
             else {
+                console.log("Breaking");
                 break;
             }
         }
@@ -1714,6 +1716,7 @@ function getIndivAllergies(start, locationsAllergies, locAllergies, type) {
                 locAllergies.push(allergy);
             }
             else {
+                console.log("Breaking");
                 break;
             }
         }
@@ -1721,11 +1724,17 @@ function getIndivAllergies(start, locationsAllergies, locAllergies, type) {
 }
 
 function compareAllergies(location, locationsAllergies, employeeAllergies, type) {
+    console.log("locationsAllergies");
+    console.log(locationsAllergies);
+    console.log("employeeAllergies");
+    console.log(employeeAllergies);
     let locAllergies = new Array();
     let issue = false;
     // search for the location in the location allergies
     for (let index = 0; index < locationsAllergies.length; index++) {
+        console.log("Looking at: " + locationsAllergies[index]);
         if (location == locationsAllergies[index]) {
+            console.log("Found the location");
             let start = index + 1;
             getIndivAllergies(start, locationsAllergies, locAllergies, type);
         }
@@ -1786,15 +1795,19 @@ async function efIssueSearch(databaseConnection, discoveredIssues, scheduleInfo,
             stringToArray(allergyStr, allergies);
             // get the location:allergies from the supervisor's table
             let supTable = determineSupTable(companyType);
-            let locationAllergies = getSupAllergies(databaseConnection, supEmail, supTable);
-            console.log("Location Allergies in Issue Search: " + locationAllergies);
+            let locationAllergiesStr = await getSupAllergies(databaseConnection, supEmail, supTable);
+            let locationAllergies = new Array();
+            stringToArray(locationAllergiesStr, locationAllergies);
+            console.log(" ");
+            console.log("HELLO!");
+            console.log(" ");
             let allergyIssue = compareAllergies(location, locationAllergies, allergies, "food");
             if (allergyIssue) {
                 foundIssue = true;
                 console.log("Found an allergy issue for " + empName);
                 discoveredIssues.push(empName);
                 discoveredIssues.push("Allergies");
-                discoveredIssues.push("[" + allergyStr + "]");
+                discoveredIssues.push("[Locations without: " + allergyStr + "]");
                 console.log(" "); // for spacing the output on the console
             }
             else {
@@ -1896,6 +1909,26 @@ async function efIssueSearch(databaseConnection, discoveredIssues, scheduleInfo,
     return true; // for the dummy variable
 }
 
+function getLastShift(databaseConnection, empEmail, table) {
+    return new Promise((resolve, reject) => {
+        let queryCommand = 'SELECT lastShift FROM schedularDatabase.' + table
+            + ' WHERE email = "' + empEmail + '";';
+        
+        databaseConnection.query(queryCommand, function(error, sqlResult, table) {
+            if (error) {
+                console.log("ERROR: Unable to retrieve last shift in getLastShift");
+            }
+            else {
+                // get the shift
+                let shift = sqlResult[0].lastShift;
+                console.log("Last Shift in getLastShift : " + shift);
+                
+                // return the shift
+                resolve(shift);
+            }
+        });
+    }); 
+}
 async function lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, name, 
     table, multLoc, supEmail) {
     // figure out the indexes
@@ -1918,7 +1951,7 @@ async function lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
         let empName = scheduleInfo[nameIndex];
 
         // get the employee's email
-        let empEmail = await getEmployee(databaseConnection, name, empName, companyType);
+        let empEmail = await getEmployee(databaseConnection, name, empName, "lawEnforcement");
         console.log("The user's email: " + empEmail);
 
         // see if the employee is allergic to anything at the scheduled location
@@ -1932,8 +1965,8 @@ async function lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
             let allergies = new Array();
             stringToArray(allergyStr, allergies);
             // get the location:allergies from the supervisor's table
-            let supTable = determineSupTable(companyType);
-            let locationAllergies = getSupAllergies(databaseConnection, supEmail, supTable);
+            let supTable = determineSupTable("lawEnforcement");
+            let locationAllergies = await getSupAllergies(databaseConnection, supEmail, supTable);
             console.log("Location Allergies in Issue Search: " + locationAllergies);
             let allergyIssue = compareAllergies(location, locationAllergies, allergies, "common");
             if (allergyIssue) {
@@ -1941,7 +1974,7 @@ async function lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
                 console.log("Found an allergy issue for " + empName);
                 discoveredIssues.push(empName);
                 discoveredIssues.push("Allergies");
-                discoveredIssues.push("[" + allergyStr + "]");
+                discoveredIssues.push("[Locations without: " + allergyStr + "]");
                 console.log(" "); // for spacing the output on the console
             }
             else {
@@ -1949,12 +1982,45 @@ async function lIssueSearch(databaseConnection, discoveredIssues, scheduleInfo, 
             }
         }
 
+        // compare the shift
+        let shift = scheduleInfo[shiftIndex];
+        // get the shift preference
+        let shiftPrefStr = await getShiftPref(databaseConnection, empEmail, table);
+        console.log("Shift Preference in Issue Search: " + shiftPrefStr);
+
         if (foundIssue == false) {
-            // compare the shift
-            let shift = scheduleInfo[shiftIndex];
             // get the shift preference
-            let shiftPrefStr = await getShiftPref(databaseConnection, empEmail, table);
-            console.log("Shift Preference in Issue Search: " + shiftPrefStr);
+            let lastShift = await getLastShift(databaseConnection, empEmail, table);
+            console.log("Last Shift in Issue Search: " + lastShift);
+            // if the user didn't supply a response, there's no issue
+            if (lastShift != "" && lastShift != null) {
+                if (lastShift == shift) { // cannot redo the same shift
+                    // get the seniority of the employee
+                    let seniority = await getEmployeeYears(databaseConnection, empEmail, table);
+                    console.log("Already scheduled this shift for " + empName);
+                    foundIssue = true;
+                    if (seniority != null) {
+                        discoveredIssues.push(empName + " - Seniority: " + seniority);
+                    }
+                    else {
+                        discoveredIssues.push(empName);
+                    }
+                    discoveredIssues.push("Just Finished Shift");
+                    if (shiftPrefStr != "" && shiftPrefStr != null) {
+                        discoveredIssues.push("[" + shiftPrefStr + "]");
+                    }
+                    else {
+                        discoveredIssues.push("No preference given");
+                    }
+                    console.log(" "); // for spacing the output on the console
+                }
+                else {
+                    console.log("No shift issue for " + empName);
+                }
+            }
+        }
+
+        if (foundIssue == false) {
             // if the user didn't provide a preference, there's no issue
             if (shiftPrefStr != "" && shiftPrefStr != null) {
                 // convert shiftPref to an array

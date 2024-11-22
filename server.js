@@ -10,7 +10,7 @@ let tester = require("./testing_functions.js");
 // set up Node.js library
 let nodeJs = require("express");
 let program = nodeJs();
-program.set("view engine", "ejs"); // for generating the files with  ejs
+program.set("view engine", "ejs"); // for generating the files with ejs
 
 // set up the library for parsing form data
 let dataParse = require("body-parser");
